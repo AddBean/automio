@@ -137,6 +137,9 @@
     <string name="create_center_skill_desc">定义 AI 的专业能力与行为模式。</string>
     <string name="create_center_tool_title">AI 工具</string>
     <string name="create_center_tool_desc">将工作流发布为 MCP 工具，扩展 Agent 能力。</string>
+    <string name="create_center_import_title">导入资源包</string>
+    <string name="create_center_import_desc">导入 .zip 资源包（工作流 + 技能 / 工具 / 权限声明）。</string>
+    <string name="workflow_detail_share_export">分享 / 导出</string>
 
     <!-- Agent Settings -->
     <string name="agent_settings_title">AI助手设置</string>

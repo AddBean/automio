@@ -224,6 +224,62 @@
                     android:contentDescription="@null"
                     android:src="@drawable/ic_arrow_right" />
             </com.hive.views.widgets.UIRoundCornerLinearLayout>
+
+            <com.hive.views.widgets.UIRoundCornerLinearLayout
+                android:id="@+id/card_import_bundle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/design_spacing_3"
+                android:background="@color/design_bg_card"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="20dp"
+                app:rcv_borderColor="@color/white_5"
+                app:rcv_borderWidth="1dp"
+                app:rcv_radius="24dp">
+
+                <ImageView
+                    android:id="@+id/icon_creation_import"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/design_bg_toolbar_icon"
+                    android:contentDescription="@null"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_download"
+                    app:tint="@color/design_text_secondary" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/create_center_import_title"
+                        android:textColor="@color/design_text_secondary"
+                        android:textSize="@dimen/design_font_md"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/create_center_import_desc"
+                        android:textColor="@color/design_text_muted"
+                        android:textSize="@dimen/design_font_xs" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_arrow_right" />
+            </com.hive.views.widgets.UIRoundCornerLinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

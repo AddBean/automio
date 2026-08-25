@@ -540,7 +540,7 @@ class ActivityWorkflowDetail : BaseFragmentActivity() {
             actions = listOf(
                 ResourceOverflowAction(getString(com.hive.i8n.R.string.btn_file_rename)) { renameWorkflow() },
                 ResourceOverflowAction(getString(com.hive.i8n.R.string.btn_file_copy)) { copyWorkflow() },
-                ResourceOverflowAction(getString(com.hive.i8n.R.string.btn_file_share)) { shareWorkflow() },
+                ResourceOverflowAction(getString(com.hive.i8n.R.string.workflow_detail_share_export)) { shareWorkflow() },
                 ResourceOverflowAction(getString(com.hive.i8n.R.string.delete), danger = true) { confirmDelete() }
             )
         )

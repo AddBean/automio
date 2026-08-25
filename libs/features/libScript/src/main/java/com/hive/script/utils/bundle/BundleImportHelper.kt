@@ -4,22 +4,57 @@
 package com.hive.script.utils.bundle
 
 import android.content.Context
+import com.hive.script.ActivitySelectorWrapper
 import com.hive.script.ScriptProvider
-import com.hive.script.views.dialog.DialogBundleImportConflictConfirm
 import com.hive.script.event.RefreshScriptListEvent
+import com.hive.script.utils.ScriptHelper
+import com.hive.script.views.dialog.DialogBundleImportConflictConfirm
 import com.hive.utils.GlobalApp
+import com.hive.utils.file.MediaFileUtil
 import com.hive.views.widgets.CommonToast
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.greenrobot.eventbus.EventBus
+import java.io.File
 
 /**
- * 统一处理 bundle 导入结果：冲突弹框、成功/失败 Toast、刷新列表。
- * 供本地文件导入流程复用。
+ * 统一处理 bundle 导入：选文件、安装、冲突弹框、成功/失败 Toast、刷新列表。
+ * 供创作中心、工作流列表等入口复用。
  */
 object BundleImportHelper {
+
+    /**
+     * 打开系统/应用内文件选择器，选择 `.zip` 资源包并安装。
+     */
+    fun startImportFromFilePicker(context: Context) {
+        ActivitySelectorWrapper.startFileSelector(
+            GlobalApp.getString(com.hive.i8n.R.string.script_import_btn_txt),
+            arrayOf(MediaFileUtil.FILE_TYPE_ZIP),
+            object : ActivitySelectorWrapper.OnFileSelectedListener {
+                override fun onFileSelected(file: List<File>) {
+                    val selected = file.firstOrNull() ?: return
+                    installSelectedZip(selected, context)
+                }
+            }
+        )
+    }
+
+    fun installSelectedZip(selected: File, context: Context) {
+        ScriptHelper.runInIO {
+            val result = runCatching { WorkflowBundleInstaller.tryInstall(selected) }
+            ScriptHelper.runInMain {
+                result.onSuccess { handleBundleResult(it, context) }
+                    .onFailure {
+                        CommonToast.getInstance().showToastLong(
+                            it.message
+                                ?: context.getString(com.hive.i8n.R.string.sc_bundle_import_failed)
+                        )
+                    }
+            }
+        }
+    }
 
     /**
      * 处理 tryInstall 返回结果。

@@ -18,6 +18,7 @@ import com.hive.script.driver.ScriptEventHelper
 import com.hive.script.event.RefreshScriptListEvent
 import com.hive.script.utils.ScriptHelper.PERMISSION_BIND_ACCESSIBILITY_SERVICE
 import com.hive.script.utils.ScriptPermissionManager
+import com.hive.script.utils.bundle.BundleImportHelper
 import com.hive.script.views.dialog.DialogChooseScriptStart
 import com.hive.script.views.dialog.DialogPermissionAggregate
 import com.hive.script.views.edit.DialogScriptEdit
@@ -47,6 +48,7 @@ class ActivityCreationCenter : BaseFragmentActivity(), View.OnClickListener {
         findViewById<View>(R.id.card_create_workflow)?.setOnClickListener(this)
         findViewById<View>(R.id.card_create_skill)?.setOnClickListener(this)
         findViewById<View>(R.id.card_create_tool)?.setOnClickListener(this)
+        findViewById<View>(R.id.card_import_bundle)?.setOnClickListener(this)
     }
 
     override fun onDestroy() {
@@ -137,6 +139,10 @@ class ActivityCreationCenter : BaseFragmentActivity(), View.OnClickListener {
                     return
                 }
                 provider.startRegisterCustomTools(null)
+            }
+
+            R.id.card_import_bundle -> {
+                BundleImportHelper.startImportFromFilePicker(this)
             }
         }
     }

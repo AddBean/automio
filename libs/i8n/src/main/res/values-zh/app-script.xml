@@ -20,6 +20,7 @@
     <string name="workflow_section_tool_desc">供 Agent 调用的固定工作流，用于执行明确操作，如发送消息、自动连击、自动打怪。</string>
     <string name="design_workflow_empty_title">暂无工作流</string>
     <string name="design_workflow_empty_desc">您还没有创建或导入任何自动化工作流。</string>
+    <string name="design_workflow_empty_import">导入资源包</string>
     <string name="design_profile_scheduled_tasks">定时任务</string>
     <string name="design_profile_permission_status_ok">正常</string>
     <string name="design_profile_permission_status_need">需开启</string>

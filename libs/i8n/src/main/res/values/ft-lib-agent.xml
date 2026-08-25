@@ -59,6 +59,9 @@
     <string name="create_center_skill_desc">Define the AI\'s capability and behavior pattern.</string>
     <string name="create_center_tool_title">AI Tool</string>
     <string name="create_center_tool_desc">Publish a workflow as an MCP tool to extend Agent abilities.</string>
+    <string name="create_center_import_title">Import Bundle</string>
+    <string name="create_center_import_desc">Import a .zip resource pack (workflow + skills / tools / permissions).</string>
+    <string name="workflow_detail_share_export">Share / Export</string>
 
     <!-- Agent Settings -->
     <string name="agent_settings_title">AI Settings</string>

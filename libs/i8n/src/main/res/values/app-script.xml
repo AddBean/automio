@@ -21,6 +21,7 @@
     <string name="workflow_section_tool_desc">Fixed workflows that Agent can call for explicit actions, such as sending messages, combo tapping, or auto-farming.</string>
     <string name="design_workflow_empty_title">No workflows yet</string>
     <string name="design_workflow_empty_desc">You have not created or imported any automation workflows.</string>
+    <string name="design_workflow_empty_import">Import Bundle</string>
     <string name="design_profile_scheduled_tasks">Cron Tasks</string>
     <string name="design_profile_permission_status_ok">OK</string>
     <string name="design_profile_permission_status_need">Enable</string>

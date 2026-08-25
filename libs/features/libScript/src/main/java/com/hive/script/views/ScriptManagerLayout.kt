@@ -31,7 +31,6 @@ import com.hive.script.utils.DialogUtils
 import com.hive.script.utils.ScriptHelper
 import com.hive.script.utils.ScriptShareHelper
 import com.hive.script.utils.bundle.BundleImportHelper
-import com.hive.script.utils.bundle.WorkflowBundleInstaller
 import com.hive.script.views.beans.ScriptInfoModel
 import com.hive.script.views.cards.ScriptItemView
 import com.hive.script.views.dialog.DialogCommonSelector
@@ -49,7 +48,6 @@ import com.hive.script.views.schedule.DialogScriptScheduleTimer
 import com.hive.utils.GlobalApp
 import com.hive.utils.encrypt.Md5Utils
 import com.hive.utils.file.FileUtils
-import com.hive.utils.file.MediaFileUtil
 import com.hive.views.DialogAlertHelper
 import com.hive.views.StatefulLayout
 import com.hive.views.list_view.ListRecyclerItemView
@@ -654,29 +652,10 @@ abstract class ScriptManagerLayout(context: Context, attributes: AttributeSet?) 
     }
 
     /**
-     * 导入脚本
+     * 导入脚本（.zip 资源包）
      */
-    private fun importScript() {
-        ActivitySelectorWrapper.startFileSelector(
-            getString(com.hive.i8n.R.string.script_import_btn_txt),
-            arrayOf(MediaFileUtil.FILE_TYPE_ZIP),
-            object : ActivitySelectorWrapper.OnFileSelectedListener {
-                override fun onFileSelected(file: List<File>) {
-                    val selected = file.firstOrNull() ?: return
-                    ScriptHelper.runInIO {
-                        val result = runCatching { WorkflowBundleInstaller.tryInstall(selected) }
-                        ScriptHelper.runInMain {
-                            result.onSuccess { BundleImportHelper.handleBundleResult(it, context) }
-                                .onFailure {
-                                    CommonToast.getInstance().showToastLong(
-                                        it.message ?: context.getString(com.hive.i8n.R.string.sc_bundle_import_failed)
-                                    )
-                                }
-                        }
-                    }
-                }
-            }
-        )
+    protected fun importScript() {
+        BundleImportHelper.startImportFromFilePicker(context)
     }
 
     /**

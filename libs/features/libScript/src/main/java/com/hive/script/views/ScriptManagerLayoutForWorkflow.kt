@@ -33,6 +33,13 @@ class ScriptManagerLayoutForWorkflow(context: Context, attributes: AttributeSet?
             getLayoutTaskAddView()?.setOnClickListener {
                 openCreationCenterOrFallback()
             }
+            bindEmptyImportAction()
+        }
+    }
+
+    private fun bindEmptyImportAction() {
+        getLayoutStateView()?.findViewById<View>(R.id.btn_empty_import)?.setOnClickListener {
+            importScript()
         }
     }
 
