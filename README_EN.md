@@ -60,13 +60,13 @@ In one line: **what can be fixed becomes a workflow** (offline, reusable, publis
 
 ## UI preview
 
-| Agent chat | Visual workflow | Add command |
-| :--------: | :-------------: | :---------: |
-| ![Agent chat](docs/screenshots/Screenshot_0.png) | ![Visual workflow](docs/screenshots/Screenshot_1.png) | ![Add command](docs/screenshots/Screenshot_2.png) |
+|                     Agent chat                      | Visual workflow | Add command |
+|:---------------------------------------------------:| :-------------: | :---------: |
+| ![Agent chat](docs/screenshots/Screenshot_0_en.png) | ![Visual workflow](docs/screenshots/Screenshot_1_en.png) | ![Add command](docs/screenshots/Screenshot_2_en.png) |
 
 | Creation hub | Resources & floating window |
 | :----------: | :-------------------------: |
-| ![Creation hub](docs/screenshots/Screenshot_3.png) | ![Resources & floating window](docs/screenshots/Screenshot_4.png) |
+| ![Creation hub](docs/screenshots/Screenshot_3_en.png) | ![Resources & floating window](docs/screenshots/Screenshot_4_en.png) |
 
 ---
 
