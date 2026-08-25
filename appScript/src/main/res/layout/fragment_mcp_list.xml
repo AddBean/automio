@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="14dp"
+    android:paddingHorizontal="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.hive.views.list_view.ListRecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingTop="0dp"
+            android:paddingBottom="112dp"
+            tools:listitem="@layout/item_mcp_tool" />
+
+        <!-- 空状态 -->
+        <LinearLayout
+            android:id="@+id/layout_empty"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/design_spacing_6"
+            android:visibility="gone">
+
+            <com.hive.views.widgets.UIResourceIconView
+                android:id="@+id/icon_tool_empty"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginBottom="@dimen/design_spacing_6"
+                app:ri_resourceType="tool"
+                app:ri_containerShape="circle"
+                app:ri_iconTint="@color/design_text_muted" />
+
+            <TextView
+                android:id="@+id/tv_empty_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/design_spacing_2"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/mcp_tool_empty_custom_title"
+                android:textColor="@color/design_text_tertiary"
+                android:textSize="@dimen/design_font_xl" />
+
+            <TextView
+                android:id="@+id/tv_empty_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/design_spacing_6"
+                android:gravity="center"
+                android:lineSpacingExtra="@dimen/design_spacing_1"
+                android:paddingHorizontal="@dimen/design_spacing_4"
+                android:text="@string/mcp_tool_empty_custom_desc"
+                android:textColor="@color/design_text_muted"
+                android:textSize="@dimen/design_font_base" />
+
+            <Button
+                android:id="@+id/btn_empty_action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_empty_state_btn"
+                android:fontFamily="sans-serif-black"
+                android:paddingHorizontal="@dimen/design_spacing_6"
+                android:paddingVertical="@dimen/design_spacing_3"
+                android:text="@string/create_center_title"
+                android:textColor="@color/design_accent_indigo"
+                android:textSize="@dimen/design_font_base" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout> 

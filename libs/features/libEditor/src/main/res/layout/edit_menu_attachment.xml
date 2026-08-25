@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_layout_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:background="@drawable/richadd_bg"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/action_image"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:background="@null"
+            android:contentDescription="@null"
+            android:paddingRight="@dimen/dimen_10dip"
+            android:visibility="gone"
+            android:src="@drawable/insert_image" />
+
+        <ImageButton
+            android:id="@+id/action_link"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:background="@null"
+            android:contentDescription="@null"
+            android:paddingLeft="@dimen/dimen_10dip"
+            android:paddingRight="@dimen/dimen_10dip"
+            android:src="@drawable/insert_link" />
+
+
+        <ImageButton
+            android:id="@+id/action_split"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:background="@null"
+            android:contentDescription="@null"
+            android:paddingLeft="@dimen/dimen_10dip"
+            android:src="@drawable/insert_split" />
+    </LinearLayout>
+</LinearLayout>

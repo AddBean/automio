@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 间距 divider（用于列表项之间的间距） -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <size android:height="@dimen/design_spacing_2" />
+    <solid android:color="@android:color/transparent" />
+</shape>

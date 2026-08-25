@@ -1,0 +1,101 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+android {
+    namespace "com.hive.script"
+    compileSdk rootProject.ext.android.compileSdkVersion
+    defaultConfig {
+        minSdk rootProject.ext.android.minSdkVersion
+        targetSdk rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+    }
+
+    buildTypes {
+        release {
+            // 库模块通常不需要单独混淆，最终混淆会在应用模块统一处理
+            // 禁用混淆以避免 Kotlin 2.1.0 元数据版本不兼容问题
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+    }
+    sourceSets.main {
+        jniLibs.srcDirs 'src/main/libs'
+        jni.srcDirs = [] // This prevents the auto generation of Android.mk
+    }
+    compileOptions {
+        sourceCompatibility rootProject.ext.javaVersion
+        targetCompatibility rootProject.ext.javaVersion
+    }
+    kotlinOptions {
+        jvmTarget = rootProject.ext.javaVersion.toString()
+    }
+    lintOptions {
+        abortOnError false
+    }
+
+    buildFeatures {
+        viewBinding true
+        buildConfig true  // Required for BuildConfig in AGP 9.0.0
+    }
+
+    testOptions.unitTests.all {
+        systemProperty "script.projectDir", project.rootProject.projectDir.absolutePath
+    }
+}
+
+// 代码生成 DSL 语法表：./gradlew :libs:features:libScript:generateDslTable
+afterEvaluate {
+    def testTask = tasks.findByName("testDebugUnitTest")
+    if (testTask != null) {
+        tasks.register("generateDslTable") {
+            group = "documentation"
+            description = "Generate build/script-dsl-syntax-table.md from Cmd classes"
+            dependsOn testTask
+        }
+    }
+}
+
+// generateDslTable 时：只跑生成测试，注入 systemProperty 到测试 JVM
+gradle.taskGraph.whenReady { graph ->
+    if (graph.hasTask(":libs:features:libScript:generateDslTable")) {
+        def rootDir = project.rootProject.projectDir.absolutePath
+        tasks.named("testDebugUnitTest").configure {
+            systemProperty "script.generateDslTable", "true"
+            systemProperty "script.projectDir", rootDir
+            filter { includeTestsMatching "com.hive.script.ScriptDslTableGenerateTest.generateDslTable_toFile" }
+        }
+    }
+}
+
+dependencies {
+    implementation project(path: ':libs:features:libOpenCV')
+    implementation project(path: ':libs:features:libFiles')
+
+    implementation project(path: ':libs:features:libEditor')
+    implementation project(path: ':libs:framework:libViews')
+    implementation project(path: ':libs:framework:libUtils')
+    implementation project(path: ':libs:framework:libCompon')
+    implementation project(path: ':libs:framework:libNet')
+    implementation project(path: ':libs:framework:libBase')
+    implementation project(path: ':libs:features:libImage')
+    implementation project(path: ':libs:features:libTimer')
+    implementation project(path: ':libs:features:libOcr')
+    implementation project(path: ':libs:features:libAudio')
+
+    // 注意：项目使用 Camera2 API（android.hardware.camera2），这是 Android SDK 的一部分，不需要额外依赖
+
+    // 脚本解析往返与匹配测试（Phase 0/1）
+    testImplementation 'junit:junit:4.13.2'
+
+    implementation rootProject.ext.publicDependencies.utilcode
+
+    implementation rootProject.ext.publicDependencies.commonsJexl3
+    implementation rootProject.ext.publicDependencies.androidxLifecycle
+}

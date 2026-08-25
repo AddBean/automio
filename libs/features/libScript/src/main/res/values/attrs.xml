@@ -1,0 +1,38 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<resources>
+
+    <declare-styleable name="ScriptCommonView">
+        <attr name="scriptName" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="ScriptNumberView">
+        <attr name="scriptNumberName" format="string" />
+    </declare-styleable>
+
+
+    <declare-styleable name="ScriptFloatView">
+        <attr name="scriptFloatName" format="string" />
+        <attr name="scriptFloatRatio" format="float" />
+        <attr name="scriptFloatMaxDigits" format="integer" />
+        <attr name="scriptFloatEnable" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="ScriptValueView">
+        <attr name="scriptValueName" format="string" />
+        <attr name="scriptValueEditEnable" format="boolean" />
+        <attr name="scriptActionEnable" format="boolean" />
+        <attr name="scriptValueEditWidth" format="dimension" />
+        <attr name="scriptValueTextColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="ScriptSizeSeekbarView">
+        <attr name="sbMinValue" format="integer" />
+        <attr name="sbMaxValue" format="integer" />
+        <attr name="sbValue" format="integer" />
+    </declare-styleable>
+    <declare-styleable name="ScriptTextParamsEditView">
+        <attr name="scriptHint" format="string"/>
+        <attr name="scriptText" format="string"/>
+    </declare-styleable>
+
+</resources>

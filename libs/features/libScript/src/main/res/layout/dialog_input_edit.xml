@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_state"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/xml_common_dialog_round_alert_bg"
+        android:clickable="true"
+        android:tag="ScriptDialog">
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="16dp"
+            android:padding="9dp"
+            android:src="@drawable/icon_close"
+            android:tint="@color/textColorPrimary" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/dialog_input_title"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+
+            <com.hive.script.views.widgets.ScriptTabSelectorView
+                android:id="@+id/type_selector"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:gravity="center"
+                app:scriptName="@string/sc_input_type"
+                app:tabBackground="@drawable/xml_selector_round_tab_item_view"
+                app:tabDefaultValue="full"
+                app:tabNameList="@string/sc_input_type_list"
+                app:tabTxtColor="@drawable/xml_selector_round_tab_item_view_color"
+                app:tabValueList="full,append" />
+
+            <com.hive.script.views.widgets.ScriptTabSelectorView
+                android:id="@+id/switch_anim_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:scriptName="@string/sc_input_anim_input"
+                app:tabBackground="@drawable/xml_selector_round_tab_item_view"
+                app:tabDefaultValue="0"
+                app:tabNameList="@string/sc_share_ctr_edit_type_list"
+                app:tabTxtColor="@drawable/xml_selector_round_tab_item_view_color"
+                app:tabValueList="0,1" />
+
+            <com.hive.script.views.widgets.ScriptValueView
+                android:id="@+id/edit_target_index"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:scriptValueEditEnable="true"
+                app:scriptValueEditWidth="60dp"
+                app:scriptValueName="@string/sc_input_target_index_title"
+                app:scriptValueTextColor="@color/colorAccent" />
+
+            <com.hive.script.views.widgets.ScriptSpanParamLayout
+                android:id="@+id/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_below="@id/iv_close"
+                android:layout_margin="8dp"
+                android:gravity="top"
+                app:scriptHint="@string/dialog_name_input_hint" />
+
+
+            <Button
+                android:id="@+id/btn_submit"
+                style="@style/base.button.square"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/pref_confirm"
+                android:textColor="@color/color_white"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_state"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/xml_common_dialog_round_alert_bg"
+        android:clickable="true"
+        android:tag="ScriptDialog">
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
+            android:padding="8dp"
+            android:src="@drawable/icon_close"
+            app:tint="@color/textColorPrimary" />
+
+        <ImageView
+            android:id="@+id/iv_expand"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignTop="@id/iv_close"
+            android:layout_marginEnd="8dp"
+            android:layout_toStartOf="@id/iv_close"
+            android:contentDescription="@string/base_expand"
+            android:padding="5.5dp"
+            android:src="@drawable/sc_icon_max"
+            app:tint="@color/textColorPrimary" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/dialog_copy_text_input_title"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+
+            <com.hive.script.views.widgets.ScriptSpanParamLayout
+                android:id="@+id/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_below="@id/iv_close"
+                android:layout_margin="8dp"
+                android:gravity="top"
+                android:minHeight="160dp"
+                app:scriptHint="@string/dialog_name_text_context_hint" />
+
+            <Button
+                android:id="@+id/btn_submit"
+                style="@style/base.button.square"
+                android:layout_width="200dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/pref_confirm"
+                android:textColor="@color/color_white"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

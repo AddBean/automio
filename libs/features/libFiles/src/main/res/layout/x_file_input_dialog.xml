@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hive.views.StatefulLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_state"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/xml_ffffff_round_rect_bg">
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="12dp"
+            android:padding="8dp"
+            android:tint="@color/color_ff383838"
+            android:src="@drawable/icon_close" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/btn_file_rename_file"
+            android:textColor="@color/color_ff000000"
+            android:textSize="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="60dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_below="@id/iv_close"
+                android:layout_margin="16dp"
+                android:background="@drawable/xml_selector_round_rect_2a2c33_bg"
+                android:hint="@string/btn_file_type_hint"
+                android:maxLines="1"
+                android:lines="1"
+                android:singleLine="true"
+                android:textColor="@color/color_ff000000"
+                android:textColorHint="@color/color_ff656A7B"
+                android:padding="8dp"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btn_submit"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/xml_btn_red_bg"
+                android:text="@string/btn_file_confirm"
+                android:textColor="@color/color_white"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </RelativeLayout>
+</com.hive.views.StatefulLayout>

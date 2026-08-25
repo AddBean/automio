@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 语音识别结果 (讯飞) -->
+    <string name="audio_parse_no_match">没有匹配结果.</string>
+    <string name="audio_parse_result">【结果】</string>
+    <string name="audio_parse_confidence">【置信度】</string>
+</resources>

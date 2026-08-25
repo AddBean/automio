@@ -1,0 +1,55 @@
+<resources>
+    <string name="compon_api_key_format_error">API Key format error</string>
+
+    <!-- AI Error Dialog -->
+    <string name="ai_error_dialog_title">Service Unavailable</string>
+    <string name="ai_error_retry">Retry</string>
+    <string name="ai_error_dismiss">Dismiss</string>
+    <string name="ai_error_go_to_settings">Settings</string>
+    <!-- User-Friendly Error Messages -->
+    <string name="ai_error_msg_apikey_not_configured">API key not configured</string>
+    <string name="ai_error_msg_apikey_invalid">Invalid API key format</string>
+    <string name="ai_error_msg_apikey_error">API key error</string>
+    <string name="ai_error_msg_auth_invalid_key">Invalid API key</string>
+    <string name="ai_error_msg_auth_permission">Permission denied</string>
+    <string name="ai_error_msg_auth_error">Authentication failed</string>
+    <string name="ai_error_msg_network_timeout">Network timeout. Please check your connection and retry.</string>
+    <string name="ai_error_msg_network_dns">Cannot connect to server. Please check your network.</string>
+    <string name="ai_error_msg_network_unreachable">Network unavailable</string>
+    <string name="ai_error_msg_network_error">Network error. Please try again.</string>
+    <string name="ai_error_msg_rate_limit">Too many requests. Please wait a moment and retry.</string>
+    <string name="ai_error_msg_service_unavailable">Service temporarily unavailable. Please try again later.</string>
+    <string name="ai_error_msg_service_timeout">Request timeout. Please try again.</string>
+    <string name="ai_error_msg_service_error">Service error. Please try again later.</string>
+    <string name="ai_error_msg_model_unavailable">Model not available</string>
+    <string name="ai_error_msg_parse_error">Response format error</string>
+    <string name="ai_error_msg_insufficient_balance">Provider quota insufficient. Need about %d more credits.</string>
+
+    <!-- Troubleshooting Hints (keep existing for backward compatibility) -->
+    <string name="ai_error_code_format">Error Code: %d</string>
+    <string name="ai_error_copy_details">Copy Details</string>
+    <string name="ai_error_details_copied">Error details copied to clipboard</string>
+    <string name="ai_error_show_details">Show Technical Details</string>
+    <string name="ai_error_hide_details">Hide Technical Details</string>
+    <string name="ai_error_type_apikey">API Key Error</string>
+    <string name="ai_error_type_auth">Authentication Error (HTTP %d)</string>
+    <string name="ai_error_type_network">Network Error (%s)</string>
+    <string name="ai_error_type_service">Service Error (HTTP %d)</string>
+    <string name="ai_error_type_parse">Parse Error</string>
+    <string name="ai_error_type_model">Model Error (%s)</string>
+    <string name="ai_error_auth_invalid_key_hint">Check your API key in Settings. Ensure it\'s valid and not revoked.</string>
+    <string name="ai_error_auth_permission_hint">API key lacks permissions. Check provider docs for required scopes.</string>
+    <string name="ai_error_model_not_found_hint">Model unavailable. Check model availability in Settings.</string>
+    <string name="ai_error_rate_limit_hint">Rate limit exceeded. Wait a few seconds or check usage limits.</string>
+    <string name="ai_error_service_internal_hint">Internal server error. Try again later.</string>
+    <string name="ai_error_service_bad_gateway_hint">Bad gateway error. The provider may be experiencing issues.</string>
+    <string name="ai_error_service_unavailable_hint">Service unavailable. Try again in a few minutes.</string>
+    <string name="ai_error_service_timeout_hint">Gateway timeout. Request took too long. Try with shorter input.</string>
+    <string name="ai_error_network_timeout_hint">Network timeout. Check internet connection and retry.</string>
+    <string name="ai_error_network_dns_hint">DNS resolution failed. Check DNS settings.</string>
+    <string name="ai_error_network_connection_hint">Connection failed. Check if provider endpoint is reachable.</string>
+    <string name="ai_error_network_ssl_hint">SSL handshake failed. Provider certificate may be invalid.</string>
+    <string name="ai_error_apikey_missing_hint">Go to Settings to add your API key.</string>
+    <string name="ai_error_parse_stream_hint">Failed to parse AI response stream. API format may be incompatible.</string>
+    <string name="ai_error_insufficient_balance_hint">Your configured AI provider reports about %d credits short. Check that provider\'s billing or quota settings.</string>
+</resources>

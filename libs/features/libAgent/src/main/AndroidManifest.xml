@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
+
+    <application>
+
+        <activity
+            android:name=".views.provider.ActivityAgentSelector"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.provider.ActivityAgentSetting"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.memory.ActivityAgentMemoryView"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.memory.ActivityAgentMemoryDetail"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+    </application>
+</manifest>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <com.carlos.ui.header.CommonHeader
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bg_color="@color/design_bg_overlay"
+        app:center_text="@string/design_profile_scheduled_tasks"
+        app:center_text_color="@color/design_text_primary"
+        app:center_text_size="@dimen/design_font_xl"
+        app:enable_back="true"
+        app:left_img_color="@color/design_text_secondary"
+        app:right_img="@drawable/ic_plus"
+        app:right_img_color="@color/design_text_secondary"
+        app:show_btm_line="true" />
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false" />
+
+</LinearLayout>

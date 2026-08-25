@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/base_gap_margin"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/xml_pbg2_stroke2_bg"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:orientation="vertical"
+    android:paddingHorizontal="12dp"
+    android:paddingVertical="8dp"
+    tools:background="@color/colorPrimary">
+
+
+    <LinearLayout
+        android:id="@+id/layout_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.hive.views.widgets.CustomRoundImageView
+            android:id="@+id/ivClick"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:image_radius="6dp"
+            app:image_type="round"
+
+            app:srcCompat="@drawable/ic_click" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvName"
+            style="@style/base.content.title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@string/str_task_name"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="14sp"
+            tools:text="工作流名称工作流名称工作流名称工作流名称工作流名称工作流名称工作流名称工作流名称工作流名称工作流名称工作流名称工作流名称工作流名称工作流名称工作流名称工作流名称工作流名称工作流名称工作流名称工作流名称" />
+
+
+        <ImageView
+            android:id="@+id/ivPlay"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="8dp"
+            android:src="@drawable/xml_script_play_state" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivMore"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/editor_more"
+            android:tint="@color/colorAccent" />
+
+        <FrameLayout
+            android:id="@+id/layout_right"
+            android:layout_width="32dp"
+            android:layout_height="32dp">
+
+            <ImageView
+                android:id="@+id/switch_check"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:clickable="false"
+                android:padding="6dp"
+                android:src="@drawable/xml_selector_drawable"
+                android:tint="@color/colorAccent"
+                android:visibility="visible"
+                tools:visibility="visible" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="-20dp"
+        android:layout_marginEnd="-20dp"
+        android:background="@color/colorSplitLine" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:scrollbars="none"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="4dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.hive.views.widgets.TextDrawableView
+                android:id="@+id/tvLock"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginEnd="18dp"
+                android:drawablePadding="2dp"
+                android:drawableTint="@color/colorTextSecondary"
+                android:gravity="center_vertical"
+                android:text="@string/sc_item_edit_lock"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="12sp"
+                app:drawableHeight="13dp"
+                app:drawableLeft="@drawable/sc_lock"
+                app:drawableWidth="13dp" />
+
+            <com.hive.views.widgets.TextDrawableView
+                android:id="@+id/tvExpire"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginEnd="16dp"
+                android:drawablePadding="2dp"
+                android:drawableTint="@color/colorTextSecondary"
+                android:gravity="center_vertical"
+                android:text="@string/sc_item_edit_expire_time"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="12sp"
+                app:drawableHeight="13dp"
+                app:drawableLeft="@drawable/sc_expired"
+                app:drawableWidth="13dp" />
+
+
+            <com.hive.views.widgets.TextDrawableView
+                android:id="@+id/tvShare"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginEnd="16dp"
+                android:drawablePadding="2dp"
+                android:drawableTint="@color/colorTextSecondary"
+                android:gravity="center_vertical"
+                android:text="@string/sc_item_edit_share"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="12sp"
+                app:drawableHeight="13dp"
+                app:drawableLeft="@drawable/sc_icon_share"
+                app:drawableWidth="13dp" />
+
+            <com.hive.views.widgets.TextDrawableView
+                android:id="@+id/tvEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginEnd="16dp"
+                android:drawablePadding="4dp"
+                android:drawableTint="@color/colorTextSecondary"
+                android:gravity="center_vertical"
+                android:paddingEnd="6dp"
+                android:text="@string/sc_item_edit_name"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="12sp"
+                app:drawableHeight="12dp"
+                app:drawableLeft="@drawable/script_edit"
+                app:drawableWidth="12dp"
+                tools:ignore="RtlSymmetry" />
+
+            <com.hive.views.widgets.TextDrawableView
+                android:id="@+id/tvPublish"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginEnd="16dp"
+                android:drawablePadding="4dp"
+                android:drawableTint="@color/colorTextSecondary"
+                android:gravity="center_vertical"
+                android:paddingEnd="6dp"
+                android:text="@string/sc_item_publish_name"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="12sp"
+                app:drawableHeight="12dp"
+                app:drawableLeft="@drawable/ic_publish"
+                app:drawableWidth="12dp"
+                tools:ignore="RtlSymmetry" />
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+</LinearLayout>

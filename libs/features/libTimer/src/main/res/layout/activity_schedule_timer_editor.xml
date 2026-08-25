@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <!-- Header -->
+    <com.carlos.ui.header.CommonHeader
+        android:id="@+id/header_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bg_color="@color/colorPrimary"
+        app:center_text="@string/timer_schedule_editor_title"
+        app:center_text_color="@color/textColorPrimary"
+        app:enable_back="true"
+        app:left_img_color="@color/colorTextSecondary"
+        app:right_text="@string/timer_schedule_editor_save"
+        app:right_text_color="@color/color_white"
+        app:show_btm_line="false" />
+
+    <!-- Content -->
+    <com.hive.timer.widget.schedule.ScheduleTimerLayout
+        android:id="@+id/scheduleView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
+
+    <application>
+        <service
+            android:name="com.hive.timer.alarm.HiveAlarmService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync"/>
+        <activity
+            android:name=".ActivityScheduleRecord"
+            android:exported="false"/>
+        <activity
+            android:name=".CalendarEventDispatcherActivity"
+            android:exported="true">
+<!--            hiveapp://event/100-->
+            <intent-filter>
+                <data android:scheme="hiveapp" android:host="event"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.provider.calendar.action.HANDLE_CUSTOM_EVENT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.item/event" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".utils.CalendarUtils$CalendarBroadcastReceiver"/>
+    </application>
+</manifest>

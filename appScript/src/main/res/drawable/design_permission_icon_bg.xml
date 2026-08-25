@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 对齐内层 icon 容器：rounded-xl + bg-white/5（在卡面实色上再提亮一档） -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/design_permission_icon_surface" />
+    <corners android:radius="@dimen/design_radius_md" />
+</shape>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_state"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:divider="@color/public_bg2_press"
+    android:dividerPadding="2dp"
+    android:orientation="vertical"
+    android:showDividers="middle">
+
+    <com.hive.script.views.widgets.ScriptValueView
+        android:id="@+id/target_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scriptValueEditEnable="false"
+        app:scriptValueName="@string/sc_cmd_spot_text"
+        app:scriptValueTextColor="@color/colorAccent" />
+
+    <com.hive.script.views.widgets.ScriptValueView
+        android:id="@+id/edit_direct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scriptValueEditEnable="true"
+        app:scriptValueName="@string/sc_edit_layout_title_direct"
+        app:scriptValueTextColor="@color/colorAccent" />
+
+    <com.hive.script.views.widgets.ScriptTabSelectorView
+        android:id="@+id/find_selector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        app:scriptName="@string/sc_spot_find_type"
+        app:tabBackground="@drawable/xml_selector_round_tab_item_view"
+        app:tabDefaultValue="block"
+        app:tabNameList="@string/sc_spot_text_find_type_list"
+        app:tabTxtColor="@drawable/xml_selector_round_tab_item_view_color"
+        app:tabValueList="contains,equals" />
+
+    <com.hive.script.views.edit.views.OperateCommonEditView
+        android:id="@+id/operate_edit_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

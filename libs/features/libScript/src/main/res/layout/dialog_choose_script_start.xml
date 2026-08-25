@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_state"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/xml_common_dialog_round_alert_bg"
+        android:clickable="true"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="20dp"
+        android:tag="ScriptDialog">
+
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:padding="8dp"
+            android:src="@drawable/icon_close"
+            android:tint="@color/textColorPrimary" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="48dp"
+            android:layout_marginBottom="16dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="@string/str_ready_to_record"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvStartFrom"
+            style="@style/base.content.desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_title"
+            android:layout_alignStart="@+id/tv_title"
+            android:text="@string/str_ready_to_record_where"
+            android:textStyle="bold"
+            android:tint="@color/colorTextSecondary"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/llPos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvStartFrom"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="20dp"
+            android:dividerPadding="@dimen/public_line_width"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:showDividers="middle">
+
+            <com.hive.views.widgets.TextDrawableView
+                android:id="@+id/tvBtnCurrentPage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/base_gap_margin"
+                android:background="@drawable/xml_sc_btn_start_round_bg"
+                android:drawablePadding="6dp"
+                android:drawableTint="@color/white"
+                android:gravity="center_vertical"
+                android:paddingVertical="12dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="@string/sc_start_from_current_page"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="14sp"
+                app:drawableHeight="18dp"
+                app:drawableLeft="@drawable/sc_menu_current"
+                app:drawableRight="@drawable/setting_arrow"
+                app:drawableWidth="18dp" />
+
+            <com.hive.views.widgets.TextDrawableView
+                android:id="@+id/tvBtnStartFromHome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/base_gap_margin"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/xml_sc_btn_start_round_bg"
+                android:drawablePadding="6dp"
+                android:drawableTint="@color/white"
+                android:gravity="center_vertical"
+                android:paddingVertical="12dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="@string/sc_start_from_home_page"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="14sp"
+                app:drawableHeight="18dp"
+                app:drawableLeft="@drawable/sc_menu_home"
+                app:drawableRight="@drawable/setting_arrow"
+                app:drawableWidth="18dp" />
+
+            <com.hive.views.widgets.TextDrawableView
+                android:id="@+id/tvBtnFromTargetApp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/base_gap_margin"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/xml_sc_btn_start_round_bg"
+                android:drawablePadding="6dp"
+                android:drawableTint="@color/white"
+                android:gravity="center_vertical"
+                android:paddingVertical="12dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="@string/sc_start_from_app_page"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="14sp"
+                app:drawableHeight="18dp"
+                app:drawableLeft="@drawable/sc_icon_app"
+                app:drawableRight="@drawable/setting_arrow"
+                app:drawableWidth="18dp" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</RelativeLayout>

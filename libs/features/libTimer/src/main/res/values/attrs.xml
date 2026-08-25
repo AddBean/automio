@@ -1,0 +1,18 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<resources>
+
+
+    <declare-styleable name="TimeIconView">
+        <attr name="timeIconDayColor" format="color" />
+        <attr name="timeIconNightColor" format="color" />
+        <attr name="timeIconLineWidth" format="dimension" />
+        <attr name="timeIconSpeed" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="TimePickerView">
+        <attr name="timePickerColor" format="color" />
+        <attr name="timePickerTextColor" format="color" />
+    </declare-styleable>
+
+
+</resources>

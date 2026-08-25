@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/script_main_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="false">
+
+    <com.hive.script.views.record.impl.ScriptRecordView
+        android:id="@+id/record_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="false" />
+
+    <com.hive.script.views.widgets.ScriptAutoAdjustLayout
+        android:id="@+id/layout_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.hive.script.views.record.impl.ScriptRecordClickImageView
+            android:id="@+id/spot_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <com.hive.script.views.record.impl.ScriptRecordClickViewView
+            android:id="@+id/spot_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <com.hive.script.views.record.impl.ScriptRecordClickColorView
+            android:id="@+id/spot_color"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <com.hive.script.views.record.impl.ScriptRecordScaleView
+            android:id="@+id/scale_inout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorBgTransBlack"
+            android:visibility="gone" />
+
+        <com.hive.script.views.record.impl.ScriptRecordMultipleView
+            android:id="@+id/multiple_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorBgTransBlack"
+            android:visibility="gone" />
+
+        <com.hive.script.views.record.impl.ScriptRecordBatchClickView
+            android:id="@+id/batch_click"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <com.hive.script.views.record.impl.ScriptRecordSetSizeView
+            android:id="@+id/layout_size"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <com.hive.script.views.record.impl.ScriptRecordDragView
+            android:id="@+id/drag_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <com.hive.script.views.record.impl.ScriptRecordClickView
+            android:id="@+id/click_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+
+    </com.hive.script.views.widgets.ScriptAutoAdjustLayout>
+
+</RelativeLayout>

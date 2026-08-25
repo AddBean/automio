@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="id_photo_id_image_target" type="id"/>
+    <item name="id_glide_image_target" type="id"/>
+    <item name="id_gif_image_target" type="id"/>
+    <item name="photo_id_image" type="id"/>
+</resources>

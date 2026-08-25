@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.hive.script.views.widgets.ScriptValueView
+        android:id="@+id/target_param"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scriptValueEditEnable="false"
+        app:scriptValueName="@string/sc_cmd_select_param_title"
+        app:scriptValueTextColor="@color/colorAccent" />
+
+    <com.hive.script.views.widgets.ScriptTabSelectorView
+        android:id="@+id/listen_stop_mode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        app:scriptName="@string/sc_edit_voice_listen_stop_mode"
+        app:tabBackground="@drawable/xml_selector_round_tab_item_view"
+        app:tabDefaultValue="auto"
+        app:tabNameList="@string/sc_edit_voice_listen_stop_mode_list"
+        app:tabTxtColor="@drawable/xml_selector_round_tab_item_view_color"
+        app:tabValueList="auto,duration" />
+
+    <com.hive.script.views.widgets.ScriptFloatView
+        android:id="@+id/listen_duration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:optFloatInput="true"
+        app:optFloatMax="3600"
+        app:optFloatMin="0.01"
+        app:optFloatStep="0.1"
+        app:optFloatType="TYPE1"
+        app:optFloatUnit="@string/sc_unit_s"
+        app:scriptFloatEnable="true"
+        app:scriptFloatMaxDigits="2"
+        app:scriptFloatName="@string/sc_edit_voice_listen_duration"
+        app:scriptFloatRatio="1000" />
+
+    <com.hive.script.views.widgets.ScriptFloatView
+        android:id="@+id/silence_stop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:optFloatInput="true"
+        app:optFloatMax="10"
+        app:optFloatMin="0.1"
+        app:optFloatStep="0.1"
+        app:optFloatType="TYPE1"
+        app:optFloatUnit="@string/sc_unit_s"
+        app:scriptFloatEnable="true"
+        app:scriptFloatMaxDigits="2"
+        app:scriptFloatName="@string/sc_edit_voice_silence_stop"
+        app:scriptFloatRatio="1000" />
+
+</LinearLayout>

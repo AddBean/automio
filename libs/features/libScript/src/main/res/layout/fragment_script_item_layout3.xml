@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/base_gap_margin"
+    android:layout_marginVertical="4dp"
+    android:background="@drawable/xml_pbg2_stroke2_bg"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingEnd="16dp"
+    tools:background="@color/colorPrimary">
+
+    <ImageView
+        android:id="@+id/ivPlay"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:padding="6dp"
+        android:src="@drawable/xml_script_play_state"
+        android:tint="@color/colorAccent" />
+
+    <View
+        android:layout_width="0.5dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="2dp"
+        android:background="@color/colorSplitLine" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvName"
+        style="@style/base.content.title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:text="@string/str_task_name"
+        android:textColor="@color/colorTextSecondary"
+        android:textSize="12sp"
+        app:drawableTint="@color/colorTextSecondary"
+        tools:text="工作流名称工作流名称工作流名称工作流名称工作流名称工作流名称工作流名称工作流名称工作流名称工作流名称" />
+
+    <FrameLayout
+        android:id="@+id/layout_right"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/switch_check"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:clickable="false"
+            android:padding="4dp"
+            android:src="@drawable/xml_selector_drawable"
+            android:visibility="visible"
+            tools:visibility="visible" />
+    </FrameLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivClick"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:tint="@color/colorTextSecondary"
+        android:visibility="gone"
+        app:srcCompat="@drawable/ic_click"
+        app:tint="@color/textColorPrimary" />
+</LinearLayout>

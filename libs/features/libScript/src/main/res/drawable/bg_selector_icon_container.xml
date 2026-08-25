@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Script 选择器图标容器背景：bg-emerald-500/10 (#1A10b981) -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#1A10b981" />
+    <corners android:radius="8dp" />
+</shape>

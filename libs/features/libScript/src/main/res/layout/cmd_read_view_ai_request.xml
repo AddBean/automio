@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.hive.script.views.widgets.ScriptValueView
+        android:id="@+id/editPrompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scriptValueEditEnable="true"
+        app:scriptValueEditWidth="160dp"
+        app:scriptValueName="@string/sc_edit_read_view_text_title_ai_prompt"
+        app:scriptValueTextColor="@color/colorAccent" />
+
+    <com.hive.script.views.widgets.ScriptValueView
+        android:id="@+id/editError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:scriptValueEditEnable="true"
+        app:scriptValueEditWidth="160dp"
+        app:scriptValueName="@string/sc_edit_read_view_text_title_ai_error"
+        app:scriptValueTextColor="@color/colorAccent" />
+
+    <com.hive.script.views.widgets.ScriptValueView
+        android:id="@+id/editParamId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scriptValueEditEnable="true"
+        app:scriptValueEditWidth="160dp"
+        app:scriptValueName="@string/sc_edit_read_view_text_title_ai_request_id"
+        app:scriptValueTextColor="@color/colorAccent" />
+
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:lineSpacingMultiplier="1.2"
+        android:text="@string/sc_cmd_ai_tip_msg"
+        android:textColor="@color/colorTextSecondary"
+        android:textSize="14sp" />
+</LinearLayout>

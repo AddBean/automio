@@ -1,0 +1,54 @@
+ext {
+    javaVersion = JavaVersion.VERSION_17
+    def gradleUtils = rootProject.ext.gradleUtils
+
+    // Optional local secrets (gitignored). Prefer runtime Keystore; build inject embeds into APK.
+    def localProps = new Properties()
+    def localFile = rootProject.file('local.properties')
+    if (localFile.exists()) {
+        localFile.withInputStream { localProps.load(it) }
+    }
+    def localOrEmpty = { String key ->
+        def v = localProps.getProperty(key, '')
+        return v != null ? v.trim() : ''
+    }
+
+    android = [
+            applicationName  : "Automio",
+            applicationId    : "com.agent.automio",
+            compileSdkVersion: 36,
+            minSdkVersion    : 26,
+            targetSdkVersion : 36,
+            versionCode      : gradleUtils.gitRevision(0, project),
+            versionName      : gradleUtils.getRevisionName(0, project),
+            abiFilters       : ["arm64-v8a"]
+    ]
+
+    sdk = [:]
+    sdk.buildMap = [
+            flavorName: "automio",
+            channelName: "automio",
+            engineerPwd: "",
+            appStyle: -1,
+            schemeDomain: "automio",
+            schemeUrl: "open",
+            isSupportScreenShot: true,
+            supportImport: true,
+            runningDialogShow: false,
+            enableAgentFeature: true,
+            mainTabs: "f2,f3,f4",
+            showPermissionDialog: true,
+            // Speech: leave empty in repo. Fill via local.properties or SecureCredentialStore at runtime.
+            audioAsrProviderId: (localOrEmpty('automio.audioAsrProviderId') ?: '').with { it ? it : "ms" },
+            msSpeechKey: localOrEmpty('automio.msSpeechKey'),
+            msSpeechRegion: localOrEmpty('automio.msSpeechRegion'),
+            xfAppId: localOrEmpty('automio.xfAppId'),
+            asrInitialSilenceTimeoutMs: "8000",
+            asrEndSilenceTimeoutMs: "700",
+            asrSegmentationSilenceTimeoutMs: "1200",
+    ]
+
+    rootProject.ext.android.applicationId = android.applicationId
+    sdk.packageName = android.applicationId
+    sdk.buildMap.appId = android.applicationId
+}

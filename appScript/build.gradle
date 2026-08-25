@@ -1,0 +1,70 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'org.jetbrains.kotlin.plugin.serialization'
+}
+
+android {
+    namespace 'com.hive.app.script'
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        manifestPlaceholders = [
+                MANIFEST_FILE_SCHEME_DOMAIN: "${rootProject.ext.sdk.buildMap.schemeDomain}",
+                MANIFEST_FILE_SCHEME_URL   : "${rootProject.ext.sdk.buildMap.schemeUrl}",
+        ]
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility rootProject.ext.javaVersion
+        targetCompatibility rootProject.ext.javaVersion
+    }
+    kotlinOptions {
+        jvmTarget = rootProject.ext.javaVersion.toString()
+    }
+    buildFeatures {
+        viewBinding true
+        buildConfig true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':baseApp')
+    implementation project(path: ':libs:framework:libBase')
+    implementation project(path: ':libs:framework:libCompon')
+    implementation project(path: ':libs:framework:libUtils')
+    implementation project(path: ':libs:framework:libViews')
+    implementation project(path: ':libs:framework:libNet')
+    implementation project(path: ':libs:features:libScript')
+    implementation project(path: ':libs:features:libEditor')
+    implementation project(path: ':libs:features:libFiles')
+    implementation project(path: ':libs:features:libImage')
+    implementation project(path: ':libs:features:libTimer')
+    implementation project(path: ':libs:features:libOpenCV')
+    implementation project(path: ':libs:features:libOcr')
+    implementation project(path: ':libs:features:libAgent')
+    implementation project(path: ':libs:features:libMCP')
+    implementation project(path: ':libs:features:libPython')
+    implementation project(path: ':libs:features:libAudio')
+
+    implementation rootProject.ext.publicDependencies.permission
+    implementation rootProject.ext.publicDependencies.androidxViewpager2
+    implementation rootProject.ext.publicDependencies.androidMaterial
+    implementation rootProject.ext.publicDependencies.kotlinxSerializationJson
+}

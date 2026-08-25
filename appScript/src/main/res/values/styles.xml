@@ -1,0 +1,86 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
+        <item name="android:statusBarColor">@color/colorPrimary</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+        <item name="android:checkboxStyle">@style/CheckBoxStyle</item>
+    </style>
+
+
+    <style name="activity_fade_anim" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowAnimationStyle">@style/anim_fade</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="SchemeDispatchTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
+    <style name="anim_fade" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/anim_fade_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/anim_fade_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/anim_fade_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/anim_fade_out</item>
+    </style>
+
+    <style name="ActivityRightAnimation" parent="@style/AppBaseTheme">
+        <item name="android:windowEnterAnimation">@anim/slide_right_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_right_out</item>
+        <item name="android:activityOpenEnterAnimation">@anim/slide_right_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_right_in</item>
+    </style>
+
+    <style name="CropActivityTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+
+    <style name="PlayerBaseTheme" parent="@style/Theme.AppCompat">
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/color_black</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowAnimationStyle">@style/anim_fade</item>
+    </style>
+
+    <style name="splashTheme" parent="AppBaseTheme">
+        <item name="android:windowBackground">@drawable/xml_splash_center</item>
+    </style>
+    <style name="CheckBoxStyle" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <!-- 设置 CheckBox 的默认颜色 -->
+        <item name="colorControlNormal">@color/checkbox_unchecked</item> <!-- 未选中状态颜色 -->
+        <item name="colorControlActivated">@color/checkbox_checked</item> <!-- 选中状态颜色 -->
+        <item name="colorControlHighlight">@color/checkbox_ripple</item> <!-- 触摸反馈颜色 -->
+        <!-- 或者使用 colorAccent 同时影响多个控件 -->
+        <item name="colorAccent">@color/checkbox_checked</item>
+    </style>
+
+    <style name="SkillExampleChip" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:background">@drawable/bg_filter_pill_inactive</item>
+        <item name="android:paddingLeft">@dimen/design_spacing_3</item>
+        <item name="android:paddingTop">@dimen/design_spacing_2</item>
+        <item name="android:paddingRight">@dimen/design_spacing_3</item>
+        <item name="android:paddingBottom">@dimen/design_spacing_2</item>
+        <item name="android:textColor">@color/design_text_secondary</item>
+        <item name="android:textSize">@dimen/design_font_base</item>
+    </style>
+
+    <style name="BottomSlideDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/bottom_enter</item>
+        <item name="android:windowExitAnimation">@anim/bottom_exit</item>
+    </style>
+</resources>

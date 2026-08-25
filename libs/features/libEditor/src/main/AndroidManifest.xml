@@ -1,0 +1,20 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <application>
+
+        <activity
+            android:name="com.hive.richeditor.ActivityEditor"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoDarkAllowedAppBaseTheme"
+            android:windowSoftInputMode="adjustResize">
+        </activity>
+        <activity
+            android:name="com.hive.richeditor.ActivityTextEditor"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoDarkAllowedAppBaseTheme"
+            android:windowSoftInputMode="adjustResize">
+        </activity>
+    </application>
+</manifest>

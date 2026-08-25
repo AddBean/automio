@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:background="@color/black">
+
+    <LinearLayout
+        android:id="@+id/commonEditLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.hive.script.views.widgets.ScriptValueView
+            android:id="@+id/offsetView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:scriptValueEditEnable="true"
+            app:scriptValueName="@string/sc_cmd_offset"
+            app:scriptValueTextColor="@color/colorAccent" />
+
+        <com.hive.script.views.widgets.ScriptValueView
+            android:id="@+id/setRectValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:scriptValueEditEnable="false"
+            app:scriptValueName="@string/sc_cmd_set_rect"
+            app:scriptValueTextColor="@color/colorAccent" />
+    </LinearLayout>
+
+    <com.hive.views.widgets.TextDrawableView
+        android:id="@+id/moreTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:drawablePadding="4dp"
+        android:drawableTint="@color/colorTextSecondary"
+        android:gravity="center"
+        android:paddingLeft="26dp"
+        android:paddingTop="6dp"
+        android:paddingRight="26dp"
+        android:paddingBottom="6dp"
+        android:text="@string/sc_more_down_edit"
+        android:textColor="@color/colorTextSecondary"
+        android:textSize="12sp"
+        app:drawableHeight="14dp"
+        app:drawableLeft="@drawable/sc_more_down"
+        app:drawableWidth="14dp" />
+</LinearLayout>
+
+

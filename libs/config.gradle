@@ -1,0 +1,97 @@
+ext {
+    snapshot = true
+    globalLibVersion = "2.0.0"
+    snapshotStr = snapshot ? "-SNAPSHOT" : ""
+    // 会被 publish.gradle 覆盖；此处与开源默认保持一致，避免单独编 libs 时落到旧包名
+    android = [
+            applicationId     : "com.agent.automio",
+            compileSdkVersion : 36,
+            minSdkVersion     : 26,
+            targetSdkVersion  : 36,
+            versionCode       : project.hasProperty('buildVersionCode') ? project.property('buildVersionCode').toInteger() : rootProject.ext.gradleUtils.gitRevision(0, project),
+            versionName       : rootProject.ext.gradleUtils.getRevisionName(0, project),
+            snapshot          : true
+    ]
+    publicDependencies = [
+            permission                               : 'com.guolindev.permissionx:permissionx:1.6.4',
+            androidMaterial                          : 'com.google.android.material:material:1.9.0',
+            androidxViewpager2                       : 'androidx.viewpager2:viewpager2:1.0.0',
+            androidxLifecycle                        : "androidx.lifecycle:lifecycle-runtime-ktx:2.6.0",
+            junit                                    : "junit:junit:4.12",
+            kotlin                                   : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version",
+            androidxCoreKtx                          : 'androidx.core:core-ktx:1.17.0',
+            androidxConstraintLayout                 : 'androidx.constraintlayout:constraintlayout:2.1.4',
+            androidxRecyclerview                     : 'androidx.recyclerview:recyclerview:1.4.0',
+            androidxAppcompat                        : 'androidx.appcompat:appcompat:1.7.0',
+            androidxCardview                         : 'androidx.cardview:cardview:1.0.0',
+            androidxLegacy                           : 'androidx.legacy:legacy-support-v4:1.0.0',
+            androidxMultidex                         : 'androidx.multidex:multidex:2.0.1',
+            androidxSupportAnnotations               : 'androidx.annotation:annotation:1.9.1',
+            androidxPreference                       : 'com.takisoft.preferencex:preferencex:1.1.0',
+            //腾讯mmkv - 升级到 1.3.16 支持 Android 16+ 的 16KB 页面大小
+            mmkv                                     : "com.tencent:mmkv:1.3.16",
+
+            //数据库
+            //https://github.com/Raizlabs/DBFlow
+            //https://agrosner.gitbooks.io/dbflow/content/including-in-project.html
+            dbflowCore                               : "com.github.Raizlabs.DBFlow:dbflow-core:4.2.4",
+            dbflow                                   : "com.github.Raizlabs.DBFlow:dbflow:4.2.4",
+            dbflowAnnotationProcessor                : "com.github.Raizlabs.DBFlow:dbflow-processor:4.2.4",
+
+            //eventbus
+            //http://greenrobot.org/eventbus/
+            //https://github.com/greenrobot/EventBus#add-eventbus-to-your-project
+            eventbus                                 : "org.greenrobot:eventbus:3.3.1",
+
+            //retrofit2
+            //https://github.com/square/retrofit
+            retrofit2Gson                            : "com.squareup.retrofit2:converter-gson:2.3.0",
+            retrofit2                                : "com.squareup.retrofit2:retrofit:2.3.0",
+            retrofit2Rx                              : "com.squareup.retrofit2:adapter-rxjava2:2.3.0",
+            //https://github.com/ReactiveX/RxJava
+            rxjava2                                  : "io.reactivex.rxjava2:rxjava:2.1.10",
+            //https://github.com/ReactiveX/RxAndroid
+            rxjava2Android                           : "io.reactivex.rxjava2:rxandroid:2.0.2",
+
+            okhttp                                   : "com.squareup.okhttp3:okhttp:4.10.0",
+            gson                                     : "com.google.code.gson:gson:2.8.2",
+
+            glide                                    : 'com.github.bumptech.glide:glide:4.10.0',
+            glideProcessor                           : 'com.github.bumptech.glide:compiler:4.10.0',
+            glideOkhttp2                             : "com.github.bumptech.glide:okhttp3-integration:4.10.0",
+
+            //进度条库 https://github.com/81813780/AVLoadingIndicatorView
+            avi                                      : 'com.wang.avi:library:2.1.3',
+
+            slf4j                                    : 'org.slf4j:slf4j-simple:1.7.21',
+
+            androidxLifecycleLivedata                : "androidx.lifecycle:lifecycle-livedata-core:2.4.0",
+            androidxLifecycleViewmodel               : "androidx.lifecycle:lifecycle-viewmodel:2.4.0",
+
+            kotlinxCoroutines                        : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0",
+            kotlinxCoroutinesAndroid                 : "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0",
+
+            // OpenCV 4.12.0 - 支持 Android 16+ 的 16KB 页面大小
+            opencv                                   : 'org.opencv:opencv:4.12.0',
+
+            utilcode                                 : "com.blankj:utilcodex:1.31.1",
+
+            googleMlkitTextRecognition               : 'com.google.mlkit:text-recognition:16.0.1',
+            googleMlkitTextRecognitionChinese        : 'com.google.mlkit:text-recognition-chinese:16.0.1',
+
+            commonsJexl3                             : 'org.apache.commons:commons-jexl3:3.1',
+
+            markwonCore                              : 'io.noties.markwon:core:4.6.2',
+            markwonHtml                              : 'io.noties.markwon:html:4.6.2',
+            markwonTable                             : 'io.noties.markwon:ext-tables:4.6.2',
+            markwonImage                             : 'io.noties.markwon:image:4.6.2',
+            markwonImageGlide                        : 'io.noties.markwon:image-glide:4.6.2',
+
+            androidSvg                               : "com.caverock:androidsvg:1.4",
+            kotlinxSerializationJson                 : "org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.0",
+            charleskornaml                           : "com.charleskorn.kaml:kaml:0.54.0",
+
+            // Microsoft Speech SDK（1.44.0+ 支持 Android 15+ 16KB 页）
+            msSpeechClientSdk                        : 'com.microsoft.cognitiveservices.speech:client-sdk:1.48.1',
+    ]
+}

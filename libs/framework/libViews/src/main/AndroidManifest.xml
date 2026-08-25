@@ -1,0 +1,14 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.hive.views">
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        tools:replace="android:allowBackup">
+        <activity
+            android:name=".widgets.NumberOptView$InputDialog"
+            android:launchMode="singleTask"
+            android:theme="@style/base_dialog" />
+    </application>
+</manifest>

@@ -1,0 +1,36 @@
+<resources>
+    <string name="pull_to_refresh_refreshing_label">Refreshing…</string>
+    <string name="editor_encode">Encoding Format</string>
+    <string name="editor_save">Save</string>
+    <string name="editor_save_success">Save successful</string>
+    <string name="editor_setting_charset">File Encoding</string>
+    <string name="editor_setting_clear">Clear Content</string>
+    <string name="editor_clear_success">Cleared successfully</string>
+    <string name="editor_dialog_save_title">Save changes?</string>
+    <string name="editor_dialog_save_content">Content will be saved locally</string>
+    <string name="edit_tips_file_not_edit">You haven\'t written any content yet!</string>
+    <string name="edit_new_file_name_template">New Text %d.html</string>
+    <string name="editor_name_file_submit">Confirm</string>
+    <string name="editor_name_file_hint">Please enter file name</string>
+    <string name="editor_name_file">Save File</string>
+    <string name="empty_input_error_toast">Input cannot be empty</string>
+    <string name="save_error_name_duplicate_toast">This file name already exists! Please use a different name</string>
+    <string name="editor_open_file">Directory</string>
+    <string name="editor_btn_save">Save</string>
+    <string name="editor_btn_not_save">Don\'t Save</string>
+    <string name="editor_btn_cancel">Cancel</string>
+    <string name="editor_menu_save_to">Save As</string>
+    <string name="editor_menu_save">Save</string>
+    <string name="editor_menu_open">Open</string>
+    <string name="editor_menu_recent">Recent Files</string>
+    <string name="edit_save_to_btn">Save</string>
+    <string name="default_file_name">New Text.html</string>
+    <string name="default_file_txt_name">New Text.txt</string>
+    <string name="edit_file_may_has_deleted">This file may have been deleted!</string>
+    <string name="editor_insert_link">Insert Link</string>
+    <string name="editor_link_hint">Link Title</string>
+    <string name="editor_link_address">Link Address</string>
+    <string name="save_local">Save to Local</string>
+    <string name="editor_link_address_required">Please enter hyperlink address</string>
+    <string name="editor_link_title_required">Please enter hyperlink title</string>
+</resources>

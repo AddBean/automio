@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="false">
+        <bitmap android:src="@drawable/setting_selector_unselected"></bitmap>
+    </item>
+
+    <item android:state_selected="true">
+        <bitmap android:src="@drawable/setting_selector_selected"></bitmap>
+    </item>
+</selector>

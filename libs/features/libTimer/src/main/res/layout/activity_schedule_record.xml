@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <com.carlos.ui.header.CommonHeader
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bg_color="@color/colorPrimaryDark"
+        app:center_text="@string/script_schedule_record_title"
+        app:center_text_color="@color/textColorPrimary"
+        app:center_text_size="18sp"
+        app:enable_back="true"
+        app:left_img_color="@color/colorTextSecondary"
+        app:right_text="@string/timer_log_clear_action"
+        app:right_text_color="@color/colorTextSecondary"
+        app:right_text_size="14sp"
+        app:show_btm_line="false" />
+
+    <com.hive.timer.widget.logger.TimerLoggerView
+        android:id="@+id/loggerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+</LinearLayout>

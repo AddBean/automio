@@ -1,0 +1,3 @@
+<resources>
+    <string name="net_api_service_error">API服务异常</string>
+</resources>

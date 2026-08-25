@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hive.views.widgets.UIRoundCornerLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:layout_marginBottom="@dimen/design_spacing_3"
+    android:background="@color/design_permission_card_surface"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingHorizontal="@dimen/design_spacing_4"
+    app:rcv_borderColor="@color/design_permission_card_border"
+    app:rcv_borderWidth="1dp"
+    app:rcv_radius="@dimen/design_radius_profile_group">
+
+    <TextView
+        android:id="@+id/tv_language_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/design_text_secondary"
+        android:textSize="@dimen/design_font_lg"
+        tools:text="简体中文" />
+
+    <ImageView
+        android:id="@+id/iv_language_selected"
+        android:layout_width="@dimen/design_profile_row_icon_size"
+        android:layout_height="@dimen/design_profile_row_icon_size"
+        android:contentDescription="@null"
+        android:src="@drawable/icon_selected"
+        android:visibility="gone"
+        tools:visibility="visible" />
+</com.hive.views.widgets.UIRoundCornerLinearLayout>

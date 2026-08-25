@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/xml_pbg_gradient_bg"
+    android:fitsSystemWindows="true">
+
+
+
+    <com.carlos.ui.header.CommonHeader
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:center_text="@string/sc_lock_page_6"
+        app:enable_back="true"
+        app:bg_color="@color/colorPrimaryLight"
+        app:center_text_color="@color/textColorPrimary"
+        app:left_img_color="@color/design_text_secondary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:show_btm_line="false" />
+
+    <View
+        android:id="@+id/bgPermission"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/base_gap_margin"
+        android:layout_marginTop="@dimen/base_gap_margin"
+        android:background="@drawable/xml_setting_round_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/tvPermissionDetail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@style/base.content.title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/base_gap_margin"
+        android:text="@string/sc_lock_page_title1"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bgPermission" />
+
+    <TextView
+        android:id="@+id/tvTitle2"
+        style="@style/base.content.title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/base_gap_margin"
+        android:layout_marginTop="@dimen/tiny_gap_margin"
+        android:drawablePadding="@dimen/tiny_gap_margin"
+        android:text="@string/sc_lock_page_title"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/bgPermission"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+    <ImageView
+        android:id="@+id/ivTitle2"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="@dimen/tiny_gap_margin"
+        android:src="@drawable/ic_ask"
+        app:layout_constraintBottom_toBottomOf="@id/tvTitle2"
+        app:layout_constraintStart_toEndOf="@+id/tvTitle2"
+        app:layout_constraintTop_toTopOf="@id/tvTitle2" />
+
+    <TextView
+        android:id="@+id/btnRecord"
+        style="@style/base.button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="@dimen/dimen_10dip"
+        android:paddingHorizontal="@dimen/base_gap_margin"
+        android:paddingVertical="@dimen/tiny_gap_margin"
+        android:text="@string/sc_lock_page_1"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/tvTitle2"
+        app:layout_constraintEnd_toEndOf="@+id/bgPermission"
+        app:layout_constraintTop_toTopOf="@id/tvTitle2" />
+
+
+    <TextView
+        android:id="@+id/tvPermissionDetail"
+        style="@style/base.content.desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/base_gap_margin"
+        android:layout_marginTop="@dimen/base_gap_margin"
+        android:paddingBottom="30dp"
+        android:text="@string/sc_lock_page_2"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/bgPermission"
+        app:layout_constraintStart_toStartOf="@+id/bgPermission"
+        app:layout_constraintTop_toBottomOf="@+id/ivTitle2" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/base_gap_margin"
+        android:layout_marginTop="@dimen/big_gap_margin"
+        android:paddingHorizontal="@dimen/tiny_gap_margin"
+        app:layout_constraintTop_toBottomOf="@+id/bgPermission">
+
+        <TextView
+            android:id="@+id/tvTextTitle"
+            style="@style/base.content.title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sc_lock_page_3"
+            android:paddingTop="4dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvPowerSaveTips"
+            style="@style/base.content.desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTextTitle"
+            android:layout_marginTop="@dimen/big_gap_margin"
+            android:text="@string/sc_lock_page_4" />
+
+        <TextView
+            android:id="@+id/btnTest"
+            style="@style/base.button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:paddingHorizontal="@dimen/base_gap_margin"
+            android:paddingVertical="@dimen/tiny_gap_margin"
+            android:text="@string/sc_lock_page_5"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

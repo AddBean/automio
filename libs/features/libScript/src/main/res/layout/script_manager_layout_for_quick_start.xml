@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hive.views.StatefulLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_state"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:clipToPadding="false"
+    android:orientation="vertical"
+    app:defState="progress"
+    app:emptyLayout="@layout/script_manager_list_empty"
+    app:emptyText="@string/script_manager_list_empty"
+    tools:background="@color/colorPrimary">
+
+
+    <com.hive.views.list_view.ListRecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tvTtile"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:paddingTop="6dp"
+        android:paddingBottom="20dp"
+        tools:itemCount="2"
+        tools:listitem="@layout/fragment_script_item_layout" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorSplitLine" />
+</com.hive.views.StatefulLayout>

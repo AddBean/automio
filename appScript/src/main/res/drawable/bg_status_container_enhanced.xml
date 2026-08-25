@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 外层光晕效果 -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="90"
+                android:centerColor="#1A246BFD"
+                android:endColor="#00246BFD"
+                android:startColor="#22246BFD" />
+            <corners android:radius="20dp" />
+        </shape>
+    </item>
+    
+    <!-- 内层背景 -->
+    <item
+        android:bottom="1dp"
+        android:left="1dp"
+        android:right="1dp"
+        android:top="1dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="135"
+                android:centerColor="@color/colorPrimaryLight"
+                android:endColor="#FF1E2128"
+                android:startColor="#FF2E3238" />
+            <corners android:radius="19dp" />
+            <stroke
+                android:width="0.5dp"
+                android:color="#22246BFD" />
+        </shape>
+    </item>
+</layer-list>

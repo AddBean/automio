@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 对齐 script-desgin App.tsx PermissionCenterOverlay -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/design_bg_overlay"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <com.carlos.ui.header.CommonHeader
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bg_color="@color/design_bg_overlay"
+        app:center_text="@string/design_profile_permission_center"
+        app:center_text_color="@color/design_text_primary"
+        app:center_text_size="@dimen/design_font_xl"
+        app:enable_back="true"
+        app:left_img_color="@color/design_text_secondary"
+        app:show_btm_line="true" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/design_spacing_page_horizontal"
+            android:paddingTop="@dimen/design_spacing_5"
+            android:paddingBottom="@dimen/design_spacing_8">
+
+            <TextView
+                android:id="@+id/tv_permission_intro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/design_spacing_1"
+                android:text="@string/design_permission_center_intro"
+                android:textColor="@color/design_text_muted"
+                android:textSize="@dimen/design_font_base" />
+
+            <!-- 必要权限 -->
+            <TextView
+                android:id="@+id/tv_section_required"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/design_spacing_6"
+                android:letterSpacing="0.12"
+                android:paddingHorizontal="@dimen/design_spacing_1"
+                android:text="@string/design_permission_section_required"
+                android:textAllCaps="true"
+                android:textColor="@color/design_text_muted"
+                android:textSize="@dimen/design_font_xs"
+                android:textStyle="bold" />
+
+            <com.hive.views.widgets.UIRoundCornerLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/design_spacing_3"
+                android:orientation="vertical"
+                android:padding="@dimen/design_spacing_4"
+                android:background="@color/design_permission_card_surface"
+                app:rcv_radius="@dimen/design_radius_lg"
+                app:rcv_borderWidth="1dp"
+                app:rcv_borderColor="@color/design_permission_card_border">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.hive.views.widgets.UIRoundCornerFrameLayout
+                        android:layout_width="@dimen/design_permission_icon_box"
+                        android:layout_height="@dimen/design_permission_icon_box"
+                        android:background="@color/design_permission_icon_surface"
+                        app:rcv_radius="@dimen/design_radius_md">
+
+                        <ImageView
+                            android:layout_width="@dimen/design_permission_icon_inner"
+                            android:layout_height="@dimen/design_permission_icon_inner"
+                            android:layout_gravity="center"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_shield_check"
+                            app:tint="@color/design_text_tertiary" />
+                    </com.hive.views.widgets.UIRoundCornerFrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/design_spacing_3"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/agent_accessibility_title"
+                                android:textColor="@color/design_text_secondary"
+                                android:textSize="@dimen/design_font_lg"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tv_perm_a11y_status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/design_permission_status_off"
+                                android:textColor="@color/design_permission_status_need"
+                                android:textSize="@dimen/design_font_sm"
+                                android:textStyle="bold"
+                                tools:text="@string/design_permission_status_on" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/design_spacing_2"
+                            android:lineSpacingMultiplier="1.25"
+                            android:text="@string/design_perm_a11y_desc"
+                            android:textColor="@color/design_text_muted"
+                            android:textSize="@dimen/design_font_sm" />
+
+                        <com.hive.views.widgets.UIRoundCornerLinearLayout
+                            android:id="@+id/btn_perm_a11y_go"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/design_spacing_3"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="@dimen/design_spacing_4"
+                            android:paddingVertical="@dimen/design_spacing_2"
+                            android:background="@color/design_permission_cta_fill"
+                            app:rcv_radius="@dimen/design_radius_md"
+                            app:rcv_borderWidth="1dp"
+                            app:rcv_borderColor="@color/design_permission_cta_stroke">
+
+                            <ImageView
+                                android:layout_width="@dimen/design_permission_cta_icon_size"
+                                android:layout_height="@dimen/design_permission_cta_icon_size"
+                                android:contentDescription="@null"
+                                android:src="@drawable/ic_external_link"
+                                app:tint="@color/design_nav_active" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/design_spacing_2"
+                                android:text="@string/design_permission_go_settings"
+                                android:textColor="@color/design_nav_active"
+                                android:textSize="@dimen/design_font_base"
+                                android:textStyle="bold" />
+                        </com.hive.views.widgets.UIRoundCornerLinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.hive.views.widgets.UIRoundCornerLinearLayout>
+
+            <!-- 稳定运行的权限 -->
+            <TextView
+                android:id="@+id/tv_section_stable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/design_spacing_8"
+                android:letterSpacing="0.12"
+                android:paddingHorizontal="@dimen/design_spacing_1"
+                android:text="@string/design_permission_section_stable"
+                android:textAllCaps="true"
+                android:textColor="@color/design_text_muted"
+                android:textSize="@dimen/design_font_xs"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/design_spacing_3"
+                android:orientation="vertical">
+
+                <!-- 读取屏幕内容 -->
+                <com.hive.views.widgets.UIRoundCornerLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/design_spacing_4"
+                    android:background="@color/design_permission_card_surface"
+                    app:rcv_radius="@dimen/design_radius_lg"
+                    app:rcv_borderWidth="1dp"
+                    app:rcv_borderColor="@color/design_permission_card_border">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.hive.views.widgets.UIRoundCornerFrameLayout
+                            android:layout_width="@dimen/design_permission_icon_box"
+                            android:layout_height="@dimen/design_permission_icon_box"
+                            android:background="@color/design_permission_icon_surface"
+                            app:rcv_radius="@dimen/design_radius_md">
+
+                            <ImageView
+                                android:layout_width="@dimen/design_permission_icon_inner"
+                                android:layout_height="@dimen/design_permission_icon_inner"
+                                android:layout_gravity="center"
+                                android:contentDescription="@null"
+                                android:src="@drawable/ic_monitor"
+                                app:tint="@color/design_text_tertiary" />
+                        </com.hive.views.widgets.UIRoundCornerFrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/design_spacing_3"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/design_perm_screen_title"
+                                    android:textColor="@color/design_text_secondary"
+                                    android:textSize="@dimen/design_font_lg"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tv_perm_screen_status"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/design_permission_status_off"
+                                    android:textColor="@color/design_permission_status_need"
+                                    android:textSize="@dimen/design_font_sm"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/design_spacing_2"
+                                android:lineSpacingMultiplier="1.25"
+                                android:text="@string/design_perm_screen_desc"
+                                android:textColor="@color/design_text_muted"
+                                android:textSize="@dimen/design_font_sm" />
+
+                            <com.hive.views.widgets.UIRoundCornerLinearLayout
+                                android:id="@+id/btn_perm_screen_go"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/design_spacing_3"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="@dimen/design_spacing_4"
+                                android:paddingVertical="@dimen/design_spacing_2"
+                                android:background="@color/design_permission_cta_fill"
+                                app:rcv_radius="@dimen/design_radius_md"
+                                app:rcv_borderWidth="1dp"
+                                app:rcv_borderColor="@color/design_permission_cta_stroke">
+
+                                <ImageView
+                                    android:layout_width="@dimen/design_permission_cta_icon_size"
+                                    android:layout_height="@dimen/design_permission_cta_icon_size"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_external_link"
+                                    app:tint="@color/design_nav_active" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/design_spacing_2"
+                                    android:text="@string/design_permission_go_settings"
+                                    android:textColor="@color/design_nav_active"
+                                    android:textSize="@dimen/design_font_base"
+                                    android:textStyle="bold" />
+                            </com.hive.views.widgets.UIRoundCornerLinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.hive.views.widgets.UIRoundCornerLinearLayout>
+
+                <!-- 自启动 -->
+                <com.hive.views.widgets.UIRoundCornerLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_3"
+                    android:orientation="vertical"
+                    android:padding="@dimen/design_spacing_4"
+                    android:background="@color/design_permission_card_surface"
+                    app:rcv_radius="@dimen/design_radius_lg"
+                    app:rcv_borderWidth="1dp"
+                    app:rcv_borderColor="@color/design_permission_card_border">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.hive.views.widgets.UIRoundCornerFrameLayout
+                            android:layout_width="@dimen/design_permission_icon_box"
+                            android:layout_height="@dimen/design_permission_icon_box"
+                            android:background="@color/design_permission_icon_surface"
+                            app:rcv_radius="@dimen/design_radius_md">
+
+                            <ImageView
+                                android:layout_width="@dimen/design_permission_icon_inner"
+                                android:layout_height="@dimen/design_permission_icon_inner"
+                                android:layout_gravity="center"
+                                android:contentDescription="@null"
+                                android:src="@drawable/ic_power"
+                                app:tint="@color/design_text_tertiary" />
+                        </com.hive.views.widgets.UIRoundCornerFrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/design_spacing_3"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/sc_setting_permission_auto_start_title"
+                                    android:textColor="@color/design_text_secondary"
+                                    android:textSize="@dimen/design_font_lg"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tv_perm_auto_status"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/design_permission_status_off"
+                                    android:textColor="@color/design_permission_status_need"
+                                    android:textSize="@dimen/design_font_sm"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/design_spacing_2"
+                                android:lineSpacingMultiplier="1.25"
+                                android:text="@string/sc_setting_permission_auto_start_tip"
+                                android:textColor="@color/design_text_muted"
+                                android:textSize="@dimen/design_font_sm" />
+
+                            <com.hive.views.widgets.UIRoundCornerLinearLayout
+                                android:id="@+id/btn_perm_auto_go"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/design_spacing_3"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="@dimen/design_spacing_4"
+                                android:paddingVertical="@dimen/design_spacing_2"
+                                android:background="@color/design_permission_cta_fill"
+                                app:rcv_radius="@dimen/design_radius_md"
+                                app:rcv_borderWidth="1dp"
+                                app:rcv_borderColor="@color/design_permission_cta_stroke">
+
+                                <ImageView
+                                    android:layout_width="@dimen/design_permission_cta_icon_size"
+                                    android:layout_height="@dimen/design_permission_cta_icon_size"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_external_link"
+                                    app:tint="@color/design_nav_active" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/design_spacing_2"
+                                    android:text="@string/design_permission_go_settings"
+                                    android:textColor="@color/design_nav_active"
+                                    android:textSize="@dimen/design_font_base"
+                                    android:textStyle="bold" />
+                            </com.hive.views.widgets.UIRoundCornerLinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.hive.views.widgets.UIRoundCornerLinearLayout>
+
+                <!-- 通知 -->
+                <com.hive.views.widgets.UIRoundCornerLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_3"
+                    android:orientation="vertical"
+                    android:padding="@dimen/design_spacing_4"
+                    android:background="@color/design_permission_card_surface"
+                    app:rcv_radius="@dimen/design_radius_lg"
+                    app:rcv_borderWidth="1dp"
+                    app:rcv_borderColor="@color/design_permission_card_border">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.hive.views.widgets.UIRoundCornerFrameLayout
+                            android:layout_width="@dimen/design_permission_icon_box"
+                            android:layout_height="@dimen/design_permission_icon_box"
+                            android:background="@color/design_permission_icon_surface"
+                            app:rcv_radius="@dimen/design_radius_md">
+
+                            <ImageView
+                                android:layout_width="@dimen/design_permission_icon_inner"
+                                android:layout_height="@dimen/design_permission_icon_inner"
+                                android:layout_gravity="center"
+                                android:contentDescription="@null"
+                                android:src="@drawable/ic_bell"
+                                app:tint="@color/design_text_tertiary" />
+                        </com.hive.views.widgets.UIRoundCornerFrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/design_spacing_3"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/sc_setting_permission_not_title"
+                                    android:textColor="@color/design_text_secondary"
+                                    android:textSize="@dimen/design_font_lg"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tv_perm_notif_status"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/design_permission_status_off"
+                                    android:textColor="@color/design_permission_status_need"
+                                    android:textSize="@dimen/design_font_sm"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/design_spacing_2"
+                                android:lineSpacingMultiplier="1.25"
+                                android:text="@string/sc_setting_permission_not_tip"
+                                android:textColor="@color/design_text_muted"
+                                android:textSize="@dimen/design_font_sm" />
+
+                            <com.hive.views.widgets.UIRoundCornerLinearLayout
+                                android:id="@+id/btn_perm_notif_go"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/design_spacing_3"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="@dimen/design_spacing_4"
+                                android:paddingVertical="@dimen/design_spacing_2"
+                                android:background="@color/design_permission_cta_fill"
+                                app:rcv_radius="@dimen/design_radius_md"
+                                app:rcv_borderWidth="1dp"
+                                app:rcv_borderColor="@color/design_permission_cta_stroke">
+
+                                <ImageView
+                                    android:layout_width="@dimen/design_permission_cta_icon_size"
+                                    android:layout_height="@dimen/design_permission_cta_icon_size"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_external_link"
+                                    app:tint="@color/design_nav_active" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/design_spacing_2"
+                                    android:text="@string/design_permission_go_settings"
+                                    android:textColor="@color/design_nav_active"
+                                    android:textSize="@dimen/design_font_base"
+                                    android:textStyle="bold" />
+                            </com.hive.views.widgets.UIRoundCornerLinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.hive.views.widgets.UIRoundCornerLinearLayout>
+                <!-- 省电优化 -->
+                <com.hive.views.widgets.UIRoundCornerLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_3"
+                    android:orientation="vertical"
+                    android:padding="@dimen/design_spacing_4"
+                    android:background="@color/design_permission_card_surface"
+                    app:rcv_radius="@dimen/design_radius_lg"
+                    app:rcv_borderWidth="1dp"
+                    app:rcv_borderColor="@color/design_permission_card_border">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.hive.views.widgets.UIRoundCornerFrameLayout
+                            android:layout_width="@dimen/design_permission_icon_box"
+                            android:layout_height="@dimen/design_permission_icon_box"
+                            android:background="@color/design_permission_icon_surface"
+                            app:rcv_radius="@dimen/design_radius_md">
+
+                            <ImageView
+                                android:layout_width="@dimen/design_permission_icon_inner"
+                                android:layout_height="@dimen/design_permission_icon_inner"
+                                android:layout_gravity="center"
+                                android:contentDescription="@null"
+                                android:src="@drawable/ic_battery"
+                                app:tint="@color/design_text_tertiary" />
+                        </com.hive.views.widgets.UIRoundCornerFrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/design_spacing_3"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/sc_setting_permission_power_title"
+                                    android:textColor="@color/design_text_secondary"
+                                    android:textSize="@dimen/design_font_lg"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tv_perm_battery_status"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/design_permission_status_off"
+                                    android:textColor="@color/design_permission_status_need"
+                                    android:textSize="@dimen/design_font_sm"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/design_spacing_2"
+                                android:lineSpacingMultiplier="1.25"
+                                android:text="@string/sc_setting_permission_power_tip"
+                                android:textColor="@color/design_text_muted"
+                                android:textSize="@dimen/design_font_sm" />
+
+                            <com.hive.views.widgets.UIRoundCornerLinearLayout
+                                android:id="@+id/btn_perm_battery_go"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/design_spacing_3"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="@dimen/design_spacing_4"
+                                android:paddingVertical="@dimen/design_spacing_2"
+                                android:background="@color/design_permission_cta_fill"
+                                app:rcv_radius="@dimen/design_radius_md"
+                                app:rcv_borderWidth="1dp"
+                                app:rcv_borderColor="@color/design_permission_cta_stroke">
+
+                                <ImageView
+                                    android:layout_width="@dimen/design_permission_cta_icon_size"
+                                    android:layout_height="@dimen/design_permission_cta_icon_size"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_external_link"
+                                    app:tint="@color/design_nav_active" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/design_spacing_2"
+                                    android:text="@string/design_permission_go_settings"
+                                    android:textColor="@color/design_nav_active"
+                                    android:textSize="@dimen/design_font_base"
+                                    android:textStyle="bold" />
+                            </com.hive.views.widgets.UIRoundCornerLinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.hive.views.widgets.UIRoundCornerLinearLayout>
+                <!-- 壁纸保活 -->
+                <com.hive.views.widgets.UIRoundCornerLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_3"
+                    android:orientation="vertical"
+                    android:padding="@dimen/design_spacing_4"
+                    android:background="@color/design_permission_card_surface"
+                    app:rcv_radius="@dimen/design_radius_lg"
+                    app:rcv_borderWidth="1dp"
+                    app:rcv_borderColor="@color/design_permission_card_border">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.hive.views.widgets.UIRoundCornerFrameLayout
+                            android:layout_width="@dimen/design_permission_icon_box"
+                            android:layout_height="@dimen/design_permission_icon_box"
+                            android:background="@color/design_permission_icon_surface"
+                            app:rcv_radius="@dimen/design_radius_md">
+
+                            <ImageView
+                                android:layout_width="@dimen/design_permission_icon_inner"
+                                android:layout_height="@dimen/design_permission_icon_inner"
+                                android:layout_gravity="center"
+                                android:contentDescription="@null"
+                                android:src="@drawable/ic_image"
+                                app:tint="@color/design_text_tertiary" />
+                        </com.hive.views.widgets.UIRoundCornerFrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/design_spacing_3"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/sc_setting_permission_wallpaper_title"
+                                    android:textColor="@color/design_text_secondary"
+                                    android:textSize="@dimen/design_font_lg"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tv_perm_wall_status"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/design_permission_status_off"
+                                    android:textColor="@color/design_permission_status_need"
+                                    android:textSize="@dimen/design_font_sm"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/design_spacing_2"
+                                android:lineSpacingMultiplier="1.25"
+                                android:text="@string/sc_setting_permission_wallpaper_tip"
+                                android:textColor="@color/design_text_muted"
+                                android:textSize="@dimen/design_font_sm" />
+
+                            <com.hive.views.widgets.UIRoundCornerLinearLayout
+                                android:id="@+id/btn_perm_wall_go"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/design_spacing_3"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="@dimen/design_spacing_4"
+                                android:paddingVertical="@dimen/design_spacing_2"
+                                android:background="@color/design_permission_cta_fill"
+                                app:rcv_radius="@dimen/design_radius_md"
+                                app:rcv_borderWidth="1dp"
+                                app:rcv_borderColor="@color/design_permission_cta_stroke">
+
+                                <ImageView
+                                    android:layout_width="@dimen/design_permission_cta_icon_size"
+                                    android:layout_height="@dimen/design_permission_cta_icon_size"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/ic_external_link"
+                                    app:tint="@color/design_nav_active" />
+
+                                <TextView
+                                    android:id="@+id/tv_perm_wall_go_label"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/design_spacing_2"
+                                    android:text="@string/design_permission_go_settings"
+                                    android:textColor="@color/design_nav_active"
+                                    android:textSize="@dimen/design_font_base"
+                                    android:textStyle="bold" />
+                            </com.hive.views.widgets.UIRoundCornerLinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.hive.views.widgets.UIRoundCornerLinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hive.views.widgets.UIRoundCornerLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:background="#0DFFFFFF"
+    android:clipToPadding="false"
+    android:orientation="vertical"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="16dp"
+    app:rcv_borderColor="#1FFFFFFF"
+    app:rcv_borderWidth="1dp"
+    app:rcv_radius="16dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp">
+
+        <com.hive.views.widgets.UIRoundCornerFrameLayout
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:background="@color/colorGreen1f"
+            android:padding="6dp"
+            app:rcv_radius="6dp">
+
+            <com.hive.views.widgets.UIRoundCornerImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_activity" />
+        </com.hive.views.widgets.UIRoundCornerFrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="42dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                tools:text="自动评论助手" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/ic_calendar"
+                    android:tint="@color/colorTextSecondary" />
+
+                <TextView
+                    android:id="@+id/tvSchedule"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="12sp"
+                    tools:ignore="SmallSp"
+                    tools:text="每天" />
+
+                <com.hive.timer.widget.TimeIconView
+                    android:id="@+id/timeIcon"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginStart="12dp"
+                    app:timeIconDayColor="@color/colorTextSecondary"
+                    app:timeIconLineWidth="1dp"
+                    app:timeIconNightColor="@color/color_black" />
+
+                <TextView
+                    android:id="@+id/tvNextRunLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/timer_schedule_next_run_label"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="12sp"
+                    tools:ignore="SmallSp" />
+
+                <TextView
+                    android:id="@+id/tvNextRun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="10sp"
+                    tools:text="04.21 09:00" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Switch
+            android:id="@+id/ivStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@color/transparent"
+            android:checked="true"
+            android:thumbTint="@color/colorGreen"
+            android:thumbTintMode="multiply"
+            android:trackTint="#1AFFFFFF"
+            android:trackTintMode="src_over" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/dividerFooter"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/white_10" />
+
+    <LinearLayout
+        android:id="@+id/layoutFooter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tvLastRun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="10sp"
+            tools:ignore="SmallSp"
+            tools:text="上次 今天 09:00" />
+
+        <com.hive.views.widgets.UIRoundCornerTextView
+            android:id="@+id/tvLastStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginStart="6dp"
+            android:gravity="center"
+            android:minWidth="32dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:textColor="@color/colorGreen"
+            android:textSize="9sp"
+            android:textStyle="bold"
+            app:rcv_radius="8dp"
+            tools:ignore="SmallSp"
+            tools:text="成功" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/ivLog"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:padding="3dp"
+            android:src="@drawable/timer_icon_log"
+            app:tint="@color/colorTextSecondary" />
+
+        <ImageView
+            android:id="@+id/ivDelete"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="10dp"
+            android:padding="2dp"
+            android:src="@drawable/ic_trash_2"
+            app:tint="@color/colorTextSecondary" />
+    </LinearLayout>
+
+</com.hive.views.widgets.UIRoundCornerLinearLayout>

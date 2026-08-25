@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_state"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/xml_common_dialog_round_alert_bg"
+        android:clickable="true"
+        android:tag="ScriptDialog">
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginRight="16dp"
+            android:padding="9dp"
+            android:src="@drawable/icon_close"
+            android:tint="@color/textColorPrimary" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/dialog_share_title"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+
+            <com.hive.script.views.widgets.ScriptTabSelectorView
+                android:id="@+id/encryptSwitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:scriptName="@string/sc_share_ctr_type_title"
+                app:tabBackground="@drawable/xml_selector_round_tab_item_view"
+                app:tabDefaultValue="0"
+                app:tabNameList="@string/sc_share_ctr_type_list"
+                app:tabTxtColor="@drawable/xml_selector_round_tab_item_view_color"
+                app:tabValueList="0,1" />
+
+            <LinearLayout
+                android:id="@+id/encryptLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/xml_script_round_bg"
+                android:orientation="vertical">
+
+
+                <com.hive.script.views.widgets.ScriptValueView
+                    android:id="@+id/ctlPwdView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:scriptValueEditEnable="false"
+                    app:scriptValueName="@string/sc_share_pwd_title"
+                    app:scriptValueTextColor="@color/colorAccent" />
+
+                <com.hive.script.views.widgets.ScriptValueView
+                    android:id="@+id/ctlTimeView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:scriptValueEditEnable="false"
+                    app:scriptValueName="@string/sc_share_time_title"
+                    app:scriptValueTextColor="@color/colorAccent" />
+
+                <com.hive.script.views.widgets.ScriptTabSelectorView
+                    android:id="@+id/ctlRunView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:scriptName="@string/sc_share_ctr_run_type_title"
+                    app:tabBackground="@drawable/xml_selector_round_tab_item_view"
+                    app:tabDefaultValue="0"
+                    app:tabNameList="@string/sc_share_ctr_edit_type_list"
+                    app:tabTxtColor="@drawable/xml_selector_round_tab_item_view_color"
+                    app:tabValueList="0,1" />
+
+
+                <com.hive.script.views.widgets.ScriptTabSelectorView
+                    android:id="@+id/ctlViewView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:scriptName="@string/sc_share_ctr_view_type_title"
+                    app:tabBackground="@drawable/xml_selector_round_tab_item_view"
+                    app:tabDefaultValue="0"
+                    app:tabNameList="@string/sc_share_ctr_edit_type_list"
+                    app:tabTxtColor="@drawable/xml_selector_round_tab_item_view_color"
+                    app:tabValueList="0,1" />
+
+                <com.hive.script.views.widgets.ScriptTabSelectorView
+                    android:id="@+id/ctlEditView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:scriptName="@string/sc_share_ctr_edit_type_title"
+                    app:tabBackground="@drawable/xml_selector_round_tab_item_view"
+                    app:tabDefaultValue="0"
+                    app:tabNameList="@string/sc_share_ctr_edit_type_list"
+                    app:tabTxtColor="@drawable/xml_selector_round_tab_item_view_color"
+                    app:tabValueList="0,1" />
+
+                <com.hive.script.views.widgets.ScriptTabSelectorView
+                    android:id="@+id/ctlShareView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:scriptName="@string/sc_share_ctr_share_type_title"
+                    app:tabBackground="@drawable/xml_selector_round_tab_item_view"
+                    app:tabDefaultValue="0"
+                    app:tabNameList="@string/sc_share_ctr_edit_type_list"
+                    app:tabTxtColor="@drawable/xml_selector_round_tab_item_view_color"
+                    app:tabValueList="0,1" />
+
+
+                <com.hive.script.views.widgets.ScriptTabSelectorView
+                    android:id="@+id/ctlCloudView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:scriptName="@string/sc_share_ctr_cloud_type_title"
+                    app:tabBackground="@drawable/xml_selector_round_tab_item_view"
+                    app:tabDefaultValue="0"
+                    app:tabNameList="@string/sc_share_ctr_edit_type_list"
+                    app:tabTxtColor="@drawable/xml_selector_round_tab_item_view_color"
+                    app:tabValueList="0,1" />
+
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/btn_submit"
+                style="@style/base.button.square"
+                android:layout_width="200dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/pref_confirm"
+                android:textColor="@color/color_white"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

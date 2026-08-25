@@ -1,0 +1,77 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+android {
+    namespace "com.hive.audio"
+    compileSdk rootProject.ext.android.compileSdkVersion
+    defaultConfig {
+        minSdk rootProject.ext.android.minSdkVersion
+        targetSdk rootProject.ext.android.targetSdkVersion
+
+        versionCode 1
+        versionName "1.0"
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility rootProject.ext.javaVersion
+        targetCompatibility rootProject.ext.javaVersion
+    }
+    kotlinOptions {
+        jvmTarget = rootProject.ext.javaVersion.toString()
+    }
+    sourceSets.main {
+        jni.srcDirs = []
+        // 讯飞 MSC 可选：取消注释并放入 libs 后启用
+        // jniLibs.srcDirs 'src/main/libs'
+    }
+    buildFeatures {
+        viewBinding true
+        buildConfig true
+    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    compileOnly(fileTree(dir: 'src/main/libs', include: ['*.jar']))
+    implementation rootProject.ext.publicDependencies.kotlin
+    implementation project(path: ':libs:framework:libViews')
+    implementation project(path: ':libs:framework:libUtils')
+    implementation project(path: ':libs:i8n')
+    implementation project(path: ':libs:framework:libNet')
+    implementation project(path: ':libs:framework:libCompon')
+
+    implementation rootProject.ext.publicDependencies.kotlinxCoroutines
+    implementation rootProject.ext.publicDependencies.kotlinxCoroutinesAndroid
+    implementation rootProject.ext.publicDependencies.msSpeechClientSdk
+    implementation rootProject.ext.publicDependencies.androidxConstraintLayout
+    implementation rootProject.ext.publicDependencies.androidxAppcompat
+    implementation rootProject.ext.publicDependencies.androidxRecyclerview
+    implementation rootProject.ext.publicDependencies.androidxLegacy
+    implementation rootProject.ext.publicDependencies.androidxCardview
+    implementation rootProject.ext.publicDependencies.androidxPreference
+    implementation rootProject.ext.publicDependencies.androidxSupportAnnotations
+    implementation rootProject.ext.publicDependencies.gson
+    implementation rootProject.ext.publicDependencies.rxjava2
+    implementation rootProject.ext.publicDependencies.rxjava2Android
+    implementation rootProject.ext.publicDependencies.eventbus
+}

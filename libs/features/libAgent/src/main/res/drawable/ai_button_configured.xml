@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 已配置：次要描边按钮 -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/ai_ripple">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/design_bg_toolbar_icon" />
+            <corners android:radius="@dimen/design_radius_md" />
+            <stroke
+                android:width="1dp"
+                android:color="@color/design_border" />
+        </shape>
+    </item>
+</ripple>

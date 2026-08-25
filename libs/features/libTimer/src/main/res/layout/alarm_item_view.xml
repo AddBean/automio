@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hive.views.widgets.UIRoundCornerLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="6dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
+    app:rcv_radius="16dp"
+    app:rcv_borderWidth="1dp"
+    app:rcv_borderColor="#0FFFFFFF"
+    android:background="#08FFFFFF">
+
+    <com.hive.views.widgets.UIRoundCornerFrameLayout
+        android:id="@+id/ivDelete"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:padding="6dp"
+        app:rcv_radius="8dp"
+        android:background="#0DFFFFFF">
+
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_trash_2"
+            android:tint="@color/colorTextSecondary" />
+    </com.hive.views.widgets.UIRoundCornerFrameLayout>
+
+    <com.hive.timer.widget.TimeIconView
+        android:id="@+id/timeIcon"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        app:timeIconDayColor="@color/textColorPrimary"
+        app:timeIconLineWidth="1.2dp"
+        app:timeIconNightColor="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/tvInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        tools:text="09:30:00" />
+
+    <ImageView
+        android:id="@+id/ivStatus"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginLeft="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_toggle_left"
+        android:tint="@color/colorTextSecondary" />
+</com.hive.views.widgets.UIRoundCornerLinearLayout>

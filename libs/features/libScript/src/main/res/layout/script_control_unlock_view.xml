@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:divider="@color/public_line"
+    android:orientation="vertical"
+    android:showDividers="middle">
+
+    <LinearLayout
+        android:id="@+id/playing_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/common_menu_height"
+        android:background="@drawable/xml_script_menu_main_bg"
+        android:divider="@color/public_line"
+        android:dividerPadding="@dimen/public_line_width"
+        android:orientation="horizontal"
+        android:paddingHorizontal="10dp"
+        android:showDividers="middle">
+
+        <com.hive.views.widgets.TextDrawableView
+            android:id="@+id/btn_play_cancel"
+            style="@style/base.content.title"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:paddingHorizontal="10dp"
+            android:src="@drawable/icon_logger_play"
+            android:text="@string/sc_menu_stop_record"
+            android:textSize="14sp"
+            app:drawableHeight="18dp"
+            app:drawableLeft="@drawable/ic_stop"
+            app:drawableTint="@color/color_red"
+            app:drawableWidth="18dp" />
+
+        <com.hive.views.widgets.TextDrawableView
+            android:id="@+id/btn_play_finish"
+            style="@style/base.content.title"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:paddingHorizontal="10dp"
+            android:src="@drawable/icon_logger_play"
+            android:text="完成解锁"
+            android:visibility="gone"
+            app:drawableTint="@color/black" />
+    </LinearLayout>
+
+</LinearLayout>

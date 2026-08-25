@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.hive.script.views.widgets.ScriptScaleInOutView
+        android:id="@+id/scale_view"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@color/white_10" />
+
+    <com.hive.script.views.widgets.ScriptTabSelectorView
+        android:id="@+id/type_selector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        app:scriptName="@string/sc_scale_inout_name"
+        app:tabBackground="@drawable/xml_selector_round_tab_item_view"
+        app:tabDefaultValue="click"
+        app:tabNameList="@string/sc_scale_inout_type_list"
+        app:tabTxtColor="@drawable/xml_selector_round_tab_item_view_color"
+        app:tabValueList="out,in" />
+
+    <com.hive.script.views.widgets.ScriptFloatView
+        android:id="@+id/number_duration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:optFloatInput="true"
+        app:optFloatMax="3600"
+        app:optFloatMin="0.01"
+        app:optFloatType="TYPE2"
+        app:optFloatUnit="@string/sc_unit_s"
+        app:scriptFloatEnable="true"
+        app:scriptFloatMaxDigits="2"
+        app:scriptFloatRatio="1000"
+        app:scriptFloatName="@string/sc_scale_inout_duration" />
+
+
+</LinearLayout>

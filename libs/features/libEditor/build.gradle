@@ -1,0 +1,80 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+android {
+    namespace "com.hive.editor"
+    compileSdk rootProject.ext.android.compileSdkVersion
+    defaultConfig {
+        minSdk rootProject.ext.android.minSdkVersion
+        targetSdk rootProject.ext.android.targetSdkVersion
+
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+    }
+    compileOptions {
+        sourceCompatibility rootProject.ext.javaVersion
+        targetCompatibility rootProject.ext.javaVersion
+    }
+    kotlinOptions {
+        jvmTarget = rootProject.ext.javaVersion.toString()
+    }
+    lintOptions {
+        abortOnError false
+    }
+
+    aaptOptions {
+        ignoreAssetsPattern "!*"
+    }
+    buildFeatures {
+        viewBinding true
+        buildConfig true  // Required for BuildConfig in AGP 9.0.0
+    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    implementation rootProject.ext.publicDependencies.markwonCore
+    implementation rootProject.ext.publicDependencies.markwonHtml
+    implementation rootProject.ext.publicDependencies.markwonTable
+    implementation rootProject.ext.publicDependencies.markwonImage
+    implementation rootProject.ext.publicDependencies.markwonImageGlide
+    implementation rootProject.ext.publicDependencies.androidSvg
+
+    kapt rootProject.ext.publicDependencies.dbflowAnnotationProcessor
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':libs:framework:libViews')
+    implementation project(path: ':libs:framework:libUtils')
+    implementation project(path: ':libs:features:libImage')
+    implementation project(path: ':libs:framework:libNet')
+    implementation project(path: ':libs:framework:libBase')
+    implementation project(path: ':libs:framework:libCompon')
+    implementation project(path: ':libs:features:libFiles')
+
+    //https://github.com/L-X-J/RichText-Androidx
+//    implementation 'com.zzhoujay.markdown:markdown:1.0.5'
+}
+
+kapt {
+    arguments {
+        arg("targetModuleName", "editor")
+    }
+}

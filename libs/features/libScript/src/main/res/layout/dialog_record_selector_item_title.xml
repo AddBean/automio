@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="3dp"
+    android:layout_marginBottom="2dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    tools:background="@color/colorPrimary">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:layout_marginEnd="6dp"
+        android:layout_weight="1"
+        android:background="@color/colorSplitLine" />
+
+    <TextView
+        android:id="@+id/btn_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:text="@string/sc_edit_record_cmd"
+        android:textColor="@color/colorTextSecondary2"
+        android:textSize="10sp" />
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:layout_marginStart="6dp"
+        android:layout_weight="1"
+        android:background="@color/colorSplitLine" />
+</LinearLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Lucide trending-up icon adapted for upgrade arrow -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Trending line path -->
+    <path
+        android:pathData="M3,17 L9,11 L13,15 L21,7"
+        android:strokeWidth="2.5"
+        android:strokeColor="@color/amber_gold"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillType="nonZero" />
+
+    <!-- Upward arrow head -->
+    <path
+        android:pathData="M14,7 L21,7 L21,14"
+        android:strokeWidth="2.5"
+        android:strokeColor="@color/amber_gold"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillType="nonZero" />
+
+    <!-- Glow effect line -->
+    <path
+        android:pathData="M3,17 L9,11 L13,15 L21,7"
+        android:strokeWidth="1.5"
+        android:strokeColor="@color/white_20"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillType="nonZero" />
+
+    <!-- Arrow head glow -->
+    <path
+        android:pathData="M14,7 L21,7 L21,14"
+        android:strokeWidth="1.5"
+        android:strokeColor="@color/white_20"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillType="nonZero" />
+</vector>

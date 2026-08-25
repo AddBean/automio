@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:background="@color/design_bg_overlay">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/design_spacing_1"
+        android:letterSpacing="0.04"
+        android:text="@string/ai_inference_settings"
+        android:textAllCaps="true"
+        android:textColor="@color/design_text_muted"
+        android:textSize="@dimen/design_font_base"
+        android:textStyle="bold" />
+
+    <com.hive.views.widgets.UIRoundCornerLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/design_spacing_3"
+        android:background="@color/design_permission_card_surface"
+        android:orientation="vertical"
+        app:rcv_borderColor="@color/design_permission_card_border"
+        app:rcv_borderWidth="1dp"
+        app:rcv_radius="@dimen/design_radius_profile_group">
+
+        <!-- 对话模型 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ai_ripple_rect"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/design_spacing_4">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvNormalInference"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/agent_normal_model"
+                    android:textColor="@color/design_text_primary"
+                    android:textSize="@dimen/design_font_xl"
+                    android:textStyle="bold" />
+
+                <com.hive.views.widgets.TextDrawableView
+                    android:id="@+id/tvNormalDes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:drawablePadding="4dp"
+                    android:drawableTint="@color/design_text_muted"
+                    android:ellipsize="middle"
+                    android:maxWidth="220dp"
+                    android:maxLines="1"
+                    android:text="@string/agent_settings_not_set"
+                    android:textColor="@color/design_accent_rose"
+                    android:textSize="@dimen/design_font_lg"
+                    app:drawableHeight="14dp"
+                    app:drawableRight="@drawable/setting_arrow"
+                    app:drawableWidth="14dp"
+                    tools:text="GPT-4o" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/public_line_width"
+            android:layout_marginHorizontal="@dimen/design_spacing_4"
+            android:background="@color/design_profile_divider" />
+
+        <!-- 视觉模型 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ai_ripple_rect"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/design_spacing_4">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvMultimodalInference"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/agent_multimodal_model"
+                    android:textColor="@color/design_text_primary"
+                    android:textSize="@dimen/design_font_xl"
+                    android:textStyle="bold" />
+
+                <com.hive.views.widgets.TextDrawableView
+                    android:id="@+id/tvMultimodalDes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:drawablePadding="4dp"
+                    android:drawableTint="@color/design_text_muted"
+                    android:ellipsize="middle"
+                    android:maxWidth="220dp"
+                    android:maxLines="1"
+                    android:text="@string/agent_settings_not_set"
+                    android:textColor="@color/design_accent_rose"
+                    android:textSize="@dimen/design_font_lg"
+                    app:drawableHeight="14dp"
+                    app:drawableRight="@drawable/setting_arrow"
+                    app:drawableWidth="14dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/public_line_width"
+            android:layout_marginHorizontal="@dimen/design_spacing_4"
+            android:background="@color/design_profile_divider" />
+
+        <!-- 任务记忆摘要 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ai_ripple_rect"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/design_spacing_4">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvTaskMemoryTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/agent_task_memory_switch_title"
+                    android:textColor="@color/design_text_primary"
+                    android:textSize="@dimen/design_font_xl" />
+
+                <TextView
+                    android:id="@+id/tvTaskMemoryDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/agent_task_memory_switch_desc"
+                    android:textColor="@color/design_text_tertiary"
+                    android:textSize="@dimen/design_font_lg" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchTaskMemory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </com.hive.views.widgets.UIRoundCornerLinearLayout>
+
+</LinearLayout>

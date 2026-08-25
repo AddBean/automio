@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/design_bg_overlay"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <com.carlos.ui.header.CommonHeader
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bg_color="@color/design_bg_overlay"
+        app:center_text="@string/mcp_connect_title"
+        app:center_text_color="@color/design_text_primary"
+        app:center_text_size="@dimen/design_font_xl"
+        app:enable_back="true"
+        app:left_img_color="@color/design_text_secondary"
+        app:show_btm_line="true" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/design_spacing_page_horizontal"
+            android:paddingTop="@dimen/design_spacing_5"
+            android:paddingBottom="@dimen/design_spacing_8">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="4dp"
+                android:text="@string/mcp_connect_intro"
+                android:textColor="@color/design_text_muted"
+                android:textSize="@dimen/design_font_base" />
+
+            <!-- Step 1 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/design_spacing_6"
+                android:text="@string/mcp_connect_step1_title"
+                android:textColor="@color/design_text_primary"
+                android:textSize="@dimen/design_font_lg"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_step1_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/design_spacing_2"
+                android:lineSpacingExtra="3dp"
+                android:textColor="@color/design_text_secondary"
+                android:textSize="@dimen/design_font_sm"
+                tools:text="保持 App 运行…" />
+
+            <!-- Step 2 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/design_spacing_6"
+                android:text="@string/mcp_connect_step2_title"
+                android:textColor="@color/design_text_primary"
+                android:textSize="@dimen/design_font_lg"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/design_spacing_3"
+                android:text="@string/mcp_connect_step2_adb_title"
+                android:textColor="@color/design_text_secondary"
+                android:textSize="@dimen/design_font_base"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/design_spacing_1"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/mcp_connect_step2_adb_desc"
+                android:textColor="@color/design_text_muted"
+                android:textSize="@dimen/design_font_sm" />
+
+            <include
+                android:id="@+id/block_adb_reverse"
+                layout="@layout/view_mcp_copy_block"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/design_spacing_2" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/design_spacing_4"
+                android:text="@string/mcp_connect_step2_lan_title"
+                android:textColor="@color/design_text_secondary"
+                android:textSize="@dimen/design_font_base"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_step2_lan_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/design_spacing_1"
+                android:lineSpacingExtra="3dp"
+                android:textColor="@color/design_text_muted"
+                android:textSize="@dimen/design_font_sm"
+                tools:text="当前设备 IP：192.168.1.1" />
+
+            <!-- Step 3 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/design_spacing_6"
+                android:text="@string/mcp_connect_step3_title"
+                android:textColor="@color/design_text_primary"
+                android:textSize="@dimen/design_font_lg"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/design_spacing_2"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/mcp_connect_step3_desc"
+                android:textColor="@color/design_text_muted"
+                android:textSize="@dimen/design_font_sm" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/design_spacing_4"
+                android:text="@string/mcp_connect_config_adb_title"
+                android:textColor="@color/design_text_secondary"
+                android:textSize="@dimen/design_font_base"
+                android:textStyle="bold" />
+
+            <include
+                android:id="@+id/block_config_adb"
+                layout="@layout/view_mcp_copy_block"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/design_spacing_2" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/design_spacing_4"
+                android:text="@string/mcp_connect_config_lan_title"
+                android:textColor="@color/design_text_secondary"
+                android:textSize="@dimen/design_font_base"
+                android:textStyle="bold" />
+
+            <include
+                android:id="@+id/block_config_lan"
+                layout="@layout/view_mcp_copy_block"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/design_spacing_2" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

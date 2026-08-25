@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hive.views.widgets.UIRoundCornerLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/design_spacing_2"
+    android:layout_marginBottom="@dimen/design_spacing_2"
+    android:background="@color/design_bg_card"
+    android:minHeight="76dp"
+    android:orientation="vertical"
+    android:padding="@dimen/design_spacing_4"
+    app:rcv_borderColor="@color/white_5"
+    app:rcv_borderWidth="1dp"
+    app:rcv_radius="@dimen/design_radius_lg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.hive.views.widgets.UIRoundCornerFrameLayout
+            android:id="@+id/layout_tool_icon"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginEnd="@dimen/design_spacing_4"
+            android:background="@drawable/design_publish_input_bg"
+            app:rcv_radius="12dp">
+
+            <ImageView
+                android:id="@+id/iv_selected"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_check_small"
+                android:visibility="gone"
+                app:tint="@color/white" />
+        </com.hive.views.widgets.UIRoundCornerFrameLayout>
+
+        <TextView
+            android:id="@+id/tv_tool_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/agent_tool_name"
+            android:textColor="@color/design_text_secondary"
+            android:textSize="@dimen/design_font_md"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_tool_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/design_spacing_2"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="@string/agent_tool_description"
+        android:textColor="@color/design_text_muted"
+        android:textSize="12sp" />
+
+</com.hive.views.widgets.UIRoundCornerLinearLayout>

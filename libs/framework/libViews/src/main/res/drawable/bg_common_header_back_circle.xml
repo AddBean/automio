@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 对齐 script-desgin 顶栏返回：rounded-full bg-white/5 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="@color/header_back_circle_fill" />
+</shape>

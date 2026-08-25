@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Design tokens - spacing/radius (script-desgin/design-spec/tokens/*.json) -->
+<resources>
+    <!-- Spacing (对应 Tailwind spacing scale: 1=4px, 2=8px, etc.) -->
+    <dimen name="design_spacing_1">4dp</dimen>
+    <dimen name="design_spacing_1_5">6dp</dimen>
+    <dimen name="design_spacing_2">8dp</dimen>
+    <dimen name="design_spacing_2_5">10dp</dimen>
+    <dimen name="design_spacing_3">12dp</dimen>
+    <dimen name="design_spacing_3_5">14dp</dimen>
+    <dimen name="design_spacing_4">16dp</dimen>
+    <dimen name="design_spacing_5">20dp</dimen>
+    <dimen name="design_spacing_6">24dp</dimen>
+    <dimen name="design_spacing_8">32dp</dimen>
+    <dimen name="design_spacing_10">40dp</dimen>
+    <dimen name="design_spacing_12">48dp</dimen>
+    <dimen name="design_spacing_24">96dp</dimen>
+
+    <!-- Radius (对应 Tailwind rounded scale) -->
+    <dimen name="design_radius_sm">4dp</dimen>
+    <dimen name="design_radius_md">8dp</dimen>
+    <dimen name="design_radius_lg">12dp</dimen>
+    <dimen name="design_radius_xl">16dp</dimen>
+    <dimen name="design_radius_2xl">20dp</dimen>
+    <dimen name="design_radius_3xl">24dp</dimen>
+    <dimen name="design_radius_full">9999dp</dimen>
+
+    <!-- Font sizes (对应 Tailwind text scale) -->
+    <dimen name="design_font_xs">9sp</dimen>
+    <dimen name="design_font_sm">10sp</dimen>
+    <dimen name="design_font_base">11sp</dimen>
+    <dimen name="design_font_lg">13sp</dimen>
+    <dimen name="design_font_xl">14sp</dimen>
+    <dimen name="design_font_2xl">15sp</dimen>
+    <dimen name="design_font_3xl">18sp</dimen>
+    <dimen name="design_font_4xl">20sp</dimen>
+
+    <!-- Component sizes -->
+    <dimen name="design_toolbar_icon_btn_size">40dp</dimen>
+    <dimen name="design_toolbar_title_text">15sp</dimen>
+    <dimen name="design_a11y_banner_height">48dp</dimen>
+
+    <!-- Resource Item sizes (对齐 workflow spec) -->
+    <dimen name="design_resource_item_icon_size">40dp</dimen>
+    <dimen name="design_resource_item_play_btn_size">32dp</dimen>
+    <dimen name="design_resource_item_status_height">24dp</dimen>
+    <dimen name="design_resource_item_status_min_width">58dp</dimen>
+    <dimen name="design_resource_item_margin_top">6dp</dimen>
+    <dimen name="design_resource_item_text_start">14dp</dimen>
+    <dimen name="design_resource_item_play_start">12dp</dimen>
+
+    <!-- ProfilePage -->
+    <dimen name="design_radius_profile_user_card">24dp</dimen>
+    <dimen name="design_radius_profile_group">16dp</dimen>
+    <dimen name="design_radius_profile_avatar">16dp</dimen>
+    <dimen name="design_profile_avatar_size">64dp</dimen>
+    <dimen name="design_profile_row_icon_size">18dp</dimen>
+    <dimen name="design_profile_chevron_size">16dp</dimen>
+    <dimen name="design_publish_feature_icon_size">48dp</dimen>
+    <dimen name="design_publish_feature_icon_inner">24dp</dimen>
+    <dimen name="design_section_dot_size">6dp</dimen>
+    <dimen name="design_profile_name_text">18sp</dimen>
+
+    <!-- PersonalCenter -->
+    <dimen name="design_personal_overlay_avatar_size">56dp</dimen>
+    <dimen name="design_personal_scroll_bottom_padding">96dp</dimen>
+    <dimen name="design_personal_chevron_size">18dp</dimen>
+    <dimen name="design_personal_bind_check_size">14dp</dimen>
+    <dimen name="design_personal_copy_icon_size">16dp</dimen>
+    <dimen name="design_personal_avatar_initial_text">20sp</dimen>
+
+    <!-- PermissionCenter -->
+    <dimen name="design_permission_icon_box">40dp</dimen>
+    <dimen name="design_permission_icon_inner">20dp</dimen>
+    <dimen name="design_permission_cta_icon_size">14dp</dimen>
+
+</resources>

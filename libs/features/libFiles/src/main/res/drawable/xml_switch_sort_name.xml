@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true">
+        <bitmap android:src="@drawable/x_file_sort_name" android:tint="@color/color_blue"></bitmap>
+    </item>
+    <item android:state_selected="false">
+        <bitmap android:src="@drawable/x_file_sort_name" android:tint="@color/color_ff555555"></bitmap>
+    </item>
+</selector>

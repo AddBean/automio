@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <HorizontalScrollView
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/richfont_bg"
+        android:fadingEdge="none"
+        android:paddingBottom="18dp"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/ll_layout_font"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:layout_marginRight="12dp"
+            android:layout_marginLeft="12dp"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:id="@+id/action_bold"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:background="@null"
+                android:padding="11dp"
+                android:contentDescription="@null"
+                android:src="@drawable/bold_d" />
+
+            <ImageView
+                android:id="@+id/action_italic"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:padding="11dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/italic_d" />
+
+            <ImageView
+                android:id="@+id/action_strikethrough"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:background="@null"
+                android:padding="11dp"
+                android:contentDescription="@null"
+                android:src="@drawable/strikethrough_d" />
+
+            <ImageView
+                android:id="@+id/action_blockquote"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:padding="11dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/blockquote_d" />
+
+            <ImageView
+                android:id="@+id/action_align_left"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:background="@null"
+                android:padding="2dp"
+                android:contentDescription="@null"
+                android:src="@drawable/text_align_left"
+                android:tint="@color/white" />
+
+            <ImageView
+                android:id="@+id/action_align_mid"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:padding="2dp"
+                android:src="@drawable/text_align_mid"
+                android:tint="@color/white" />
+
+            <ImageView
+                android:id="@+id/action_align_right"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:background="@null"
+                android:padding="2dp"
+                android:contentDescription="@null"
+                android:src="@drawable/text_align_right"
+                android:tint="@color/white" />
+
+            <ImageView
+                android:id="@+id/action_heading1"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:background="@null"
+                android:padding="6dp"
+                android:contentDescription="@null"
+                android:src="@drawable/h1_d" />
+
+            <ImageView
+                android:id="@+id/action_heading2"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:padding="7dp"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/h2_d" />
+
+            <ImageView
+                android:id="@+id/action_heading3"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:background="@null"
+                android:padding="11dp"
+                android:contentDescription="@null"
+                android:src="@drawable/h3_d" />
+
+            <ImageView
+                android:id="@+id/action_heading4"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:background="@null"
+                android:padding="9dp"
+                android:contentDescription="@null"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/h4_d" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+</LinearLayout>

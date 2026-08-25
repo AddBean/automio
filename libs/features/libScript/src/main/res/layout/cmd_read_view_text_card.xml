@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.hive.script.views.widgets.ScriptValueView
+        android:id="@+id/editId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scriptValueEditEnable="true"
+        app:scriptValueEditWidth="160dp"
+        app:scriptValueName="@string/sc_edit_read_view_text_title_id"
+        app:scriptActionEnable="true"
+        app:scriptValueTextColor="@color/colorAccent" />
+
+    <com.hive.script.views.widgets.ScriptValueView
+        android:id="@+id/edit_direct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scriptValueEditEnable="true"
+        app:scriptValueEditWidth="160dp"
+        app:scriptValueName="@string/sc_edit_layout_title_direct"
+        app:scriptValueTextColor="@color/colorAccent" />
+
+    <com.hive.script.views.widgets.ScriptTabSelectorView
+        android:id="@+id/editSelector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        app:scriptName="@string/sc_read_view_text_tab"
+        app:tabBackground="@drawable/xml_selector_round_tab_item_view"
+        app:tabDefaultValue="0"
+        app:tabNameList="@string/sc_read_view_text_type_list"
+        app:tabTxtColor="@drawable/xml_selector_round_tab_item_view_color"
+        app:tabValueList="TEXT,DESC,ALL" />
+
+    <com.hive.script.views.widgets.ScriptTabSelectorView
+        android:id="@+id/editScope"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        app:scriptName="@string/sc_read_view_text_count_tab"
+        app:tabBackground="@drawable/xml_selector_round_tab_item_view"
+        app:tabDefaultValue="0"
+        app:tabNameList="@string/sc_read_view_text_count_list"
+        app:tabTxtColor="@drawable/xml_selector_round_tab_item_view_color"
+        app:tabValueList="SINGLE,ALL" />
+
+    <com.hive.script.views.widgets.ScriptValueView
+        android:id="@+id/editParamIs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scriptValueEditEnable="true"
+        app:scriptValueName="@string/sc_edit_read_view_text_title_param_is"
+        app:scriptValueTextColor="@color/colorAccent" />
+
+</LinearLayout>

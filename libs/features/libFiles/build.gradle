@@ -1,0 +1,66 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+android {
+    namespace "com.hive.libfiles"
+    compileSdk rootProject.ext.android.compileSdkVersion
+    defaultConfig {
+        minSdk rootProject.ext.android.minSdkVersion
+        targetSdk rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+    }
+
+    buildTypes {
+        release {
+            // 库模块通常不需要单独混淆，最终混淆会在应用模块统一处理
+            // 禁用混淆以避免 Kotlin 2.1.0 元数据版本不兼容问题
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+    }
+    sourceSets.main {
+        jniLibs.srcDirs 'src/main/libs'
+        jni.srcDirs = []
+    }
+    compileOptions {
+        sourceCompatibility rootProject.ext.javaVersion
+        targetCompatibility rootProject.ext.javaVersion
+    }
+    kotlinOptions {
+        jvmTarget = rootProject.ext.javaVersion.toString()
+    }
+    lintOptions {
+        abortOnError false
+    }
+    buildFeatures {
+        viewBinding true
+        buildConfig true  // Required for BuildConfig in AGP 9.0.0
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':libs:framework:libViews')
+    implementation project(path: ':libs:framework:libUtils')
+    implementation project(path: ':libs:features:libImage')
+    implementation project(path: ':libs:framework:libNet')
+    implementation project(path: ':libs:framework:libBase')
+    implementation project(path: ':libs:framework:libCompon')
+
+    kapt rootProject.ext.publicDependencies.dbflowAnnotationProcessor
+
+}
+
+kapt {
+    arguments {
+        arg("targetModuleName", "xfiles")
+    }
+}

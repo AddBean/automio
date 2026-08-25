@@ -1,0 +1,10 @@
+Automio
+Copyright (c) 2026 jiadou
+
+Automio source code (excluding third-party components noted below) is licensed under
+the MIT License. See LICENSE for the full text.
+
+This product includes third-party open-source software distributed under its
+respective licenses. Dependency license metadata is available from the Gradle
+dependency graph and upstream project pages. Vendored or embedded sources that
+retain their original copyright headers remain under those upstream terms.

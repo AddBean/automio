@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 普通状态 - 渐变按钮 -->
+    <item android:state_pressed="false">
+        <layer-list>
+            <!-- 底层阴影 -->
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/design_accent_indigo_10" />
+                    <corners android:radius="12dp" />
+                </shape>
+            </item>
+            <!-- 主体渐变 -->
+            <item android:left="0.5dp" android:right="0.5dp" android:top="0.5dp">
+                <shape android:shape="rectangle">
+                    <gradient
+                        android:startColor="@color/design_accent_indigo"
+                        android:centerColor="@color/design_accent_violet"
+                        android:endColor="#A855F7"
+                        android:angle="135" />
+                    <corners android:radius="12dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    <!-- 按下状态 - 稍暗的渐变 -->
+    <item android:state_pressed="true">
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <gradient
+                        android:startColor="#4F46E5"
+                        android:centerColor="#7C3AED"
+                        android:endColor="#9333EA"
+                        android:angle="135" />
+                    <corners android:radius="12dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

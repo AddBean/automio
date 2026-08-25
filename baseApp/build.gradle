@@ -1,0 +1,70 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+import com.google.gson.Gson
+
+android {
+    namespace 'com.hive.framework'
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        manifestPlaceholders = [
+                MANIFEST_APPLICATION_ID    : "${rootProject.ext.android.applicationId}",
+                MANIFEST_FILE_PROVIDER     : "${rootProject.ext.android.applicationId}" + ".fileprovider",
+                MANIFEST_FILE_SCHEME_DOMAIN: "${rootProject.ext.sdk.buildMap.schemeDomain}",
+                MANIFEST_FILE_SCHEME_URL   : "${rootProject.ext.sdk.buildMap.schemeUrl}",
+                MANIFEST_FILE_CHANNEL_NAME : "${rootProject.ext.sdk.buildMap.channelName}"
+        ]
+        // 使用 Gson 将 Groovy Map 转换为标准 JSON 格式，并转义双引号
+        def jsonStr = new Gson().toJson(rootProject.ext.sdk.buildMap)
+        def escapedJson = jsonStr.replace("\"", "\\\"")
+        buildConfigField "String", "BUILD_MAP", '\"' + escapedJson + '\"'
+        buildConfigField "String", "APP_ID", '\"' + rootProject.ext.android.applicationId + '\"'
+        buildConfigField "String", "VERSION_NAME", '\"' + rootProject.ext.android.versionName + '\"'
+        buildConfigField "Integer", "VERSION_CODE", '' + rootProject.ext.android.versionCode + ''
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility rootProject.ext.javaVersion
+        targetCompatibility rootProject.ext.javaVersion
+    }
+    kotlinOptions {
+        jvmTarget = rootProject.ext.javaVersion.toString()
+    }
+    buildFeatures {
+        viewBinding true
+        buildConfig true  // Required for BuildConfig fields in AGP 9.0.0
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(path: ':libs:features:libScript')
+    implementation project(path: ':libs:features:libOpenCV')
+    implementation project(path: ':libs:framework:libBase')
+    implementation project(path: ':libs:framework:libViews')
+    implementation project(path: ':libs:framework:libCompon')
+    implementation project(path: ':libs:framework:libUtils')
+    implementation project(path: ':libs:framework:libNet')
+
+    configurations {
+        all*.exclude group: 'HiveApp.framework'
+        all*.exclude group: 'HiveApp.features'
+    }
+}

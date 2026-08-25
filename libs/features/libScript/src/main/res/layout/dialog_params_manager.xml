@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hive.views.StatefulLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_state"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:defState="content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/xml_common_dialog_round_bottom_bg"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:paddingTop="40dp"
+        android:tag="ScriptDialog">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <com.hive.views.widgets.TextDrawableView
+                android:id="@+id/tvAddParam"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/xml_btn_blue_round_bg_2"
+                android:drawablePadding="1dp"
+                android:drawableTint="#66ffffff"
+                android:gravity="center"
+                android:paddingStart="6dp"
+                android:paddingTop="2dp"
+                android:paddingEnd="6dp"
+                android:paddingBottom="2dp"
+                android:text="@string/sc_add_param"
+                android:textColor="#ffffffff"
+                android:textSize="12sp"
+                app:drawableHeight="12sp"
+                app:drawableLeft="@drawable/ic_upper_edit_plus"
+                app:drawableTint="#ffffffff"
+                app:drawableWidth="12sp" />
+
+            <ImageView
+                android:id="@+id/iv_close"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="2dp"
+                android:padding="18dp"
+                android:src="@drawable/icon_close"
+                app:tint="@color/textColorPrimary" />
+        </FrameLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorSplitLine" />
+
+        <FrameLayout
+            android:id="@+id/flParamsList"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="2dp" />
+
+            <com.hive.script.views.widgets.ScriptTabListView
+                android:id="@+id/tabListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="2dp"
+                android:background="@color/colorPrimary" />
+        </FrameLayout>
+
+
+    </LinearLayout>
+</com.hive.views.StatefulLayout>

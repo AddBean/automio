@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- PopupWindow Exit Animation - Scale and Fade -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="150"
+    android:interpolator="@android:anim/accelerate_interpolator">
+
+    <!-- 缩小 -->
+    <scale
+        android:fromXScale="1.0"
+        android:toXScale="0.8"
+        android:fromYScale="1.0"
+        android:toYScale="0.8"
+        android:pivotX="50%"
+        android:pivotY="100%" />
+
+    <!-- 淡出 -->
+    <alpha
+        android:fromAlpha="1.0"
+        android:toAlpha="0.0" />
+</set>

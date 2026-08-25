@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="46dp">
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/base.content.title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="12dp"
+        android:textSize="14sp" />
+
+    <com.hive.views.widgets.FloatOptView
+        android:id="@+id/float_view"
+        android:layout_width="130dp"
+        android:layout_height="28dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="8dp"
+        android:textCursorDrawable="@null"
+        app:optFloatDefault="1"
+        app:optFloatInput="true"
+        app:optFloatMax="3600"
+        app:optFloatMin="0.001"
+        app:optFloatStep="0.01" />
+
+</RelativeLayout>

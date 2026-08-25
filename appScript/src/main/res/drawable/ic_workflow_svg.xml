@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="18dp"
+    android:height="18dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="@color/design_accent_emerald"
+        android:pathData="M6,8m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0" />
+    <path
+        android:fillColor="@color/design_accent_emerald"
+        android:pathData="M12,8m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0" />
+    <path
+        android:fillColor="@color/design_accent_emerald"
+        android:pathData="M18,8m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0" />
+    <path
+        android:fillColor="@color/design_accent_emerald"
+        android:pathData="M6,16m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0" />
+    <path
+        android:fillColor="@color/design_accent_emerald"
+        android:pathData="M12,16m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0" />
+    <path
+        android:fillColor="@color/design_accent_emerald"
+        android:pathData="M18,16m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0" />
+    <path
+        android:pathData="M8,8 L16,8"
+        android:strokeWidth="1"
+        android:strokeColor="@color/design_accent_emerald" />
+    <path
+        android:pathData="M12,10 L12,14"
+        android:strokeWidth="1"
+        android:strokeColor="@color/design_accent_emerald" />
+    <path
+        android:pathData="M8,16 L16,16"
+        android:strokeWidth="1"
+        android:strokeColor="@color/design_accent_emerald" />
+</vector>

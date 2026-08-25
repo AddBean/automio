@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 依赖卡片背景（对齐 script-design 选中/未选中状态） -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 选中状态：bg-indigo-500/20 border-indigo-500/50 -->
+    <item android:state_selected="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#1A246BFD" />
+            <corners android:radius="12dp" />
+            <stroke
+                android:width="1dp"
+                android:color="#80246BFD" />
+        </shape>
+    </item>
+
+    <!-- 未选中状态：bg-white/[0.04] border-white/10 -->
+    <item>
+        <ripple xmlns:android="http://schemas.android.com/apk/res/android"
+            android:color="#1Affffff">
+            <item android:id="@android:id/mask">
+                <shape android:shape="rectangle">
+                    <solid android:color="@android:color/white" />
+                    <corners android:radius="12dp" />
+                </shape>
+            </item>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="#0Affffff" />
+                    <corners android:radius="12dp" />
+                    <stroke
+                        android:width="1dp"
+                        android:color="#1Affffff" />
+                </shape>
+            </item>
+        </ripple>
+    </item>
+</selector>

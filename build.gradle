@@ -1,0 +1,72 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: "./libs/common.gradle"
+apply from: "./libs/libVersion.gradle"
+apply from: "./libs/config.gradle"
+apply from: "./publish.gradle"
+
+buildscript {
+    ext.kotlin_version = '2.2.10'
+    ext.gradle_tools_version = '9.0.0'
+    repositories {
+        mavenLocal()
+        // Prefer Aliyun: dl.google.com often times out in CN networks
+        maven { url 'https://maven.aliyun.com/repository/google/' }
+        maven { url 'https://maven.aliyun.com/repository/public/' }
+        maven { url 'https://maven.aliyun.com/repository/central/' }
+        maven { url 'https://repo1.maven.org/maven2/' }
+        mavenCentral()
+        maven { url "https://raw.githubusercontent.com/AddBean/commonLib/main/android" }
+        maven { url "https://jitpack.io/" }
+        google()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$gradle_tools_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" //Added line
+        classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
+        classpath "com.google.code.gson:gson:2.8.9"
+        classpath "com.chaquo.python:gradle:17.0.0"
+    }
+}
+
+allprojects {
+    repositories {
+        // Prefer Aliyun: dl.google.com often times out in CN networks
+        maven { url 'https://maven.aliyun.com/repository/google/' }
+        maven { url 'https://maven.aliyun.com/repository/public/' }
+        maven { url 'https://maven.aliyun.com/repository/central/' }
+        maven { url 'https://repo1.maven.org/maven2' }
+        mavenCentral()
+        //mavenLocal()
+        maven { url "https://jitpack.io/" }
+        maven { url "https://raw.githubusercontent.com/AddBean/commonLib/main/android" }
+        google()
+    }
+}
+
+// 统一禁用所有库模块的混淆，避免 Kotlin 2.1.0 元数据版本不兼容问题
+// 库模块通常不需要单独混淆，最终混淆会在应用模块统一处理
+subprojects { project ->
+    afterEvaluate {
+        if (project.plugins.hasPlugin('com.android.library')) {
+            project.android.buildTypes.all { buildType ->
+                if (buildType.name == 'release') {
+                    buildType.minifyEnabled = false
+                }
+            }
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+// 国际化硬编码扫描任务
+task scanI18n(type: Exec) {
+    group = 'verification'
+    description = '扫描未国际化的硬编码字符串，输出到 build/i18n_report.txt'
+    commandLine 'python3', "${rootDir}/scripts/scan_i18n_hardcode.py", '-o', "${rootDir}/build/i18n_report.txt", '-r', rootDir
+    doFirst {
+        mkdir "${rootDir}/build"
+    }
+}

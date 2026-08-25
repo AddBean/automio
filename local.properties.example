@@ -1,0 +1,9 @@
+## Automio local secrets (gitignored as local.properties)
+## Copy to local.properties and fill for local debug only.
+## Prefer App「更多设置 → 语音服务」/「模型管理」(Android Keystore) for real use.
+## Values below are baked into the APK BuildConfig — do not commit real keys.
+
+# automio.msSpeechKey=
+# automio.msSpeechRegion=eastasia
+# automio.audioAsrProviderId=ms
+# automio.xfAppId=

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <com.hive.script.views.widgets.ScriptRandomSizeView
+        android:id="@+id/random_size"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:sbMaxValue="16"
+        app:sbMinValue="0"
+        app:sbValue="8"
+        app:scriptName="@string/sc_random_title" />
+
+    <com.hive.script.views.widgets.ScriptFloatView
+        android:id="@+id/number_gap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:optFloatInput="true"
+        app:optFloatMax="3600"
+        app:optFloatMin="0.01"
+        app:optFloatType="TYPE2"
+        app:optFloatUnit="@string/sc_unit_s"
+        app:scriptFloatEnable="true"
+        app:scriptFloatMaxDigits="2"
+        app:scriptFloatRatio="1000"
+        app:scriptFloatName="@string/sc_cmd_fast_click_duration" />
+
+    <com.hive.script.views.widgets.ScriptNumberView
+        android:id="@+id/number_times"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:optNumberInput="true"
+        app:optNumberMax="10000000"
+        app:optNumberMin="1"
+        app:optNumberType="TYPE1"
+        app:scriptNumberName="@string/sc_cmd_fast_click_count" />
+</LinearLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources translatable="false">
+
+    <string name="x_file_setting_record_file">x_file_setting_record_file</string>
+    <string name="x_file_setting_show_thumb">x_file_setting_show_thumb</string>
+    <string name="x_file_setting_show_hidden_file">x_file_setting_show_hidden_file</string>
+    <string name="x_file_setting_enable_recycler_bin">x_file_setting_enable_recycler_bin</string>
+</resources>

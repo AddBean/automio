@@ -1,0 +1,655 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<resources>
+    <color name="colorPrimary">#ff000000</color>
+    <color name="colorPrimaryLight">#ff0d0d0d</color>
+    <color name="colorPrimaryDark">#ff000000</color>
+    <color name="colorAccent">#ff246BFD</color>
+    <color name="colorAccentAf">#af246BFD</color>
+    <color name="colorMenuBg">#df000000</color>
+    <color name="colorMenuRecordBg">#ef000000</color>
+    <color name="colorMenuBgLine">#46ffffff</color>
+    <color name="colorSplitLine">#1fffffff</color>
+
+    <color name="textColorPrimary">#ffffffff</color>
+    <color name="colorTextSecondary">#ff909090</color>
+    <color name="colorTextSecondary2">#ff5E6272</color>
+    <color name="colorDisableInput">#11ffffff</color>
+    <color name="colorTextGreen">#ffA5F59C</color>
+    <color name="colorAmber">#ffD97706</color>
+
+    <color name="textColorDark">#ffffffff</color>
+    <color name="textColorLight">#ffffffff</color>
+
+    <color name="colorPrimaryLightEE">#ee0d0d0d</color>
+    <color name="colorPrimaryLightAF">#af0d0d0d</color>
+
+    <color name="colorPrimaryLight00">#000d0d0d</color>
+    <color name="colorPrimaryLight01">#010d0d0d</color>
+    <color name="colorPrimaryLight02">#020d0d0d</color>
+    <color name="colorPrimaryLight03">#030d0d0d</color>
+    <color name="colorPrimaryLight04">#040d0d0d</color>
+    <color name="colorPrimaryLight05">#050d0d0d</color>
+    <color name="colorPrimaryLight06">#060d0d0d</color>
+    <color name="colorPrimaryLight07">#070d0d0d</color>
+
+    <color name="primaryColor00">#00000000</color>
+    <color name="primaryColor01">#01000000</color>
+    <color name="primaryColor02">#02000000</color>
+    <color name="primaryColor03">#03000000</color>
+    <color name="primaryColor04">#04000000</color>
+    <color name="primaryColor05">#05000000</color>
+    <color name="primaryColor06">#06000000</color>
+    <color name="primaryColor07">#07000000</color>
+
+    <color name="primaryColor4f">#4f000000</color>
+    <color name="primaryColor5f">#5f000000</color>
+    <color name="primaryColor6f">#6d000000</color>
+    <color name="primaryColorAF">#af000000</color>
+    <color name="primaryColorF4">#f4000000</color>
+    <color name="primaryColorDF">#df000000</color>
+    <color name="primaryColor6D">#6d000000</color>
+
+    <color name="colorBgTransBlack">#9f000000</color>
+    <color name="colorRed">#EA5927</color>
+
+    <color name="colorIcon">#89ffffff</color>
+    <color name="colorIconLight">#ffffffff</color>
+
+    <color name="colorBlackLight">#3b3b3b</color>
+    <color name="black">#000000</color>
+    <color name="textColorSelected">#EA5927</color>
+    <color name="colorWarning">#EA5927</color>
+
+    <color name="textColor1">#ff21272e</color>
+    <color name="color_blue">#ff246BFD</color>
+    <color name="color_blue_af">#af246BFD</color>
+    <color name="color_red">#ffE9463C</color>
+    <color name="color_gran">#A3A3A3</color>
+    <color name="color_gran_trans">#7fA3A3A3</color>
+    <color name="color_white">#FFFFFFFF</color>
+    <color name="color_black">#ff000000</color>
+    <color name="color_transparent">#00000000</color>
+    <color name="color_black_translucence">#5f000000</color>
+    <color name="color_cf_black_translucence">#bf000000</color>
+    <color name="color_white_translucence">#e5FFFFFF</color>
+    <color name="colorYellow">#ffFFEA00</color>
+    <color name="province_line_border">#C7C7C7</color>
+
+    <color name="colorAddParamBtn">#ff246BFD</color>
+
+    <color name="color_orange">#ffFF9800</color>
+
+    <color name="colorDisable">#ff5E6272</color>
+    <color name="colorWaterMark">#ff5E6272</color>
+    <color name="colorGreen">#ff018671</color>
+    <color name="colorGreen1f">#1f018671</color>
+    <color name="colorRed2">#ffC25FFF</color>
+    <color name="colorRedAf">#afC25FFF</color>
+    <color name="recordOptBg">#5f000000</color>
+    <color name="colorSpan">#ff018671</color>
+
+    <color name="colorSpanSys">#ffC25FFF</color>
+
+    <color name="colorInMove">#4f246BFD</color>
+
+    <color name="colorInAnim">#ffE9463C</color>
+    <color name="colorOrange">#ffFF9800</color>
+    <color name="colorPurple">#ff9C27B0</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="transparent">#00000000</color> <!--透明-->
+    <color name="contents_text">#ff000000</color>
+    <color name="encode_view">#ffffffff</color>
+    <color name="help_button_view">#ffcccccc</color>
+    <color name="help_view">#ff404040</color>
+    <color name="possible_result_points">#c0ffff00</color>
+    <color name="result_image_border">#ffffffff</color>
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_points">#c000ff00</color>
+    <color name="result_text">#ffffffff</color>
+    <color name="result_view">#b0000000</color>
+    <color name="sbc_header_text">#ff808080</color>
+    <color name="sbc_header_view">#ffffffff</color>
+    <color name="sbc_list_item">#fffff0e0</color>
+    <color name="sbc_layout_view">#ffffffff</color>
+    <color name="sbc_page_number_text">#ff000000</color>
+    <color name="sbc_snippet_text">#ff4b4b4b</color>
+    <color name="share_text">#ff000000</color>
+    <color name="share_view">#ffffffff</color>
+    <color name="status_view">#50000000</color>
+    <color name="status_text">#ffffffff</color>
+    <color name="viewfinder_frame">#ff000000</color>
+    <color name="viewfinder_laser">#ffff0000</color>
+    <color name="viewfinder_mask">#60000000</color>
+
+    <color name="public_bg">#ff000000</color>
+    <color name="public_bg2">#ff0d0d0d</color>
+    <color name="public_bg2_press">#af0d0d0d</color>
+    <color name="public_text">#ffffff</color>
+    <color name="public_sub_text3">#33FFFFFF</color>
+    <color name="public_sub_text6">#66FFFFFF</color>
+    <color name="public_sub_text9">#99FFFFFF</color>
+    <color name="public_line">@color/colorSplitLine</color>
+    <color name="public_line_light">#0DFFFFFF</color>
+    <color name="public_dot_color">#0DFFFFFF</color>
+    <color name="blue">#03A9F4</color>
+    <color name="red">#F23133</color>
+    <color name="color_CCCCCC">#cccccc</color>
+    <color name="half_transparent">#33000000</color>
+    <color name="store_type1">#57A762</color>
+    <color name="store_type2">#F06F3A</color>
+    <color name="orange">#EF7945</color>
+    <color name="store_type3">#999999</color>
+    <color name="dialog_bg">#B3333333</color>
+    <color name="color_F8F8F8">#F8F8F8</color>
+    <color name="color_222222">#222222</color>
+    <color name="color_666666">#666666</color>
+    <color name="color_ececec">#ececec</color>
+    <color name="color_ff57a762">#ff57a762</color>
+    <color name="color_EEEEEE">#EEEEEE</color>
+    <color name="color_f3f3f3">#f3f3f3</color>
+    <color name="color_1296db">#1296db</color>
+    <color name="color_fafafa">#fffafafa</color>
+    <color name="color_ff9976">#FF9976</color>
+    <color name="color_eba048">#FFEBA048</color>
+    <color name="color_fffaf4">#FFFFFAF4</color>
+    <color name="color_da7600">#FFDA7600</color>
+    <color name="color_ffece3">#FFFFECE3</color>
+    <color name="color_f2dec6">#FFF2DEC6</color>
+    <color name="color_218EED">#218EED</color>
+    <color name="color_e8e8e8">#e8e8e8</color>
+    <color name="color_FF2424">#FF2424</color>
+    <color name="color_FF4D4D">#FF4D4D</color>
+    <color name="color_FFF1EB">#FFF1EB</color>
+    <color name="color_ffc7c7c7">#ffc7c7c7</color>
+
+    <!-- 黑色透明度梯度 -->
+    <color name="black_0">#00000000</color>
+    <color name="black_5">#0D000000</color>
+    <color name="black_8">#14000000</color>
+    <color name="black_10">#19000000</color>
+    <color name="black_15">#26000000</color>
+    <color name="black_20">#33000000</color>
+    <color name="black_22">#38000000</color>
+    <color name="black_25">#40000000</color>
+    <color name="black_30">#4D000000</color>
+    <color name="black_35">#59000000</color>
+    <color name="black_37">#5E000000</color>
+    <color name="black_40">#66000000</color>
+    <color name="black_45">#73000000</color>
+    <color name="black_50">#80000000</color>
+    <color name="black_60">#99000000</color>
+    <color name="black_65">#A6000000</color>
+    <color name="black_70">#B3000000</color>
+    <color name="black_73">#BA000000</color>
+    <color name="black_80">#CC000000</color>
+    <color name="black_85">#D9000000</color>
+    <color name="black_90">#E6000000</color>
+    <color name="black_100">#FF000000</color>
+
+    <!-- 白色透明度梯度 -->
+    <color name="white_0">#00FFFFFF</color>
+    <color name="white_1">#03FFFFFF</color>
+    <color name="white_2">#05FFFFFF</color>
+    <color name="white_3">#08FFFFFF</color>
+    <color name="white_4">#0AFFFFFF</color>
+    <color name="white_5">#0DFFFFFF</color>
+    <color name="white_6">#0FFFFFFF</color>
+    <color name="white_7">#12FFFFFF</color>
+    <color name="white_8">#14FFFFFF</color>
+    <color name="white_9">#17FFFFFF</color>
+    <color name="white_10">#19FFFFFF</color>
+    <color name="white_11">#1CFFFFFF</color>
+    <color name="white_12">#1FFFFFFF</color>
+    <color name="white_13">#21FFFFFF</color>
+    <color name="white_14">#24FFFFFF</color>
+    <color name="white_15">#26FFFFFF</color>
+    <color name="white_16">#29FFFFFF</color>
+    <color name="white_17">#2BFFFFFF</color>
+    <color name="white_18">#2EFFFFFF</color>
+    <color name="white_19">#30FFFFFF</color>
+    <color name="white_20">#33FFFFFF</color>
+    <color name="white_21">#36FFFFFF</color>
+    <color name="white_22">#38FFFFFF</color>
+    <color name="white_23">#3BFFFFFF</color>
+    <color name="white_25">#40FFFFFF</color>
+    <color name="white_30">#4DFFFFFF</color>
+    <color name="white_35">#59FFFFFF</color>
+    <color name="white_37">#5EFFFFFF</color>
+    <color name="white_40">#66FFFFFF</color>
+    <color name="white_50">#80FFFFFF</color>
+    <color name="white_60">#99FFFFFF</color>
+    <color name="white_70">#B3FFFFFF</color>
+    <color name="white_80">#CCFFFFFF</color>
+    <color name="white_90">#E6FFFFFF</color>
+    <color name="white_100">#FFFFFFFF</color>
+
+    <!-- Additional colors for agent index view -->
+    <color name="colorTextTertiary">#66ffffff</color>
+    <color name="colorDivider">#0Dffffff</color>
+
+    <!-- CommonHeader 返回键圆形底：white/5% on dark（对齐 design bg-white/5） -->
+    <color name="header_back_circle_fill">#0DFFFFFF</color>
+    <!-- 返回箭头着色（与 design_text_secondary / slate-200 一致），供未依赖 app design_tokens 的模块使用 -->
+    <color name="header_back_icon_tint">#cbd5e1</color>
+
+    <!-- AI服务管理页面专用颜色 - 新设计风格 (对齐 script-desgin ModelSettingsOverlay) -->
+    <!-- 背景 -->
+    <color name="ai_bg_primary">#050505</color>
+    <color name="ai_bg_secondary">#0a0a0d</color>
+    <color name="ai_card_bg">#0DFFFFFF</color>           <!-- white/[0.03] 等效实色 -->
+    <color name="ai_card_bg_elevated">#14FFFFFF</color>  <!-- white/[0.05] 等效实色 -->
+
+    <!-- 边框 -->
+    <color name="ai_border_subtle">#1fffffff</color>     <!-- white/[0.06] 等效实色 -->
+    <color name="ai_border">#14FFFFFF</color>            <!-- white/[0.10] -->
+
+    <!-- 文本 -->
+    <color name="ai_text_primary">#f1f5f9</color>        <!-- slate-200 -->
+    <color name="ai_text_secondary">#94a3b8</color>      <!-- slate-400 -->
+    <color name="ai_text_tertiary">#64748b</color>       <!-- slate-500 -->
+    <color name="ai_text_muted">#475569</color>          <!-- slate-600 -->
+
+    <!-- 强调色 -->
+    <color name="ai_accent_indigo">#246BFD</color>       <!-- indigo-500 -->
+    <color name="ai_accent_indigo_10">#1A246BFD</color>  <!-- indigo-500/10 -->
+    <color name="ai_accent_indigo_20">#33246BFD</color>  <!-- indigo-500/20 -->
+    <color name="ai_accent_indigo_40">#66246BFD</color>  <!-- indigo-500/40 -->
+    <color name="ai_accent_emerald">#10b981</color>      <!-- emerald-500 -->
+    <color name="ai_accent_emerald_10">#1A10b981</color> <!-- emerald-500/10 -->
+    <color name="ai_accent_emerald_40">#6610b981</color> <!-- emerald-500/40 -->
+    <color name="ai_accent_sky">#1A246BFD</color>          <!-- sky-500 -->
+    <color name="ai_accent_sky_10">#1A246BFD</color>     <!-- sky-500/10 -->
+    <color name="ai_accent_sky_20">#33246BFD</color>     <!-- sky-500/20 -->
+    <color name="ai_accent_amber">#f59e0b</color>        <!-- amber-500 -->
+    <color name="ai_accent_amber_10">#1Af59e0b</color>   <!-- amber-500/10 -->
+    <color name="ai_accent_amber_30">#4Df59e0b</color>   <!-- amber-500/30 -->
+    <color name="ai_accent_violet">#8b5cf6</color>       <!-- violet-500 -->
+    <color name="ai_accent_violet_10">#1A8b5cf6</color>  <!-- violet-500/10 -->
+    <color name="ai_accent_violet_20">#338b5cf6</color>  <!-- violet-500/20 -->
+    <color name="ai_accent_rose">#f43f5e</color>         <!-- rose-500 -->
+    <color name="ai_accent_rose_10">#1Af43f5e</color>    <!-- rose-500/10 -->
+
+    <!-- 按钮颜色 -->
+    <color name="ai_button_primary_bg">#246BFD</color>   <!-- indigo-600 -->
+    <color name="ai_button_secondary_bg">#0DFFFFFF</color>
+    <color name="ai_button_text">#ffffffff</color>
+
+    <!-- 状态指示器 -->
+    <color name="ai_status_enabled">#10b981</color>      <!-- emerald-500 -->
+    <color name="ai_status_disabled">#64748b</color>     <!-- slate-500 -->
+
+    <!-- Switch 开关颜色 -->
+    <color name="ai_switch_thumb">#ffffff</color>
+    <color name="ai_switch_track">#33ffffff</color>
+    <color name="ai_switch_thumb_checked">#ffffff</color>
+    <color name="ai_switch_track_checked">#66246BFD</color>  <!-- indigo-500/40 -->
+
+    <!-- 分割线 -->
+    <color name="ai_divider">#0Dffffff</color>
+    <color name="ai_divider_header">#1fffffff</color>    <!-- border-white/5 -->
+
+    <!-- Ripple -->
+    <color name="ai_ripple">#1Affffff</color>
+
+    <!-- 旧版兼容（保留向后兼容） -->
+    <color name="ai_provider_card_bg">#0DFFFFFF</color>
+    <color name="ai_provider_card_border">#1fffffff</color>
+    <color name="ai_model_item_bg">#0AFFFFFF</color>
+    <color name="ai_button_primary">#246BFD</color>
+    <color name="ai_button_secondary">#0DFFFFFF</color>
+    <color name="ai_status_success">#10b981</color>
+    <color name="ai_status_warning">#f59e0b</color>
+    <color name="ai_status_error">#f43f5e</color>
+    <color name="design_danger">#f43f5e</color>
+
+    <!-- Workflow detail colors -->
+    <color name="workflow_detail_action_bg">#122B3440</color>
+    <color name="workflow_detail_action_border">#1F7DD3FC</color>
+    <color name="workflow_detail_section_bg">#1A246BFD</color>
+
+    <!-- 悬浮按钮相关颜色 -->
+    <color name="floating_controls_bg">#CC2A2C33</color>
+    <color name="floating_controls_border">#1AFFFFFF</color>
+    <color name="floating_btn_pressed">#1AFFFFFF</color>
+
+    <!-- 聊天界面背景颜色 -->
+    <color name="colorBackgroundSecondary">#05ffffff</color>
+    <color name="colorBackgroundTertiary">#07ffffff</color>
+
+    <!-- 聊天消息颜色 -->
+    <color name="system_message_text">#89ffffff</color>
+    <color name="tool_message_text">#89ffffff</color>
+
+    <!-- 工具调用相关颜色 -->
+    <color name="tool_status_running">#ffE9463C</color>
+    <color name="tool_status_success">#ffA5F59C</color>
+    <color name="tool_status_failed">#ffE9463C</color>
+    <color name="tool_status_success_text">#ff2E7D32</color>
+    <color name="tool_status_failed_text">#ffC62828</color>
+    <color name="tool_method_text">#ff246BFD</color>
+    <color name="tool_arguments_text">#89ffffff</color>
+    <color name="tool_result_text">#ffffffff</color>
+    <color name="tool_info_title">#ff246BFD</color>
+    <color name="tool_info_text">#89ffffff</color>
+
+    <!-- 科技感颜色：统一到 workflow 的深底 + emerald 体系 -->
+    <color name="tech_blue_primary">#101215</color>
+    <color name="tech_blue_secondary">#171B21</color>
+    <color name="tech_blue_accent">#232B34</color>
+    <color name="tech_cyan">#34D399</color>
+    <color name="tech_cyan_light">#6EE7B7</color>
+    <color name="tech_blue_light">#10B981</color>
+    <color name="tech_gradient_start">#101215</color>
+    <color name="tech_gradient_center">#171B21</color>
+    <color name="tech_gradient_end">#101215</color>
+    <color name="tech_border">#2B3642</color>
+    <color name="tech_content_bg">#14181D</color>
+    <color name="tech_content_border">#1fffffff</color>
+
+    <!-- workflow-page design-spec（script-desgin WorkflowPage.tsx） -->
+    <color name="script_workflow_bg_card">#121212</color>
+    <color name="script_workflow_bg_card_running">#1D1416</color>
+    <color name="script_workflow_icon_holder">#000000</color>
+    <color name="script_workflow_border">#1fffffff</color>
+    <color name="script_workflow_emerald">#34D399</color>
+    <color name="script_workflow_emerald_muted">#10B981</color>
+    <color name="script_workflow_emerald_bg">#1A10B981</color>
+    <color name="script_workflow_emerald_ring">#6634D399</color>
+    <color name="script_workflow_running_border">#66EF4444</color>
+    <color name="script_workflow_running_bg">#22EF4444</color>
+    <color name="script_workflow_running_ring">#80EF4444</color>
+    <color name="script_workflow_running_icon">#FFEF4444</color>
+    <color name="script_workflow_text_secondary">#CBD5E1</color>
+    <color name="script_workflow_text_tertiary">#94A3B8</color>
+    <!-- design-spec text.primary；WorkflowPage 卡片标题 -->
+    <color name="script_workflow_text_primary">#F1F5F9</color>
+    <!-- Tailwind slate-500；WorkflowPage 卡片描述 text-slate-500 -->
+    <color name="script_workflow_text_desc">#64748B</color>
+    <color name="script_workflow_status_bg_idle">#14233440</color>
+    <color name="script_workflow_status_border_idle">#33475A74</color>
+    <color name="script_workflow_status_bg_running">#20EF4444</color>
+    <color name="script_workflow_status_border_running">#66EF4444</color>
+    <color name="script_workflow_status_text_idle">#B6C2D2</color>
+    <color name="script_workflow_status_text_running">#FFB4B4</color>
+    <color name="script_workflow_section_muted">#475569</color>
+    <color name="script_workflow_fab_bg">#246BFD</color>
+    <color name="script_workflow_fab_ring">#4D818CF8</color>
+
+    <!-- 语音录音浮层：与深色主题协调 -->
+
+    <!-- 语音录音浮层：与深色主题协调 -->
+    <color name="voice_bubble_fill">#FF2A6B5E</color>
+    <color name="voice_panel_bg">#F02A2C33</color>
+    <color name="voice_btn_bg">#4D45485B</color>
+    <color name="voice_hint_pill_bg">#3345485B</color>
+
+    <!-- 引导页背景 -->
+
+    <!-- 通用文本颜色 -->
+    <color name="text_white_60">#99FFFFFF</color>
+    <color name="text_white_95">#F2FFFFFF</color>
+    <color name="text_grey_hint">#909090</color>
+    <color name="text_grey_muted">#AAAAAA</color>
+    <color name="text_grey">#888888</color>
+    <color name="text_light_grey">#999999</color>
+    <color name="text_dark">#3A3A3A</color>
+
+    <!-- 通用背景颜色 -->
+    <color name="bg_overlay_50">#80000000</color>
+    <color name="bg_overlay_30">#4D000000</color>
+    <color name="bg_white_trans_5">#0DFFFFFF</color>
+    <color name="bg_white_trans_9">#17FFFFFF</color>
+    <color name="bg_white_trans_12">#20FFFFFF</color>
+    <color name="bg_white_trans_25">#40FFFFFF</color>
+    <color name="bg_white_trans_50">#80FFFFFF</color>
+    <color name="bg_grey_trans_50">#7F3B3B3B</color>
+    <color name="bg_grey">#444444</color>
+    <color name="bg_dark_grey">#4F000000</color>
+    <color name="bg_dark_grey_trans">#4F000000</color>
+
+    <!-- 通用图标颜色 -->
+    <color name="icon_grey">#959595</color>
+    <color name="icon_white">#FFFFFFFF</color>
+    <color name="whiteff">#FFFFFFFF</color>
+
+    <!-- 功能色 -->
+    <color name="blue_primary">#2196F3</color>
+    <color name="amber_gold">#FBBE5F</color>
+    <color name="text_dark_grey">#666666</color>
+    <color name="text_dark_secondary">#3A3A3A</color>
+    <color name="text_white_trans_68">#AEFFFFFF</color>
+    <color name="text_white_trans_92">#EAFFFFFF</color>
+    <color name="success_green">#0AD883</color>
+    <color name="warning_amber">#DCA96B</color>
+    <color name="danger_red">#F35B5B</color>
+
+    <color name="color_fff7f7f7">#fff7f7f7</color>
+    <color name="color_ff383838">#ff383838</color>
+    <color name="color_ff818183">#ff818183</color>
+    <color name="color_ff999999">#ff999999</color>
+    <color name="color_ff666666">#ff666666</color>
+    <color name="color_ff555555">#ff555555</color>
+    <color name="color_ffA3A6B6">#ffA3A6B6</color>
+    <color name="color_ffE9463C">#ffE9463C</color>
+    <color name="color_ffE8EBEE">#6fe8ebee</color>
+    <color name="color_fff2f5fa">#fff2f5fa</color>
+    <color name="color_a0a0a0">#FFa0a0a0</color>
+    <color name="color_303030">#FF303030</color>
+
+    <color name="main_color_1">#246BFD</color>
+    <color name="main_color_1_3f">#3f0E9ECE</color>
+    <color name="main_color_2">#246BFD</color>
+    <color name="main_color_2_3f">#3f6B5BF3</color>
+    <color name="main_color_3">#246BFD</color>
+
+    <color name="btn_red_color_1">#F35B5B</color>
+    <color name="btn_red_color_2">#FF8383</color>
+
+    <color name="textWhite">#FFFFFFFF</color>
+
+    <color name="textLightWhite">#eFFFFFFF</color>
+    <color name="textDarkWhite">#9FFFFFFF</color>
+    <color name="colorDarkWhite">#9FFFFFFF</color>
+    <color name="bTextColorDark">#ff656A7B</color>
+    <color name="bTextColorYellow">#ffE9463C</color>
+    <color name="bColorTabSelected">#ff3f85ff</color>
+    <color name="bColorTabUnselected">#ff8a8a8a</color>
+    <color name="bTabButtomColor">#ffffffff</color>
+    <color name="color_ff000000">#ff000000</color>
+    <color name="color_ffffff">#ffffffff</color>
+    <color name="color_ffFCAA01">#ffE9463C</color>
+    <color name="color_ff45485B">#ff45485B</color>
+    <color name="color_ff656A7B">#ff656A7B</color>
+    <color name="color_ff2A2C33">#ff2A2C33</color>
+    <color name="color_00AAEE">#ff00AAEE</color>
+    <color name="color_ff89900">#e89900</color>
+    <color name="color_522A08">#522A08</color>
+    <color name="color_ff7500">#ff7500</color>
+
+    <!-- MCP 页面相关颜色 -->
+    <color name="colorBackground">#fff2f5fa</color>
+    <color name="colorTextPrimary">#ffffffff</color>
+    <color name="colorTextThird">#89ffffff</color>
+
+    <color name="checkbox_checked">#2196F3</color>  <!-- 选中时的蓝色 -->
+    <color name="checkbox_unchecked">#757575</color> <!-- 未选中时的灰色 -->
+    <color name="checkbox_ripple">#402196F3</color>  <!-- 半透明的蓝色 -->
+
+    <!-- design-spec tokens（script-desgin/design-spec/tokens/*.json） -->
+    <!-- BusinessCooperationOverlay 全屏底（script-desgin App.tsx bg-[#050505]） -->
+    <color name="design_bg_bus_coop">#050505</color>
+    <!-- PublishCenterOverlay 全屏底（script-desgin App.tsx #050505） -->
+    <color name="design_bg_overlay">#050505</color>
+    <!-- PublishDetailOverlay 全屏底（App.tsx #08080a） -->
+    <color name="design_bg_publish_detail">#08080a</color>
+    <color name="design_publish_detail_hero_grad_start">#0FFFFFFF</color>
+    <color name="design_publish_detail_hero_grad_end">#05FFFFFF</color>
+    <color name="design_publish_detail_hero_stroke">#14FFFFFF</color>
+    <color name="design_publish_detail_section_fill">#05FFFFFF</color>
+    <color name="design_publish_detail_section_stroke">#1fffffff</color>
+    <!-- Resource detail scrim colors -->
+    <color name="design_resource_detail_top_scrim_start">#C8000000</color>
+    <color name="design_resource_detail_cta_disabled_bg">#2B2B2E</color>
+    <!-- 发布表单输入框底（对齐 Web white/4% + border） -->
+    <color name="design_publish_input_fill">#0AFFFFFF</color>
+    <color name="design_bg_primary">#0a0a0d</color>
+    <color name="design_bg_secondary">#0d0d11</color>
+    <color name="design_bg_welcome_card">#101217</color>
+    <color name="design_bg_card">#121212</color>
+    <color name="design_bg_tab_bar">#0a0a0d</color>
+    <color name="design_border_subtle">#1fffffff</color>
+    <color name="design_border">#1fffffff</color>
+
+    <color name="design_text_primary">#f1f5f9</color>
+    <color name="design_text_secondary">#cbd5e1</color>
+    <color name="design_text_tertiary">#94a3b8</color>
+    <color name="design_text_muted">#64748b</color>
+    <color name="design_text_muted_secondary">#475569</color>
+
+    <color name="design_accent_indigo">#246BFD</color>
+    <color name="design_accent_indigo_10">#1A246BFD</color>
+    <color name="design_accent_indigo_5">#0D246BFD</color>
+    <color name="design_accent_indigo_faint">#1A246BFD</color>
+    <color name="design_accent_indigo_border">#33246BFD</color>
+    <color name="design_accent_indigo_text">#818cf8</color>
+    <color name="design_section_dot_indigo">#CC246BFD</color>
+    <color name="design_accent_indigo_15">#26246BFD</color>
+    <color name="design_accent_emerald">#10b981</color>
+    <color name="design_accent_emerald_10">#1A10b981</color>
+    <color name="design_accent_emerald_5">#0D10b981</color>
+    <color name="design_accent_amber">#f59e0b</color>
+    <color name="design_accent_amber_10">#1Af59e0b</color>
+    <color name="design_accent_amber_5">#0Df59e0b</color>
+    <color name="design_accent_sky">#246BFD</color>
+    <color name="design_accent_sky_10">#1A246BFD</color>
+    <color name="design_accent_sky_5">#0D246BFD</color>
+    <color name="design_accent_rose">#f43f5e</color>
+    <color name="design_accent_rose_10">#1Af43f5e</color>
+    <color name="design_accent_violet">#8b5cf6</color>
+    <color name="design_accent_violet_10">#1A8b5cf6</color>
+
+    <!-- Publish center 图标底（emerald/amber/sky 10%） -->
+    <color name="design_publish_icon_bg_emerald">#1A10b981</color>
+    <color name="design_publish_icon_bg_amber">#1Af59e0b</color>
+    <color name="design_publish_icon_bg_sky">#1A246BFD</color>
+    <color name="design_publish_segment_inactive_bg">#0DFFFFFF</color>
+
+    <!-- NavButton: active=indigo-400, inactive=slate-600 -->
+    <color name="design_nav_active">#818cf8</color>
+    <color name="design_nav_inactive">#475569</color>
+
+    <!-- 主界面顶部工具栏（与 script-desgin App.tsx header 对齐） -->
+    <color name="design_bg_toolbar_icon">#0DFFFFFF</color>
+    <color name="design_a11y_banner_bg">#F2e11d48</color>
+    <color name="design_a11y_banner_border">#4De11d48</color>
+    <color name="design_a11y_pill_enabled_bg">#1A10b981</color>
+    <color name="design_a11y_pill_enabled_border">#4D10b981</color>
+    <color name="design_a11y_pill_enabled_text">#34d399</color>
+    <color name="design_a11y_pill_disabled_bg">#1Af43f5e</color>
+    <color name="design_a11y_pill_disabled_border">#4Df43f5e</color>
+    <color name="design_a11y_pill_disabled_text">#fb7185</color>
+    <color name="design_banner_action_bg">#33FFFFFF</color>
+    <color name="design_banner_action_border">#4DFFFFFF</color>
+
+    <!-- ProfilePage（script-desgin ProfilePage.tsx） -->
+    <!-- Profile 用户卡：Tailwind bg-white/[0.03]（叠在渐变/底上混合，与实色 #0D0D0D 不同） -->
+    <color name="design_profile_user_card_bg">#0D0D0D</color>
+    <!-- ProfilePage 分组列表：bg-white/[0.02]（勿与 6% 用户卡底混淆） -->
+    <color name="design_profile_group_bg">#0D0D0D</color>
+    <color name="design_profile_divider">#1fffffff</color>
+    <color name="design_profile_avatar_gradient_start">#E0246BFD</color>
+    <color name="design_profile_avatar_gradient_end">#B34F46E5</color>
+
+    <!-- PermissionCenterOverlay：靛色「去设置」按钮（bg-indigo-500/20 + border /30） -->
+    <color name="design_permission_cta_fill">#33246BFD</color>
+    <color name="design_permission_cta_stroke">#4D246BFD</color>
+    <!-- 需开启状态（rose-500 系，对齐 Web text-rose-500） -->
+    <color name="design_permission_status_need">#fb7185</color>
+
+    <!-- 需开启状态（rose-500 系，对齐 Web text-rose-500） -->
+    <color name="design_permission_card_surface">#0D0D0D</color>
+    <!-- 图标区 = 在卡面上再叠 white/5%（对齐内层 bg-white/5，勿再用半透明叠半透明） -->
+    <color name="design_permission_icon_surface">#191919</color>
+    <!-- 描边 white/6%，与 design-spec background.border 一致 -->
+    <color name="design_permission_card_border">#1fffffff</color>
+
+    <!-- PersonalCenterOverlay（script-desgin App.tsx）个人账户详情 -->
+    <!-- Tailwind slate-200，行标题 text-slate-200 text-[14px] -->
+    <color name="design_text_slate_200">#e2e8f0</color>
+    <!-- Tailwind slate-300 (#cbd5e1) -->
+    <color name="design_text_slate_300">#cbd5e1</color>
+    <!-- Tailwind slate-400 (#94a3b8) -->
+    <color name="design_text_slate_400">#94a3b8</color>
+    <!-- 按钮文字颜色（白色） -->
+    <color name="design_text_on_primary">#ffffff</color>
+    <!-- amber-400/80 退出登录图标（Tailwind amber-400 #fbbf24） -->
+    <color name="design_personal_amber_icon">#ccfbbf24</color>
+    <!-- rose-400/80 注销图标；rose-400/90 注销文案 -->
+    <color name="design_personal_rose_icon">#ccfb7185</color>
+    <color name="design_personal_rose_text">#e6fb7185</color>
+
+    <color name="design_publish_sky_fill_15">#26246BFD</color>
+    <color name="design_publish_sky_border_35">#59246BFD</color>
+
+    <color name="app_main_color">#000000</color>
+    <color name="app_main_color_light">#FFFFFFFF</color>
+
+    <color name="font_color">#181818</color>
+    <color name="mirco_space2">#06c1ae</color>
+    <color name="picker_common_primary">#f3f3f3</color>
+    <color name="picker_pager_bg">#CA000000</color>
+    <color name="color_select_red">#E17462</color>
+    <color name="picker_text_40">#282828</color>
+    <color name="picker_text_80">#505050</color>
+    <color name="picker_text_120">#787878</color>
+    <color name="markdown_h1_text_color_light">#df000000</color>
+    <color name="markdown_h6_text_color_light">#8a000000</color>
+    <color name="markdown_quota_color_light">#4037474f</color>
+    <color name="markdown_quota_text_color_light">#61000000</color>
+    <color name="markdown_code_text_color_light">#d8000000</color>
+    <color name="markdown_code_background_color_light">#0c37474f</color>
+    <color name="markdown_link_color_light">#dc3e7bc9</color>
+    <color name="markdown_underline_color_light">#1837474f</color>
+
+    <color name="markdown_h1_color_dark">#ffffffff</color>
+    <color name="markdown_h6_color_dark">#b3ffffff</color>
+    <color name="markdown_quota_color_dark">#40fafafa</color>
+    <color name="markdown_quota_text_color_dark">#80ffffff</color>
+    <color name="markdown_code_text_color_dark">#d8ffffff</color>
+    <color name="markdown_code_background_color_dark">#0cfafafa</color>
+    <color name="markdown_link_color_dark">#dc88b5ef</color>
+    <color name="markdown_underline_color_dark">#18fafafa</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="card_color_1">#6B5BF3</color>
+    <color name="card_color_2">#AE28AA</color>
+
+    <color name="gnt_test_background_color">#00F4F4F4</color>
+    <color name="gnt_test_background_color_2">#00A3A3A3</color>
+    <color name="gnt_black">#000000</color>
+    <color name="gnt_white">#FFFFFF</color>
+    <color name="gnt_red">#FF0000</color>
+    <color name="gnt_green">#00FF00</color>
+    <color name="gnt_blue">#4285f4</color>
+    <color name="gnt_ad_green">#3A6728</color>
+    <color name="gnt_gray">#808080</color>
+    <color name="gnt_outline">#E0E0E0</color>
+
+    <color name="qr_possible_result_points">#c0ffff00</color>
+    <color name="qr_result_image_border">#ffffffff</color>
+    <color name="qr_result_minor_text">#ffc0c0c0</color>
+    <color name="qr_result_points">#c000ff00</color>
+    <color name="qr_result_text">#ffffffff</color>
+    <color name="qr_result_view">#b0000000</color>
+    <color name="qr_viewfinder_frame">#ff000000</color>
+    <color name="qr_viewfinder_laser">#ffff0000</color>
+    <color name="qr_viewfinder_mask">#60000000</color>
+
+    <color name="theme_text_color_3B424C_dmodel">#3B424C</color>
+    <color name="theme_text_color_3B424C">#3B424C</color>
+    <color name="color_3B424C">#3B424C</color>
+</resources>

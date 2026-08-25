@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="base_gap_margin">16dp</dimen>
+    <dimen name="small_gap_margin">12dp</dimen>
+    <dimen name="small_gap_margin_record">8dp</dimen>
+    <dimen name="tiny_gap_margin">8dp</dimen>
+    <dimen name="big_gap_margin">24dp</dimen>
+    <dimen name="common_head_height">64dp</dimen>
+    <dimen name="public_line_width">0.5dp</dimen>
+    <dimen name="common_menu_height">48dp</dimen>
+    <!-- spacing.json px → dp -->
+    <dimen name="design_spacing_1">4dp</dimen>
+    <dimen name="design_spacing_1_5">6dp</dimen>
+    <dimen name="design_spacing_2">8dp</dimen>
+    <dimen name="design_spacing_3">12dp</dimen>
+    <dimen name="design_spacing_4">16dp</dimen>
+    <dimen name="design_spacing_5">20dp</dimen>
+    <dimen name="design_spacing_6">24dp</dimen>
+    <dimen name="design_spacing_8">32dp</dimen>
+
+    <dimen name="design_spacing_block">16dp</dimen>
+    <dimen name="design_spacing_page_horizontal">24dp</dimen>
+
+    <!-- typography.json px → sp -->
+    <dimen name="design_font_3xs">8sp</dimen>
+    <dimen name="design_font_2xs">9sp</dimen>
+    <dimen name="design_font_xs">10sp</dimen>
+    <dimen name="design_font_sm">11sp</dimen>
+    <dimen name="design_font_base">12sp</dimen>
+    <dimen name="design_font_md">13sp</dimen>
+    <dimen name="design_font_lg">14sp</dimen>
+    <dimen name="design_font_xl">15sp</dimen>
+    <dimen name="design_font_body">14sp</dimen>
+
+    <!-- radius -->
+    <dimen name="design_radius_xs">4dp</dimen>
+    <dimen name="design_radius_sm">8dp</dimen>
+    <dimen name="design_radius_md">12dp</dimen>
+    <dimen name="design_radius_lg">16dp</dimen>
+    <dimen name="design_radius_3xl">36dp</dimen>
+    <dimen name="design_border_width_normal">1dp</dimen>
+
+    <dimen name="design_nav_icon_size">20dp</dimen>
+    <dimen name="design_nav_label_text">9sp</dimen>
+    <dimen name="design_tab_bar_height">64dp</dimen>
+</resources>

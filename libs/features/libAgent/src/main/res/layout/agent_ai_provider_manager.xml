@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/design_bg_overlay"
+    android:orientation="vertical">
+
+    <com.carlos.ui.header.CommonHeader
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bg_color="@color/design_bg_overlay"
+        app:center_text="@string/agent_ai_model_management"
+        app:center_text_color="@color/design_text_primary"
+        app:center_text_size="@dimen/design_font_xl"
+        app:enable_back="true"
+        app:left_img_color="@color/design_text_secondary"
+        app:right_img="@drawable/ic_refresh"
+        app:right_img_color="@color/design_text_tertiary"
+        app:show_btm_line="true" />
+
+    <com.hive.views.StatefulLayout
+        android:id="@+id/statefulLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:fillViewport="true"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/design_spacing_4"
+                android:paddingTop="@dimen/design_spacing_3"
+                android:paddingBottom="@dimen/design_spacing_8">
+
+                <com.hive.agent.views.provider.AgentAISettingsView
+                    android:id="@+id/aiSettingsHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_6"
+                    android:layout_marginStart="@dimen/design_spacing_1"
+                    android:letterSpacing="0.04"
+                    android:text="@string/agent_model_list"
+                    android:textAllCaps="true"
+                    android:textColor="@color/design_text_muted"
+                    android:textSize="@dimen/design_font_base"
+                    android:textStyle="bold" />
+
+                <com.hive.views.list_view.ListRecyclerView
+                    android:id="@+id/listRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_3"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </com.hive.views.StatefulLayout>
+
+</LinearLayout>

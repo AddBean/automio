@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- AI服务管理页面 -->
+    <string name="ai_service_management">AI服务管理</string>
+    <string name="ai_service_management_desc">管理您的AI服务提供商和模型配置</string>
+    <string name="ai_inference_settings">AI推理设置</string>
+    <string name="ai_inference_settings_desc">配置默认的AI推理模型</string>
+    <string name="ai_normal_inference">普通推理</string>
+    <string name="ai_multimodal_inference">多模态推理</string>
+    <string name="ai_model_selection">选择AI模型</string>
+    <string name="ai_model_selection_desc">选择您要使用的AI推理模型</string>
+    <string name="ai_model_not_set">未设置</string>
+    <string name="ai_vision_recognition">视觉识别</string>
+    <string name="ai_vision">视觉</string>
+    <string name="ai_function_call">函数调用</string>
+    <string name="ai_model_count">%d个模型</string>
+    <string name="ai_show_models">显示模型</string>
+    <string name="ai_add_model">添加模型</string>
+    <string name="ai_settings">设置</string>
+    <string name="ai_model_name">模型名称</string>
+    <string name="ai_model_id">模型ID</string>
+    <string name="ai_model_name_id_required">模型名称和ID不能为空</string>
+    <string name="ai_model_added">模型已添加</string>
+    <string name="ai_supports_function_call">支持函数调用</string>
+    <string name="ai_supports_vision">支持视觉</string>
+    <string name="ai_add_model_to_provider">添加模型到 %s</string>
+    <string name="ai_add">添加</string>
+    <string name="ai_cancel">取消</string>
+    <string name="ai_clear">清除</string>
+    <string name="ai_show_password">显示</string>
+    <string name="ai_hide_password">隐藏</string>
+    <string name="ai_enter_api_key">请输入 %s 的 API Key</string>
+    <string name="ai_enter_api_key_and_base_url">请输入 %s 的 API Key 与 Base URL</string>
+    <string name="ai_set_api_key">设置 %s API Key</string>
+    <string name="ai_save">保存</string>
+    <string name="ai_api_key_required">API Key不能为空</string>
+    <string name="ai_api_key_format_error">API Key格式错误</string>
+    <string name="ai_api_key_saved">%s API Key 已保存</string>
+    <string name="ai_api_key_cleared">%s API Key 已清除，Provider已自动关闭</string>
+    <string name="ai_model_selected">已选择模型: %s</string>
+    <string name="ai_provider_deepseek">DeepSeek</string>
+    <string name="ai_provider_default">默认</string>
+    <string name="ai_provider_default_desc">App 内置 AI 服务</string>
+    <string name="ai_provider_bailian">阿里云百炼</string>
+    <string name="ai_provider_bailian_desc">阿里云百炼 通义千问</string>
+    <string name="ai_provider_bailian_code">阿里云百炼 Code</string>
+    <string name="ai_provider_bailian_code_desc">Coding Plan (sk-sp-)</string>
+    <string name="agent_bailian_tool_image_info">工具执行的图片信息如下：</string>
+    <string name="ai_model_qwen_plus">通义千问 Plus</string>
+    <string name="ai_model_qwen_max">通义千问 Max</string>
+    <string name="ai_model_qwen_flash">通义千问 Flash</string>
+    <string name="ai_model_qwen_turbo">通义千问 Turbo</string>
+    <string name="ai_model_qwen35_plus">通义千问 3.5 Plus</string>
+    <string name="ai_model_qwen3_max">通义千问 3 Max</string>
+    <string name="ai_model_qwen_vl_plus">通义千问 VL Plus</string>
+    <string name="ai_model_qwen_vl_max">通义千问 VL Max</string>
+    <string name="ai_model_qwen_coder">通义千问 Coder</string>
+    <string name="ai_provider_openai">OpenAI</string>
+    <string name="ai_provider_claude">Claude</string>
+    <string name="ai_provider_gemini">Gemini</string>
+    <string name="ai_provider_ollama">Ollama</string>
+    <string name="ai_provider_openrouter">OpenRouter</string>
+    <string name="ai_provider_kimi">Kimi</string>
+    <string name="ai_provider_kimi_desc">月之暗面 Kimi（OpenAI 兼容）</string>
+    <string name="ai_provider_siliconflow">硅基流动</string>
+    <string name="ai_provider_siliconflow_desc">硅基流动模型广场</string>
+    <string name="ai_provider_mimo">MiMo</string>
+    <string name="ai_provider_mimo_desc">小米 MiMo</string>
+    <string name="ai_provider_minimax">MiniMax</string>
+    <string name="ai_provider_minimax_desc">MiniMax OpenAI 兼容接口</string>
+    <string name="ai_provider_stepfun">阶跃星辰</string>
+    <string name="ai_provider_stepfun_desc">阶跃星辰 OpenAI 兼容接口</string>
+    <string name="ai_provider_openai_custom">自定义 OpenAI</string>
+    <string name="ai_provider_openai_custom_desc">自定义 OpenAI 兼容接口</string>
+    <string name="ai_provider_ark_agent_plan">火山方舟 Agent Plan</string>
+    <string name="ai_provider_ark_agent_plan_desc">仅 Agent Plan（/api/plan/v3），勿用 Coding Plan Key</string>
+    <string name="ai_provider_ark_coding_plan">火山方舟 Coding Plan</string>
+    <string name="ai_provider_ark_coding_plan_desc">仅 Coding Plan（/api/coding/v3），勿用 Agent Plan Key</string>
+
+
+    <!-- Agent Chat -->
+    <string name="agent_title">AI助手</string>
+    <string name="agent_chat_refresh">刷新记录</string>
+    <string name="agent_chat_clear_record">清空记录</string>
+    <string name="agent_chat_attachment_preview">附件预览</string>
+    <string name="agent_chat_input_hint">输入消息…</string>
+    <string name="agent_chat_select_image">选择图片</string>
+    <string name="agent_chat_send_message">发送消息</string>
+    <string name="agent_image_selected">已选择图片，点击发送</string>
+    <string name="agent_welcome_message">开始你的第一个智能体任务吧</string>
+    <string name="agent_chat_empty_title">告诉我，你想做什么？</string>
+    <string name="agent_chat_empty_subtitle">试试下面的场景，或直接输入指令</string>
+    <string name="agent_chat_empty_section_label">快捷场景</string>
+    <string name="agent_chat_example_douyin_title">自动刷抖音</string>
+    <string name="agent_chat_example_douyin_desc">自动刷视频、点赞收藏</string>
+    <string name="agent_chat_example_douyin_prompt">帮我自动刷抖音，点赞前 5 条视频</string>
+    <string name="agent_chat_example_xhs_title">小红书发帖</string>
+    <string name="agent_chat_example_xhs_desc">自动写文案发布</string>
+    <string name="agent_chat_example_xhs_prompt">帮我写一篇小红书笔记并发布，主题是周末探店</string>
+    <string name="agent_chat_example_engage_title">自动点赞评论</string>
+    <string name="agent_chat_example_engage_desc">批量互动提升活跃度</string>
+    <string name="agent_chat_example_engage_prompt">帮我给这个话题下的热门帖子点赞并评论</string>
+    <string name="agent_chat_example_phone_title">自动操作手机</string>
+    <string name="agent_chat_example_phone_desc">模拟手势完成指定任务</string>
+    <string name="agent_chat_example_phone_prompt">帮我打开微信，找到最近聊天并截图</string>
+    <string name="agent_new_conversation">✨ 已开始新对话</string>
+    <string name="agent_input_required">请输入消息或选择图片</string>
+    <string name="agent_error_occurred">❌ 抱歉，发生了错误：%s</string>
+    <string name="agent_chat_clear">清空对话</string>
+    <string name="agent_permission_required">⚠️ 需要「辅助功能」权限！</string>
+    <string name="agent_session_history">历史记录</string>
+    <string name="agent_session_new">新建对话</string>
+    <string name="agent_menu_new_task">新任务</string>
+    <string name="agent_menu_history">历史记录</string>
+    <string name="agent_session_empty_title">新对话</string>
+    <string name="agent_session_empty_list">暂无历史记录</string>
+    <string name="agent_session_empty_desc">开始一个新对话，让 Agent 帮你完成任务。</string>
+    <string name="agent_session_delete">删除</string>
+    <string name="agent_session_switch_disabled">请等待当前任务完成后再切换</string>
+    <string name="agent_session_delete_confirm_title">删除这条对话？</string>
+    <string name="agent_session_delete_confirm_message">该对话将从本机移除，且无法恢复。</string>
+    <string name="agent_session_count_format">共 %d 条</string>
+    <string name="agent_session_convert">转为工作流</string>
+    <string name="agent_session_convert_confirm_title">转为工作流？</string>
+    <string name="agent_session_convert_confirm_message">该历史记录会自动转换为工作流。转换完成后，将自动跳转到资源页的工作流标签。</string>
+    <string name="agent_session_convert_confirm_action">立即转换</string>
+    <string name="agent_session_no_commands">该会话暂无可用指令</string>
+    <string name="agent_session_convert_success">已保存为工作流</string>
+    <string name="agent_session_load_failed">会话加载失败</string>
+    <string name="agent_session_time_just_now">刚刚</string>
+    <string name="create_center_title">创作中心</string>
+    <string name="create_center_welcome_title">欢迎来到创作中心</string>
+    <string name="create_center_welcome_desc">这里是统一创作入口，您可以在这里创建工作流、AI 技能和 AI 工具。</string>
+    <string name="create_center_workflow_title">工作流</string>
+    <string name="create_center_workflow_desc">创建自动化工作流，并进入可视化编辑器继续完善。</string>
+    <string name="create_center_skill_title">AI 技能</string>
+    <string name="create_center_skill_desc">定义 AI 的专业能力与行为模式。</string>
+    <string name="create_center_tool_title">AI 工具</string>
+    <string name="create_center_tool_desc">将工作流发布为 MCP 工具，扩展 Agent 能力。</string>
+
+    <!-- Agent Settings -->
+    <string name="agent_settings_title">AI助手设置</string>
+    <string name="agent_settings_model">模型选择</string>
+    <string name="agent_settings_api_key">API密钥</string>
+    <string name="agent_settings_temperature">温度</string>
+    <string name="agent_settings_max_tokens">最大令牌数</string>
+    <string name="agent_settings_save">保存设置</string>
+    <string name="agent_settings_reset">重置设置</string>
+    <string name="agent_settings_test">测试连接</string>
+
+    <!-- Model Management -->
+    <string name="agent_model_title">模型管理</string>
+    <string name="agent_model_current">当前模型</string>
+    <string name="agent_model_available">可用模型</string>
+    <string name="agent_model_loading">正在加载模型…</string>
+    <string name="agent_model_error">加载模型失败</string>
+    <string name="agent_model_refresh">刷新模型</string>
+    <string name="agent_model_select">选择模型</string>
+    <string name="agent_model_info">模型信息</string>
+    <string name="agent_model_capabilities">能力</string>
+    <string name="agent_model_context_length">上下文长度</string>
+    <string name="agent_model_training_data">训练数据</string>
+    <string name="agent_model_last_updated">最后更新</string>
+    <string name="agent_model_provider">提供商</string>
+    <string name="agent_model_type">类型</string>
+    <string name="agent_model_size">大小</string>
+    <string name="agent_model_parameters">参数</string>
+    <string name="agent_model_multimodal">多模态模型</string>
+    <string name="agent_model_not_set">未设置</string>
+    <string name="agent_model_count">%d个模型</string>
+    <string name="agent_model_list">模型列表</string>
+    <string name="agent_model_search_hint">搜索模型名称或 ID…</string>
+    <string name="agent_api_key_prefix">密钥应该以sk-开头</string>
+    <string name="agent_cache_info">缓存中有 %1$d 个模型，缓存时间: %2$d小时前</string>
+    <string name="agent_no_cache">无缓存</string>
+
+    <!-- AI Memory View -->
+    <string name="agent_memory_view">记忆管理</string>
+    <string name="agent_memory_title">记忆管理</string>
+    <string name="agent_memory_empty">暂无记忆</string>
+    <string name="agent_memory_char_count">共 %d 字</string>
+    <string name="agent_memory_clear_all">清空全部</string>
+    <string name="agent_memory_clear_confirm_title">确定清空全部 AI 记忆？</string>
+    <string name="agent_memory_clear_confirm_message">将移除所有已保存的记忆，此操作不可恢复。</string>
+    <string name="agent_memory_cleared">已清空</string>
+    <string name="agent_memory_copy">复制</string>
+    <string name="agent_memory_delete">删除</string>
+    <string name="agent_memory_deleted">已删除</string>
+
+    <!-- Debug Center -->
+    <string name="agent_debug_system_status">📊 系统状态</string>
+    <string name="agent_debug_quick_actions">⚡ 快速操作</string>
+    <string name="agent_debug_logs">📋 日志</string>
+    <string name="agent_debug_performance">⚡ 性能</string>
+    <string name="agent_debug_memory">💾 内存</string>
+    <string name="agent_debug_network">🌐 网络</string>
+    <string name="agent_debug_storage">💿 存储</string>
+    <string name="agent_debug_clear_logs">清除日志</string>
+    <string name="agent_debug_export_logs">导出日志</string>
+    <string name="agent_debug_refresh">刷新</string>
+
+    <!-- Error Messages -->
+    <string name="agent_error_network">网络错误，请检查连接</string>
+    <string name="agent_error_api_key">无效的API密钥</string>
+    <string name="agent_error_model">模型错误</string>
+    <string name="agent_error_timeout">请求超时</string>
+    <string name="agent_error_quota">API配额超限</string>
+    <string name="agent_error_permission">权限被拒绝</string>
+    <string name="agent_error_unknown">未知错误</string>
+
+    <!-- Success Messages -->
+    <string name="agent_success_connected">连接成功</string>
+    <string name="agent_success_settings_saved">设置已保存</string>
+    <string name="agent_success_model_changed">模型已更改</string>
+    <string name="agent_success_cleared">清除成功</string>
+
+    <!-- Loading Messages -->
+    <string name="agent_loading_thinking">思考中…</string>
+    <string name="agent_loading_processing">处理中…</string>
+    <string name="agent_loading_generating">生成中…</string>
+    <string name="agent_loading_analyzing">分析中…</string>
+    <string name="agent_loading_connecting">连接中…</string>
+    <string name="agent_loading_loading">加载中…</string>
+
+    <!-- Tool Call -->
+    <string name="agent_tool_call">工具调用</string>
+    <string name="agent_tool_executing">执行中…</string>
+    <string name="agent_tool_method">方法：</string>
+    <string name="agent_tool_unknown">未知</string>
+    <string name="agent_tool_none">无</string>
+    <string name="agent_tool_execute_success">执行成功</string>
+    <string name="agent_tool_execute_failed">执行失败</string>
+    <string name="agent_tool_executing_status">执行中…</string>
+
+    <!-- Message Types -->
+    <string name="agent_message_copied">已复制</string>
+    <string name="agent_message_user">用户消息</string>
+    <string name="agent_message_system">系统消息</string>
+    <string name="agent_message_ai">AI助手</string>
+
+    <!-- Tabs -->
+    <string name="agent_tab_chat">AI 对话</string>
+    <string name="agent_tab_capability">能力管理</string>
+    <string name="agent_tab_debug">🔧 调试</string>
+    <string name="agent_tab_skill">AI 技能</string>
+    <string name="agent_tab_tool">AI 工具</string>
+
+    <!-- Settings Status -->
+    <string name="agent_settings_not_set">去设置</string>
+    <string name="agent_settings_modify">修改设置</string>
+
+    <!-- Tool List -->
+    <string name="agent_tool_list_empty">暂无已注册的工具</string>
+
+    <!-- Model Management -->
+    <string name="agent_select_model">请选择模型</string>
+    <string name="agent_ai_model_management">AI模型管理</string>
+    <string name="agent_normal_model">对话模型</string>
+    <string name="agent_multimodal_model">视觉模型</string>
+    <string name="agent_multimodal_required">请选择一个支持视觉的模型</string>
+
+
+
+    <!-- AI Coordinator Messages -->
+    <string name="ai_coordinator_streaming">流式</string>
+    <string name="ai_coordinator_start" formatted="false">开始%s协调工作流: %s</string>
+    <string name="ai_coordinator_thinking">调用 AI 进行%s…</string>
+    <string name="agent_status_tool_running">正在执行工具…</string>
+    <string name="agent_tool_call_empty_result">工具调用失败，返回结果为空</string>
+    <string name="agent_tool_call_exception">工具调用异常: %1$s</string>
+    <string name="agent_tool_result_simplified">工具调用结果过长，已被简化。请查看具体工具调用结果。</string>
+    <string name="ai_set_api_key_first">请先设置%1$s的API Key</string>
+    <string name="ai_no_available_provider">没有可用的AI服务提供者</string>
+
+    <string name="ai_coordinator_no_ai_model">没有可用的AI模型</string>
+    <string name="ai_coordinator_inference_failed">AI推理失败: %s</string>
+    <string name="ai_coordinator_request_failed">AI请求失败: %s</string>
+    <string name="ai_coordinator_empty_response">AI返回空响应</string>
+    <string name="ai_coordinator_tool_calling">工具调用: %s</string>
+    <string name="ai_coordinator_workflow_completed">工作流执行完成</string>
+    <string name="ai_coordinator_max_tool_calls">达到最大工具调用次数限制: %d</string>
+    <string name="ai_coordinator_unknown_error">未知错误: %s</string>
+    <string name="ai_coordinator_task_paused">任务已暂停</string>
+    <string name="ai_coordinator_task_stopped">任务已停止</string>
+
+    <!-- Agent Check Helper Messages -->
+    <string name="agent_model_go_configure">去配置AI模型</string>
+    <string name="agent_env_config_required">您还需要配置以下环境</string>
+
+    <!-- Info Messages -->
+    <string name="info">信息</string>
+    <string name="agent_tool_params">参数</string>
+    <string name="agent_tool_params_label">参数：</string>
+    <string name="agent_tool_result">执行结果</string>
+    <string name="agent_tool_parameters">参数：</string>
+    <string name="agent_tool_parameters_colon">参数：</string>
+    <string name="agent_tool_execution_result">结果：</string>
+
+
+    <!-- 智能体界面 -->
+    <string name="agent_debug_center">🤖 Agent调试中心</string>
+
+
+
+    <!-- 环境配置 -->
+    <string name="agent_config_accessibility">去开启无障碍服务 →</string>
+    <string name="agent_config_model">去配置AI模型 →</string>
+    <string name="agent_config_environment">您还需要配置以下环境</string>
+
+
+
+
+
+    <!-- 快速操作按钮 -->
+    <string name="agent_btn_solo_workflow">📋 SOLO工作流</string>
+    <string name="agent_btn_tool_list">📋 工具列表</string>
+    <string name="agent_btn_function_call">🧪 函数调用</string>
+    <string name="agent_btn_mcp_tools">🔧 MCP工具</string>
+    <string name="agent_btn_workflow_report">📊 工作流报告</string>
+    <string name="agent_btn_pause_workflow">⏸️ 暂停工作流</string>
+    <string name="agent_btn_resume_workflow">▶️ 恢复工作流</string>
+    <string name="agent_btn_stop_workflow">⏹️ 停止工作流</string>
+    <string name="agent_btn_basic_test">🧪 基础测试</string>
+    <string name="agent_btn_performance_test">⚡ 性能测试</string>
+    <string name="agent_btn_error_test">🛡️ 错误测试</string>
+
+
+    <!-- Agent System Messages -->
+    <string name="agent_request_stopped">请求被停止</string>
+    <string name="agent_unknown_error">未知错误</string>
+    <string name="agent_http_error">HTTP错误 %1$d: %2$s</string>
+    <string name="agent_stop_all_requests">停止所有正在进行的推理请求</string>
+    <string name="agent_disconnect_error">断开连接时出错: %1$s</string>
+    <string name="agent_stop_specific_request">停止特定推理请求: %1$s</string>
+    <string name="agent_request_ai">请求 AI：%1$s</string>
+    <string name="agent_api_response">AI API 响应: %1$s</string>
+
+    <!-- XAgent Messages -->
+    <string name="agent_system_init_complete">XAgent系统初始化完成</string>
+    <string name="agent_start_complex_workflow">开始执行复杂工作流</string>
+    <string name="agent_workflow_success">复杂工作流执行成功</string>
+    <string name="agent_workflow_failed">复杂工作流执行失败</string>
+    <string name="agent_workflow_exception">复杂工作流执行异常</string>
+    <string name="agent_execution_failed">执行失败</string>
+    <string name="agent_system_cleanup_complete">XAgent系统清理完成</string>
+
+    <!-- AbstractChatProvider Messages -->
+    <string name="agent_invalid_chat_input">无效的聊天输入</string>
+    <string name="agent_start_stream_request">开始新的流式请求，清理之前的工具调用状态</string>
+    <string name="agent_current_tool_calls_count">当前工具调用数量: %1$d</string>
+    <string name="agent_tool_call_info">工具调用: %1$s, ID: %2$s</string>
+    <string name="agent_duplicate_tool_calls">检测到重复的工具调用，原始数量: %1$d, 去重后数量: %2$d</string>
+    <string name="agent_stream_response_complete">流式响应完成，最终工具调用数量: %1$d</string>
+    <string name="agent_final_tool_call">最终工具调用: %1$s, ID: %2$s</string>
+    <string name="agent_parse_stream_error">解析流式响应时出错: %1$s</string>
+    <string name="agent_stream_response_incomplete">流式响应未完成</string>
+
+    <!-- McpTool Messages -->
+    <string name="agent_mcp_tool_client">MCP工具客户端</string>
+    <string name="agent_mcp_tool_description">用于与MCP服务器交互，执行Android自动化和UI交互操作</string>
+    <string name="agent_mcp_tools_list_failed">获取Mcp工具列表失败，返回结果格式不正确</string>
+    <string name="agent_mcp_get_tools_list">获取MCP工具列表</string>
+    <string name="agent_mcp_get_resources_list">获取资源列表</string>
+    <string name="agent_mcp_resource_uri">资源URI</string>
+    <string name="agent_missing_params">缺少参数</string>
+    <string name="agent_missing_name_param">缺少name参数</string>
+    <string name="agent_call_failed_no_error">调用失败，未返回错误信息</string>
+    <string name="agent_call_failed">调用失败</string>
+    <string name="agent_get_tools_list_failed">获取工具列表失败</string>
+    <string name="agent_missing_uri_param">缺少uri参数</string>
+    <string name="agent_read_resource_failed">读取资源失败</string>
+    <string name="agent_unknown_tool">未知工具</string>
+    <string name="agent_no_description">无描述</string>
+
+    <!-- AIAssistantTool Messages -->
+    <string name="agent_ai_assistant">AI助手</string>
+    <string name="agent_ai_assistant_description">提供AI对话、文本生成、翻译、摘要和分析等智能服务</string>
+    <string name="agent_unsupported_ai_operation">不支持的AI助手操作: %1$s</string>
+    <string name="agent_messages_param_required">messages参数是必需的</string>
+    <string name="agent_chat_response">收到您的消息：「%1$s」。在新的Agent架构中，AI对话将通过AICoordinator进行智能处理。</string>
+    <string name="agent_prompt_param_required">prompt参数是必需的</string>
+    <string name="agent_generate_response">基于提示「%1$s」的文本生成请求已收到。在新架构中，这将通过AI智能处理。</string>
+    <string name="agent_text_param_required">text参数是必需的</string>
+    <string name="agent_chinese">中文</string>
+    <string name="agent_translate_response">翻译请求已收到：将「%1$s」翻译为%2$s。在新架构中，这将通过AI智能处理。</string>
+    <string name="agent_summarize_response">摘要请求已收到，文本长度：%1$d字符。在新架构中，这将通过AI智能处理。</string>
+    <string name="agent_analyze_response">分析请求已收到，类型：%1$s，文本长度：%2$d字符。在新架构中，这将通过AI智能处理。</string>
+    <string name="agent_ai_operation_type">要执行的AI操作类型</string>
+    <string name="agent_text_content_or_messages">要处理的文本内容或对话消息</string>
+    <string name="agent_extra_parameters">额外的参数，如目标语言、分析类型等</string>
+    <string name="agent_target_language">翻译的目标语言</string>
+    <string name="agent_analysis_type">分析类型：sentiment, keywords, structure, general</string>
+    <string name="agent_max_content_length">生成内容的最大长度</string>
+
+    <string name="script_top_status_paused">暂停中</string>
+    <string name="script_top_status_task_failed">任务失败</string>
+    <string name="script_top_status_completed">任务成功</string>
+    <string name="script_top_status_executing">执行中</string>
+    <string name="script_top_status_calling">调用工具</string>
+    <string name="script_top_status_thinking">思考中</string>
+    <string name="script_top_status_compressing_memory">记忆中…</string>
+
+    <!-- Agent相关字符串 -->
+    <string name="agent_tool_register">注册工具: %1$s (%2$s)</string>
+    <string name="agent_tool_unregister">注销工具: %1$s (%2$s)</string>
+    <string name="agent_tool_destroy_error">工具销毁时出错: %1$s %2$s</string>
+    <string name="agent_tool_not_found">没有找到合适的工具: %1$s, 优先工具: %2$s</string>
+    <string name="agent_operation_timeout">操作超时: %1$dms</string>
+    <string name="agent_operation_cancelled">操作被取消</string>
+    <string name="agent_select_preferred_tool">选择优先工具: %1$s (%2$s) 用于操作: %3$s</string>
+    <string name="agent_no_preferred_tool">优先工具列表中没有找到支持操作 %1$s 的工具: %2$s</string>
+    <string name="agent_use_specified_tool">使用指定工具: %1$s (%2$s)</string>
+
+    <!-- AIAgentConfig 系统提示词 -->
+    <string name="agent_config_optimized_user_prompt">你的任务目标：%1$s</string>
+    <string name="agent_config_tool_result_with_extra" formatted="false">工具结果：\n%1$s\n\n页面信息：\n%2$s</string>
+    <string name="agent_config_tool_result_simple">%1$s</string>
+    <string name="agent_config_tool_result_no_data">执行成功，但无返回数据</string>
+    <string name="agent_env_config_required_content">该功能需要配置[AI推理模型]和开启[辅助功能]选项，您可以点击下面去开启</string>
+
+    <!-- 任务记忆摘要 -->
+    <string name="agent_task_memory_switch_title">任务记忆摘要</string>
+    <string name="agent_task_memory_switch_desc">长对话时自动摘要历史，减少遗忘</string>
+    <string name="task_memory_history_label">【历史】</string>
+    <string name="task_memory_recent_label">最近:</string>
+    <string name="task_memory_tool_label">工具</string>
+    <string name="task_memory_user_label">用户</string>
+    <string name="task_memory_cleared">清理任务摘要: %s</string>
+    <string name="task_memory_ai_summary_failed">AI 摘要生成失败: %s</string>
+    <string name="task_memory_ai_summary_previous">上次摘要：%s</string>
+    <string name="task_memory_ai_summary_new_messages">待总结的新消息：</string>
+    <string name="task_memory_ai_summary_prompt">请用最精简的语言（150字内）总结任务执行历史的关键步骤：
+%s
+
+要求：
+1. 只列出关键操作，用"→"连接
+2. 不要解释，不要多余文字
+3. 若有上次摘要，请输出完整合并摘要（上次+本次新步骤）
+4. 示例：打开微信→搜索联系人→发送消息</string>
+
+    <string name="agent_skill_mcp_tool_desc">统一技能入口。必填参数因 action 而异，建议先 action=help 查看。</string>
+    <string name="agent_skill_mcp_tool_extra_name">技能</string>
+    <string name="agent_skill_action_help">查看技能说明</string>
+    <string name="agent_skill_action_list">查看技能列表</string>
+    <string name="agent_skill_action_run">执行技能</string>
+    <string name="agent_skill_action_create">创建技能</string>
+    <string name="agent_skill_action_update">更新技能</string>
+    <string name="agent_skill_action_delete">删除技能</string>
+    <string name="agent_skill_action_default">使用技能</string>
+    <string name="agent_skill_create_missing_id">缺少必填参数：id</string>
+    <string name="agent_skill_create_missing_name">缺少必填参数：name</string>
+    <string name="agent_skill_create_missing_description">缺少必填参数：description</string>
+    <string name="agent_skill_create_missing_system_prompt">缺少必填参数：systemPrompt</string>
+    <string name="agent_skill_create_missing_allowed_tool_names">缺少必填参数：allowedToolNames</string>
+    <string name="agent_skill_create_missing_max_rounds">缺少必填参数：maxRounds</string>
+    <string name="agent_skill_create_missing_timeout_ms">缺少必填参数：timeoutMs</string>
+    <string name="agent_skill_create_missing_memory_group">缺少必填参数：memoryGroup</string>
+    <string name="agent_skill_create_failed">create_skill 执行失败</string>
+    <string name="agent_skill_invalid_params">技能请求参数不正确</string>
+    <string name="agent_skill_schema_user_prompt_desc">传递给技能的用户提示词。run 必填</string>
+    <string name="agent_skill_not_initialized">技能系统尚未初始化</string>
+    <string name="agent_skill_schema_action_desc">动作。必填：run=id,userPrompt；create=name,description,systemPrompt,allowedToolNames,maxRounds,timeoutMs,memoryGroup（id 本地自动生成）；update/delete=id</string>
+    <string name="agent_skill_schema_id_desc">技能 ID。run/update/delete 必填。create 时 id 由本地自动生成，勿传入</string>
+    <string name="agent_skill_schema_allowed_tools_desc">工具白名单，如 buildin.click,buildin.input。create 必填</string>
+    <string name="agent_skill_schema_options_desc">运行选项：timeoutMs、maxRounds、memoryGroup、depth、attachments</string>
+    <string name="agent_skill_schema_name_desc">技能显示名称。create 必填</string>
+    <string name="agent_skill_schema_description_desc">技能描述，会显示在 help/list 中。create 必填</string>
+    <string name="agent_skill_schema_system_prompt_desc">技能的系统提示词。create 必填</string>
+    <string name="agent_skill_schema_max_rounds_desc">最大轮次，如 30。create 必填</string>
+    <string name="agent_skill_schema_timeout_ms_desc">超时时间（毫秒），如 180000。create 必填</string>
+    <string name="agent_skill_schema_fallback_skill_id_desc">兜底技能 ID</string>
+    <string name="agent_skill_schema_memory_group_desc">记忆分组。create 必填（可为空字符串）</string>
+    <string name="agent_skill_schema_options_timeout_ms_desc">本次运行的超时时间（毫秒）</string>
+    <string name="agent_skill_schema_options_max_rounds_desc">本次运行的最大轮次</string>
+    <string name="agent_skill_schema_options_memory_group_desc">本次运行的记忆分组</string>
+    <string name="agent_skill_schema_options_depth_desc">调用深度</string>
+    <string name="agent_skill_schema_options_attachments_desc">附件 URL 列表</string>
+    <string name="agent_skill_error_missing_action">缺少参数 action（建议先 action=help）</string>
+    <string name="agent_skill_error_unsupported_action">不支持的 action=%1$s（建议先 action=help）</string>
+    <string name="agent_skill_error_execute">skill 执行异常</string>
+    <string name="agent_skill_error_missing_id_for_run">缺少参数 id（建议先 action=help）</string>
+    <string name="agent_skill_error_inline_run_missing_params">无 id 的 inline run 需提供 name、description、systemPrompt、allowedToolNames、maxRounds、timeoutMs、memoryGroup（与 create 相同）</string>
+    <string name="agent_skill_error_missing_user_prompt">缺少参数 userPrompt</string>
+    <string name="agent_skill_update_missing_id">缺少必填参数：id</string>
+    <string name="agent_skill_update_not_found">未找到可更新的自定义技能：%1$s（请先 action=create）</string>
+    <string name="agent_skill_delete_missing_id">缺少必填参数：id</string>
+    <string name="agent_skill_delete_not_found">未找到自定义技能：%1$s（仅可删除自定义技能）</string>
+    <string name="ai_base_url_hint">OpenAI 兼容接口地址</string>
+    <string name="ai_base_url_invalid">请输入以 https:// 或 http:// 开头的地址</string>
+    <string name="ai_base_url_http_warning">警告：HTTP 会以未加密方式传输你的 API Key。</string>
+    <string name="ai_base_url_required">请填写 Base URL</string>
+    <string name="ai_error_ark_agent_plan_auth_hint">鉴权失败：请使用「Agent Plan」控制台专属 API Key（端点 /api/plan/v3）。若订阅的是 Coding Plan，请改用「火山方舟 Coding Plan」；普通方舟 API Key 不能用于 Plan 端点。</string>
+    <string name="ai_error_ark_coding_plan_auth_hint">鉴权失败：请使用「Coding Plan」控制台专属 API Key（端点 /api/coding/v3）。若订阅的是 Agent Plan，请改用「火山方舟 Agent Plan」；普通方舟 API Key 不能用于 Plan 端点。</string>
+</resources>

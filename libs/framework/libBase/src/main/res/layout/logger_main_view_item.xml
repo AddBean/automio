@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="2dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:paddingBottom="2dp">
+
+    <TextView
+        android:id="@+id/tv_tag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#ff0498FF"
+        android:textSize="12dp"
+        tools:text="TAG:" />
+
+    <com.hive.views.widgets.AutoLinkTextView
+        android:id="@+id/tv_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_tag"
+        android:layout_marginLeft="8dp"
+        android:autoLink="all"
+        android:textSize="12dp"
+        android:clickable="true"
+        tools:text="测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试" />
+
+    <TextView
+        android:id="@+id/tv_btn_expand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/tv_msg"
+        android:layout_alignBottom="@id/tv_msg"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:text="展开"
+        android:visibility="gone"
+        android:textColor="#ff0498FF"
+        android:textSize="12dp" />
+</RelativeLayout>

@@ -1,0 +1,68 @@
+apply plugin: 'com.android.library'
+android {
+    namespace "com.hive.image"
+    compileSdk rootProject.ext.android.compileSdkVersion
+    defaultConfig {
+        minSdk rootProject.ext.android.minSdkVersion
+        targetSdk rootProject.ext.android.targetSdkVersion
+
+        versionCode 1
+        versionName "1.0"
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+        }
+        // 注意：libImage 模块使用预编译的 .so 文件（libframesequencev2.so）
+        // 这些库需要重新编译以支持 16KB 页面大小
+        // 如果遇到 16KB 兼容性问题，需要重新编译 jni 源码
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+    }
+    sourceSets.main {
+        jni.srcDirs = [] //关掉自动编译
+        jniLibs.srcDirs 'src/main/jniLibs'
+    }
+    compileOptions {
+        sourceCompatibility rootProject.ext.javaVersion
+        targetCompatibility rootProject.ext.javaVersion
+    }
+    lintOptions {
+        abortOnError false
+    }
+    buildFeatures {
+        viewBinding true
+        buildConfig true  // Required for BuildConfig in AGP 9.0.0
+    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation rootProject.ext.publicDependencies.slf4j
+
+    implementation project(path: ':libs:framework:libBase')
+    implementation project(path: ':libs:framework:libNet')
+    implementation project(path: ':libs:framework:libCompon')
+    implementation project(path: ':libs:framework:libUtils')
+    implementation project(path: ':libs:framework:libViews')
+
+    implementation rootProject.ext.publicDependencies.dbflowCore
+    implementation rootProject.ext.publicDependencies.dbflow
+    implementation rootProject.ext.publicDependencies.glideOkhttp2
+
+}

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 会话历史列表项：使用 UIRoundCornerFrameLayout 优化圆角卡片效果 -->
+<com.hive.views.widgets.UIRoundCornerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemSessionRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="0dp"
+    android:background="@color/colorBackgroundTertiary"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="@drawable/ai_ripple_rounded_16"
+    android:paddingStart="0dp"
+    android:paddingTop="0dp"
+    android:paddingEnd="0dp"
+    android:paddingBottom="0dp"
+    app:rcv_radius="16dp"
+    app:rcv_borderWidth="1dp"
+    app:rcv_borderColor="@color/colorSplitLine">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="12dp">
+
+        <!-- current session indicator -->
+        <View
+            android:id="@+id/viewCurrentIndicator"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_agent_current_indicator"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minWidth="0dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvSessionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvSessionPreview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <!-- 时间和按钮组 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:gravity="center_vertical|end"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvSessionTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_agent_info_bar"
+                android:paddingStart="6dp"
+                android:paddingTop="3dp"
+                android:paddingEnd="6dp"
+                android:paddingBottom="3dp"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="11sp"
+                android:visibility="gone"
+                tools:text="5分钟前" />
+
+            <!-- 按钮组 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <!-- 转换按钮 -->
+                <com.hive.views.widgets.UIRoundCornerFrameLayout
+                    android:id="@+id/btnConvertWrapper"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="@color/white_10"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="@drawable/ai_ripple_rounded_12"
+                    app:rcv_radius="10dp"
+                    app:rcv_borderWidth="1dp"
+                    app:rcv_borderColor="@color/colorSplitLine">
+
+                    <ImageView
+                        android:id="@+id/btnSessionConvert"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_gravity="center"
+                        android:background="@null"
+                        android:contentDescription="@string/agent_session_convert"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_session_convert"
+                        android:tint="@color/design_accent_indigo" />
+                </com.hive.views.widgets.UIRoundCornerFrameLayout>
+
+                <!-- 删除按钮 -->
+                <com.hive.views.widgets.UIRoundCornerFrameLayout
+                    android:id="@+id/btnDeleteWrapper"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="6dp"
+                    android:background="@color/white_10"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="@drawable/ai_ripple_rounded_12"
+                    app:rcv_radius="10dp"
+                    app:rcv_borderWidth="1dp"
+                    app:rcv_borderColor="@color/colorSplitLine">
+
+                    <ImageView
+                        android:id="@+id/btnSessionDelete"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_gravity="center"
+                        android:background="@null"
+                        android:contentDescription="@string/delete"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_delete"
+                        android:tint="@color/design_accent_rose" />
+                </com.hive.views.widgets.UIRoundCornerFrameLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.hive.views.widgets.UIRoundCornerFrameLayout>

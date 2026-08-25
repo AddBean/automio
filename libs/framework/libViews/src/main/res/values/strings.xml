@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chat_input_hint">Please enter content</string>
+    <string name="chat_select_image">Select Image</string>
+    <string name="chat_select_model">Select Model</string>
+    <string name="chat_send_message">Send Message</string>
+    <string name="chat_attachment_preview">Attachment Preview</string>
+    <string name="chat_voice_input">Voice input</string>
+    <string name="chat_voice_hold_to_speak">Hold to speak</string>
+    <string name="chat_voice_release_send">Release to send</string>
+    <string name="chat_voice_slide_cancel">Slide here to cancel</string>
+    <string name="chat_voice_cancel">Cancel</string>
+</resources>

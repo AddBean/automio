@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 分组标题（对齐 script-design DependencySelectSheet.tsx section header）
+     - gap: gap-1.5 = 6dp
+     - margin-bottom: mb-2 = 8dp
+     - 图标容器: w-5 h-5 = 20dp
+     - 文字: text-[11px] font-bold text-slate-300
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <!-- 图标容器: w-5 h-5 = 20dp -->
+    <FrameLayout
+        android:id="@+id/icon_container"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/bg_section_icon_container">
+
+        <!-- 图标大小接近 14-16dp -->
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_activity"
+            app:tint="@color/design_text_slate_300" />
+    </FrameLayout>
+
+    <!-- 文字: text-[11px] font-bold text-slate-300 -->
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:textColor="@color/design_text_slate_300"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        tools:text="工作流" />
+</LinearLayout>

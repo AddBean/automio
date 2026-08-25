@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="update_start_download">Start background download!</string>
+    <string name="update_start_back_download">Start background download!</string>
+    <string name="update_dialog_install_title">Install new version?</string>
+    <string name="update_dialog_install_cancel">Cancel</string>
+    <string name="update_dialog_install_confirm">Install Now</string>
+    <string name="update_dialog_download_confirm">Update Now</string>
+    <string name="update_dialog_download_back_confirm">Background Download</string>
+    <string name="update_dialog_download_title">New version detected</string>
+    <string name="update_dialog_downloading_info">Downloaded %s%%</string>
+    <string name="update_dialog_progress_tips">Download Progress</string>
+    <string name="update_dialog_downloading_title">Downloading Update</string>
+    <string name="update_dialog_info_tips">Update content:</string>
+    
+    <!-- 新增美化升级弹窗字符串 -->
+    <string name="update_dialog_title_new">发现新版本</string>
+    <string name="update_dialog_new_version">新版本</string>
+    <string name="update_dialog_downloading">正在下载更新</string>
+    <string name="update_dialog_cancel">稍后更新</string>
+    <string name="update_dialog_update_now">立即更新</string>
+    <string name="update_notification_title">Downloading latest version</string>
+    <string name="update_notification_msg">Downloading</string>
+    <string name="update_notification_install">Update file downloaded, click to install!</string>
+    <string name="update_notification_install_msg">Click to install latest version</string>
+    <string name="float_permission_title">Permission Required</string>
+    <string name="float_permission_content">Floating window permission required, please enable in settings</string>
+    <string name="float_permission_confirm">Go to Enable</string>
+    <string name="float_permission_cancel">Cancel</string>
+    <string name="permissions_lack_title">The app lacks the following permissions, please authorize and try again</string>
+    <string name="permissions_lack_msg">The app lacks the following permissions</string>
+    <string name="permissions_lack_cancel">Cancel</string>
+    <string name="permissions_lack_jump">Go to Authorize</string>
+
+    <string name="base_list_empty">No data</string>
+    <string name="base_list_uppull">Pull up to load</string>
+    <string name="base_list_loading">Loading…</string>
+    <string name="base_list_loading_failed">Loading failed</string>
+
+    <string name="android_permission_ACCESS_CHECKIN_PROPERTIES">Access checkin properties</string>
+    <string name="android_permission_ACCESS_COARSE_LOCATION">Access coarse location</string>
+    <string name="android_permission_ACCESS_FINE_LOCATION">Access fine location</string>
+    <string name="android_permission_ACCESS_LOCATION_EXTRA_COMMANDS">Access location extra commands</string>
+    <string name="android_permission_ACCESS_MOCK_LOCATION">Access mock location</string>
+    <string name="android_permission_ACCESS_NETWORK_STATE">Access network state</string>
+    <string name="android_permission_ACCESS_SURFACE_FLINGER">Access Surface Flinger</string>
+    <string name="android_permission_ACCESS_WIFI_STATE">Access WiFi state</string>
+    <string name="android_permission_ACCOUNT_MANAGER">Account manager</string>
+    <string name="android_permission_AUTHENTICATE_ACCOUNTS">Authenticate accounts</string>
+    <string name="android_permission_BATTERY_STATS">Battery stats</string>
+    <string name="android_permission_BIND_APPWIDGET">Bind app widget</string>
+    <string name="android_permission_BIND_DEVICE_ADMIN">Bind device admin</string>
+    <string name="android_permission_BIND_INPUT_METHOD">Bind input method</string>
+    <string name="android_permission_BIND_REMOTEVIEWS">Bind RemoteView</string>
+    <string name="android_permission_BIND_WALLPAPER">Bind wallpaper</string>
+    <string name="android_permission_BLUETOOTH">Use Bluetooth</string>
+    <string name="android_permission_BLUETOOTH_ADMIN">Bluetooth admin</string>
+    <string name="android_permission_BRICK">Brick device</string>
+    <string name="android_permission_BROADCAST_PACKAGE_REMOVED">Broadcast package removed</string>
+    <string name="android_permission_BROADCAST_SMS">Broadcast SMS</string>
+    <string name="android_permission_BROADCAST_STICKY">Sticky broadcast</string>
+    <string name="android_permission_BROADCAST_WAP_PUSH">WAP PUSH broadcast</string>
+    <string name="android_permission_CALL_PHONE">Make phone calls</string>
+    <string name="android_permission_CALL_PRIVILEGED">Privileged calls</string>
+    <string name="android_permission_CAMERA">Camera permission</string>
+    <string name="android_permission_CHANGE_COMPONENT_ENABLED_STATE">Change component state</string>
+    <string name="android_permission_CHANGE_CONFIGURATION">Change configuration</string>
+    <string name="android_permission_CHANGE_NETWORK_STATE">Change network state</string>
+    <string name="android_permission_CHANGE_WIFI_MULTICAST_STATE">Change WiFi multicast state</string>
+    <string name="android_permission_CHANGE_WIFI_STATE">Change WiFi state</string>
+    <string name="android_permission_CLEAR_APP_CACHE">Clear app cache</string>
+    <string name="android_permission_CLEAR_APP_USER_DATA">Clear user data</string>
+    <string name="android_permission_CWJ_GROUP">Low-level access</string>
+    <string name="android_permission_CELL_PHONE_MASTER_EX">Phone optimization master extension</string>
+    <string name="android_permission_CONTROL_LOCATION_UPDATES">Control location updates</string>
+    <string name="android_permission_DELETE_CACHE_FILES">Delete cache files</string>
+    <string name="android_permission_DELETE_PACKAGES">Delete packages</string>
+    <string name="android_permission_DEVICE_POWER">Power management</string>
+    <string name="android_permission_DIAGNOSTIC">App diagnostics</string>
+    <string name="android_permission_DISABLE_KEYGUARD">Disable keyguard</string>
+    <string name="android_permission_DUMP">Dump system info</string>
+    <string name="android_permission_EXPAND_STATUS_BAR">Status bar control</string>
+    <string name="android_permission_FACTORY_TEST">Factory test mode</string>
+    <string name="android_permission_FLASHLIGHT">Use flashlight</string>
+    <string name="android_permission_FORCE_BACK">Force back</string>
+    <string name="android_permission_GET_ACCOUNTS">Access Gmail accounts</string>
+    <string name="android_permission_GET_PACKAGE_SIZE">Get package size</string>
+    <string name="android_permission_GET_TASKS">Get task info</string>
+    <string name="android_permission_GLOBAL_SEARCH">Global search</string>
+    <string name="android_permission_HARDWARE_TEST">Hardware test</string>
+    <string name="android_permission_INJECT_EVENTS">Inject events</string>
+    <string name="android_permission_INSTALL_LOCATION_PROVIDER">Install location provider</string>
+    <string name="android_permission_INSTALL_PACKAGES">Install applications</string>
+    <string name="android_permission_INTERNAL_SYSTEM_WINDOW">Internal system window</string>
+    <string name="android_permission_INTERNET">Access network</string>
+    <string name="android_permission_KILL_BACKGROUND_PROCESSES">Kill background processes</string>
+    <string name="android_permission_MANAGE_ACCOUNTS">Manage accounts</string>
+    <string name="android_permission_MANAGE_APP_TOKENS">Manage app references</string>
+    <string name="android_permission_MTWEAK_USER">Advanced permissions</string>
+    <string name="android_permission_MTWEAK_FORUM">Community permissions</string>
+    <string name="android_permission_MASTER_CLEAR">Soft format</string>
+    <string name="android_permission_MODIFY_AUDIO_SETTINGS">Modify audio settings</string>
+    <string name="android_permission_MODIFY_PHONE_STATE">Modify phone state</string>
+    <string name="android_permission_MOUNT_FORMAT_FILESYSTEMS">Format file systems</string>
+    <string name="android_permission_MOUNT_UNMOUNT_FILESYSTEMS">Mount file systems</string>
+    <string name="android_permission_NFC">Allow NFC communication</string>
+    <string name="android_permission_PERSISTENT_ACTIVITY">Persistent Activity</string>
+    <string name="android_permission_PROCESS_OUTGOING_CALLS">Process outgoing calls</string>
+    <string name="android_permission_READ_CALENDAR">Read calendar</string>
+    <string name="android_permission_READ_CONTACTS">Read contacts</string>
+    <string name="android_permission_READ_FRAME_BUFFER">Screenshot</string>
+    <string name="com_android_browser_permission_READ_HISTORY_BOOKMARKS">Read bookmarks and history</string>
+    <string name="android_permission_READ_INPUT_STATE">Read input state</string>
+    <string name="android_permission_READ_LOGS">Read system logs</string>
+    <string name="android_permission_READ_PHONE_STATE">Read phone state</string>
+    <string name="android_permission_READ_SMS">Read SMS</string>
+    <string name="android_permission_READ_SYNC_SETTINGS">Read sync settings</string>
+    <string name="android_permission_READ_SYNC_STATS">Read sync stats</string>
+    <string name="android_permission_REBOOT">Reboot device</string>
+    <string name="android_permission_RECEIVE_BOOT_COMPLETED">Boot auto allow</string>
+    <string name="android_permission_RECEIVE_MMS">Receive MMS</string>
+    <string name="android_permission_RECEIVE_SMS">Receive SMS</string>
+    <string name="android_permission_RECEIVE_WAP_PUSH">Receive Wap Push</string>
+    <string name="android_permission_RECORD_AUDIO">Record audio</string>
+    <string name="android_permission_REORDER_TASKS">Recent task operations</string>
+    <string name="android_permission_RESTART_PACKAGES">End system tasks</string>
+    <string name="android_permission_SEND_SMS">Send SMS</string>
+    <string name="android_permission_SET_ACTIVITY_WATCHER">Set Activity watcher</string>
+    <string name="com_android_alarm_permission_SET_ALARM">Set alarm</string>
+    <string name="android_permission_SET_ALWAYS_FINISH">Set always exit</string>
+    <string name="android_permission_SET_ANIMATION_SCALE">Set animation scale</string>
+    <string name="android_permission_SET_DEBUG_APP">Set debug app</string>
+    <string name="android_permission_SET_ORIENTATION">Set screen orientation</string>
+    <string name="android_permission_SET_PREFERRED_APPLICATIONS">Set app parameters</string>
+    <string name="android_permission_SET_PROCESS_LIMIT">Set process limit</string>
+    <string name="android_permission_SET_TIME">Set system time</string>
+    <string name="android_permission_SET_TIME_ZONE">Set system timezone</string>
+    <string name="android_permission_SET_WALLPAPER">Set wallpaper</string>
+    <string name="android_permission_SET_WALLPAPER_HINTS">Set wallpaper hints</string>
+    <string name="android_permission_SIGNAL_PERSISTENT_PROCESSES">Send persistent process signal</string>
+    <string name="android_permission_STATUS_BAR">Status bar control</string>
+    <string name="android_permission_SUBSCRIBED_FEEDS_READ">Access subscribed content</string>
+    <string name="android_permission_SUBSCRIBED_FEEDS_WRITE">Write subscribed content</string>
+    <string name="android_permission_SYSTEM_ALERT_WINDOW">Display system window</string>
+    <string name="android_permission_UPDATE_DEVICE_STATS">Update device stats</string>
+    <string name="android_permission_USE_CREDENTIALS">Use credentials</string>
+    <string name="android_permission_USE_SIP">Use SIP video</string>
+    <string name="android_permission_VIBRATE">Use vibration</string>
+    <string name="android_permission_WAKE_LOCK">Wake lock</string>
+    <string name="android_permission_WRITE_APN_SETTINGS">Write GPRS access point settings</string>
+    <string name="android_permission_WRITE_CALENDAR">Write calendar</string>
+    <string name="android_permission_WRITE_CONTACTS">Write contacts</string>
+    <string name="android_permission_WRITE_EXTERNAL_STORAGE">Write external storage</string>
+    <string name="android_permission_READ_EXTERNAL_STORAGE">Read external storage</string>
+    <string name="android_permission_WRITE_GSERVICES">Write Google Maps data</string>
+    <string name="com_android_browser_permission_WRITE_HISTORY_BOOKMARKS">Write bookmarks and history</string>
+    <string name="android_permission_WRITE_SECURE_SETTINGS">Read/write system sensitive settings</string>
+    <string name="android_permission_WRITE_SETTINGS">Read/write system settings</string>
+    <string name="android_permission_WRITE_SMS">Write SMS</string>
+    <string name="android_permission_CREATE_SHORTCUT">Create shortcut</string>
+
+    <string name="privacy_agreement_msg">View [User Agreement] and [Privacy Agreement]</string>
+    <string name="agreement_left_text">Disagree</string>
+    <string name="agreement_right_text">Agree</string>
+    <string name="agreement_left_title">Privacy Policy</string>
+    <string name="agreement_left_content">Welcome to use this APP, we attach great importance to your privacy and personal information protection. Without your authorization, we will not collect, use and share your personal information. Before using our services, please read and understand the relevant policies.</string>
+    <string name="first_enter_main_loading">Loading…</string>
+    <string name="android_permission_ACCESS_DOWNLOAD_MANAGER">Access download directory permission</string>
+    <string name="base_app_proxy_error">Please close proxy and try again!</string>
+
+    <!-- Error code messages -->
+    <string name="error_unknown">Unknown error</string>
+    <string name="error_tool_not_found">Tool not found</string>
+    <string name="error_invalid_params">Invalid parameters</string>
+    <string name="error_permission_denied">Permission denied</string>
+    <string name="error_network">Network error</string>
+    <string name="error_timeout">Timeout</string>
+    <string name="error_execution_failed">Execution failed</string>
+    <string name="error_resource_unavailable">Resource unavailable</string>
+    <string name="error_context_invalid">Invalid context</string>
+    <string name="error_task_stop">Task stopped</string>
+    <string name="error_task_pause">Task paused</string>
+    <string name="error_task_error">Task error</string>
+    <string name="error_ai_no_provider">No available provider</string>
+    <string name="error_ai_service_unavailable">Service unavailable</string>
+    <string name="error_ai_invalid_request">Invalid request</string>
+    <string name="error_ai_network">Network error</string>
+    <string name="error_ai_auth_failed">Authentication failed</string>
+    <string name="error_ai_request_error">Request error</string>
+    <string name="error_ai_request_cancel">User cancelled request</string>
+
+    <!-- MCP related strings -->
+    <string name="mcp_operation_success">Operation successful</string>
+    <string name="mcp_operation_failed">Operation failed</string>
+
+    <!-- Share related -->
+    <string name="base_share_to">Share to</string>
+    <string name="base_load_fragment_failed">Failed to load plugin Fragment</string>
+    <string name="base_downloaded">Downloaded %d%%</string>
+
+    <!-- Engineer/Logger (debug UI) -->
+    <string name="base_max_chars">Max 40 characters</string>
+    <string name="base_copied_to_clipboard">Copied to clipboard</string>
+    <string name="base_copied_all_to_clipboard">All copied to clipboard</string>
+    <string name="base_copy_item">Copy item</string>
+    <string name="base_format">Format</string>
+    <string name="base_collapse_item">Collapse item</string>
+    <string name="base_expand">Expand</string>
+    <string name="base_collapse">Collapse</string>
+
+    <string name="base_engineer_enter_mode">Engineer mode entered</string>
+    <string name="base_engineer_pwd_error">Wrong password</string>
+    <string name="base_engineer_switch_error">Switch failed</string>
+    <string name="base_engineer_player_not_registered">Player component not registered</string>
+    <string name="base_engineer_player_url_empty">Play URL cannot be empty</string>
+    <string name="base_engineer_p2p_not_registered">P2P component not registered</string>
+    <string name="base_engineer_player_p2p_not_registered">Player or P2P component not registered</string>
+    <string name="base_engineer_clearing">Clearing in background</string>
+    <string name="base_engineer_clear_success_exit">Cleared successfully, exiting</string>
+    <string name="base_engineer_clear_title">Clear data</string>
+    <string name="base_engineer_clear_msg">App will be reset after clearing data</string>
+    <string name="base_engineer_clear_confirm">Confirm clear</string>
+
+    <!-- Exception/Error -->
+    <string name="base_download_error">Download error</string>
+    <string name="base_file_verify_error">File verification error</string>
+    <string name="base_upload_error">Upload error</string>
+
+    <!-- ListRecyclerView -->
+    <string name="base_set_item_view_factory_required">setItemViewFactory must be called first</string>
+    <string name="base_file_not_exist_path">File does not exist path = %1$s</string>
+
+    <!-- Download related strings -->
+    <string name="download_error">Download error!</string>
+
+    <!-- Network exception strings -->
+    <string name="network_error_retry">Network error, please try again later~</string>
+    <string name="network_parse_error">Parse result error</string>
+    <string name="network_ssl_error">Certificate error~</string>
+    <string name="network_unknown">Server error</string>
+    <string name="network_unauthorized">You don\'t have permission to operate</string>
+    <string name="network_forbidden">Something went wrong</string>
+    <string name="network_not_found">Server error, please try again later~</string>
+    <string name="network_timeout">Your mobile network is not smooth~</string>
+    <string name="network_gateway_timeout">Your mobile network is not smooth~</string>
+    <string name="network_internal_error">Server error~</string>
+    <string name="network_bad_gateway">Server error, please try again later~</string>
+    <string name="network_service_unavailable">Server error, please try again later~</string>
+    <string name="network_default_error">Server error, please try again later~</string>
+
+    <string name="list_status_loading">Loading...</string>
+    <string name="list_no_more_data">No more data</string>
+    <string name="list_pull_up_to_load_more">Pull up to load more</string>
+    <string name="list_status_load_failed">Load failed</string>
+</resources>

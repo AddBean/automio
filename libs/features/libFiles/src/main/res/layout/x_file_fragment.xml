@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/iv_filter"
+        android:layout_width="40dp"
+        android:layout_height="@dimen/x_file_menu_height"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="8dp"
+        android:padding="2dp"
+        android:src="@drawable/x_file_filter" />
+
+    <com.hive.files.views.XFileNavigationBar
+        android:id="@+id/file_navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x_file_menu_height"
+        android:layout_toLeftOf="@id/iv_filter" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignBottom="@id/file_navigation_bar"
+        android:background="@color/white_6" />
+
+    <com.hive.views.StatefulLayout
+        android:id="@+id/layout_state"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/file_navigation_bar"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        app:defState="content"
+        app:emptyLayout="@layout/x_file_empty_view"
+        app:emptyText="@string/x_file_empty_txt"
+        app:progressText="@string/x_file_progress_txt"
+        app:transparent="true">
+
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/layout_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:clipToPadding="false"
+                android:paddingTop="8dp"
+                android:paddingBottom="@dimen/x_file_menu_height" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <com.hive.files.views.XFileFastTouchBar
+            android:id="@+id/touch_bar"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true" />
+
+    </com.hive.views.StatefulLayout>
+</RelativeLayout>

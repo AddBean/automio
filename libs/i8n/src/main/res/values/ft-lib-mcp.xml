@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- MCP Service -->
+    <string name="mcp_service_title">MCP Service</string>
+    <string name="mcp_service_running">MCP service is running - SSE: %1$d, HTTP: %2$d</string>
+    <string name="mcp_service_channel">MCP Service</string>
+
+    <!-- Protocol Error Messages -->
+    <string name="mcp_error_parse">Parse error: %s</string>
+    <string name="mcp_error_missing_tool_name">Missing tool name</string>
+    <string name="mcp_error_tool_not_found">Tool \'%s\' not found</string>
+    <string name="mcp_success_operation">Operation successful</string>
+    <string name="mcp_error_tool_execution">Tool execution failed</string>
+    <string name="mcp_error_tool_execution_detail">Tool execution failed: %s</string>
+    <string name="mcp_error_missing_uri">Missing resource URI</string>
+    <string name="mcp_error_resource_not_found">Resource \'%s\' not found</string>
+    <string name="mcp_error_resource_read">Resource read failed: %s</string>
+    <string name="mcp_error_missing_prompt_name">Missing prompt name</string>
+    <string name="mcp_error_prompt_not_found">Prompt \'%s\' not found</string>
+    <string name="mcp_prompt_description">Automated workflow prompt</string>
+    <string name="mcp_error_prompt_generation">Prompt generation failed: %s</string>
+    <string name="mcp_error_unknown_method">Unknown method: %s</string>
+
+    <!-- Service Status -->
+    <string name="mcp_status_starting">Starting service…</string>
+    <string name="mcp_status_started">Service started</string>
+    <string name="mcp_status_stopping">Stopping service…</string>
+    <string name="mcp_status_stopped">Service stopped</string>
+    <string name="mcp_status_error">Service error</string>
+    <string name="mcp_status_connected">Connected</string>
+    <string name="mcp_status_disconnected">Disconnected</string>
+
+    <!-- Tool List UI -->
+    <string name="mcp_tool_list_empty">No registered tools yet</string>
+    <string name="mcp_tool_count">%d tools</string>
+    <string name="mcp_tool_empty_title">No capability assets</string>
+    <string name="mcp_tool_empty_desc">Create a tool to make it available to your local Agent.</string>
+    <string name="mcp_tool_empty_action">Create Tool</string>
+    <string name="mcp_tool_empty_custom_title">No custom tools yet</string>
+    <string name="mcp_tool_empty_custom_desc">Tools published from your workflows will appear here.</string>
+    <string name="mcp_tool_empty_builtin_title">No built-in tools yet</string>
+    <string name="mcp_tool_empty_builtin_desc">Go to Discover to sync or install built-in capability assets.</string>
+    <string name="mcp_tool_filter_custom">Custom</string>
+    <string name="mcp_tool_filter_builtin">Built-in</string>
+    <string name="mcp_tool_filter_all">All</string>
+    <string name="mcp_tool_type_custom">Custom tool</string>
+    <string name="mcp_tool_type_builtin">Built-in tool</string>
+    <string name="mcp_tool_detail_close">Close</string>
+    <string name="mcp_tool_detail_ok">OK</string>
+    <string name="mcp_tool_detail_params">Parameters</string>
+    <string name="mcp_tool_detail_title">Tool Detail</string>
+    <string name="mcp_tool_detail_no_description">No description yet.</string>
+    <string name="mcp_tool_detail_no_params">No input required</string>
+    <string name="mcp_tool_detail_no_params_desc">This tool can be called directly without extra arguments.</string>
+    <string name="mcp_tool_detail_no_param_desc">No parameter description yet.</string>
+    <string name="mcp_tool_detail_param_required">%1$s (required)</string>
+    <string name="mcp_tool_script_path">Script path</string>
+    <string name="mcp_tool_change_script">Change workflow</string>
+    <string name="mcp_tool_edit_script">Edit</string>
+    <string name="mcp_tool_edit_info">Edit Info</string>
+    <string name="mcp_tool_run_title">Run %1$s</string>
+    <string name="mcp_tool_run_json_hint">Enter JSON for %1$s</string>
+    <string name="mcp_tool_run_service_unavailable">Tool service is not available</string>
+
+    <!-- Tool Management -->
+    <string name="mcp_tool_registered">Tool registered: %s</string>
+    <string name="mcp_tool_unregistered">Tool unregistered: %s</string>
+    <string name="mcp_tool_executing">Executing tool: %s</string>
+    <string name="mcp_tool_completed">Tool completed: %s</string>
+
+    <!-- Resource Management -->
+    <string name="mcp_resource_loaded">Resource loaded: %s</string>
+    <string name="mcp_resource_unloaded">Resource unloaded: %s</string>
+    <string name="mcp_resource_error">Resource error: %s</string>
+
+    <!-- Prompt Management -->
+    <string name="mcp_prompt_loaded">Prompt loaded: %s</string>
+    <string name="mcp_prompt_generated">Prompt generated: %s</string>
+    <string name="mcp_prompt_error">Prompt error: %s</string>
+
+    <!-- Create MCP Tool -->
+    <string name="create_mcp_tool_title">创建 AI 工具</string>
+    <string name="edit_mcp_tool_title">Edit AI Tool</string>
+    <string name="edit_mcp_tool_success">Tool info updated</string>
+    <string name="create_mcp_tool_tip">AI 工具的主要作用是将您创作的工作流发布为 MCP 工具。请准确填写以下信息，以便 AI 理解该工具的名称与用途。全部为必填项。</string>
+    <string name="create_mcp_tool_name_label">AI 工具名 *</string>
+    <string name="create_mcp_tool_name_hint">例如：评论自动生成器</string>
+    <string name="create_mcp_tool_desc_label">工具描述 *</string>
+    <string name="create_mcp_tool_desc_hint">详细描述该工具的用途，帮助 AI 理解何时调用</string>
+    <string name="create_mcp_tool_workflow_label">绑定的工作流 *</string>
+    <string name="create_mcp_tool_select_workflow_placeholder">请选择要绑定的工作流</string>
+    <string name="create_mcp_tool_select_workflow">选择工作流</string>
+    <string name="create_mcp_tool_no_workflow">暂无工作流，请先创建工作流</string>
+    <string name="create_mcp_tool_btn">创建</string>
+    <string name="create_mcp_tool_success">创建成功</string>
+    <string name="create_mcp_tool_failed">创建失败</string>
+
+    <!-- Additional strings for McpProtocol -->
+    <string name="mcp_server_name">Automio MCP Server</string>
+    <string name="mcp_server_version">1.0.0</string>
+    <string name="mcp_server_description">Android device automation and UI interaction MCP server. Provides tools for: screen control (click, scroll, input, long-press), OCR text recognition, layout inspection, app launching, HTTP requests, user dialogs (confirm/input/selector), screen/camera capture for multimodal AI. Use when the user wants to control an Android device, automate tasks, or interact with phone UI.</string>
+    <string name="mcp_tool_execution_failed_hardcoded">Tool execution failed</string>
+    <string name="mcp_tool_result_format" formatted="false">Tool execution failed: %1$s\nPage info:\n```json\n%2$s\n```</string>
+    <string name="mcp_tool_result_format_simple" formatted="false">Tool execution failed: %1$s</string>
+    <string name="mcp_tool_run_fill_required">Please fill in all required parameters</string>
+    <string name="mcp_custom_error_code">Custom error code</string>
+    <string name="mcp_automated_workflow_prompt">Automated workflow prompt</string>
+
+    <!-- Connect MCP from PC -->
+    <string name="mcp_connect_entry">Connect MCP from PC</string>
+    <string name="mcp_connect_title">Connect MCP from PC</string>
+    <string name="mcp_connect_intro">Expose Automio\'s on-device MCP server to Cursor, Claude Desktop, or other desktop clients so you can drive phone automation from your computer.</string>
+    <string name="mcp_connect_step1_title">1. Keep the app running</string>
+    <string name="mcp_connect_step1_desc">Open Automio and leave it running. The MCP service starts with the app (Streamable HTTP port %1$d).</string>
+    <string name="mcp_connect_step2_title">2. Link phone and PC</string>
+    <string name="mcp_connect_step2_adb_title">Option A: USB + adb reverse (recommended)</string>
+    <string name="mcp_connect_step2_adb_desc">Connect the phone with USB, then run this on your PC to forward the phone port locally:</string>
+    <string name="mcp_connect_step2_lan_title">Option B: Same Wi-Fi LAN</string>
+    <string name="mcp_connect_step2_lan_desc">Put phone and PC on the same Wi-Fi, then use the LAN URL below. Device IP: %1$s</string>
+    <string name="mcp_connect_step2_lan_unknown">Unknown (check Wi-Fi)</string>
+    <string name="mcp_connect_step3_title">3. Paste MCP config</string>
+    <string name="mcp_connect_step3_desc">Add the config to Cursor\'s mcp.json (or Claude Desktop MCP settings). Tap a code block to copy.</string>
+    <string name="mcp_connect_config_adb_title">After adb reverse (127.0.0.1)</string>
+    <string name="mcp_connect_config_lan_title">LAN direct</string>
+    <string name="mcp_connect_tap_copy">Tap to copy</string>
+    <string name="mcp_connect_copied">Copied to clipboard</string>
+</resources>

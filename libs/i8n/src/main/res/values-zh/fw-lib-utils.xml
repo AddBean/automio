@@ -1,0 +1,61 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="date_yestoday">昨天</string>
+    <string name="date_to_sec">%d秒前</string>
+    <string name="date_to_min">%d分钟前</string>
+    <string name="date_to_hour">%d小时前</string>
+    <string name="date_to_day">%d天前</string>
+    <string name="date_to_month">%d月前</string>
+    <string name="date_to_year">%d年前</string>
+    <string name="install_dialog_title">权限提示</string>
+    <string name="install_dialog_msg">需要安装权限，是否去设置权限？</string>
+    <string name="install_dialog_btn_1">去设置</string>
+    <string name="install_dialog_btn_2">不安装了</string>
+
+    <string name="utils_huawei_open_settings_failed">进入设置页面失败，请手动设置</string>
+    <string name="utils_notification_channel_push">消息推送</string>
+    <string name="utils_notification_channel_tips">消息提醒</string>
+    <string name="utils_time_format_hour">小时</string>
+    <string name="utils_time_format_min">分</string>
+    <string name="utils_time_format_sec">秒</string>
+
+    <string name="utils_time_just_now">刚刚</string>
+    <string name="utils_time_sec_ago">%d秒前</string>
+    <string name="utils_time_min_ago">%d分钟前</string>
+    <string name="utils_time_today_at">今天%tR</string>
+    <string name="utils_time_yesterday_at">昨天%tR</string>
+    <string name="utils_time_unit_day">天</string>
+    <string name="utils_time_unit_ms">毫秒</string>
+
+    <string name="utils_carrier_unknown">未知</string>
+    <string name="utils_carrier_unknown_prefix">未知-</string>
+    <string name="utils_carrier_mobile">移动</string>
+    <string name="utils_carrier_unicom">联通</string>
+    <string name="utils_carrier_telecom">电信</string>
+
+    <string name="utils_num_format_wan">0.0万</string>
+    <string name="utils_num_format_yi">0.0亿</string>
+    <string name="utils_num_format_wan_1">0.#万</string>
+    <string name="utils_num_format_wan_int">#万</string>
+    <string name="utils_num_format_yi_1">0.#亿</string>
+
+    <string-array name="utils_zodiac_signs">
+        <item>水瓶座</item><item>双鱼座</item><item>白羊座</item><item>金牛座</item>
+        <item>双子座</item><item>巨蟹座</item><item>狮子座</item><item>处女座</item>
+        <item>天秤座</item><item>天蝎座</item><item>射手座</item><item>魔羯座</item>
+    </string-array>
+
+    <string name="utils_bar_activity_empty">Activity不能为空!!!</string>
+    <string name="utils_bar_fragment_init_first">在Fragment里使用时，请先在加载Fragment的Activity里初始化！！！</string>
+    <string name="utils_bar_activity_null">Activity不能为null</string>
+    <string name="utils_bar_fragment_null">Fragment不能为null</string>
+    <string name="utils_bar_dialog_fragment_null">DialogFragment不能为null</string>
+    <string name="utils_bar_dialog_null">Dialog不能为null</string>
+    <string name="utils_bar_tag_empty">tag不能为null或空</string>
+    <string name="utils_bar_view_null">View参数不能为空</string>
+    <string name="utils_bar_view_id_not_found">未找到viewId</string>
+    <string name="utils_bar_param_error">参数错误</string>
+    <string name="utils_bar_init_first">先使用ImmersionBar初始化</string>
+
+    <string name="utils_file_source_not_exist">源目标路径：[%1$s] 不存在...</string>
+    <string name="utils_md5_algorithm_error">没有md5这个算法！</string>
+</resources>

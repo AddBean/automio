@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!-- 渐变背景 - 使用 design tokens -->
+    <gradient
+        android:startColor="@color/design_accent_indigo"
+        android:centerColor="@color/design_accent_violet"
+        android:endColor="#A855F7"
+        android:angle="135" />
+    <corners android:radius="6dp" />
+    <!-- 微妙的边框 -->
+    <stroke android:width="0.5dp" android:color="@color/white_20" />
+</shape>

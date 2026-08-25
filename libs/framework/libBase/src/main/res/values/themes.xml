@@ -1,0 +1,46 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="Theme.BaseApp" parent="Theme.AppCompat.NoActionBar">
+
+
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+
+        <item name="android:statusBarColor">@color/app_main_color</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowBackground">@color/app_main_color</item>
+        <item name="android:navigationBarColor">@color/app_main_color</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+
+
+        <!-- 基础文字颜色（浅色） -->
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>       <!-- 主要文字 -->
+
+        <!-- 默认竖屏-->
+        <item name="android:screenOrientation">portrait</item>
+
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="Theme.BaseAppLight" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/black</item>
+
+        <item name="android:statusBarColor">@color/app_main_color_light</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowBackground">@color/app_main_color_light</item>
+        <item name="android:navigationBarColor">@color/app_main_color_light</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+        <!-- 默认竖屏-->
+        <item name="android:screenOrientation">portrait</item>
+
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+</resources>

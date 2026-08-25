@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hive.views.widgets.UIRoundCornerLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="10dp"
+    android:paddingTop="6dp"
+    android:paddingRight="8dp"
+    android:paddingBottom="6dp"
+    android:background="#0AFFFFFF"
+    app:rcv_radius="10dp"
+    app:rcv_borderWidth="0.5dp"
+    app:rcv_borderColor="#0FFFFFFF">
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="11sp"
+        tools:text="09:00" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivRemove"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginLeft="6dp"
+        android:src="@drawable/ic_x"
+        android:tint="@color/colorTextSecondary" />
+</com.hive.views.widgets.UIRoundCornerLinearLayout>

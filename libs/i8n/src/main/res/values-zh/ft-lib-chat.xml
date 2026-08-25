@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Voice chat UI -->
+    <string name="chat_voice_input">语音输入</string>
+    <string name="chat_voice_input_start">开始语音输入</string>
+    <string name="chat_voice_input_stop">停止语音输入</string>
+    <string name="chat_voice_input_recognizing">正在识别...</string>
+    <string name="chat_voice_input_error">语音识别失败</string>
+    <string name="chat_voice_hold_to_speak">按住 说话</string>
+    <string name="chat_voice_release_send">松开发送</string>
+    <string name="chat_voice_slide_cancel">滑到此处取消</string>
+    <string name="chat_voice_cancel">取消</string>
+    <string name="chat_voice_send">发送</string>
+    <string name="chat_voice_recording_short">语音</string>
+    <string name="chat_voice_slide_to_text">滑到这里 转文字</string>
+    <string name="chat_voice_release_to_text">松开 转文字</string>
+</resources>

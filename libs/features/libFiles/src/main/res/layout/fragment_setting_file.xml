@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.hive.views.widgets.setting.SettingSwitchView
+        android:id="@+id/x_file_setting_record_file"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="12dp"
+        android:inputType="number"
+        app:settingDefValue="false"
+        app:settingDes="@string/x_file_setting_record_file_des"
+        app:settingKey="@string/x_file_setting_record_file"
+        app:settingTitle="@string/x_file_setting_record_file_title" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/white_10" />
+
+    <com.hive.views.widgets.setting.SettingSwitchView
+        android:id="@+id/x_file_setting_show_thumb"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="12dp"
+        android:inputType="number"
+        app:settingDefValue="true"
+        app:settingDes="@string/x_file_setting_show_thumb_des"
+        app:settingKey="@string/x_file_setting_show_thumb"
+        app:settingTitle="@string/x_file_setting_show_thumb_title" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/white_10" />
+    <com.hive.views.widgets.setting.SettingSwitchView
+        android:id="@+id/x_file_setting_show_hidden_file"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="12dp"
+        android:inputType="number"
+        app:settingDefValue="false"
+        app:settingDes="@string/x_file_setting_show_hidden_file_des"
+        app:settingKey="@string/x_file_setting_show_hidden_file"
+        app:settingTitle="@string/x_file_setting_show_hidden_file_title" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/white_10" />
+
+    <com.hive.views.widgets.setting.SettingSwitchView
+        android:id="@+id/x_file_setting_enable_recycler_bin"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="12dp"
+        android:inputType="number"
+        app:settingDefValue="true"
+        app:settingDes="@string/x_file_setting_enable_recycler_bin_des"
+        app:settingKey="@string/x_file_setting_enable_recycler_bin"
+        app:settingTitle="@string/x_file_setting_enable_recycler_bin_title" />
+
+</LinearLayout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="sc_logger_max_height">380dp</dimen>
+    <dimen name="sc_logger_width">86dp</dimen>
+    <dimen name="script_agent_top_view_max_width">400dp</dimen>
+</resources>

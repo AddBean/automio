@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/design_bg_publish_detail"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <!-- Header with more button in top-right -->
+    <com.carlos.ui.header.CommonHeader
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bg_color="@color/design_bg_publish_detail"
+        app:center_text="@string/skill_detail_title"
+        app:center_text_color="@color/design_text_secondary"
+        app:enable_back="true"
+        app:left_img_color="@color/design_text_secondary"
+        app:right_img="@drawable/ic_common_header_more"
+        app:right_img_color="@color/design_text_secondary"
+        app:show_btm_line="false" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/design_border_subtle" />
+
+    <!-- Scrollable content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:paddingLeft="@dimen/design_spacing_page_horizontal"
+        android:paddingTop="@dimen/design_spacing_5"
+        android:paddingRight="@dimen/design_spacing_page_horizontal"
+        android:paddingBottom="@dimen/design_spacing_6"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Hero card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/resource_detail_hero_bg"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="@dimen/design_spacing_6">
+
+                <com.hive.views.widgets.UIResourceIconView
+                    android:id="@+id/iv_icon"
+                    android:layout_width="@dimen/design_skill_detail_icon_size"
+                    android:layout_height="@dimen/design_skill_detail_icon_size"
+                    app:ri_resourceType="skill"
+                    app:ri_backgroundColor="@color/design_bg_card"
+                    app:ri_borderWidth="1dp"
+                    app:ri_borderColor="@color/white_5" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_4"
+                    android:gravity="center"
+                    android:textColor="@color/design_text_primary"
+                    android:textSize="@dimen/design_font_lg"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_1"
+                    android:gravity="center"
+                    android:textColor="@color/design_text_muted"
+                    android:textSize="@dimen/design_font_xs" />
+
+                <TextView
+                    android:id="@+id/tv_type_badge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_4"
+                    android:background="@drawable/bg_filter_pill_amber"
+                    android:paddingHorizontal="@dimen/design_spacing_3"
+                    android:paddingVertical="@dimen/design_spacing_1"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/design_font_sm"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Description section -->
+            <LinearLayout
+                android:id="@+id/layout_section_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_6"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/design_section_dot_size"
+                        android:layout_height="@dimen/design_section_dot_size"
+                        android:background="@drawable/design_publish_section_dot" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/design_spacing_2"
+                        android:text="@string/rp_description"
+                        android:textColor="@color/design_text_muted"
+                        android:textSize="@dimen/design_font_sm"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_3"
+                    android:background="@drawable/resource_detail_section_bg"
+                    android:orientation="vertical"
+                    android:padding="@dimen/design_spacing_4">
+
+                    <TextView
+                        android:id="@+id/tv_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="4dp"
+                        android:textColor="@color/design_text_secondary"
+                        android:textSize="@dimen/design_font_base" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Prompt section -->
+            <LinearLayout
+                android:id="@+id/layout_section_prompt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_6"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/design_section_dot_size"
+                        android:layout_height="@dimen/design_section_dot_size"
+                        android:background="@drawable/design_publish_section_dot" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/design_spacing_2"
+                        android:text="@string/skill_detail_prompt"
+                        android:textColor="@color/design_text_muted"
+                        android:textSize="@dimen/design_font_sm"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_3"
+                    android:background="@drawable/resource_detail_section_bg"
+                    android:orientation="vertical"
+                    android:padding="@dimen/design_spacing_4">
+
+                    <com.hive.markdown.MarkdownTextView
+                        android:id="@+id/tv_prompt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/design_text_primary"
+                        android:textSize="@dimen/design_font_md" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Tools section -->
+            <LinearLayout
+                android:id="@+id/layout_section_tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_6"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/design_section_dot_size"
+                        android:layout_height="@dimen/design_section_dot_size"
+                        android:background="@drawable/design_publish_section_dot" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/design_spacing_2"
+                        android:text="@string/skill_detail_tools"
+                        android:textColor="@color/design_text_muted"
+                        android:textSize="@dimen/design_font_sm"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_3"
+                    android:background="@drawable/resource_detail_section_bg"
+                    android:orientation="vertical"
+                    android:padding="@dimen/design_spacing_4">
+
+                    <com.hive.views.widgets.FlowLayout
+                        android:id="@+id/layout_tools"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Meta section -->
+            <LinearLayout
+                android:id="@+id/layout_section_meta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_6"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/design_section_dot_size"
+                        android:layout_height="@dimen/design_section_dot_size"
+                        android:background="@drawable/design_publish_section_dot" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/design_spacing_2"
+                        android:text="@string/skill_detail_meta"
+                        android:textColor="@color/design_text_muted"
+                        android:textSize="@dimen/design_font_sm"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_3"
+                    android:background="@drawable/resource_detail_section_bg"
+                    android:orientation="vertical"
+                    android:padding="@dimen/design_spacing_4">
+
+                    <TextView
+                        android:id="@+id/tv_meta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="4dp"
+                        android:textColor="@color/design_text_secondary"
+                        android:textSize="@dimen/design_font_base" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom action bar: edit + run -->
+    <LinearLayout
+        android:id="@+id/layout_actions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/design_bg_card"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/design_spacing_page_horizontal"
+        android:paddingTop="@dimen/design_spacing_3"
+        android:paddingBottom="@dimen/design_spacing_4">
+
+        <TextView
+            android:id="@+id/btn_edit"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/design_skill_detail_action_btn_height"
+            android:layout_weight="1"
+            android:background="@drawable/bg_workflow_detail_btn_primary"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="@string/mcp_tool_edit_script"
+            android:textColor="#0E2A20"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/btn_run"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/design_skill_detail_action_btn_height"
+            android:layout_marginStart="@dimen/design_spacing_3"
+            android:layout_weight="1"
+            android:background="@drawable/bg_workflow_detail_btn_primary"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="@string/sc_list_item_run"
+            android:textColor="#0E2A20"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

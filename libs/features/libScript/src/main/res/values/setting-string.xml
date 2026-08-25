@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="script_setting_keep_alive">script_setting_keep_alive</string>
+    <string name="script_setting_running_tips_switch_key">script_setting_running_tips_on</string>
+    <string name="script_setting_adapter_switch_key">script_setting_adapter_switch_key</string>
+    <string name="script_setting_lock_switch_key">script_setting_lock_switch_key</string>
+    <string name="script_setting_anti_detect_key">script_setting_anti_detect_key</string>
+    <string name="script_setting_show_tracks_key">script_setting_show_tracks_key</string>
+    <string name="script_setting_show_record_key">script_setting_show_record_key</string>
+    <string name="script_setting_auto_unlock_key">script_setting_auto_unlock_key</string>
+    <string name="script_setting_auto_authorize">script_setting_auto_authorize</string>
+    <string name="script_setting_frame_running">script_setting_frame_running</string>
+    <string name="script_setting_running_menu_on">script_setting_running_menu_on</string>
+    <string name="script_setting_time_task_force_to_running">script_setting_time_task_force_to_running</string>
+    <string name="script_setting_editor_bizer_enable">script_setting_editor_bizer_enable</string>
+    <string name="script_setting_editor_ignore_parse_error">script_setting_editor_ignore_parse_error</string>
+    <string name="sc_spot_click_type_list_value">click,press,fast_click,drag</string>
+
+</resources>

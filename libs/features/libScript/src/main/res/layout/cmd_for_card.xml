@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <com.hive.script.views.widgets.ScriptNumberView
+        android:id="@+id/number_for"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:optNumberInput="true"
+        app:optNumberMax="10000"
+        app:optNumberMin="1"
+        app:optNumberType="TYPE1"
+        app:scriptNumberName="@string/sc_cmd_for_loop" />
+    <com.hive.script.views.widgets.ScriptTabSelectorView
+        android:id="@+id/play_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        app:scriptName="@string/sc_play_infinite"
+        app:tabBackground="@drawable/xml_selector_round_tab_item_view"
+        app:tabDefaultValue="0"
+        app:tabNameList="@string/sc_play_type_list"
+        app:tabTxtColor="@drawable/xml_selector_round_tab_item_view_color"
+        app:tabValueList="0,1" />
+
+    <com.hive.views.widgets.MaxHeightLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="12dp"
+        android:minHeight="160dp"
+        android:visibility="gone"
+        android:orientation="vertical"
+        app:heightDimen="200dp">
+
+        <com.hive.script.views.edit.editor.ListScriptEditView
+            android:id="@+id/edit_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </com.hive.views.widgets.MaxHeightLayout>
+</LinearLayout>

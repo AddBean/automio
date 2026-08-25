@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#55FFFFFF">
+    <item>
+        <layer-list>
+            <!-- 外层光晕 -->
+            <item>
+                <shape android:shape="rectangle">
+                    <gradient
+                        android:angle="45"
+                        android:centerColor="#66246BFD"
+                        android:endColor="#33246BFD"
+                        android:startColor="#99246BFD" />
+                    <corners android:radius="20dp" />
+                </shape>
+            </item>
+            
+            <!-- 内层按钮 -->
+            <item
+                android:bottom="1dp"
+                android:left="1dp"
+                android:right="1dp"
+                android:top="1dp">
+                <shape android:shape="rectangle">
+                    <gradient
+                        android:angle="135"
+                        android:centerColor="#FF246BFD"
+                        android:endColor="#FF1E5BF0"
+                        android:startColor="#FF357BFF" />
+                    <corners android:radius="19dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</ripple>
