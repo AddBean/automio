@@ -58,7 +58,13 @@ Automio 是跑在 Android 上的 **全功能手机 Agent**：一边用大模型�
 
 ## 界面预览
 
+| Agent 对话 | 可视化工作流 | 添加指令 |
+| :--------: | :----------: | :------: |
+| ![Agent 对话](docs/screenshots/Screenshot_0.png) | ![可视化工作流](docs/screenshots/Screenshot_1.png) | ![添加指令](docs/screenshots/Screenshot_2.png) |
 
+| 创作中心 | 资源与悬浮窗 |
+| :------: | :----------: |
+| ![创作中心](docs/screenshots/Screenshot_3.png) | ![资源与悬浮窗](docs/screenshots/Screenshot_4.png) |
 
 ---
 
@@ -217,7 +223,7 @@ APK 输出：`publish/zpublishScript/build/outputs/apk/`
 ### 上手三步
 
 1. 安装 APK，在权限中心按提示授予无障碍等权限  
-2. （可选）「我的 → 更多设置 → 模型管理」配置 AI；需要语音时再配「语音服务」  
+2. （可选）「设置 → 更多设置 → 模型管理」配置 AI；需要语音时再配「语音服务」  
 3. 新建工作流，或导入 `.zip`；要对话就开 Agent，要稳定就跑固定流程  
 
 ### 配置说明（AI / 语音 / MCP）

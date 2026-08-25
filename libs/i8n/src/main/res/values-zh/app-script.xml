@@ -10,7 +10,7 @@
     <string name="str_assist_server">辅助服务权限</string>
     <string name="design_nav_agent">智能体</string>
     <string name="design_nav_workflow">资源</string>
-    <string name="design_nav_profile">个人</string>
+    <string name="design_nav_profile">设置</string>
     <string name="workflow_tab_workflow">工作流</string>
     <string name="workflow_tab_ai_capability">AI 能力</string>
     <string name="design_workflow_section_title">本地工作流</string>

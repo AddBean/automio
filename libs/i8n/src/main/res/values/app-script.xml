@@ -11,7 +11,7 @@
     <string name="str_assist_server">Accessibility</string>
     <string name="design_nav_agent">Agent</string>
     <string name="design_nav_workflow">Resource</string>
-    <string name="design_nav_profile">Profile</string>
+    <string name="design_nav_profile">Settings</string>
     <string name="workflow_tab_workflow">Workflow</string>
     <string name="workflow_tab_ai_capability">AI Capability</string>
     <string name="design_workflow_section_title">LOCAL WORKFLOWS</string>
