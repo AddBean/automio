@@ -1,5 +1,7 @@
 # Automio
 
+[中文](README.md) | [English](README_EN.md)
+
 **Automio：让 AI 真正在你的 Android 手机上动手干活**
 
 Automio 是跑在 Android 上的 **全功能手机 Agent**：一边用大模型理解你的意图，一边用真实设备能力（点屏幕、识字、找图、开应用、跑脚本）把事情做完。  
@@ -273,3 +275,5 @@ automio.msSpeechRegion=eastasia
 ## 许可
 
 MIT License，见 [LICENSE](LICENSE)。第三方说明见 [NOTICE](NOTICE)。
+
+个人学习、研究与非商业使用可直接按 MIT 条款使用。若计划将 Automio 用于**商业产品或商业服务**，欢迎先联系作者 **jiadou**（可通过本仓库 [Issues](https://github.com/AddBean/automio/issues)）沟通合作或授权事宜。
