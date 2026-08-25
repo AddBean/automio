@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:background="@color/black">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="90dp"
+            android:layout_height="8dp"
+            android:background="#af000000" />
+
+<!--        <View-->
+<!--            android:layout_width="6dp"-->
+<!--            android:layout_height="8dp"-->
+<!--            android:layout_marginStart="24dp"-->
+<!--            android:background="@color/black" />-->
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_main"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="0dp"
+        android:background="@drawable/xml_logger_layout_round_bg"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="32dp">
+
+            <com.hive.script.views.logger.ScriptLoggerNextView
+                android:id="@+id/next_view"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_margin="0.5dp"
+                android:gravity="center_vertical"
+                android:paddingStart="12dp"
+                android:text="@string/sc_logger_menu_text"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_gravity="bottom"
+                android:background="@color/colorSplitLine" />
+        </FrameLayout>
+
+
+        <View
+            android:id="@+id/viewLine"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorSplitLine" />
+
+        <com.hive.script.views.logger.ScriptLoggerListView
+            android:id="@+id/logger_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_marginLeft="0.7dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="0.7dp" />
+
+        <LinearLayout
+            android:layout_width="24dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="1dp"
+            android:background="@drawable/xml_looger_btn_round_bg_2"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp">
+
+            <ImageView
+                android:id="@+id/iv_clear"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:padding="7.5dp"
+                android:src="@drawable/sc_clean"
+                android:tint="@color/colorTextSecondary2" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/colorSplitLine" />
+
+            <ImageView
+                android:id="@+id/iv_pause"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:padding="6.5dp"
+                android:src="@drawable/xml_script_logger_pasue"
+                android:tint="@color/colorTextSecondary2" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/colorSplitLine" />
+
+            <ImageView
+                android:id="@+id/iv_min"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:padding="8dp"
+                android:src="@drawable/icon_logger_min"
+                android:tint="@color/colorTextSecondary2" />
+
+
+            <TextView
+                android:id="@+id/tv_selector"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:textColor="@color/color_blue"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+
+            <TextView
+                android:id="@+id/tv_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/xml_search_find_txt_bg"
+                android:ellipsize="middle"
+                android:gravity="center"
+                android:hint="查找"
+                android:imeOptions="actionGo"
+                android:inputType="text"
+                android:maxEms="12"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:singleLine="true"
+                android:textColor="@color/color_blue"
+                android:textColorHint="@color/color_blue"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                tools:text="查找" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_selector"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="#ff21272e"
+            android:orientation="vertical"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@+id/layout_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/layout_menu_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:padding="6dp" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <com.hive.views.widgets.TextDrawableView
+        android:id="@+id/iv_max"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal|top"
+        android:background="@drawable/xml_btn_bl_br_round_bg_2"
+        android:drawablePadding="2dp"
+        android:gravity="center"
+        android:paddingStart="16dp"
+        android:paddingTop="3dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="3dp"
+        android:text="@string/sc_logger_mini"
+        android:textColor="@color/colorTextSecondary"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:drawableHeight="14dp"
+        app:drawableLeft="@drawable/sc_logger"
+        app:drawableTint="@color/colorTextSecondary"
+        app:drawableWidth="14dp"
+        tools:visibility="visible" />
+</RelativeLayout>

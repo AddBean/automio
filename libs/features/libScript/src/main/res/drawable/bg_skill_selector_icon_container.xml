@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Skill 选择器图标容器背景：bg-indigo-500/10 (#1A246BFD) -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#1A246BFD" />
+    <corners android:radius="8dp" />
+</shape>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingVertical="@dimen/design_spacing_2_5"
+    tools:background="@color/design_bg_overlay">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/design_spacing_3">
+
+        <TextView
+            android:id="@+id/tvModelName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/design_text_primary"
+            android:textSize="@dimen/design_font_xl"
+            android:textStyle="bold"
+            tools:text="gpt-4o" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvModelTags"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/design_text_muted"
+                android:textSize="@dimen/design_font_lg"
+                tools:text="chat" />
+
+            <TextView
+                android:id="@+id/tvVisionBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/design_spacing_2"
+                android:background="@drawable/ai_badge_vision"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="1dp"
+                android:text="@string/ai_vision"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/design_font_sm"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/statusIndicator"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:background="@drawable/ai_status_indicator_enabled" />
+
+</LinearLayout>

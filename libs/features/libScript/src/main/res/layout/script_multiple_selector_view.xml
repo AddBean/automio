@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/xml_condition_content_bg"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sc_if_condition_add_app_title"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="16sp" />
+
+    <com.hive.views.widgets.MaxHeightLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:heightDimen="120dp">
+
+        <com.hive.views.list_view.ListRecyclerView
+            android:id="@+id/listRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-2dp"
+            android:layout_marginRight="-2dp"
+            android:clipChildren="false"
+            android:clipToPadding="false" />
+    </com.hive.views.widgets.MaxHeightLayout>
+
+
+    <com.hive.views.widgets.TextDrawableView
+        android:id="@+id/tvAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawablePadding="4dp"
+        android:drawableTint="@color/colorAccent"
+        android:text="@string/sc_multiple_selector_add"
+        android:textColor="@color/colorAccent"
+        android:textSize="14sp"
+        android:layout_marginTop="4dp"
+        app:drawableHeight="14dp"
+        app:drawableLeft="@drawable/icon_plus_thin"
+        app:drawableWidth="14dp" />
+
+</LinearLayout>

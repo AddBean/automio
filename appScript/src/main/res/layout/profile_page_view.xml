@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?><!-- design-spec ProfilePage：本地信息卡 + 分组列表 + 底部版本（开源无登录入口）。 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:paddingBottom="@dimen/design_tab_bar_height">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/design_spacing_6"
+            android:paddingTop="@dimen/design_spacing_8"
+            android:paddingBottom="@dimen/design_spacing_5">
+
+            <!-- 用户卡片 -->
+            <com.hive.views.widgets.UIRoundCornerLinearLayout
+                android:id="@+id/card_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/design_permission_card_surface"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/design_spacing_5"
+                app:rcv_borderColor="@color/design_permission_card_border"
+                app:rcv_borderWidth="1dp"
+                app:rcv_radius="@dimen/design_radius_profile_group">
+
+                <com.hive.views.widgets.RoundFrameLayout
+                    android:layout_width="@dimen/design_profile_avatar_size"
+                    android:layout_height="@dimen/design_profile_avatar_size"
+                    android:background="@drawable/design_bg_profile_avatar"
+                    app:round_view_radius="@dimen/design_radius_lg"
+                    app:view_draw_paint_color="@color/design_accent_indigo">
+
+                    <com.hive.views.widgets.UIRoundCornerImageView
+                        android:id="@+id/iv_profile_avatar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop"
+                        android:visibility="gone"
+                        app:rcv_radius="@dimen/design_radius_lg"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/tv_profile_avatar_initial"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textColor="@color/design_text_primary"
+                        android:textSize="@dimen/design_font_xl"
+                        android:textStyle="bold"
+                        tools:text="A" />
+                </com.hive.views.widgets.RoundFrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/design_spacing_4"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_profile_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textColor="@color/design_text_primary"
+                        android:textSize="@dimen/design_profile_name_text"
+                        android:textStyle="bold"
+                        tools:text="Agent User" />
+
+                    <TextView
+                        android:id="@+id/tv_profile_subtitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/design_spacing_1"
+                        android:letterSpacing="0.02"
+                        android:textColor="@color/design_text_muted"
+                        android:textSize="@dimen/design_font_base"
+                        tools:text="Local workspace" />
+                </LinearLayout>
+            </com.hive.views.widgets.UIRoundCornerLinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/design_spacing_8" />
+
+            <!-- 本地功能 -->
+            <com.hive.views.widgets.UIRoundCornerLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/design_permission_card_surface"
+                android:orientation="vertical"
+                app:rcv_borderColor="@color/design_permission_card_border"
+                app:rcv_borderWidth="1dp"
+                app:rcv_radius="@dimen/design_radius_profile_group">
+
+                <LinearLayout
+                    android:id="@+id/row_language"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/design_spacing_4">
+
+                    <ImageView
+                        android:layout_width="@dimen/design_profile_row_icon_size"
+                        android:layout_height="@dimen/design_profile_row_icon_size"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_lang"
+                        app:tint="@color/design_text_tertiary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/design_spacing_3"
+                        android:text="@string/setting_script_lang"
+                        android:textColor="@color/design_text_secondary"
+                        android:textSize="@dimen/design_font_body"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/tv_row_language_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="2dp"
+                        android:textColor="@color/design_text_tertiary"
+                        android:textSize="@dimen/design_font_sm"
+                        tools:text="简体中文" />
+
+                    <ImageView
+                        android:layout_width="@dimen/design_profile_chevron_size"
+                        android:layout_height="@dimen/design_profile_chevron_size"
+                        android:layout_marginStart="@dimen/design_spacing_2"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/design_text_muted" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/design_profile_divider" />
+
+                <LinearLayout
+                    android:id="@+id/row_model"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/design_spacing_4">
+
+                    <ImageView
+                        android:layout_width="@dimen/design_profile_row_icon_size"
+                        android:layout_height="@dimen/design_profile_row_icon_size"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_setting"
+                        app:tint="@color/design_text_tertiary" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/design_spacing_3"
+                        android:layout_weight="1"
+                        android:text="@string/setting_model_management"
+                        android:textColor="@color/design_text_secondary"
+                        android:textSize="@dimen/design_font_body"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="@dimen/design_profile_chevron_size"
+                        android:layout_height="@dimen/design_profile_chevron_size"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/design_text_muted" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/design_profile_divider" />
+
+                <LinearLayout
+                    android:id="@+id/row_scheduled_tasks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/design_spacing_4">
+
+                    <ImageView
+                        android:layout_width="@dimen/design_profile_row_icon_size"
+                        android:layout_height="@dimen/design_profile_row_icon_size"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_clock"
+                        app:tint="@color/design_text_tertiary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/design_spacing_3"
+                        android:text="@string/design_profile_scheduled_tasks"
+                        android:textColor="@color/design_text_secondary"
+                        android:textSize="@dimen/design_font_body"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/tv_row_scheduled_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="2dp"
+                        android:textColor="@color/design_text_tertiary"
+                        android:textSize="@dimen/design_font_sm"
+                        tools:text="3 个任务" />
+
+                    <ImageView
+                        android:layout_width="@dimen/design_profile_chevron_size"
+                        android:layout_height="@dimen/design_profile_chevron_size"
+                        android:layout_marginStart="@dimen/design_spacing_2"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/design_text_muted" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/design_profile_divider" />
+
+                <LinearLayout
+                    android:id="@+id/row_permission"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/design_spacing_4">
+
+                    <ImageView
+                        android:layout_width="@dimen/design_profile_row_icon_size"
+                        android:layout_height="@dimen/design_profile_row_icon_size"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_shield_check"
+                        app:tint="@color/design_text_tertiary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/design_spacing_3"
+                        android:text="@string/design_profile_permission_center"
+                        android:textColor="@color/design_text_secondary"
+                        android:textSize="@dimen/design_font_body"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/tv_row_permission_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/design_text_tertiary"
+                        android:textSize="@dimen/design_font_sm"
+                        tools:text="正常" />
+
+                    <View
+                        android:id="@+id/view_permission_alert_dot"
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:layout_marginStart="@dimen/design_spacing_1"
+                        android:background="@drawable/design_profile_alert_dot"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+
+                    <ImageView
+                        android:layout_width="@dimen/design_profile_chevron_size"
+                        android:layout_height="@dimen/design_profile_chevron_size"
+                        android:layout_marginStart="@dimen/design_spacing_2"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/design_text_muted" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/design_profile_divider" />
+
+                <LinearLayout
+                    android:id="@+id/row_more_settings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/design_spacing_4">
+
+                    <ImageView
+                        android:layout_width="@dimen/design_profile_row_icon_size"
+                        android:layout_height="@dimen/design_profile_row_icon_size"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_sliders"
+                        app:tint="@color/design_text_tertiary" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/design_spacing_3"
+                        android:layout_weight="1"
+                        android:text="@string/setting_more"
+                        android:textColor="@color/design_text_secondary"
+                        android:textSize="@dimen/design_font_body"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="@dimen/design_profile_chevron_size"
+                        android:layout_height="@dimen/design_profile_chevron_size"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/design_text_muted" />
+                </LinearLayout>
+            </com.hive.views.widgets.UIRoundCornerLinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- 电脑接入 MCP 小入口 -->
+    <TextView
+        android:id="@+id/tv_mcp_connect_entry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:letterSpacing="0.05"
+        android:paddingHorizontal="@dimen/design_spacing_6"
+        android:paddingTop="@dimen/design_spacing_2"
+        android:paddingBottom="@dimen/design_spacing_1"
+        android:text="@string/mcp_connect_entry"
+        android:textColor="@color/design_text_muted"
+        android:textSize="@dimen/design_font_sm" />
+
+    <!-- 用户协议与隐私政策 -->
+    <TextView
+        android:id="@+id/tv_profile_agreement_links"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:letterSpacing="0.05"
+        android:paddingHorizontal="@dimen/design_spacing_6"
+        android:paddingTop="@dimen/design_spacing_3"
+        android:textColor="@color/design_text_tertiary"
+        android:textSize="@dimen/design_font_sm" />
+
+    <TextView
+        android:id="@+id/tv_profile_version"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:letterSpacing="0.15"
+        android:paddingHorizontal="@dimen/design_spacing_6"
+        android:paddingTop="@dimen/design_spacing_4"
+        android:paddingBottom="@dimen/design_spacing_6"
+        android:textColor="@color/design_text_muted"
+        android:textSize="@dimen/design_font_md"
+        tools:text="Version 1.0.0" />
+
+    <com.hive.engineer.EngineerEnterLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+</LinearLayout>

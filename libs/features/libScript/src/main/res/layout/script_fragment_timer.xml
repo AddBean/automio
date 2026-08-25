@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:paddingLeft="24dp"
+    android:paddingTop="12dp"
+    android:paddingRight="24dp"
+    android:orientation="vertical"
+    tools:background="@color/colorPrimaryDark">
+
+    <FrameLayout
+        android:id="@+id/layoutTimerActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp">
+
+        <com.hive.views.widgets.TextDrawableView
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_gravity="start|center_vertical"
+            android:gravity="center"
+            android:text="@string/timer_schedule_add_title"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <com.hive.views.widgets.UIRoundCornerFrameLayout
+            android:id="@+id/layoutTimerAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_gravity="end|center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            app:rcv_radius="16dp"
+            app:rcv_borderWidth="0.5dp"
+            app:rcv_borderColor="#14FFFFFF"
+            android:background="#0DFFFFFF">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="11dp"
+                    android:layout_height="11dp"
+                    android:src="@drawable/ic_plus"
+                    android:tint="@color/textColorPrimary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/timer_schedule_add"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.hive.views.widgets.UIRoundCornerFrameLayout>
+    </FrameLayout>
+
+    <com.hive.timer.widget.schedule.ScheduleTimerManagerView
+        android:id="@+id/timerManagerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingTop="0dp" />
+
+</LinearLayout>

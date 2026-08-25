@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:padding="4dp"
+    tools:background="@color/colorPrimary">
+
+    <!-- 事件名称 -->
+    <TextView
+        android:id="@+id/tv_event_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/xml_event_name_bg"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxWidth="60dp"
+        android:maxLines="1"
+        android:paddingHorizontal="6dp"
+        android:paddingVertical="2dp"
+        tools:text="用户输入"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="8sp"
+        android:textStyle="bold" />
+
+    <!-- 圆点容器 -->
+    <View
+        android:id="@+id/v_event_dot"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/xml_timeline_dot_waiting" />
+
+    <!-- 时间信息 -->
+    <TextView
+        android:id="@+id/tv_event_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="00:10"
+        android:textColor="@color/colorTextSecondary"
+        android:textSize="7sp"
+        android:textStyle="bold" />
+
+    <!-- 概要信息 -->
+    <TextView
+        android:id="@+id/tv_event_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/xml_event_detail_bg"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:paddingHorizontal="4dp"
+        android:paddingVertical="1dp"
+        android:text="等待中..."
+        android:textColor="@color/colorTextSecondary"
+        android:textSize="7sp"
+        android:visibility="gone" />
+</RelativeLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TabButtonLayout">
+        <attr name="checked" format="boolean"></attr>
+        <attr name="color_checked" format="color"></attr>
+        <attr name="color_unchecked" format="color"></attr>
+        <attr name="res_checked" format="reference"></attr>
+        <attr name="res_unchecked" format="reference"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="ScrollTextView">
+        <attr name="fontColor" format="color"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="MaxWidthLayout">
+        <attr name="widthDimen" format="integer"/>
+    </declare-styleable>
+</resources>

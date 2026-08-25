@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.hive.script.views.widgets.ScriptValueView
+        android:id="@+id/edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scriptValueEditEnable="true"
+        app:scriptValueEditWidth="160dp"
+        app:scriptValueName="@string/sc_edit_layout_title_text"
+        app:scriptValueTextColor="@color/colorAccent" />
+
+    <com.hive.script.views.widgets.ScriptValueView
+        android:id="@+id/edit_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scriptValueEditEnable="true"
+        app:scriptActionEnable="true"
+        app:scriptValueEditWidth="160dp"
+        app:scriptValueName="@string/sc_edit_layout_title_id"
+        app:scriptValueTextColor="@color/colorAccent" />
+
+    <com.hive.script.views.widgets.ScriptValueView
+        android:id="@+id/edit_tag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scriptValueEditEnable="true"
+        app:scriptValueEditWidth="160dp"
+        app:scriptValueName="@string/sc_edit_layout_title_tag"
+        app:scriptValueTextColor="@color/colorAccent" />
+
+    <com.hive.script.views.widgets.ScriptValueView
+        android:id="@+id/edit_direct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scriptValueEditEnable="true"
+        app:scriptValueEditWidth="160dp"
+        app:scriptValueName="@string/sc_edit_layout_title_direct"
+        app:scriptValueTextColor="@color/colorAccent" />
+
+    <com.hive.script.views.edit.views.OperateCommonEditView
+        android:id="@+id/operate_edit_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

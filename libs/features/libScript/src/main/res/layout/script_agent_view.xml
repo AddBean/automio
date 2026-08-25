@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="20dp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <!-- 收起状态的小条 -->
+    <LinearLayout
+        android:id="@+id/ll_collapsed_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/xml_script_agent_mini_round_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="10dp"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/iv_anim"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="2dp"
+            app:indicatorColor="@color/colorGreen"
+            app:indicatorName="PacmanIndicator" />
+
+        <TextView
+            android:id="@+id/tv_collapsed_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="start"
+            android:maxEms="10"
+            android:singleLine="true"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="12sp"
+            tools:text="正在思考正在思考正在思考正在思考正在思考1" />
+    </LinearLayout>
+
+    <!-- 展开状态的内容 -->
+    <LinearLayout
+        android:id="@+id/ll_expanded_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/xml_script_agent_mini_round_bg"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:padding="18dp">
+
+
+        <!-- 任务信息区 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- 任务图标容器 -->
+
+            <ImageView
+                android:id="@+id/iv_task_icon"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="4dp"
+                android:src="@drawable/x_file_info"
+                android:tint="@color/textColorPrimary" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <!-- 任务信息 -->
+                <TextView
+                    android:id="@+id/tv_task_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:text="@string/script_agent_skill_running"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="12sp"
+                    tools:text="AI自动化任务" />
+
+                <TextView
+                    android:id="@+id/tv_task_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="start"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="10sp"
+                    tools:text="AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务AI自动化任务" />
+            </LinearLayout>
+            <!-- 状态指示器 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:background="@drawable/xml_status_indicator_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp">
+
+                <View
+                    android:id="@+id/v_status_indicator"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginEnd="6dp"
+                    android:background="@drawable/xml_dot" />
+
+                <TextView
+                    android:id="@+id/tv_status_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/script_agent_thinking"
+                    android:textColor="@color/colorTextGreen"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 时间线容器 -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/xml_timeline_container_bg"
+            android:padding="8dp">
+
+            <!-- 事件列表 -->
+            <com.hive.views.list_view.ListRecyclerView
+                android:id="@+id/rv_timeline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </FrameLayout>
+
+        <!-- 控制按钮区 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <!-- 停止按钮 -->
+            <ImageButton
+                android:id="@+id/btn_stop"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/xml_btn_stop_bg"
+                android:contentDescription="@string/script_agent_stop"
+                android:padding="14dp"
+                android:src="@drawable/ic_agent_stop"
+                app:tint="@color/textColorPrimary" />
+
+            <!-- 暂停/恢复按钮 -->
+            <ImageButton
+                android:id="@+id/btn_pause_resume"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/xml_btn_play_pause_bg"
+                android:contentDescription="@string/script_agent_pause_resume"
+                android:padding="14dp"
+                android:src="@drawable/ic_agent_pause"
+                app:tint="@color/textColorPrimary" />
+
+            <ImageButton
+                android:id="@+id/btn_collapse"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/xml_btn_collapse_bg"
+                android:contentDescription="@string/script_agent_collapse"
+                android:padding="4dp"
+                android:src="@drawable/ic_collapse_arrow"
+                app:tint="@color/colorTextSecondary" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

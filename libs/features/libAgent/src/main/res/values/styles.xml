@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 黑色风格 PopupMenu，用于 Agent 聊天页更多菜单 -->
+    <style name="AgentPopupMenuBlack" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:popupBackground">@color/black</item>
+        <item name="android:windowBackground">@color/black</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+    </style>
+
+    <!-- Agent 菜单 PopupWindow 动画样式 -->
+    <style name="AgentMenuPopupAnimation">
+        <item name="android:windowEnterAnimation">@anim/popup_menu_enter</item>
+        <item name="android:windowExitAnimation">@anim/popup_menu_exit</item>
+    </style>
+</resources>

@@ -1,0 +1,39 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:alpha="0.9">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:minWidth="110dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/xml_stateful_wheel"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_offline_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.4"
+            android:gravity="center"
+            android:text="@string/load_error"
+            android:textColor="@color/color_white"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/text_retry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/xml_stateful_btn"
+            android:gravity="center"
+            android:text="@string/load_retry"
+            android:textColor="@color/color_white"
+            android:textSize="14dp" />
+    </LinearLayout>
+
+</RelativeLayout>

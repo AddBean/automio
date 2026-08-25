@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tv_content"
+    style="@style/base.content.title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingTop="9dp"
+    android:text="@string/cmd_ctr_menu_1"
+    tools:background="@color/colorPrimary"
+    tools:ignore="MissingDefaultResource">
+
+    <ImageView
+        android:id="@+id/ivTop"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:padding="4dp"
+        android:src="@drawable/ic_copy"
+        android:tint="@color/textColorPrimary" />
+
+    <com.hive.views.widgets.TextDrawableView
+        android:id="@+id/tvBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:drawablePadding="2dp"
+        android:gravity="center"
+        android:lines="1"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="11sp"
+        app:drawableHeight="10dp"
+        app:drawableWidth="10dp"
+        tools:text="eaksjdklaj" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

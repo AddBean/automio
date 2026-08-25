@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <com.hive.script.views.widgets.ScriptValueView
+        android:id="@+id/editId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scriptValueEditEnable="true"
+        app:scriptActionEnable="true"
+        app:scriptValueEditWidth="160dp"
+        app:scriptValueName="@string/sc_edit_read_view_text_title_id"
+        app:scriptValueTextColor="@color/colorAccent" />
+
+    <com.hive.script.views.widgets.ScriptValueView
+        android:id="@+id/editTargetIndex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scriptValueEditEnable="true"
+        app:scriptValueEditWidth="160dp"
+        app:scriptValueName="@string/sc_input_target_index_title"
+        app:scriptValueTextColor="@color/colorAccent" />
+
+    <com.hive.script.views.widgets.ScriptTabSelectorView
+        android:id="@+id/type_selector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        app:scriptName="@string/sc_input_type"
+        app:tabBackground="@drawable/xml_selector_round_tab_item_view"
+        app:tabDefaultValue="full"
+        app:tabNameList="@string/sc_input_type_list"
+        app:tabTxtColor="@drawable/xml_selector_round_tab_item_view_color"
+        app:tabValueList="full,append" />
+
+    <com.hive.script.views.widgets.ScriptTabSelectorView
+        android:id="@+id/switch_anim_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:scriptName="@string/sc_input_anim_input"
+        app:tabBackground="@drawable/xml_selector_round_tab_item_view"
+        app:tabDefaultValue="0"
+        app:tabNameList="@string/sc_share_ctr_edit_type_list"
+        app:tabTxtColor="@drawable/xml_selector_round_tab_item_view_color"
+        app:tabValueList="0,1" />
+
+    <com.hive.script.views.widgets.ScriptSpanParamLayout
+        android:id="@+id/edit_content"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_margin="6dp"
+        tools:text="--" />
+
+</LinearLayout>

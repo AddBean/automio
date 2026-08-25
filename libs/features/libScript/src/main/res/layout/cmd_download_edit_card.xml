@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:background="@color/colorPrimary">
+
+
+    <com.hive.script.views.widgets.ScriptValueView
+        android:id="@+id/downloadUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scriptValueEditEnable="false"
+        app:scriptValueName="@string/sc_cmd_select_download_url_title"
+        app:scriptValueTextColor="@color/colorAccent" />
+
+
+    <com.hive.script.views.widgets.ScriptValueView
+        android:id="@+id/paramTarget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scriptValueEditEnable="false"
+        app:scriptValueName="@string/sc_cmd_select_download_target_title"
+        app:scriptValueTextColor="@color/colorAccent" />
+
+    <com.hive.script.views.widgets.ScriptTabSelectorView
+        android:id="@+id/gallerySelector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        app:scriptName="@string/sc_cmd_select_download_grallery_title"
+        app:tabBackground="@drawable/xml_selector_round_tab_item_view"
+        app:tabDefaultValue="click"
+        app:tabNameList="@string/sc_cmd_select_download_grallery_type_list"
+        app:tabTxtColor="@drawable/xml_selector_round_tab_item_view_color"
+        app:tabValueList="true,false" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:lineSpacingMultiplier="1.2"
+        android:text="@string/sc_cmd_download_tip_msg"
+        android:textColor="@color/colorTextSecondary"
+        android:textSize="14sp" />
+</LinearLayout>

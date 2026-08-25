@@ -1,0 +1,63 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+android {
+    namespace "com.hive.agent"
+    compileSdk rootProject.ext.android.compileSdkVersion
+    defaultConfig {
+        minSdk rootProject.ext.android.minSdkVersion
+        targetSdk rootProject.ext.android.targetSdkVersion
+
+        versionCode 1
+        versionName "1.0"
+        manifestPlaceholders = [
+                MANIFEST_APPLICATION_ID: "${rootProject.ext.android.applicationId}"
+        ]
+    }
+
+    buildTypes {
+        release {
+            // 库模块通常不需要单独混淆，最终混淆会在应用模块统一处理
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+    }
+    compileOptions {
+        sourceCompatibility rootProject.ext.javaVersion
+        targetCompatibility rootProject.ext.javaVersion
+    }
+    kotlinOptions {
+        jvmTarget = rootProject.ext.javaVersion.toString()
+    }
+    lintOptions {
+        abortOnError false
+    }
+    buildFeatures {
+        viewBinding true
+        buildConfig true  // Required for BuildConfig in AGP 9.0.0
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':libs:framework:libBase')
+    implementation project(path: ':libs:framework:libUtils')
+    implementation project(path: ':libs:framework:libCompon')
+    implementation project(path: ':libs:framework:libNet')
+    implementation project(path: ':libs:framework:libViews')
+    implementation project(path: ':libs:features:libScript')
+    implementation project(path: ':libs:features:libMCP')
+    implementation project(path: ':libs:features:libAudio')
+
+    implementation rootProject.ext.publicDependencies.androidxLifecycle
+
+    testImplementation 'junit:junit:4.13.2'
+
+}

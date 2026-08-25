@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:background="@color/colorPrimaryLight">
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/opt_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.hive.script.views.widgets.ScriptTabSelectorView
+            android:id="@+id/type_selector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            app:scriptName="@string/sc_if_post_action_type"
+            app:tabBackground="@drawable/xml_selector_round_tab_item_view"
+            app:tabDefaultValue="click"
+            app:tabNameList="@string/sc_if_post_action_type_list"
+            app:tabTxtColor="@drawable/xml_selector_round_tab_item_view_color"
+            app:tabValueList="none,click,longClick" />
+
+        <com.hive.script.views.widgets.ScriptFloatView
+            android:id="@+id/number_action_delay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:optFloatInput="true"
+            app:optFloatMax="3600"
+            app:optFloatMin="0.00"
+            app:optFloatStep="0.2"
+            app:optFloatType="TYPE2"
+            app:optFloatUnit="@string/sc_unit_s"
+            app:scriptFloatEnable="true"
+            app:scriptFloatMaxDigits="2"
+            app:scriptFloatName="@string/sc_if_post_action_delay"
+            app:scriptFloatRatio="1000" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/opt_content_notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+
+        <com.hive.script.views.widgets.ScriptMultipleSelectorView
+            android:id="@+id/notification_app_pkg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="8dp" />
+
+        <com.hive.script.views.widgets.ScriptValueView
+            android:id="@+id/targetParamIdView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:scriptValueEditEnable="false"
+            app:scriptValueName="@string/sc_if_post_action_param"
+            app:scriptValueTextColor="@color/colorAccent" />
+
+        <com.hive.script.views.widgets.ScriptTabSelectorView
+            android:id="@+id/notification_type_selector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            app:scriptName="@string/sc_if_post_action_type"
+            app:tabBackground="@drawable/xml_selector_round_tab_item_view"
+            app:tabDefaultValue="click"
+            app:tabNameList="@string/sc_if_post_action_type_list_notification"
+            app:tabTxtColor="@drawable/xml_selector_round_tab_item_view_color"
+            app:tabValueList="click,none" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/opt_content_permission"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+    </LinearLayout>
+
+</LinearLayout>

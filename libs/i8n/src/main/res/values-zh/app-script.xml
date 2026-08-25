@@ -1,0 +1,237 @@
+<resources>
+    <string name="sys_toast_exit_waring">双击返回键退出</string>
+    <string name="cancel_string">取消</string>
+    <string name="setting_script_lang">语言设置</string>
+    <string name="setting_script_lang_current">语言设置（%1$s）</string>
+    <string name="setting_script_unlock">锁屏录制</string>
+    <string name="str_long_press">长按</string>
+    <string name="str_click_finger">👆</string>
+    <string name="str_request_permission">必要权限</string>
+    <string name="str_assist_server">辅助服务权限</string>
+    <string name="design_nav_agent">智能体</string>
+    <string name="design_nav_workflow">资源</string>
+    <string name="design_nav_profile">设置</string>
+    <string name="workflow_tab_workflow">工作流</string>
+    <string name="workflow_tab_ai_capability">AI 能力</string>
+    <string name="design_workflow_section_title">本地工作流</string>
+    <string name="design_workflow_list_desc">已安装的自动化工作流将在此展示，支持查看详情、编辑和直接运行。</string>
+    <string name="workflow_section_ai_desc">已安装的 AI 技能与工具，用于智能体自动化能力。</string>
+    <string name="workflow_section_skill_desc">用于小型智能任务，可让 Agent 调度完成，如自动评论、自动发布视频。</string>
+    <string name="workflow_section_tool_desc">供 Agent 调用的固定工作流，用于执行明确操作，如发送消息、自动连击、自动打怪。</string>
+    <string name="design_workflow_empty_title">暂无工作流</string>
+    <string name="design_workflow_empty_desc">您还没有创建或导入任何自动化工作流。</string>
+    <string name="design_profile_scheduled_tasks">定时任务</string>
+    <string name="design_profile_permission_status_ok">正常</string>
+    <string name="design_profile_permission_status_need">需开启</string>
+    <string name="design_profile_version_format">版本 %s</string>
+    <string name="design_profile_permission_center">权限中心</string>
+    <string name="design_permission_center_intro">集中管理 APP 所需各项权限，方便您快速设置</string>
+    <string name="design_permission_section_required">必要权限</string>
+    <string name="design_permission_section_stable">稳定运行的权限</string>
+    <string name="design_permission_status_on">已开启</string>
+    <string name="design_permission_status_off">需开启</string>
+    <string name="design_permission_go_settings">去设置</string>
+    <string name="design_perm_a11y_desc">本应用为手机 Agent 功能，需依赖辅助功能实现自动化操作（如点击、滑动、读取界面等）。未开启将无法使用核心自动化能力。</string>
+    <string name="design_perm_screen_title">读取屏幕内容权限</string>
+    <string name="design_perm_screen_desc">用于识别当前界面元素，实现智能操作与上下文理解，确保 Agent 能正确执行任务。</string>
+    <string name="main_toolbar_search_cd">搜索</string>
+    <string name="main_toolbar_search_placeholder">搜索功能尚未接入。</string>
+    <string name="main_toolbar_a11y_enabled_short">已启用</string>
+    <string name="main_toolbar_a11y_disabled_short">未开启</string>
+    <string name="main_toolbar_banner_message">辅助功能权限未授权，自动化受限</string>
+    <string name="main_toolbar_banner_action">开启</string>
+    <string name="permission_already">已授权</string>
+    <string name="permission_retry">重新授权</string>
+    <string name="permission_grant">去授权</string>
+    <string name="script_index_title_1">我的工作流</string>
+    <string name="script_index_title_2">定时工作流</string>
+    <string name="setting_script_unlock_already_record">重新录制</string>
+    <string name="setting_script_unlock_not_record">去录制</string>
+
+    <string name="sc_index_btn_tip1">自动操作 解放双手</string>
+    <string name="sc_index_btn_tip2">运行功能需要您授予[辅助功能/无障碍]权限</string>
+
+    <string name="sc_index_btn_recording">已启动</string>
+    <string name="sc_index_btn_recording_des">点击打开悬浮菜单</string>
+
+    <string name="sc_index_btn_running">停止</string>
+    <string name="sc_index_btn_running_des">点击停止工作流</string>
+    <string name="sc_guide_des1">找到"已安装的服务"</string>
+    <string name="sc_lock_page_title">锁屏手势</string>
+    <string name="sc_lock_page_title1">如何设置</string>
+    <string name="sc_lock_page_1">去录制</string>
+    <string name="sc_lock_page_2">通过录制解锁工作流，可以让您的工作流在执行过程中，自动解锁屏幕，防止锁屏后影响正常执行</string>
+    <string name="sc_lock_page_3">测试锁屏</string>
+    <string name="sc_lock_page_4">测试您的锁屏手势是否能正常解锁屏幕，建议您录制完解锁手势后测试下，注意：在某些情况下，锁屏界面改变，会导致解锁失败，例如：手机重启等情况</string>
+    <string name="sc_lock_page_5">去测试</string>
+    <string name="sc_lock_page_6">锁屏录制</string>
+    <string name="first_enter_permission_title">辅助服务提示</string>
+    <string name="first_enter_permission_content" formatted="false">我们通过使用 AccessibilityServices API 来实现本应用的核心功能。&#10;1.为什么使用此服务?&#10;我们通过这种方式来实现比如点击滑动手势和其它核心功能。&#10;2.我们是否收集隐私数据？&#10;我们不会通过这种方式来收集任何隐私信息。&#10;&#10;如果您同意使用，请点击同意按钮后并继续</string>
+    <string name="version_toast">版本号：%s</string>
+    <string name="personal_center">个人中心</string>
+    <string name="personal_please_agree_agreement">请先同意用户协议和隐私条款！</string>
+    <string name="sc_script_index_title">工作流管理</string>
+    <string name="unlock_setting_not_record_yet">请先录制解锁脚本!</string>
+    <string name="unlock_confirm_title">友好提示</string>
+    <string name="unlock_confirm_msg">锁屏设置只能通过密码或者手势解锁，切勿用人脸识别或指纹识别</string>
+    <string name="unlock_confirm_ok">知道了</string>
+    <string name="sc_setting_permission_grant">去授权</string>
+    <string name="sc_setting_permission_pic_reg_tip">录制过程中使用【识图】操作需要该权限，如关闭，则无法进行识图</string>
+    <string name="sc_setting_permission_pic_reg_title">图片/颜色识别权限</string>
+    <string name="sc_setting_permission_not_tip">如执行【监控通知栏工作流】该权限一定要打开，否则工作流不生效</string>
+    <string name="sc_setting_permission_not_title">通知栏权限</string>
+    <string name="sc_setting_permission_power_tip">设置可以任意使用电量，不休眠，允许后台运行，来避免被系统关闭</string>
+    <string name="sc_setting_permission_power_title">省电优化</string>
+    <string name="sc_setting_permission_auto_start_title">自启动</string>
+    <string name="sc_setting_permission_auto_start_tip">运行【定时工作流】务必打开该权限，否则可能会导致无法执行</string>
+    <string name="sc_setting_permission_title">保证稳定运行的权限</string>
+    <string name="sc_setting_permission_detail" formatted="false">重要提示：&#10;如运营一段时间后出现自动关闭权限，卡死等不稳定情况，可能是因为系统自动关闭了【无障碍】权限，请务必打开以下权限，来保证服务的稳定性</string>
+    <string name="sc_setting_permission_back">权限</string>
+    <string name="sc_index_btn_state0">开启服务权限</string>
+    <string name="sc_index_btn_state1">打开录制面板</string>
+    <string name="sc_index_btn_state2">面板已开启</string>
+    <string name="init_error_in_firstin">网络超时，请检查您的网络再进入～</string>
+    <string name="layout_account_languages">选择语言</string>
+    <string name="language_name_zh_cn">简体中文</string>
+    <string name="language_name_zh_tw">繁體中文</string>
+    <string name="language_name_en">English</string>
+
+    <!-- Agent Index View -->
+    <string name="agent_input_hint">去淘宝找个销量最好的牙刷加入购物车</string>
+    <string name="agent_input_empty">请输入指令内容</string>
+    <string name="agent_floating_window_shown">已显示悬浮窗</string>
+    <string name="agent_accessibility_required">请先开启辅助功能</string>
+    <string name="agent_status_disabled">未启用</string>
+    <string name="agent_status_open">打开</string>
+    <string name="agent_provider_configured">已配置</string>
+    <string name="agent_provider_not_set">未设置</string>
+    <string name="agent_show_more">显示更多 ▼</string>
+    <string name="agent_show_less">收起 ▲</string>
+    <string name="agent_help_center">帮助中心</string>
+    <string name="agent_faq">常见问题</string>
+
+    <!-- Agent Commands Array -->
+    <string-array name="agent_command_tags">
+        <item>帮我打开微信</item>
+        <item>在美团下单一杯瑞幸的生椰拿铁</item>
+        <item>去淘宝找个销量最好的牙刷加入购物车</item>
+        <item>在抖音随机回复 3 条评论，内容自己定</item>
+        <item>去B站搜索王者荣耀直播</item>
+        <item>帮我在58同城上找一个日常保洁</item>
+        <item>在今日头条搜索26考研的相关资讯</item>
+        <item>帮我把相机设置为Instagram风格</item>
+        <item>帮我写一封请假邮件</item>
+    </string-array>
+
+    <!-- Agent Index View Layout -->
+    <string name="agent_index_title">AI智能体助手</string>
+    <string name="agent_welcome_greeting">你好 👋</string>
+
+    <string name="agent_example_tasks_title">示例任务，来试试吧</string>
+    <string name="agent_accessibility_title">辅助功能权限</string>
+    <string name="agent_accessibility_description">允许AI控制您的设备</string>
+    <string name="agent_accessibility_status_disabled">未启用</string>
+    <string name="agent_float_window_title">显示悬浮窗</string>
+    <string name="agent_float_window_description">便捷的任务控制面板</string>
+    <string name="agent_float_window_status_open">打开</string>
+    <string name="agent_model_description">配置智能推理引擎</string>
+    <string name="agent_model_default">DeepSeek Chat</string>
+
+    <!-- Agent Tool Management -->
+    <string name="agent_tool_management">工具管理</string>
+    <string name="add_tool">添加工具</string>
+    <string name="agent_no_custom_tools_message">您没有自定义智能体工具，去添加个吧</string>
+    <string name="setting_workflow_settings">工作流设置</string>
+    <string name="setting_agent_settings">智能体设置</string>
+    <string name="setting_model_management">模型管理</string>
+    <string name="setting_agent_prompt">Agent Prompt</string>
+    <string name="setting_skill_prompt">Skill Prompt</string>
+
+    <!-- MCP 管理 -->
+    <string name="setting_more">更多设置</string>
+
+    <string name="design_back_cd">返回</string>
+    <string name="mcp_service_stopped">服务已停止 - HTTP端口: %s</string>
+    <string name="mcp_custom_tools">自定义工具</string>
+    <string name="mcp_builtin_tools">内置工具</string>
+    <string name="mcp_service_not_initialized">服务未初始化</string>
+    <string name="mcp_service_status_failed">状态获取失败</string>
+
+    <string name="agent_accessibility_go_enable">去开启无障碍服务 →</string>
+    <string name="download_tips_title">下载提示</string>
+    <string name="download_tips_content">在非wifi网络下载？</string>
+
+    <!-- 新增的国际化字符串 -->
+    <string name="agent_tool_count_info">共 %d 个工具</string>
+    <string name="agent_tool_count_default">共 0 项</string>
+    <string name="agent_tool_delete_title">删除工具</string>
+    <string name="agent_tool_delete_message">确定要删除工具 \"%s\" 吗？</string>
+    <string name="agent_tool_delete_success">工具删除成功</string>
+    <string name="agent_tool_delete_failed">工具删除失败</string>
+    <string name="agent_tool_delete_error">删除工具时发生错误</string>
+    <string name="agent_tool_name">工具名称</string>
+    <string name="agent_tool_status_online">在线</string>
+    <string name="agent_tool_description">工具描述信息</string>
+    <string name="agent_prompt_name">提示词名称</string>
+    <string name="agent_prompt_description">提示词描述信息</string>
+    <string name="agent_prompt_arguments" formatted="false">参数: {}</string>
+    <string name="agent_resource_name">资源名称</string>
+    <string name="agent_resource_type">type</string>
+    <string name="agent_resource_description">资源描述信息</string>
+    <string name="agent_resource_uri">URI: resource://example</string>
+    <string name="agent_no_tools_loaded">没有加载到工具！</string>
+    <string name="chat_select_image">选择图片</string>
+    <string name="chat_send_message">发送消息</string>
+    <string name="chat_attachment_preview">附件预览</string>
+    <string name="sc_force_exit">强制退出</string>
+    <string name="sc_setting_permission_wallpaper_title">壁纸保活</string>
+    <string name="sc_setting_permission_wallpaper_tip">设为壁纸可防止系统终止</string>
+    <string name="sc_setting_wallpaper_grant">授权</string>
+
+    <string name="layout_wall_paper">设置壁纸</string>
+    <string name="setting_wallpaper_setting">壁纸设置</string>
+    <string name="setting_image_setting">图集管理</string>
+    <string name="layout_delete_wallpaper">删除提示</string>
+    <string name="layout_delete_wallpaper_hint">删除该壁纸</string>
+
+    <string name="user_wallpaper_permission_dialog_title">权限提示</string>
+    <string name="user_wallpaper_permission_dialog_msg">设置壁纸背景，需要获取您的图库和存储权限，请同意后继续操作！</string>
+    <string name="user_wallpaper_permission_dialog_confirm">同意</string>
+
+    <string name="ai_agent_task_tag">智能体任务</string>
+    <string name="engineer_generate_tag_test_scripts">生成统一Tag测试脚本</string>
+    <string name="engineer_generate_tag_test_scripts_success">已生成 %1$d 个统一Tag测试脚本</string>
+    <string name="engineer_generate_tag_test_scripts_failed">生成统一Tag测试脚本失败（%1$d）</string>
+    <string name="script_tag_test_observe">作用域观察测试</string>
+    <string name="script_name_prefix_test_observe">观察测试</string>
+    <string name="ai_name_prompt_script">根据用户目标和命令生成简短脚本名（中文10字内或英文3-5词）。只输出名称。用户目标：%1$s 命令：%2$s</string>
+
+    <!-- API Key Validation Messages -->
+    <string name="api_key_validation_claude">密钥应该以sk-ant-开头</string>
+    <string name="api_key_validation_deepseek">请填写 API Key</string>
+    <string name="api_key_validation_gemini">Gemini需要API密钥</string>
+    <string name="api_key_validation_ollama">Ollama不需要API密钥</string>
+    <string name="api_key_validation_openrouter">密钥应该以sk-or-开头</string>
+    <string name="api_key_validation_openai">请填写 API Key</string>
+    <string name="api_key_validation_bailian">请填写 API Key</string>
+    <string name="api_key_validation_bailian_code">密钥应以 sk-sp- 开头</string>
+    <string name="api_key_validation_kimi">请填写 API Key</string>
+    <string name="api_key_validation_siliconflow">请填写 API Key</string>
+    <string name="api_key_validation_mimo">请填写 API Key</string>
+    <string name="api_key_validation_minimax">请填写 API Key</string>
+    <string name="api_key_validation_stepfun">请填写 API Key</string>
+    <string name="api_key_validation_openai_custom">请填写 API Key</string>
+    <string name="api_key_validation_ark_agent_plan">请填写 API Key</string>
+    <string name="api_key_validation_ark_coding_plan">请填写 API Key</string>
+
+    <string name="search_hint">搜索工作流、技能、工具...</string>
+    <string name="design_profile_local_subtitle">本地自动化工作区</string>
+    <string name="design_placeholder_hint">开源版暂未提供此页面。</string>
+
+    <string name="setting_speech_service">语音服务</string>
+    <string name="setting_speech_ms_key">Azure Speech Key</string>
+    <string name="setting_speech_ms_region">Azure Speech Region</string>
+    <string name="setting_speech_saved">语音凭证已保存</string>
+    <string name="setting_speech_cleared">语音凭证已清除</string>
+    <string name="setting_speech_key_required">请填写 Speech Key 与 Region</string>
+</resources>

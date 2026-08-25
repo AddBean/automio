@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/record_menu"
+    android:layout_width="240dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/xml_script_menu_main_bg2"
+    android:divider="@color/public_line"
+    android:dividerPadding="@dimen/public_line_width"
+    android:orientation="vertical"
+    android:showDividers="none">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_menu_height"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btn_record_finish"
+            style="@style/base.content.title"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/xml_sc_btn_red_round_bg3"
+            android:gravity="center"
+            android:src="@drawable/ic_stop"
+            android:text="完成录制"
+            android:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_record_play"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btn_record_play"
+            style="@style/base.content.title"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:paddingVertical="5dp"
+            android:src="@drawable/ic_pause"
+            android:tint="@color/textColorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_record_finish"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btnRollBack"
+            style="@style/base.content.title"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical|left"
+            android:paddingVertical="5dp"
+            android:src="@drawable/ic_roll_back"
+            android:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_record_play"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlHardcoded"
+            tools:visibility="visible" />
+
+        <com.hive.script.views.widgets.RecordTimeView
+            android:id="@+id/btn_play_time"
+            style="@style/base.content.title"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="12dp"
+            android:paddingHorizontal="5dp"
+            android:src="@drawable/icon_logger_play"
+            android:text="00:00"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnRollBack"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btnExpendDown"
+            style="@style/base.content.title"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="12dp"
+            android:gravity="center"
+            android:paddingVertical="5dp"
+            android:src="@drawable/ic_expend_down"
+            android:text="停止录制"
+            android:tint="@color/textColorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_play_time"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.hive.script.views.widgets.ScriptListRecyclerView
+        android:id="@+id/menu_list"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:overScrollMode="never"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:scrollbars="none"
+        android:visibility="gone"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="5"
+        tools:itemCount="20" />
+
+
+</LinearLayout>

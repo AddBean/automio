@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="font">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+    <style name="font.black">
+        <item name="android:textColor">#ffffff</item>
+    </style>
+    <style name="font.black.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="font.black.13">
+        <item name="android:textSize">13sp</item>
+    </style>
+    <style name="font.black.13.bold">
+       <item name="android:textStyle">bold</item>
+    </style>
+    <style name="font.black2">
+        <item name="android:textColor">@color/public_text</item>
+    </style>
+    <style name="font.black2.10">
+        <item name="android:textSize">10sp</item>
+    </style>
+    <style name="font.black2.11">
+        <item name="android:textSize">11sp</item>
+    </style>
+    <style name="font.black2.22">
+        <item name="android:textSize">22sp</item>
+    </style>
+    <style name="font.black2.17">
+        <item name="android:textSize">17sp</item>
+    </style>
+    <style name="font.black2.17.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="font.black2.15">
+        <item name="android:textSize">15sp</item>
+    </style>
+    <style name="font.black2.15.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="font.black2.13">
+        <item name="android:textSize">13sp</item>
+    </style>
+    <style name="font.black2.13.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="font.black2.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="font.black3">
+        <item name="android:textColor">@color/public_sub_text9</item>
+    </style>
+
+    <style name="font.black3.8">
+        <item name="android:textSize">8sp</item>
+    </style>
+    <style name="font.black3.9">
+        <item name="android:textSize">9sp</item>
+    </style>
+    <style name="font.black3.11">
+        <item name="android:textSize">11sp</item>
+    </style>
+    <style name="font.black3.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="font.black3.13">
+        <item name="android:textSize">13sp</item>
+    </style>
+    <style name="font.black3.14">
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="font.black3.15">
+        <item name="android:textSize">15sp</item>
+    </style>
+    <style name="font.black3.18">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="font.black3.12.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="font.gray">
+        <item name="android:textColor">@color/public_sub_text9</item>
+    </style>
+    <style name="font.gray.13">
+        <item name="android:textSize">13sp</item>
+    </style>
+    <style name="font.gray.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="font.gray.11">
+        <item name="android:textSize">11sp</item>
+    </style>
+    <style name="font.gray.10">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="font.white">
+        <item name="android:textColor">@color/color_white</item>
+    </style>
+    <style name="font.white.10">
+        <item name="android:textSize">10sp</item>
+    </style>
+    <style name="font.white.9">
+        <item name="android:textSize">9sp</item>
+    </style>
+    <style name="font.white.8">
+        <item name="android:textSize">8sp</item>
+    </style>
+
+    <style name="font.primary">
+        <item name="android:textColor">#EBA048</item>
+    </style>
+    <style name="font.primary.7">
+        <item name="android:textSize">7sp</item>
+    </style>
+
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 分组标题图标容器：w-5 h-5 rounded -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#0Dffffff" />
+    <corners android:radius="4dp" />
+</shape>

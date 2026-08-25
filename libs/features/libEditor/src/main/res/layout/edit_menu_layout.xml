@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/rl_layout_editor"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1dip"
+            android:layout_above="@+id/ll_layout_editor"
+            android:background="@color/colorSplitLine" />
+
+        <LinearLayout
+            android:id="@+id/ll_layout_editor"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/action_undo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/undo" />
+
+            <ImageButton
+                android:id="@+id/action_redo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/redo" />
+
+            <ImageButton
+                android:id="@+id/action_font"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/font" />
+
+            <FrameLayout
+                android:id="@+id/action_color"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <com.hive.richeditor.views.ItemColor
+                    android:id="@+id/color_view"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1" />
+
+            </FrameLayout>
+
+            <ImageButton
+                android:id="@+id/action_add"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/add" />
+
+            <ImageButton
+                android:id="@+id/action_down"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/icon_keybord"
+                android:tint="@color/icon_grey" />
+
+            <ImageButton
+                android:id="@+id/action_setting"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:contentDescription="@null"
+                android:src="@drawable/icon_setting"
+                android:tint="@color/icon_grey" />
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

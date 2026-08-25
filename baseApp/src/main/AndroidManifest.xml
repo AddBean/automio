@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.hive.framework">
+
+    <meta-data
+        android:name="android.max_aspect"
+        android:value="2.3" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <application
+        android:hardwareAccelerated="true"
+        android:requestLegacyExternalStorage="true"
+        android:theme="@style/AppBaseTheme"
+        android:usesCleartextTraffic="true">
+
+        <!-- 支持 Android 16+ 的 16KB 页面大小 -->
+        <property
+            android:name="android.app.PROPERTY_SUPPORT_16KB_PAGE_SIZE"
+            android:value="true" />
+
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="1280"/>
+
+        <meta-data
+            android:name="design_height_in_dp"
+            android:value="800"/>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${MANIFEST_FILE_PROVIDER}"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity android:name=".crash.CrashDetailActivity"
+            android:configChanges="locale"
+            android:process=":crashDetail"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.DayNight"
+            android:screenOrientation="nosensor"/>
+
+    </application>
+</manifest>

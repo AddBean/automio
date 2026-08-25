@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 统一的资源列表 Item 控件布局（对齐 workflow spec） -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/design_resource_item_margin_top"
+    android:layout_marginBottom="@dimen/design_resource_item_margin_top"
+    android:background="@drawable/script_workflow_card_bg"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/design_spacing_4"
+    android:paddingTop="@dimen/design_spacing_3_5"
+    android:paddingBottom="@dimen/design_spacing_3_5"
+    tools:background="@color/script_workflow_bg_card">
+
+    <!-- Top Row (水平布局) -->
+    <LinearLayout
+        android:id="@+id/layout_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!-- 资源图标 (40dp) -->
+        <com.hive.views.widgets.UIResourceIconView
+            android:id="@+id/icon_resource"
+            android:layout_width="@dimen/design_resource_item_icon_size"
+            android:layout_height="@dimen/design_resource_item_icon_size"
+            app:ri_resourceType="workflow" />
+
+        <!-- 文本区域 (垂直布局) -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/design_resource_item_text_start"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- 名称 (14sp bold) -->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/script_workflow_text_primary"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="Resource name" />
+
+            <!-- Meta Row (水平布局) -->
+            <LinearLayout
+                android:id="@+id/layout_meta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/design_resource_item_margin_top"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <!-- 状态点 (可选, 8dp) -->
+                <View
+                    android:id="@+id/status_dot"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_marginEnd="@dimen/design_spacing_1"
+                    android:background="@drawable/xml_status_online_bg"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <!-- 状态标签 (24dp height, minWidth 58dp) -->
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/design_resource_item_status_height"
+                    android:background="@drawable/script_workflow_status_bg"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:minWidth="@dimen/design_resource_item_status_min_width"
+                    android:paddingHorizontal="@dimen/design_spacing_2_5"
+                    android:text="@string/script_state_pending"
+                    android:textColor="@color/script_workflow_status_text_idle"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    tools:text="Pending"
+                    tools:ignore="SmallSp" />
+
+                <!-- 描述/类型 (11sp, 可选) -->
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/design_spacing_2"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/script_workflow_text_desc"
+                    android:textSize="11sp"
+                    android:visibility="gone"
+                    tools:text="Description"
+                    tools:visibility="visible" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 播放按钮 (32dp) -->
+        <ImageView
+            android:id="@+id/iv_play"
+            android:layout_width="@dimen/design_resource_item_play_btn_size"
+            android:layout_height="@dimen/design_resource_item_play_btn_size"
+            android:layout_marginStart="@dimen/design_resource_item_play_start"
+            android:background="@drawable/script_workflow_play_circle_bg"
+            android:scaleType="fitCenter"
+            android:src="@drawable/script_workflow_play_pause_selector" />
+
+        <!-- 箭头 (32dp, 可选) -->
+        <ImageView
+            android:id="@+id/iv_arrow"
+            android:layout_width="@dimen/design_resource_item_play_btn_size"
+            android:layout_height="@dimen/design_resource_item_play_btn_size"
+            android:layout_marginStart="@dimen/design_spacing_1"
+            android:padding="8dp"
+            android:src="@drawable/ic_arrow_right"
+            android:tint="@color/script_workflow_emerald_muted"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <!-- 删除按钮 (32dp, 可选) -->
+        <ImageView
+            android:id="@+id/iv_delete"
+            android:layout_width="@dimen/design_resource_item_play_btn_size"
+            android:layout_height="@dimen/design_resource_item_play_btn_size"
+            android:layout_marginStart="@dimen/design_spacing_1"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:padding="6dp"
+            android:src="@drawable/sc_ic_delete"
+            android:tint="@color/script_workflow_emerald_muted"
+            android:visibility="gone"
+            tools:visibility="visible" />
+    </LinearLayout>
+
+</LinearLayout>

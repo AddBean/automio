@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#E9E9E9"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+
+        <com.hive.views.widgets.wheel.WheelView
+            android:id="@+id/wheel_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+        </com.hive.views.widgets.wheel.WheelView>
+
+        <com.hive.views.widgets.wheel.WheelView
+            android:id="@+id/wheel_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+        </com.hive.views.widgets.wheel.WheelView>
+
+        <com.hive.views.widgets.wheel.WheelView
+            android:id="@+id/wheel_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+        </com.hive.views.widgets.wheel.WheelView>
+    </LinearLayout>
+</LinearLayout>

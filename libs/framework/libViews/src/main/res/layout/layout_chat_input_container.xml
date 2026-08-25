@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hive.views.widgets.UIRoundCornerLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chatInputRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/xml_input_container_bg"
+    android:elevation="8dp"
+    android:orientation="vertical"
+    android:padding="12dp"
+    app:rcv_radius="20dp">
+
+    <!-- 附件预览区域（选择图片后显示） -->
+    <FrameLayout
+        android:id="@+id/attachmentPreviewContainer"
+        android:layout_width="52dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginBottom="12dp"
+        android:visibility="gone"
+        tools:visibility="gone">
+
+        <com.hive.views.widgets.UIRoundCornerImageView
+            android:id="@+id/attachmentPreviewImage"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/attachment_preview_bg"
+            android:contentDescription="@string/chat_attachment_preview"
+            android:padding="2dp"
+            android:scaleType="centerCrop"
+            app:rcv_borderColor="@color/colorSplitLine"
+            app:rcv_borderWidth="1dp"
+            app:rcv_radius="8dp" />
+
+        <com.hive.views.widgets.UIRoundCornerImageView
+            android:id="@+id/removeAttachmentBtn"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="-4dp"
+            android:layout_marginEnd="-4dp"
+            android:background="@color/red"
+            android:padding="6dp"
+            android:src="@drawable/ic_pop_close"
+            app:rcv_radius="8dp"
+            app:tint="@color/colorTextSecondary" />
+    </FrameLayout>
+
+    <!-- 输入行：左侧语音 | 中间输入区 | 右侧图片+发送 -->
+    <LinearLayout
+        android:id="@+id/inputRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/voiceButtonContainer"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp">
+
+            <com.hive.views.widgets.VoiceInputButton
+                android:id="@+id/voiceInputBtn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/textActionContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/chatInputEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/xml_input_edit_bg"
+                    android:hint="@string/chat_input_hint"
+                    android:imeOptions="actionSend"
+                    android:maxLines="4"
+                    android:minHeight="48dp"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="10dp"
+                    android:textColor="@color/textColorPrimary"
+                    android:textColorHint="@color/colorTextSecondary"
+                    android:textSize="14sp" />
+
+                <com.hive.views.widgets.HoldToSpeakButton
+                    android:id="@+id/holdToSpeakBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/pickImageBtn"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="4dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/chat_select_image"
+                android:padding="10dp"
+                android:src="@drawable/ic_image"
+                android:tint="@color/colorTextSecondary"
+                android:visibility="gone"
+                tools:visibility="gone" />
+
+            <TextView
+                android:id="@+id/modelSelectBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_marginStart="4dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/chat_select_model"
+                android:ellipsize="middle"
+                android:gravity="center"
+                android:maxWidth="108dp"
+                android:maxLines="1"
+                android:paddingHorizontal="6dp"
+                android:text="@string/chat_select_model"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="12sp"
+                android:visibility="gone"
+                tools:text="GPT-4o"
+                tools:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/sendChatBtn"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/chat_send_message"
+                android:padding="10dp"
+                android:src="@drawable/ic_send"
+                android:tint="@color/textColorPrimary" />
+        </LinearLayout>
+    </LinearLayout>
+
+</com.hive.views.widgets.UIRoundCornerLinearLayout>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_voice_interact_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="48dp"
+    android:tag="ScriptDialog">
+
+    <com.hive.views.widgets.UIRoundCornerLinearLayout
+        android:id="@+id/layout_bar_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:clickable="true"
+        android:elevation="10dp"
+        android:focusable="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingHorizontal="12dp"
+        android:paddingTop="9dp"
+        android:paddingBottom="12dp"
+        app:rcv_borderColor="@color/colorSplitLine"
+        app:rcv_borderWidth="1dp"
+        app:rcv_radius="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/btnCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/xml_btn_round_line_bg"
+                android:gravity="center"
+                android:minWidth="56dp"
+                android:paddingHorizontal="12dp"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.9"
+                    android:background="@drawable/xml_voice_interact_status_chip_bg"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="4dp"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/btn_collapse_expanded"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_collapse_arrow" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <com.hive.views.widgets.MaxHeightLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:heightDimen="200dp">
+
+            <ScrollView
+                android:id="@+id/scroll_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/xml_voice_interact_content_bg"
+                android:fadeScrollbars="true"
+                android:overScrollMode="ifContentScrolls"
+                android:scrollbars="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.96"
+                        android:gravity="start|center_vertical"
+                        android:lineSpacingExtra="3dp"
+                        android:paddingHorizontal="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="36dp"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="14sp" />
+
+                    <com.hive.views.widgets.VoiceWaveformView
+                        android:id="@+id/waveform_view"
+                        android:layout_width="32dp"
+                        android:layout_height="16dp"
+                        android:layout_margin="8dp"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_content"
+                        app:layout_constraintEnd_toEndOf="@id/tv_content" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </ScrollView>
+
+        </com.hive.views.widgets.MaxHeightLayout>
+    </com.hive.views.widgets.UIRoundCornerLinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_collapsed_root"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/xml_voice_interact_bar_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="8dp"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <com.hive.views.widgets.VoiceWaveformView
+            android:id="@+id/waveform_view_collapsed"
+            android:layout_width="32dp"
+            android:layout_height="16dp" />
+
+        <TextView
+            android:id="@+id/tv_collapsed_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="6dp"
+            android:maxLines="1"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:rotation="180"
+            android:src="@drawable/ic_expand_arrow" />
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Shadow - aligned with design -->
+    <item
+        android:right="1dp"
+        android:top="1dp">
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/colorPrimaryLight00" />
+                    <padding
+                        android:left="0px"
+                        android:right="0px"
+                        android:top="7px" />
+                    <corners
+                        android:topLeftRadius="24dp"
+                        android:topRightRadius="24dp" />
+                </shape>
+            </item>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/colorPrimaryLight02" />
+                    <padding
+                        android:left="0px"
+                        android:right="0px"
+                        android:top="6px" />
+                    <corners
+                        android:topLeftRadius="24dp"
+                        android:topRightRadius="24dp" />
+                </shape>
+            </item>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/colorPrimaryLight03" />
+                    <padding
+                        android:left="0px"
+                        android:right="0px"
+                        android:top="5px" />
+                    <corners
+                        android:topLeftRadius="24dp"
+                        android:topRightRadius="24dp" />
+                </shape>
+            </item>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/colorPrimaryLight04" />
+                    <padding
+                        android:left="0px"
+                        android:right="0px"
+                        android:top="4px" />
+                    <corners
+                        android:topLeftRadius="24dp"
+                        android:topRightRadius="24dp" />
+                </shape>
+            </item>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/colorPrimaryLight05" />
+                    <padding
+                        android:left="0px"
+                        android:right="0px"
+                        android:top="3px" />
+                    <corners
+                        android:topLeftRadius="24dp"
+                        android:topRightRadius="24dp" />
+                </shape>
+            </item>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/colorPrimaryLight06" />
+                    <padding
+                        android:left="0px"
+                        android:right="0px"
+                        android:top="2px" />
+                    <corners
+                        android:topLeftRadius="24dp"
+                        android:topRightRadius="24dp" />
+                </shape>
+            </item>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/colorPrimaryLight07" />
+                    <padding
+                        android:left="0px"
+                        android:right="0px"
+                        android:top="1px" />
+                    <corners
+                        android:topLeftRadius="24dp"
+                        android:topRightRadius="24dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+    <!-- Content layer with border -->
+    <item>
+        <layer-list android:layout_height="match_parent">
+            <!-- Background with top corners only (aligned with design: bg-[#0d0d0d] rounded-t-[32px] border-t border-white/10) -->
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/colorPrimaryLight" />
+                    <corners
+                        android:topLeftRadius="24dp"
+                        android:topRightRadius="24dp" />
+                    <!-- Top border: border-white/10 equivalent -->
+                    <stroke
+                        android:width="1dp"
+                        android:color="#0FFFFFFF" />
+                </shape>
+            </item>
+            <!-- Drag handle: w-12 h-1.5 bg-white/10 rounded-full (48dp × 6dp in web, ~24dp × 3dp in Android) -->
+            <item
+                android:width="48dp"
+                android:height="6dp"
+                android:gravity="center_horizontal"
+                android:top="20dp">
+                <shape android:shape="rectangle">
+                    <corners android:radius="3dp" />
+                    <!-- white/10 = #1AFFFFFF -->
+                    <solid android:color="#1AFFFFFF" />
+                </shape>
+            </item>
+        </layer-list>
+
+    </item>
+</layer-list>

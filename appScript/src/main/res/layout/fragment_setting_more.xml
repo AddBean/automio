@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/design_bg_overlay"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/design_spacing_page_horizontal"
+            android:paddingTop="@dimen/design_spacing_4"
+            android:paddingBottom="@dimen/design_spacing_8">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/design_spacing_3"
+                android:letterSpacing="0.12"
+                android:text="@string/setting_workflow_settings"
+                android:textAllCaps="true"
+                android:textColor="@color/design_text_muted"
+                android:textSize="@dimen/design_font_xs"
+                android:textStyle="bold" />
+
+            <com.hive.views.widgets.UIRoundCornerLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/design_permission_card_surface"
+                android:divider="@drawable/design_linearlayout_divider"
+                android:dividerPadding="@dimen/design_spacing_4"
+                android:orientation="vertical"
+                android:padding="@dimen/design_spacing_4"
+                android:showDividers="middle"
+                app:rcv_borderColor="@color/design_permission_card_border"
+                app:rcv_borderWidth="1dp"
+                app:rcv_radius="@dimen/design_radius_profile_group">
+
+                <com.hive.views.widgets.TextDrawableView
+                    android:id="@+id/btn_script_setting"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:drawablePadding="@dimen/design_spacing_2"
+                    android:drawableTint="@color/design_text_tertiary"
+                    android:gravity="center_vertical"
+                    android:text="@string/setting_script_setting"
+                    android:textColor="@color/design_text_secondary"
+                    android:textSize="@dimen/design_font_lg"
+                    app:drawableHeight="@dimen/design_profile_row_icon_size"
+                    app:drawableLeft="@drawable/ic_script"
+                    app:drawableRight="@drawable/setting_arrow"
+                    app:drawableWidth="@dimen/design_profile_row_icon_size" />
+
+                <com.hive.views.widgets.TextDrawableView
+                    android:id="@+id/btn_script_screenlock"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:drawablePadding="@dimen/design_spacing_2"
+                    android:drawableTint="@color/design_text_tertiary"
+                    android:gravity="center_vertical"
+                    android:text="@string/setting_script_unlock"
+                    android:textColor="@color/design_text_secondary"
+                    android:textSize="@dimen/design_font_lg"
+                    app:drawableHeight="@dimen/design_profile_row_icon_size"
+                    app:drawableLeft="@drawable/ic_lock"
+                    app:drawableRight="@drawable/setting_arrow"
+                    app:drawableWidth="@dimen/design_profile_row_icon_size" />
+
+                <com.hive.views.widgets.TextDrawableView
+                    android:id="@+id/btn_image_setting"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:drawablePadding="@dimen/design_spacing_2"
+                    android:drawableTint="@color/design_text_tertiary"
+                    android:gravity="center_vertical"
+                    android:text="@string/setting_image_setting"
+                    android:textColor="@color/design_text_secondary"
+                    android:textSize="@dimen/design_font_lg"
+                    app:drawableHeight="@dimen/design_profile_row_icon_size"
+                    app:drawableLeft="@drawable/setting_image"
+                    app:drawableRight="@drawable/setting_arrow"
+                    app:drawableWidth="@dimen/design_profile_row_icon_size" />
+            </com.hive.views.widgets.UIRoundCornerLinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/design_spacing_8"
+                android:layout_marginBottom="@dimen/design_spacing_3"
+                android:letterSpacing="0.12"
+                android:text="@string/setting_agent_settings"
+                android:textAllCaps="true"
+                android:textColor="@color/design_text_muted"
+                android:textSize="@dimen/design_font_xs"
+                android:textStyle="bold" />
+
+            <com.hive.views.widgets.UIRoundCornerLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/design_permission_card_surface"
+                android:divider="@drawable/design_linearlayout_divider"
+                android:dividerPadding="@dimen/design_spacing_4"
+                android:orientation="vertical"
+                android:padding="@dimen/design_spacing_4"
+                android:showDividers="middle"
+                app:rcv_borderColor="@color/design_permission_card_border"
+                app:rcv_borderWidth="1dp"
+                app:rcv_radius="@dimen/design_radius_profile_group">
+
+                <com.hive.views.widgets.TextDrawableView
+                    android:id="@+id/btn_speech_setting"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:drawablePadding="@dimen/design_spacing_2"
+                    android:drawableTint="@color/design_text_tertiary"
+                    android:gravity="center_vertical"
+                    android:text="@string/setting_speech_service"
+                    android:textColor="@color/design_text_secondary"
+                    android:textSize="@dimen/design_font_lg"
+                    app:drawableHeight="@dimen/design_profile_row_icon_size"
+                    app:drawableLeft="@drawable/ic_mic"
+                    app:drawableRight="@drawable/setting_arrow"
+                    app:drawableWidth="@dimen/design_profile_row_icon_size" />
+
+                <com.hive.views.widgets.TextDrawableView
+                    android:id="@+id/btn_agent_memory_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:drawablePadding="@dimen/design_spacing_2"
+                    android:drawableTint="@color/design_text_tertiary"
+                    android:gravity="center_vertical"
+                    android:text="@string/agent_memory_view"
+                    android:textColor="@color/design_text_secondary"
+                    android:textSize="@dimen/design_font_lg"
+                    app:drawableHeight="@dimen/design_profile_row_icon_size"
+                    app:drawableLeft="@drawable/ic_setting"
+                    app:drawableRight="@drawable/setting_arrow"
+                    app:drawableWidth="@dimen/design_profile_row_icon_size" />
+
+                <com.hive.views.widgets.TextDrawableView
+                    android:id="@+id/btn_agent_prompt"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:drawablePadding="@dimen/design_spacing_2"
+                    android:drawableTint="@color/design_text_tertiary"
+                    android:gravity="center_vertical"
+                    android:text="@string/setting_agent_prompt"
+                    android:textColor="@color/design_text_secondary"
+                    android:textSize="@dimen/design_font_lg"
+                    android:visibility="gone"
+                    app:drawableHeight="@dimen/design_profile_row_icon_size"
+                    app:drawableLeft="@drawable/ic_setting"
+                    app:drawableRight="@drawable/setting_arrow"
+                    app:drawableWidth="@dimen/design_profile_row_icon_size"
+                    tools:visibility="visible" />
+
+                <com.hive.views.widgets.TextDrawableView
+                    android:id="@+id/btn_skill_prompt"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:drawablePadding="@dimen/design_spacing_2"
+                    android:drawableTint="@color/design_text_tertiary"
+                    android:gravity="center_vertical"
+                    android:text="@string/setting_skill_prompt"
+                    android:textColor="@color/design_text_secondary"
+                    android:textSize="@dimen/design_font_lg"
+                    android:visibility="gone"
+                    app:drawableHeight="@dimen/design_profile_row_icon_size"
+                    app:drawableLeft="@drawable/ic_setting"
+                    app:drawableRight="@drawable/setting_arrow"
+                    app:drawableWidth="@dimen/design_profile_row_icon_size"
+                    tools:visibility="visible" />
+            </com.hive.views.widgets.UIRoundCornerLinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_state"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:nestedScrollingEnabled="false"
+            android:overScrollMode="never"
+            android:padding="8dp"
+            android:paddingBottom="8dp"
+            android:scrollbars="none" />
+        <!-- 添加按钮区域 -->
+
+        <com.hive.views.widgets.TextDrawableView
+            android:id="@+id/tvAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/xml_elegant_card_bg"
+            android:drawablePadding="6dp"
+            android:drawableTint="@color/tech_cyan"
+            android:gravity="center"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp"
+            android:text="@string/sc_multiple_selector_add"
+            android:textColor="@color/tech_cyan"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:drawableHeight="14dp"
+            app:drawableLeft="@drawable/icon_plus_thin"
+            app:drawableWidth="14dp" />
+    </LinearLayout>
+</RelativeLayout>

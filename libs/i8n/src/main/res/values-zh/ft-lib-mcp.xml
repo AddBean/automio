@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 服务相关 -->
+    <string name="mcp_service_title">MCP服务</string>
+    <string name="mcp_service_running">MCP服务正在运行中 - SSE: %1$d, HTTP: %2$d</string>
+    <string name="mcp_service_status">工具服务状态</string>
+    <string name="mcp_service_channel">MCP服务</string>
+
+    <!-- 协议错误消息 -->
+    <string name="mcp_parse_error">解析错误: %s</string>
+    <string name="mcp_missing_tool_name">缺少工具名称</string>
+    <string name="mcp_tool_not_exist">工具 \'%s\' 不存在</string>
+    <string name="mcp_tool_execution_success">操作成功</string>
+    <string name="mcp_tool_execution_failed">工具执行失败: %s</string>
+    <string name="mcp_missing_resource_uri">缺少资源URI</string>
+    <string name="mcp_resource_not_exist">资源 \'%s\' 不存在</string>
+    <string name="mcp_resource_read_failed">资源读取失败: %s</string>
+    <string name="mcp_missing_prompt_name">缺少提示名称</string>
+    <string name="mcp_prompt_not_exist">提示 \'%s\' 不存在</string>
+    <string name="mcp_prompt_description">自动化工作流提示</string>
+    <string name="mcp_prompt_generation_failed">提示生成失败: %s</string>
+    <string name="mcp_unknown_method">未知方法: %s</string>
+
+    <!-- 兼容性字符串 -->
+    <string name="mcp_error_parse">解析错误: %s</string>
+    <string name="mcp_error_missing_tool_name">缺少工具名称</string>
+    <string name="mcp_error_tool_not_found">工具 \'%s\' 不存在</string>
+    <string name="mcp_success_operation">操作成功</string>
+    <string name="mcp_error_tool_execution">工具执行失败</string>
+    <string name="mcp_error_tool_execution_detail">工具执行失败: %s</string>
+    <string name="mcp_error_missing_uri">缺少资源URI</string>
+    <string name="mcp_error_resource_not_found">资源 \'%s\' 不存在</string>
+    <string name="mcp_error_resource_read">资源读取失败: %s</string>
+    <string name="mcp_error_missing_prompt_name">缺少提示名称</string>
+    <string name="mcp_error_prompt_not_found">提示 \'%s\' 不存在</string>
+    <string name="mcp_error_prompt_generation">提示生成失败: %s</string>
+    <string name="mcp_error_unknown_method">未知方法: %s</string>
+
+    <!-- Service Status -->
+    <string name="mcp_status_starting">正在启动服务…</string>
+    <string name="mcp_status_started">服务已启动</string>
+    <string name="mcp_status_stopping">正在停止服务…</string>
+    <string name="mcp_status_stopped">服务已停止</string>
+    <string name="mcp_status_error">服务错误</string>
+    <string name="mcp_status_connected">已连接</string>
+    <string name="mcp_status_disconnected">已断开</string>
+
+    <!-- Tool List UI -->
+    <string name="mcp_tool_list_empty">暂无已注册的工具</string>
+    <string name="mcp_tool_count">共 %d 个工具</string>
+    <string name="mcp_tool_empty_title">暂无能力组件</string>
+    <string name="mcp_tool_empty_desc">创建工具后，即可在本机 Agent 中使用。</string>
+    <string name="mcp_tool_empty_action">去创建工具</string>
+    <string name="mcp_tool_empty_custom_title">暂无自定义工具</string>
+    <string name="mcp_tool_empty_custom_desc">把工作流发布成 AI 工具后，就会显示在这里。</string>
+    <string name="mcp_tool_empty_builtin_title">暂无内置工具</string>
+    <string name="mcp_tool_empty_builtin_desc">可以前往发现页同步或安装内置能力组件。</string>
+    <string name="mcp_tool_filter_custom">自定义</string>
+    <string name="mcp_tool_filter_builtin">内置</string>
+    <string name="mcp_tool_filter_all">全部</string>
+    <string name="mcp_tool_type_custom">自定义工具</string>
+    <string name="mcp_tool_type_builtin">内置工具</string>
+    <string name="mcp_tool_detail_close">关闭</string>
+    <string name="mcp_tool_detail_ok">知道了</string>
+    <string name="mcp_tool_detail_params">参数</string>
+    <string name="mcp_tool_detail_title">工具详情</string>
+    <string name="mcp_tool_detail_no_description">暂未补充工具描述。</string>
+    <string name="mcp_tool_detail_no_params">无入参要求</string>
+    <string name="mcp_tool_detail_no_params_desc">这个工具不需要额外参数，Agent 可直接调用。</string>
+    <string name="mcp_tool_detail_no_param_desc">暂未补充该参数说明。</string>
+    <string name="mcp_tool_detail_param_required">%1$s（必填）</string>
+    <string name="mcp_tool_script_path">脚本路径</string>
+    <string name="mcp_tool_change_script">更换工作流</string>
+    <string name="mcp_tool_edit_script">编辑</string>
+    <string name="mcp_tool_edit_info">编辑信息</string>
+    <string name="mcp_tool_run_title">运行 %1$s</string>
+    <string name="mcp_tool_run_json_hint">请为 %1$s 输入 JSON</string>
+    <string name="mcp_tool_run_service_unavailable">工具服务不可用</string>
+    <string name="mcp_tool_run_fill_required">请填写所有必填参数</string>
+
+    <!-- Tool Management -->
+    <string name="mcp_tool_registered">工具已注册: %s</string>
+    <string name="mcp_tool_unregistered">工具已注销: %s</string>
+    <string name="mcp_tool_executing">正在执行工具: %s</string>
+    <string name="mcp_tool_completed">工具执行完成: %s</string>
+
+    <!-- Resource Management -->
+    <string name="mcp_resource_loaded">资源已载入: %s</string>
+    <string name="mcp_resource_unloaded">资源已卸载: %s</string>
+    <string name="mcp_resource_error">资源错误: %s</string>
+
+    <!-- Prompt Management -->
+    <string name="mcp_prompt_loaded">提示已载入: %s</string>
+    <string name="mcp_prompt_generated">提示已生成: %s</string>
+    <string name="mcp_prompt_error">提示错误: %s</string>
+    
+    <!-- Additional strings for McpProtocol -->
+    <string name="mcp_server_name">Automio MCP服务器</string>
+    <string name="mcp_server_version">1.0.0</string>
+    <string name="mcp_server_description">Android 设备自动化与 UI 交互 MCP 服务。提供：屏幕操作（点击、滑动、输入、长按）、OCR 文字识别、布局获取、应用启动、HTTP 请求、用户对话框（确认/输入/选择）、截屏/拍照等工具。当用户需要控制 Android 设备、自动化任务或与手机界面交互时使用。</string>
+    <string name="mcp_tool_execution_failed_hardcoded">工具执行失败</string>
+    <string name="mcp_tool_result_format" formatted="false">工具执行失败：%1$s\n页面信息：\n```json\n%2$s\n```</string>
+    <string name="mcp_tool_result_format_simple" formatted="false">工具执行失败：%1$s</string>
+    <string name="mcp_custom_error_code">自定义错误代码</string>
+    <string name="mcp_automated_workflow_prompt">自动化工作流提示</string>
+
+    <!-- Create/Edit MCP Tool -->
+    <string name="create_mcp_tool_title">创建 AI 工具</string>
+    <string name="edit_mcp_tool_title">编辑 AI 工具</string>
+    <string name="edit_mcp_tool_success">工具信息已更新</string>
+
+    <!-- 电脑接入 MCP -->
+    <string name="mcp_connect_entry">电脑接入 MCP</string>
+    <string name="mcp_connect_title">电脑接入 MCP</string>
+    <string name="mcp_connect_intro">把手机上的 Automio MCP 服务接到 Cursor、Claude Desktop 等电脑端客户端，即可在电脑上调用本机自动化能力。</string>
+    <string name="mcp_connect_step1_title">1. 保持 App 运行</string>
+    <string name="mcp_connect_step1_desc">打开 Automio 并保持应用在运行状态，MCP 服务会随应用一起启动（Streamable HTTP 端口 %1$d）。</string>
+    <string name="mcp_connect_step2_title">2. 连通手机与电脑</string>
+    <string name="mcp_connect_step2_adb_title">方式 A：USB + adb reverse（推荐）</string>
+    <string name="mcp_connect_step2_adb_desc">用数据线连接手机，在电脑终端执行下面命令，把手机端口映射到本机：</string>
+    <string name="mcp_connect_step2_lan_title">方式 B：同一 Wi-Fi 局域网</string>
+    <string name="mcp_connect_step2_lan_desc">手机与电脑连同一 Wi-Fi 后，使用下方局域网地址配置。当前设备 IP：%1$s</string>
+    <string name="mcp_connect_step2_lan_unknown">未知（请确认已连 Wi-Fi）</string>
+    <string name="mcp_connect_step3_title">3. 粘贴 MCP 配置</string>
+    <string name="mcp_connect_step3_desc">将配置写入 Cursor 的 mcp.json（或 Claude Desktop 等客户端的 MCP 设置）。点击下方代码块即可复制。</string>
+    <string name="mcp_connect_config_adb_title">adb reverse 后使用（127.0.0.1）</string>
+    <string name="mcp_connect_config_lan_title">局域网直连</string>
+    <string name="mcp_connect_tap_copy">点击复制</string>
+    <string name="mcp_connect_copied">已复制到剪贴板</string>
+</resources>

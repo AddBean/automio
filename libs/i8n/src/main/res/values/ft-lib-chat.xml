@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Voice chat UI -->
+    <string name="chat_voice_input">Voice input</string>
+    <string name="chat_voice_input_start">Start voice input</string>
+    <string name="chat_voice_input_stop">Stop voice input</string>
+    <string name="chat_voice_input_recognizing">Recognizing...</string>
+    <string name="chat_voice_input_error">Voice recognition failed</string>
+    <string name="chat_voice_hold_to_speak">Hold to speak</string>
+    <string name="chat_voice_release_send">Release to send</string>
+    <string name="chat_voice_slide_cancel">Slide here to cancel</string>
+    <string name="chat_voice_cancel">Cancel</string>
+    <string name="chat_voice_send">Send</string>
+    <string name="chat_voice_recording_short">Voice</string>
+    <string name="chat_voice_slide_to_text">Slide here to text</string>
+    <string name="chat_voice_release_to_text">Release to text</string>
+</resources>

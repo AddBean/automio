@@ -1,0 +1,61 @@
+{
+    "folders": [
+        {
+            "name": "AppScriptX (Root)",
+            "path": "."
+        },
+        {
+            "name": "appScript",
+            "path": "./appScript"
+        },
+        {
+            "name": "baseApp", 
+            "path": "./baseApp"
+        },
+        {
+            "name": "libScript",
+            "path": "./libs/features/libScript"
+        },
+        {
+            "name": "libMCP",
+            "path": "./libs/features/libMCP"
+        },
+        {
+            "name": "libBase",
+            "path": "./libs/framework/libBase"
+        }
+    ],
+    "settings": {
+        "java.configuration.updateBuildConfiguration": "automatic",
+        "java.import.gradle.enabled": true,
+        "java.gradle.buildServer.enabled": "off",
+        "java.project.sourcePaths": [],
+        "java.project.outputPath": "bin",
+        "java.project.referencedLibraries": [
+            "**/*.jar",
+            "!**/build/**",
+            "!**/.gradle/**"
+        ],
+        "files.exclude": {
+            "**/build": true,
+            "**/.gradle": true,
+            "**/node_modules": true,
+            "**/.git": true,
+            "**/.DS_Store": true
+        },
+        "search.exclude": {
+            "**/build": true,
+            "**/.gradle": true,
+            "**/node_modules": true
+        },
+        "claudeCodeChat.permissions.yoloMode": true
+    },
+    "extensions": {
+        "recommendations": [
+            "vscjava.vscode-java-pack",
+            "mathiasfrohlich.kotlin",
+            "adelphes.android-dev-ext",
+            "ms-vscode.vscode-json"
+        ]
+    }
+} 

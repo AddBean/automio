@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hive.views.widgets.UIRoundCornerLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/design_permission_card_surface"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:padding="@dimen/design_spacing_4"
+    app:rcv_borderColor="@color/design_permission_card_border"
+    app:rcv_borderWidth="1dp"
+    app:rcv_radius="@dimen/design_radius_lg">
+
+    <TextView
+        android:id="@+id/tv_copy_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="@string/mcp_connect_tap_copy"
+        android:textColor="@color/design_accent_indigo_text"
+        android:textSize="@dimen/design_font_xs" />
+
+    <TextView
+        android:id="@+id/tv_copy_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/design_spacing_2"
+        android:fontFamily="monospace"
+        android:lineSpacingExtra="2dp"
+        android:textColor="@color/design_text_secondary"
+        android:textSize="@dimen/design_font_sm"
+        tools:text="adb reverse tcp:9999 tcp:9999" />
+</com.hive.views.widgets.UIRoundCornerLinearLayout>

@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hive.views.StatefulLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_state"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:defState="progress">
+
+    <LinearLayout
+        android:id="@+id/layoutScriptEditView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/xml_common_dialog_round_bottom_bg"
+        android:clickable="false"
+        android:orientation="vertical"
+        android:paddingTop="40dp"
+        android:tag="ScriptDialog">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="start"
+                android:padding="19dp"
+                android:src="@drawable/icon_close"
+                app:tint="@color/textColorPrimary" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="42dp"
+                android:layout_marginEnd="150dp"
+                android:ellipsize="middle"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="@string/sc_script_edit_title"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/btn_save"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="end"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/xml_btn_blue_round_bg"
+                android:gravity="center_vertical"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:text="@string/sc_script_edit_save"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="12sp"
+                android:visibility="visible" />
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.hive.script.views.widgets.ScriptNavigationBar
+                android:id="@+id/navigation_bar"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_weight="1"
+                android:background="@drawable/xml_btn_round_bg" />
+
+            <ImageView
+                android:id="@+id/iv_eye"
+                android:layout_width="80dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="-4dp"
+                android:src="@drawable/xml_btn_xedit_switch"
+                android:visibility="gone" />
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/layoutEdit1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.hive.script.views.edit.editor.ListScriptEditView
+                    android:id="@+id/edit_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/layoutEdit2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.hive.script.views.edit.xeditor.ScriptXEditorView
+                    android:id="@+id/x_edit_view"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_height="match_parent" />
+
+                <View
+                    android:id="@+id/x_edit_anchor_view"
+                    android:layout_width="1dp"
+                    android:layout_height="1dp" />
+
+                <com.hive.views.widgets.TextDrawableView
+                    android:id="@+id/x_empty_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawablePadding="4dp"
+                    android:gravity="center_vertical"
+                    android:padding="8dp"
+                    android:text="@string/sc_empty_add"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="16sp"
+                    android:visibility="gone"
+                    app:drawableHeight="24dp"
+                    app:drawableLeft="@drawable/sc_edit_add"
+                    app:drawableTint="@color/colorTextSecondary"
+                    app:drawableWidth="24dp" />
+
+                <com.hive.views.widgets.TextDrawableView
+                    android:id="@+id/x_param_manger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|top"
+                    android:layout_marginTop="-3dp"
+                    android:background="@drawable/xml_btn_bl_br_round_bg"
+                    android:drawablePadding="2dp"
+                    android:gravity="center"
+                    android:paddingStart="16dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="4dp"
+                    android:text="@string/sc_param_manger"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="12sp"
+                    app:drawableHeight="14dp"
+                    app:drawableLeft="@drawable/sc_icon_param"
+                    app:drawableTint="@color/colorTextSecondary"
+                    app:drawableWidth="14dp" />
+
+                <LinearLayout
+                    android:id="@+id/sideMenu"
+                    android:layout_width="36dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|top"
+                    android:layout_margin="12dp"
+                    android:background="@drawable/xml_btn_round_line_bg_2"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp">
+
+                    <ImageView
+                        android:id="@+id/btnMini"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:alpha="0.9"
+                        android:gravity="center"
+                        android:padding="9dp"
+                        android:src="@drawable/sc_icon_min"
+                        app:tint="@color/white" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginStart="-2dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginEnd="-8dp"
+                        android:layout_marginBottom="1dp"
+                        android:background="@color/colorSplitLine" />
+
+                    <ImageView
+                        android:id="@+id/btnPlay"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:alpha="0.9"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_play"
+                        android:tint="@color/white" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginStart="-2dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginEnd="-8dp"
+                        android:layout_marginBottom="1dp"
+                        android:background="@color/colorSplitLine" />
+
+                    <ImageView
+                        android:id="@+id/btnTempSave"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:alpha="0.9"
+                        android:gravity="center"
+                        android:padding="9dp"
+                        android:src="@drawable/sc_ic_save"
+                        android:tint="@color/white" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginStart="-8dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginEnd="-8dp"
+                        android:layout_marginBottom="1dp"
+                        android:background="@color/colorSplitLine"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/btnSaveImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:alpha="0.9"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:src="@drawable/sc_icon_download"
+                        android:visibility="gone" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginStart="-2dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginEnd="-8dp"
+                        android:layout_marginBottom="1dp"
+                        android:background="@color/colorSplitLine" />
+
+                    <ImageView
+                        android:id="@+id/btnAutoLayout"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:alpha="0.9"
+                        android:gravity="center"
+                        android:padding="9.5dp"
+                        android:src="@drawable/sc_meihua"
+                        android:tint="@color/white" />
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginStart="-2dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginEnd="-8dp"
+                        android:layout_marginBottom="1dp"
+                        android:background="@color/colorSplitLine" />
+
+                    <ImageView
+                        android:id="@+id/btnShare"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:alpha="0.9"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:src="@drawable/sc_icon_share"
+                        android:tint="@color/white" />
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginStart="-8dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginEnd="-8dp"
+                        android:layout_marginBottom="1dp"
+                        android:background="@color/colorSplitLine" />
+
+                    <ImageView
+                        android:id="@+id/btnMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:alpha="0.9"
+                        android:gravity="center"
+                        android:padding="11dp"
+                        android:src="@drawable/sc_ic_more_her"
+                        android:tint="@color/white" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/bottomMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:layout_marginBottom="48dp"
+                    android:background="@drawable/xml_btn_round_line_bg_2"
+                    android:orientation="horizontal"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="4dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="4dp">
+
+
+                    <ImageView
+                        android:id="@+id/btnUndo"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:padding="7dp"
+                        android:src="@drawable/sc_icon_undo" />
+
+                    <ImageView
+                        android:id="@+id/btnRedo"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:padding="7dp"
+                        android:src="@drawable/sc_icon_redo" />
+
+                    <ImageView
+                        android:id="@+id/btnFold"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:padding="6dp"
+                        android:src="@drawable/sc_icon_unfold2" />
+
+                    <ImageView
+                        android:id="@+id/btnUnfold"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:padding="6dp"
+                        android:src="@drawable/sc_icon_fold2" />
+
+
+                </LinearLayout>
+            </FrameLayout>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</com.hive.views.StatefulLayout>

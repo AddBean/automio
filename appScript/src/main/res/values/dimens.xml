@@ -1,0 +1,121 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="collapsed_header_height">40dp</dimen>
+    <dimen name="player_detail_min_hieght">240dp</dimen>
+    <dimen name="download_margin_bottom">80dp</dimen>
+    <dimen name="storage_layout_hight">26dp</dimen>
+    <dimen name="pop_item_width">270dp</dimen>
+    <dimen name="episode_item_height">58dp</dimen>
+    <dimen name="episode_item_height_source">50dp</dimen>
+    <dimen name="source_popup_window_width">140dp</dimen>
+    <dimen name="download_head_top_heigh">180dp</dimen>
+    <dimen name="main_title_height">38dp</dimen>
+    
+    <!-- Command tag dimensions -->
+    <dimen name="dp_1">1dp</dimen>
+    <dimen name="dp_8">8dp</dimen>
+    <dimen name="dp_12">12dp</dimen>
+    <dimen name="dp_16">16dp</dimen>
+
+    <!-- spacing.json px → dp -->
+    <dimen name="design_spacing_0_5">2dp</dimen>
+    <dimen name="design_spacing_1">4dp</dimen>
+    <dimen name="design_spacing_1_5">6dp</dimen>
+    <dimen name="design_spacing_2">8dp</dimen>
+    <dimen name="design_spacing_2_5">10dp</dimen>
+    <dimen name="design_spacing_3">12dp</dimen>
+    <dimen name="design_spacing_3_5">14dp</dimen>
+    <dimen name="design_spacing_4">16dp</dimen>
+    <dimen name="design_spacing_4_5">18dp</dimen>
+    <dimen name="design_spacing_5">20dp</dimen>
+    <dimen name="design_spacing_6">24dp</dimen>
+    <dimen name="design_spacing_8">32dp</dimen>
+    <dimen name="design_spacing_12">48dp</dimen>
+    <dimen name="design_spacing_24">96dp</dimen>
+
+    <dimen name="design_spacing_block">16dp</dimen>
+    <dimen name="design_spacing_page_horizontal">24dp</dimen>
+
+    <!-- typography.json px → sp -->
+    <dimen name="design_font_3xs">10sp</dimen>
+    <dimen name="design_font_2xs">11sp</dimen>
+    <dimen name="design_font_xs">12sp</dimen>
+    <dimen name="design_font_sm">13sp</dimen>
+    <dimen name="design_font_base">14sp</dimen>
+    <dimen name="design_font_md">14sp</dimen>
+    <dimen name="design_font_lg">15sp</dimen>
+    <dimen name="design_font_xl">16sp</dimen>
+    <dimen name="design_font_body">14sp</dimen>
+    <dimen name="design_font_3xl">28sp</dimen>
+
+    <!-- radius -->
+    <dimen name="design_border_width">0.5dp</dimen>
+    <dimen name="design_radius_xs">4dp</dimen>
+    <dimen name="design_radius_sm">8dp</dimen>
+    <dimen name="design_radius_md">12dp</dimen>
+    <dimen name="design_radius_lg">16dp</dimen>
+    <dimen name="design_radius_2xl">16dp</dimen>
+    <dimen name="design_radius_xl">24dp</dimen>
+    <dimen name="design_radius_3xl">36dp</dimen>
+    <dimen name="design_radius_profile_group">20dp</dimen>
+
+    <dimen name="design_nav_icon_size">20dp</dimen>
+    <dimen name="design_nav_label_text">9sp</dimen>
+    <dimen name="design_tab_bar_height">64dp</dimen>
+
+    <!-- Resource detail：分段开关、机型兼容卡片（对齐 Web border / 半透明底） -->
+    <dimen name="design_publish_detail_summary_icon">40dp</dimen>
+    <dimen name="design_publish_cover_max_height">120dp</dimen>
+    <dimen name="design_publish_cover_size">168dp</dimen>
+    <dimen name="design_publish_detail_image_tile">56dp</dimen>
+    <dimen name="design_publish_bottom_bar_padding_top">24dp</dimen>
+    <dimen name="design_publish_scroll_bottom_padding">20dp</dimen>
+
+    <!-- Resource detail hero & icon dimensions -->
+    <dimen name="design_resource_detail_hero_height">420dp</dimen>
+    <dimen name="design_resource_detail_icon_size">64dp</dimen>
+    <dimen name="design_resource_detail_icon_size_lg">40dp</dimen>
+    <dimen name="design_resource_detail_icon_padding">15dp</dimen>
+    <dimen name="design_resource_detail_icon_radius">20dp</dimen>
+    <dimen name="design_resource_detail_icon_image_size">34dp</dimen>
+    <dimen name="design_resource_detail_name_top_margin">14dp</dimen>
+    <dimen name="design_resource_detail_badge_top_margin">6dp</dimen>
+    <dimen name="design_resource_detail_hero_top_padding">120dp</dimen>
+    <dimen name="design_resource_detail_hero_bottom_padding">78dp</dimen>
+    <dimen name="design_resource_detail_bottom_scrim_height">92dp</dimen>
+    <dimen name="design_resource_detail_cta_height">64dp</dimen>
+    <dimen name="design_resource_detail_cta_min_height">52dp</dimen>
+    <dimen name="design_resource_detail_cta_bottom_margin">18dp</dimen>
+    <dimen name="design_resource_detail_top_scrim_height">120dp</dimen>
+    <dimen name="design_resource_detail_indicator_bottom_margin">22dp</dimen>
+    <dimen name="design_resource_detail_btn_size">40dp</dimen>
+    <dimen name="design_resource_detail_icon_small_size">14dp</dimen>
+
+    <!-- Skill & MCP tool detail dimensions -->
+    <dimen name="design_skill_detail_icon_size">84dp</dimen>
+    <dimen name="design_skill_detail_icon_radius">28dp</dimen>
+    <dimen name="design_skill_detail_icon_image_size">34dp</dimen>
+    <dimen name="design_skill_detail_action_btn_height">48dp</dimen>
+
+    <!-- Filter & empty state dimensions -->
+    <dimen name="design_filter_pill_height">28dp</dimen>
+    <dimen name="design_empty_state_icon_size_lg">64dp</dimen>
+    <dimen name="design_empty_state_icon_size_md">28dp</dimen>
+
+    <!-- Workflow detail dimensions -->
+    <dimen name="design_workflow_detail_scroll_bottom">144dp</dimen>
+    <dimen name="design_workflow_detail_icon_size">112dp</dimen>
+    <dimen name="design_workflow_detail_icon_radius">32dp</dimen>
+    <dimen name="design_workflow_detail_icon_image_size">56dp</dimen>
+    <dimen name="design_workflow_detail_action_height">96dp</dimen>
+    <dimen name="design_border_width_normal">1dp</dimen>
+
+    <!-- Personal Info Edit dimensions -->
+    <dimen name="design_personal_edit_avatar_size">80dp</dimen>
+    <dimen name="design_personal_edit_camera_btn_size">24dp</dimen>
+    <dimen name="design_personal_edit_camera_icon_size">14dp</dimen>
+    <dimen name="design_personal_edit_save_icon_size">20dp</dimen>
+
+</resources>

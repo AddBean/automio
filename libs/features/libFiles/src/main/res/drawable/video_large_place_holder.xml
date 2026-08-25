@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape android:shape="rectangle">
+            <size
+                android:width="60dp"
+                android:height="35dp" />
+            <solid android:color="@color/color_00AAEE" />
+
+        </shape>
+
+    </item>
+
+    <item>
+
+        <bitmap android:src="@drawable/x_file_play_sample" android:gravity="center"></bitmap>
+    </item>
+
+</layer-list>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:parentTag="android.widget.FrameLayout">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="4dp"
+        android:background="@drawable/xml_dark_round_rect"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingTop="6dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="6dp">
+
+        <com.hive.views.widgets.SelectorTabView
+            android:id="@+id/tab_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/xml_selector_round_tab_view"
+            app:tabBackground="@drawable/xml_selector_round_tab_item_view"
+            app:tabDefaultValue="out"
+            app:tabNameList="@string/sc_scale_inout_type_list"
+            app:tabTxtColor="@drawable/xml_selector_round_tab_item_view_color"
+            app:tabValueList="out,in" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="70dp"
+            android:layout_height="28dp"
+            android:layout_marginLeft="12dp"
+            android:background="@drawable/xml_btn_default_round_bg"
+            android:text="@string/ok"
+            android:textColor="@color/color_white" />
+    </LinearLayout>
+</merge>

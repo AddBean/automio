@@ -1,0 +1,111 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+ext.appSuffixName = ".apk"
+import com.android.build.OutputFile
+
+android {
+    namespace rootProject.ext.android.applicationId
+    compileSdk rootProject.ext.android.compileSdkVersion
+    defaultConfig {
+        minSdk rootProject.ext.android.minSdkVersion
+        targetSdk rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        multiDexEnabled true
+        packagingOptions {
+            exclude '*mapping*'
+            exclude 'META-INF/beans.xml'
+            // 已移除 droidsonroidsGifDrawable 依赖，不再需要排除 libpl_droidsonroids_gif.so
+//解决 More than one file was found with OS independent path 'lib/arm64-v8a/libc++_shared.so'
+            pickFirst 'lib/x86/libc++_shared.so'
+            pickFirst 'lib/arm64-v8a/libc++_shared.so'
+            pickFirst 'lib/armeabi-v7a/libc++_shared.so'
+            pickFirst 'lib/x86_64/libc++_shared.so'
+        }
+        ndk {
+            for (i in 0..<rootProject.ext.android.abiFilters.size()) {
+                abiFilters rootProject.ext.android.abiFilters[i]
+            }
+        }
+
+    }
+    compileOptions {
+        sourceCompatibility rootProject.ext.javaVersion
+        targetCompatibility rootProject.ext.javaVersion
+        coreLibraryDesugaringEnabled true
+    }
+    kotlinOptions {
+        jvmTarget = rootProject.ext.javaVersion.toString()
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+    }
+    buildFeatures {
+        viewBinding true
+        buildConfig true  // Required for BuildConfig in AGP 9.0.0
+    }
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                def abiName = output.getFilter(com.android.build.OutputFile.ABI)
+                if (abiName == null) {
+                    abiName = "full"
+                }
+                // 文件名包含版本、构建类型和 ABI，方便本地识别产物。
+                def packageName = rootProject.ext.android.applicationId
+                def versionCode = rootProject.ext.android.versionCode
+                def versionName = rootProject.ext.android.versionName
+                def date = rootProject.ext.gradleUtils.getTime()
+                outputFileName = "${packageName}_${versionCode}_${versionName}_${variant.buildType.name}_${abiName}_${date}${appSuffixName}".toLowerCase()
+            }
+        }
+    }
+
+//        aabResGuard {
+//            mappingFile = file("mapping1.txt").toPath() // 用于增量混淆的 mapping 文件
+//            whiteList = [ // 白名单规则
+//                          "*.R.raw.*",
+//                          "*.R.drawable.icon"
+//            ]
+//            def outputName = "finish_${rootProject.ext.android.flavorName}_(${rootProject.ext.android.versionCode})_${rootProject.ext.gradleUtils.getTime()}.aab".toLowerCase()
+//
+//            obfuscatedBundleFileName = outputName // 混淆后的文件名称，必须以 `.aab` 结尾
+//            mergeDuplicatedRes = true // 是否允许去除重复资源
+//            enableFilterFiles = false // 是否允许过滤文件
+//            filterList = [ // 文件过滤规则
+//                           "*/arm64-v8a/*",
+//                           "*/armabi-v7a/*",
+//                           "META-INF/*"
+//            ]
+//            enableFilterStrings = false // 过滤文案
+//            unusedStringPath = file("unused.txt").toPath() // 过滤文案列表路径 默认在mapping同目录查找
+////            languageWhiteList = ["en", "zh"] // 保留en,en-xx,zh,zh-xx等语言，其余均删除
+//        }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+    packagingOptions {
+        exclude 'META-INF/*.version'
+        exclude 'META-INF/*.kotlin_module'
+        exclude 'META-INF/INDEX.LIST'
+        exclude 'META-INF/io.netty.versions.properties'
+        exclude 'META-INF/*.properties'
+    }
+}
+
+dependencies {
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.4'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation project(path: ':appScript')
+}

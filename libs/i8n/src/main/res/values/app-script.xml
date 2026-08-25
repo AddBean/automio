@@ -1,0 +1,287 @@
+<resources>
+    <string name="sys_toast_exit_waring">Tap back twice to exit</string>
+    <string name="cancel_string">Cancel</string>
+    <string name="setting_script_setting">Workflow</string>
+    <string name="setting_script_lang">Language</string>
+    <string name="setting_script_lang_current">Language (%1$s)</string>
+    <string name="setting_script_unlock">Lock Screen</string>
+    <string name="str_long_press">Long press</string>
+    <string name="str_click_finger">👆</string>
+    <string name="str_request_permission">Permissions</string>
+    <string name="str_assist_server">Accessibility</string>
+    <string name="design_nav_agent">Agent</string>
+    <string name="design_nav_workflow">Resource</string>
+    <string name="design_nav_profile">Settings</string>
+    <string name="workflow_tab_workflow">Workflow</string>
+    <string name="workflow_tab_ai_capability">AI Capability</string>
+    <string name="design_workflow_section_title">LOCAL WORKFLOWS</string>
+    <string name="design_workflow_list_desc">Installed automation workflows are displayed here with details, editing, and direct execution.</string>
+    <string name="workflow_section_ai_desc">AI Skills and Tools installed on this device for Agent automation.</string>
+    <string name="workflow_section_skill_desc">For small intelligent tasks that Agent can dispatch, such as auto-replying or auto-publishing videos.</string>
+    <string name="workflow_section_tool_desc">Fixed workflows that Agent can call for explicit actions, such as sending messages, combo tapping, or auto-farming.</string>
+    <string name="design_workflow_empty_title">No workflows yet</string>
+    <string name="design_workflow_empty_desc">You have not created or imported any automation workflows.</string>
+    <string name="design_profile_scheduled_tasks">Cron Tasks</string>
+    <string name="design_profile_permission_status_ok">OK</string>
+    <string name="design_profile_permission_status_need">Enable</string>
+    <string name="design_profile_version_format">Version %s</string>
+    <string name="design_profile_permission_center">Permissions</string>
+    <string name="design_permission_center_intro">Manage app permissions in one place for quick setup.</string>
+    <string name="design_permission_section_required">Required permissions</string>
+    <string name="design_permission_section_stable">Permissions for stable operation</string>
+    <string name="design_permission_status_on">On</string>
+    <string name="design_permission_status_off">Required</string>
+    <string name="design_permission_go_settings">Open settings</string>
+    <string name="design_perm_a11y_desc">This app relies on Accessibility to automate taps, swipes, read the UI, and more. Core automation is unavailable without it.</string>
+    <string name="design_perm_screen_title">Screen content</string>
+    <string name="design_perm_screen_desc">Used to understand on-screen elements for smarter actions and context, so the Agent can complete tasks reliably.</string>
+    <string name="main_toolbar_search_cd">Search</string>
+    <string name="main_toolbar_search_placeholder">Search is not available yet.</string>
+    <string name="main_toolbar_a11y_enabled_short">On</string>
+    <string name="main_toolbar_a11y_disabled_short">Off</string>
+    <string name="main_toolbar_banner_message">Accessibility is off. Automation is limited.</string>
+    <string name="main_toolbar_banner_action">Enable</string>
+    <string name="permission_already">Granted</string>
+    <string name="permission_retry">Re-grant</string>
+    <string name="permission_grant">Grant</string>
+    <string name="script_index_title_1">Workflows</string>
+    <string name="script_index_title_2">Scheduled</string>
+    <string name="setting_script_unlock_already_record">Re-record</string>
+    <string name="setting_script_unlock_not_record">Record</string>
+    <string name="sc_index_btn_tip1">Automate tasks, save time</string>
+    <string name="sc_index_btn_tip2">Requires Accessibility permission</string>
+    <string name="sc_index_btn_recording">Started</string>
+    <string name="sc_index_btn_recording_des">Tap for floating menu</string>
+    <string name="sc_index_btn_running">Stop</string>
+    <string name="sc_index_btn_running_des">Tap to stop</string>
+    <string name="sc_guide_des1">Find \"Installed Services\"</string>
+    <string name="sc_lock_page_title">Lock Screen</string>
+    <string name="sc_lock_page_title1">Setup Guide</string>
+    <string name="sc_lock_page_1">Record</string>
+    <string name="sc_lock_page_2">Record unlock gesture to prevent screen lock interference during workflow execution.</string>
+    <string name="sc_lock_page_3">Test</string>
+    <string name="sc_lock_page_4">Test your unlock gesture. Recommended after recording. Note: Interface changes may cause failure.</string>
+    <string name="sc_lock_page_5">Test</string>
+    <string name="sc_lock_page_6">Record Unlock</string>
+    <string name="first_enter_permission_title">Accessibility Service Notice</string>
+    <string name="first_enter_permission_content" formatted="false">We use AccessibilityServices API to implement core features.&#10;1. Why use this service?&#10;We use it for gestures like click/swipe and other core functions.&#10;2. Do we collect private data?&#10;We do not collect any private information through this method.&#10;&#10;If you agree, click \"Agree\" to continue.</string>
+    <string name="version_toast">Version: %s</string>
+    <string name="personal_center">Personal Center</string>
+    <string name="personal_please_agree_agreement">Please agree to the User Agreement and Privacy Policy first!</string>
+    <string name="sc_script_index_title">Workflow Management</string>
+    <string name="unlock_setting_not_record_yet">Please record an unlock script first!</string>
+    <string name="unlock_confirm_title">Friendly Tip</string>
+    <string name="unlock_confirm_msg">Lock screen settings only work with password or gesture unlock. Do not use face or fingerprint recognition.</string>
+    <string name="unlock_confirm_ok">Got it</string>
+    <string name="sc_setting_permission_grant">Grant Permission</string>
+    <string name="sc_setting_permission_pic_reg_tip">The 【Image Recognition】 operation during recording requires this permission. If closed, image recognition will be unavailable.</string>
+    <string name="sc_setting_permission_pic_reg_title">Image/Color Recognition Permission</string>
+    <string name="sc_setting_permission_not_tip">For 【Monitor Notification Workflow】, this permission must be enabled, otherwise the workflow will not work.</string>
+    <string name="sc_setting_permission_not_title">Notification Permission</string>
+    <string name="sc_setting_permission_power_tip">Set to use power freely, prevent sleep, allow background run to avoid system termination.</string>
+    <string name="sc_setting_permission_power_title">Battery Optimization</string>
+    <string name="sc_setting_permission_auto_start_title">Auto-start</string>
+    <string name="sc_setting_permission_auto_start_tip">For 【Scheduled Workflow】, this permission must be enabled, otherwise execution may fail.</string>
+    <string name="sc_setting_permission_title">Permissions for Stable Operation</string>
+    <string name="sc_setting_permission_detail" formatted="false">Important:&#10;If the service becomes unstable (e.g., permissions auto-close, freezes) after some time, it might be because the system disabled 【Accessibility】. Please enable the following permissions to ensure stability.</string>
+    <string name="sc_setting_permission_back">Permissions</string>
+    <string name="sc_index_btn_state0">Enable Service Permission</string>
+    <string name="sc_index_btn_state1">Open Recording Panel</string>
+    <string name="sc_index_btn_state2">Panel Open</string>
+    <string name="init_error_in_firstin">Network timeout, please check your network and try again~</string>
+    <string name="layout_account_languages">Select Language</string>
+    <string name="language_name_zh_cn">Simplified Chinese</string>
+    <string name="language_name_zh_tw">Traditional Chinese</string>
+    <string name="language_name_en">English</string>
+    <!-- Agent Index View -->
+    <string name="agent_input_hint">Go to Taobao, find the best-selling toothbrush and add to cart</string>
+    <string name="agent_input_empty">Please enter command content</string>
+    <string name="agent_floating_window_shown">Floating window shown</string>
+    <string name="agent_accessibility_required">Please enable accessibility first</string>
+    <string name="agent_status_disabled">Not set</string>
+    <string name="agent_status_open">Open</string>
+    <string name="agent_provider_configured">Configured</string>
+    <string name="agent_provider_not_set">Not set</string>
+    <string name="agent_show_more">Show more ▼</string>
+    <string name="agent_show_less">Collapse ▲</string>
+    <string name="agent_help_center">Help Center</string>
+    <string name="agent_faq">FAQ</string>
+
+    <!-- Agent Commands Array -->
+    <string-array name="agent_command_tags">
+        <item>Reply to 3 comments on Instagram with engaging content</item>
+        <item>Set my camera to TikTok style with filters</item>
+        <item>Help me write and send a vacation request email</item>
+        <item>Search for gaming live streams on Twitch</item>
+        <item>Order a Starbucks Caramel Macchiato on Uber Eats</item>
+        <item>Go to Amazon, find the best-rated wireless earbuds and add to cart</item>
+        <item>Search for tech news on Reddit</item>
+        <item>Help me automatically reply to 3 comments on Twitter based on context</item>
+        <item>Set my camera to VSCO aesthetic style</item>
+        <item>Help me write a professional email to my manager</item>
+        <item>Set a meeting reminder for tomorrow 2 PM</item>
+        <item>Find trending videos on YouTube and like 5 of them</item>
+        <item>Search for job openings on LinkedIn in my field</item>
+        <item>Order groceries on Instacart for this weekend</item>
+        <item>Check my Gmail and mark important emails as starred</item>
+        <item>Find a good restaurant nearby on Google Maps</item>
+        <item>Post a story on Instagram with a motivational quote</item>
+        <item>Search for workout routines on YouTube</item>
+        <item>Set up a calendar event for my doctor\'s appointment</item>
+    </string-array>
+    <!-- Agent Index View Layout -->
+    <string name="agent_index_title">AI Agent Assistant</string>
+    <string name="agent_welcome_greeting">Hello!</string>
+    <string name="agent_example_tasks_title">Examples</string>
+    <string name="agent_accessibility_title">Accessibility Permission</string>
+    <string name="agent_accessibility_description">Allow AI to control your device</string>
+    <string name="agent_accessibility_status_disabled">Disabled</string>
+    <string name="agent_float_window_title">Show Floating Window</string>
+    <string name="agent_float_window_description">Convenient task control panel</string>
+    <string name="agent_float_window_status_open">Open</string>
+    <string name="agent_model_description">Configure AI inference engine</string>
+    <string name="agent_model_default">DeepSeek Chat</string>
+    <!-- Agent Tool Management -->
+    <string name="agent_tool_management">Tool Management</string>
+    <string name="add_tool">Add Tool</string>
+    <string name="agent_no_custom_tools_message">You have no custom agent tools, go add one</string>
+    <string name="setting_workflow_settings">Workflow Settings</string>
+    <string name="setting_agent_settings">Agent Settings</string>
+    <string name="setting_model_management">Model Management</string>
+    <string name="setting_agent_prompt">Agent Prompt</string>
+    <string name="setting_skill_prompt">Skill Prompt</string>
+    <!-- MCP Management -->
+    <string name="setting_more">More</string>
+
+    <string name="design_back_cd">Back</string>
+    <string name="mcp_service_status">Tool Service Status</string>
+    <string name="mcp_service_stopped">Service stopped - HTTP port: %s</string>
+    <string name="mcp_custom_tools">Custom Tools</string>
+    <string name="mcp_builtin_tools">Built-in Tools</string>
+    <string name="mcp_service_not_initialized">Service not initialized</string>
+    <string name="mcp_service_status_failed">Failed to get status</string>
+    <string name="download_tips_title">Download Tip</string>
+    <string name="download_tips_content">Download over non-WiFi network?</string>
+    <!-- New internationalized strings -->
+    <string name="agent_tool_count_info">Total %d tools</string>
+    <string name="agent_tool_count_default">Total 0 items</string>
+    <string name="agent_tool_delete_title">Delete Tool</string>
+    <string name="agent_tool_delete_message">Are you sure you want to delete the tool \"%s\"?</string>
+    <string name="agent_tool_delete_success">Tool deleted successfully</string>
+    <string name="agent_tool_delete_failed">Tool deletion failed</string>
+    <string name="agent_tool_delete_error">Error occurred while deleting tool</string>
+    <string name="agent_tool_name">Tool Name</string>
+    <string name="agent_tool_status_online">Online</string>
+    <string name="agent_tool_description">Tool description information</string>
+    <string name="agent_prompt_name">Prompt Name</string>
+    <string name="agent_prompt_description">Prompt description information</string>
+    <string name="agent_prompt_arguments" formatted="false">Parameters: {}</string>
+    <string name="agent_resource_name">Resource Name</string>
+    <string name="agent_resource_type">type</string>
+    <string name="agent_resource_description">Resource description information</string>
+    <string name="agent_resource_uri">URI: resource://example</string>
+    <string name="agent_no_tools_loaded">No tools loaded!</string>
+    <string name="chat_select_image">Select Image</string>
+    <string name="chat_send_message">Send Message</string>
+    <string name="chat_attachment_preview">Attachment Preview</string>
+    <string name="sc_force_exit">Force Exit</string>
+    <string name="sc_setting_permission_wallpaper_title">Wallpaper Keep-Alive</string>
+    <string name="sc_setting_permission_wallpaper_tip">Set as wallpaper to prevent system termination</string>
+    <string name="sc_setting_wallpaper_grant">Authorize</string>
+
+    <string name="layout_wall_paper">Set Wallpaper</string>
+    <string name="setting_wallpaper_setting">Wallpaper Settings</string>
+    <string name="setting_image_setting">Gallery Management</string>
+    <string name="layout_delete_wallpaper">Delete Prompt</string>
+    <string name="layout_delete_wallpaper_hint">Delete this wallpaper</string>
+    <string name="user_wallpaper_permission_dialog_title">Permission Notice</string>
+    <string name="user_wallpaper_permission_dialog_msg">Setting wallpaper background requires access to your gallery and storage permissions. Please agree to continue!</string>
+    <string name="user_wallpaper_permission_dialog_confirm">Agree</string>
+    <string name="agent_accessibility_go_enable">Go enable accessibility service →</string>
+    <string name="ai_agent_task_tag">AgentTask</string>
+    <string name="engineer_generate_tag_test_scripts">Generate tagged test scripts</string>
+    <string name="engineer_generate_tag_test_scripts_success">Created %1$d tagged test scripts</string>
+    <string name="engineer_generate_tag_test_scripts_failed">Failed to create tagged test scripts (%1$d)</string>
+    <string name="script_tag_test_observe">scope-observe-test</string>
+    <string name="script_name_prefix_test_observe">ObserveTag</string>
+    <string name="ai_name_prompt_script">Generate a short script name (max 10 Chinese chars or 3-5 English words) based on the user goal and commands. Output only the name, no explanation. User goal: %1$s Commands: %2$s</string>
+
+    <!-- API Key Validation Messages -->
+    <string name="api_key_validation_claude">API key should start with sk-ant-</string>
+    <string name="api_key_validation_deepseek">API key is required</string>
+    <string name="api_key_validation_gemini">API key is required for Gemini</string>
+    <string name="api_key_validation_ollama">Ollama does not require an API key</string>
+    <string name="api_key_validation_openrouter">API key should start with sk-or-</string>
+    <string name="api_key_validation_openai">API key is required</string>
+    <string name="api_key_validation_bailian">API key is required</string>
+    <string name="api_key_validation_bailian_code">API key should start with sk-sp-</string>
+    <string name="api_key_validation_kimi">API key is required</string>
+    <string name="api_key_validation_siliconflow">API key is required</string>
+    <string name="api_key_validation_mimo">API key is required</string>
+    <string name="api_key_validation_minimax">API key is required</string>
+    <string name="api_key_validation_stepfun">API key is required</string>
+    <string name="api_key_validation_openai_custom">API key is required</string>
+    <string name="api_key_validation_ark_agent_plan">API key is required</string>
+    <string name="api_key_validation_ark_coding_plan">API key is required</string>
+
+    <string-array name="sc_cmd_direct_menu_array">
+        <item>Top-Left</item>
+        <item>Top-Right</item>
+        <item>Bottom-Left</item>
+        <item>Bottom-Right</item>
+    </string-array>
+    <array name="sc_cmd_batch_click_type_list">
+        <item>Top-Down</item>
+        <item>Bottom-Up</item>
+        <item>Left-Right</item>
+        <item>Right-Left</item>
+        <item>Random</item>
+        <item>Diagonal</item>
+    </array>
+    <string-array name="sc_edit_menu_array">
+        <item>Batch Delay</item>
+    </string-array>
+    <string-array name="sc_sub_menu_array">
+        <item>1_Rename</item>
+        <item>9_Set Category</item>
+        <item>10_Publish to Agent</item>
+        <item>2_Shortcut</item>
+        <item>3_Copy</item>
+        <item>4_Delete</item>
+        <item>5_Open as Text</item>
+        <item>7_Information</item>
+    </string-array>
+
+    <string-array name="sc_sub_cmd_menu_array">
+        <item>Set Note</item>
+        <item>Copy</item>
+        <item>Delete</item>
+    </string-array>
+
+    <string-array name="sc_xcmd_sub_cmd_menu_array_group">
+        <item>1_Set Note</item>
+        <item>5_Copy</item>
+        <item>6_Delete</item>
+        <item>4_Sub-Workflow</item>
+        <item>7_Execute</item>
+        <item>8_Execute from Here</item>
+    </string-array>
+    <string-array name="sc_xcmd_sub_cmd_menu_array">
+        <item>1_Set Note</item>
+        <item>5_Copy</item>
+        <item>6_Delete</item>
+        <item>7_Execute</item>
+        <item>8_Execute from Here</item>
+    </string-array>
+
+    <string name="search_hint">Search workflows, skills, tools...</string>
+    <string name="design_profile_local_subtitle">Local automation workspace</string>
+    <string name="design_placeholder_hint">This page is not available in the open-source build.</string>
+
+    <string name="setting_speech_service">Speech Service</string>
+    <string name="setting_speech_ms_key">Azure Speech Key</string>
+    <string name="setting_speech_ms_region">Azure Speech Region</string>
+    <string name="setting_speech_saved">Speech credentials saved</string>
+    <string name="setting_speech_cleared">Speech credentials cleared</string>
+    <string name="setting_speech_key_required">Speech key and region are required</string>
+</resources>

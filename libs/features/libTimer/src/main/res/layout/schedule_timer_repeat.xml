@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="8dp"
+    android:paddingTop="8dp"
+    android:paddingRight="8dp"
+    android:paddingBottom="4dp">
+
+    <!-- Interval duration card -->
+    <com.hive.views.widgets.UIRoundCornerRelativeLayout
+        android:id="@+id/layoutGapDuration"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
+        app:rcv_radius="16dp"
+        app:rcv_borderWidth="1dp"
+        app:rcv_borderColor="#0FFFFFFF"
+        android:background="#08FFFFFF">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/schedule_time_gap_title"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <com.hive.views.widgets.NumberOptView
+            android:id="@+id/numberValue"
+            android:layout_width="130dp"
+            android:layout_height="28dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            app:optNumberDefault="30"
+            app:optNumberInput="true"
+            app:optNumberMax="1440"
+            app:optNumberMin="1"
+            app:optNumberUnit="@string/timer_minus_unit" />
+    </com.hive.views.widgets.UIRoundCornerRelativeLayout>
+
+    <com.hive.views.list_view.ListRecyclerView
+        android:id="@+id/listRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="12dp" />
+</LinearLayout>

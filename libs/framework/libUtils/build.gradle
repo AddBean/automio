@@ -1,0 +1,69 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+android {
+    namespace "com.hive.utils"
+    compileSdk rootProject.ext.android.compileSdkVersion
+    defaultConfig {
+        minSdk rootProject.ext.android.minSdkVersion
+        targetSdk rootProject.ext.android.targetSdkVersion
+
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            // 库模块通常不需要单独混淆，最终混淆会在应用模块统一处理
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+    }
+    compileOptions {
+        sourceCompatibility rootProject.ext.javaVersion
+        targetCompatibility rootProject.ext.javaVersion
+    }
+    kotlinOptions {
+        jvmTarget = rootProject.ext.javaVersion.toString()
+    }
+    lintOptions {
+        abortOnError false
+    }
+    buildFeatures {
+        viewBinding true
+        buildConfig true
+    }
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api project(path: ':libs:i8n')
+
+    // 开源公共栈：下游模块依赖 libUtils 即可，无需再重复声明
+    api rootProject.ext.publicDependencies.kotlin
+    api rootProject.ext.publicDependencies.androidxCoreKtx
+    api rootProject.ext.publicDependencies.androidxConstraintLayout
+    api rootProject.ext.publicDependencies.androidxAppcompat
+    api rootProject.ext.publicDependencies.androidxRecyclerview
+    api rootProject.ext.publicDependencies.androidxLegacy
+    api rootProject.ext.publicDependencies.androidxCardview
+    api rootProject.ext.publicDependencies.androidxPreference
+    api rootProject.ext.publicDependencies.androidxSupportAnnotations
+    api rootProject.ext.publicDependencies.gson
+    api rootProject.ext.publicDependencies.rxjava2
+    api rootProject.ext.publicDependencies.rxjava2Android
+    api rootProject.ext.publicDependencies.eventbus
+    api rootProject.ext.publicDependencies.kotlinxCoroutines
+    api rootProject.ext.publicDependencies.kotlinxCoroutinesAndroid
+    api rootProject.ext.publicDependencies.mmkv
+    api rootProject.ext.publicDependencies.glideOkhttp2
+    api rootProject.ext.publicDependencies.dbflowCore
+    api rootProject.ext.publicDependencies.dbflow
+    api rootProject.ext.publicDependencies.charleskornaml
+}

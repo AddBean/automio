@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:background="@color/colorPrimaryLight">
+
+
+    <com.hive.script.views.widgets.ScriptFloatView
+        android:id="@+id/number_start_duration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:optFloatInput="true"
+        app:optFloatMax="3600"
+        app:optFloatMin="0.01"
+        app:optFloatStep="0.2"
+        app:optFloatType="TYPE2"
+        app:optFloatUnit="@string/sc_unit_s"
+        app:scriptFloatEnable="true"
+        app:scriptFloatMaxDigits="2"
+        app:scriptFloatName="@string/sc_cmd_start_duration"
+        app:scriptFloatRatio="1000" />
+
+    <com.hive.script.views.widgets.ScriptFloatView
+        android:id="@+id/number_end_duration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:optFloatInput="true"
+        app:optFloatMax="3600"
+        app:optFloatMin="0.01"
+        app:optFloatStep="0.2"
+        app:optFloatType="TYPE2"
+        app:optFloatUnit="@string/sc_unit_s"
+        app:scriptFloatEnable="true"
+        app:scriptFloatMaxDigits="2"
+        app:scriptFloatName="@string/sc_cmd_end_duration"
+        app:scriptFloatRatio="1000" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/quick_to_fill_title"
+            android:textColor="@color/textColorPrimary" />
+
+        <com.hive.script.views.widgets.ScriptNumberQuickView
+            android:id="@+id/number_quick_view"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:paddingStart="12dp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:lineSpacingMultiplier="1.2"
+        android:text="@string/sc_cmd_duration_msg"
+        android:textColor="@color/colorTextSecondary"
+        android:textSize="14sp" />
+</LinearLayout>

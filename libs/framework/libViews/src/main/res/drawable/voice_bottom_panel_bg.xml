@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="120dp"
+    android:viewportWidth="360"
+    android:viewportHeight="120">
+    <path
+        android:fillColor="@color/voice_panel_bg"
+        android:pathData="M0,120 L360,120 L360,44 A180,44 0 0,0 0,44 Z" />
+</vector>

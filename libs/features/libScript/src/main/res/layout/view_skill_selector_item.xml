@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Skill 选择器 item 布局（对齐 script-design WorkflowSelector.tsx 下拉菜单 item）
+     - 图标容器：w-8 h-8 rounded-lg bg-indigo-500/10
+     - 图标：Sparkles size={14}
+     - 文字：text-[13px] font-medium truncate
+     - 选中：bg-sky-500/10 text-sky-400 + Check size={16}
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_selector_item"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingHorizontal="@dimen/design_spacing_4"
+    android:paddingVertical="@dimen/design_spacing_3"
+    tools:background="@color/design_bg_card">
+
+    <com.hive.views.widgets.UIResourceIconView
+        android:id="@+id/iv_icon"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        app:ri_resourceType="skill"
+        app:ri_backgroundColor="@color/design_accent_indigo_faint" />
+
+    <!-- 文字：text-[13px] font-medium text-slate-200 -->
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/design_spacing_3"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/design_text_slate_200"
+        android:textSize="@dimen/design_font_md"
+        tools:text="技能名称" />
+
+    <!-- 选中勾选图标：Check size={16} text-sky-400 -->
+    <ImageView
+        android:id="@+id/iv_check"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="@dimen/design_spacing_2"
+        android:src="@drawable/ic_check"
+        android:visibility="gone"
+        app:tint="@color/design_accent_sky"
+        tools:visibility="visible" />
+
+</LinearLayout>

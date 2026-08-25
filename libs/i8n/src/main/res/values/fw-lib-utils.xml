@@ -1,0 +1,65 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="x_file_file_not_exist" tools:ignore="MissingTranslation">The file does not exist</string>
+
+    <string name="date_yestoday">Yesterday</string>
+    <string name="date_to_sec">%d sec ago</string>
+    <string name="date_to_min">%d min ago</string>
+    <string name="date_to_hour">%d hr ago</string>
+    <string name="date_to_day">%d day ago</string>
+    <string name="date_to_month">%d mon ago</string>
+    <string name="date_to_year">%d yr ago</string>
+    <string name="install_dialog_title">Permission Required</string>
+    <string name="install_dialog_msg">Installation permission is required. Would you like to go to settings to enable it?</string>
+    <string name="install_dialog_btn_1">Go to Settings</string>
+    <string name="install_dialog_btn_2">No, Thanks</string>
+
+    <string name="utils_huawei_open_settings_failed">Failed to open settings, please configure manually</string>
+    <string name="utils_notification_channel_push">Push notifications</string>
+    <string name="utils_notification_channel_tips">Reminders</string>
+    <string name="utils_time_format_hour"> hour</string>
+    <string name="utils_time_format_min"> min</string>
+    <string name="utils_time_format_sec"> sec</string>
+
+    <string name="utils_time_just_now">Just now</string>
+    <string name="utils_time_sec_ago">%d sec ago</string>
+    <string name="utils_time_min_ago">%d min ago</string>
+    <string name="utils_time_today_at">Today %tR</string>
+    <string name="utils_time_yesterday_at">Yesterday %tR</string>
+    <string name="utils_time_unit_day"> day</string>
+    <string name="utils_time_unit_ms"> ms</string>
+
+    <string name="utils_carrier_unknown">Unknown</string>
+    <string name="utils_carrier_unknown_prefix">Unknown-</string>
+    <string name="utils_carrier_mobile">China Mobile</string>
+    <string name="utils_carrier_unicom">China Unicom</string>
+    <string name="utils_carrier_telecom">China Telecom</string>
+
+    <string name="utils_num_format_wan">0.0W</string>
+    <string name="utils_num_format_yi">0.0Y</string>
+    <string name="utils_num_format_wan_1">0.#W</string>
+    <string name="utils_num_format_wan_int">#W</string>
+    <string name="utils_num_format_yi_1">0.#Y</string>
+
+    <string-array name="utils_zodiac_signs">
+        <item>Aquarius</item><item>Pisces</item><item>Aries</item><item>Taurus</item>
+        <item>Gemini</item><item>Cancer</item><item>Leo</item><item>Virgo</item>
+        <item>Libra</item><item>Scorpio</item><item>Sagittarius</item><item>Capricorn</item>
+    </string-array>
+
+    <string name="utils_bar_activity_empty">Activity cannot be empty</string>
+    <string name="utils_bar_fragment_init_first">Initialize in Activity before using in Fragment</string>
+    <string name="utils_bar_activity_null">Activity cannot be null</string>
+    <string name="utils_bar_fragment_null">Fragment cannot be null</string>
+    <string name="utils_bar_dialog_fragment_null">DialogFragment cannot be null</string>
+    <string name="utils_bar_dialog_null">Dialog cannot be null</string>
+    <string name="utils_bar_tag_empty">tag cannot be null or empty</string>
+    <string name="utils_bar_view_null">View parameter cannot be null</string>
+    <string name="utils_bar_view_id_not_found">viewId not found</string>
+    <string name="utils_bar_param_error">Parameter error</string>
+    <string name="utils_bar_init_first">Initialize ImmersionBar first</string>
+
+    <string name="utils_file_source_not_exist">Source path [%1$s] does not exist</string>
+    <string name="utils_md5_algorithm_error">MD5 algorithm not available</string>
+
+</resources>

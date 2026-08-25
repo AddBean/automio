@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.hive.script.views.widgets.ScriptValueView
+        android:id="@+id/paramCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scriptValueEditEnable="false"
+        app:scriptValueName="@string/script_python_code_edit_title"
+        app:scriptValueTextColor="@color/colorAccent" />
+
+    <com.hive.script.views.widgets.ScriptValueView
+        android:id="@+id/paramOutput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scriptValueEditEnable="false"
+        app:scriptValueName="@string/sc_cmd_select_param_title"
+        app:scriptValueTextColor="@color/colorAccent" />
+
+</LinearLayout>

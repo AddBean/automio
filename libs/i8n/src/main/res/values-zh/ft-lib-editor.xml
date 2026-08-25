@@ -1,0 +1,36 @@
+<resources>
+    <string name="pull_to_refresh_refreshing_label">正在刷新...</string>
+    <string name="editor_encode">编码格式</string>
+    <string name="editor_save">保存</string>
+    <string name="editor_save_success">保存成功</string>
+    <string name="editor_setting_charset">文件编码</string>
+    <string name="editor_setting_clear">清空内容</string>
+    <string name="editor_clear_success">清空成功！</string>
+    <string name="editor_dialog_save_title">是否保存？</string>
+    <string name="editor_dialog_save_content">内容将保存到本地</string>
+    <string name="edit_tips_file_not_edit">你还未写入内容！</string>
+    <string name="edit_new_file_name_template">新建文本%d.html</string>
+    <string name="editor_name_file_submit">确定</string>
+    <string name="editor_name_file_hint">请输入文件名</string>
+    <string name="editor_name_file">保存文件</string>
+    <string name="empty_input_error_toast">输入不能为空</string>
+    <string name="save_error_name_duplicate_toast">该文件名已存在！换个名称保存吧</string>
+    <string name="editor_open_file">目录</string>
+    <string name="editor_btn_save">保存</string>
+    <string name="editor_btn_not_save">不保存</string>
+    <string name="editor_btn_cancel">取消</string>
+    <string name="editor_menu_save_to">另存为</string>
+    <string name="editor_menu_save">保存</string>
+    <string name="editor_menu_open">打开</string>
+    <string name="editor_menu_recent">最近文件</string>
+    <string name="edit_save_to_btn">保存</string>
+    <string name="default_file_name">新建文本.html</string>
+    <string name="default_file_txt_name">新建文本.txt</string>
+    <string name="edit_file_may_has_deleted">该文件可能已被删除！</string>
+    <string name="editor_insert_link">插入链接</string>
+    <string name="editor_link_hint">链接标题</string>
+    <string name="editor_link_address">链接地址</string>
+    <string name="save_local">保存到本地</string>
+    <string name="editor_link_address_required">请输入超链接地址</string>
+    <string name="editor_link_title_required">请输入超链接标题</string>
+</resources>

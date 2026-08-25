@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- namespace 已在 build.gradle 中定义为 com.hive.opencv -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+</manifest>

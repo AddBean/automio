@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:parentTag="LinearLayout">
+
+    <LinearLayout
+        android:id="@+id/content_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:elevation="2dp">
+
+        <!-- 标题 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/widget_agent_title"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <!-- 开始按钮 -->
+        <com.hive.views.widgets.TextDrawableView
+            android:id="@+id/btn_start"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/xml_agent_btn_bg"
+            android:drawableTint="@color/white"
+            android:gravity="center"
+            android:paddingVertical="12dp"
+            android:text="@string/widget_agent_start"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:elevation="3dp"
+            app:drawableHeight="20dp"
+            app:drawableTop="@drawable/ic_agent"
+            app:drawableWidth="20dp" />
+
+        <!-- 描述文本 -->
+        <TextView
+            android:id="@+id/description_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="@string/widget_agent_description"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="12sp"
+            android:lineSpacingExtra="2dp" />
+
+    </LinearLayout>
+
+</merge> 

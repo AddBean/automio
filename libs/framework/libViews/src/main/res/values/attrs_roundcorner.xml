@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="rcv_isCircle" format="boolean" />
+    <attr name="rcv_borderWidth" format="dimension" />
+    <attr name="rcv_borderColor" format="color" />
+    <attr name="rcv_borderGradientStartColor" format="color" />
+    <attr name="rcv_borderGradientEndColor" format="color" />
+    <attr name="rcv_radius" format="dimension" />
+    <attr name="rcv_radius_LeftBottom" format="dimension" />
+    <attr name="rcv_radius_LeftTop" format="dimension" />
+    <attr name="rcv_radius_RightBottom" format="dimension" />
+    <attr name="rcv_radius_RightTop" format="dimension" />
+    <attr name="rcv_shadowColor" format="color" />
+    <attr name="rcv_shadowBlur" format="dimension" />
+    <attr name="rcv_aspectRatio" format="string" />
+
+    <declare-styleable name="UIRoundCornerTextView">
+        <attr name="rcv_isCircle" />
+        <attr name="rcv_borderWidth" />
+        <attr name="rcv_borderColor" />
+        <attr name="rcv_borderGradientStartColor" />
+        <attr name="rcv_borderGradientEndColor" />
+        <attr name="rcv_radius" />
+        <attr name="rcv_radius_LeftBottom" />
+        <attr name="rcv_radius_LeftTop" />
+        <attr name="rcv_radius_RightBottom" />
+        <attr name="rcv_radius_RightTop" />
+        <attr name="rcv_shadowColor" />
+        <attr name="rcv_shadowBlur" />
+        <attr name="rcv_aspectRatio" />
+    </declare-styleable>
+
+    <declare-styleable name="UIRoundCornerImageView">
+        <attr name="rcv_isCircle" />
+        <attr name="rcv_borderWidth" />
+        <attr name="rcv_borderColor" />
+        <attr name="rcv_borderGradientStartColor" />
+        <attr name="rcv_borderGradientEndColor" />
+        <attr name="rcv_radius" />
+        <attr name="rcv_radius_LeftBottom" />
+        <attr name="rcv_radius_LeftTop" />
+        <attr name="rcv_radius_RightBottom" />
+        <attr name="rcv_radius_RightTop" />
+        <attr name="rcv_shadowColor" />
+        <attr name="rcv_shadowBlur" />
+        <attr name="rcv_aspectRatio" />
+    </declare-styleable>
+
+    <declare-styleable name="UIRoundCornerFrameLayout">
+        <attr name="rcv_borderWidth" />
+        <attr name="rcv_borderColor" />
+        <attr name="rcv_borderGradientStartColor" />
+        <attr name="rcv_borderGradientEndColor" />
+        <attr name="rcv_radius" />
+        <attr name="rcv_radius_LeftBottom" />
+        <attr name="rcv_radius_LeftTop" />
+        <attr name="rcv_radius_RightBottom" />
+        <attr name="rcv_radius_RightTop" />
+        <attr name="rcv_shadowColor" />
+        <attr name="rcv_shadowBlur" />
+        <attr name="rcv_aspectRatio" />
+    </declare-styleable>
+
+    <declare-styleable name="UIRoundCornerLinearLayout">
+        <attr name="rcv_borderWidth" />
+        <attr name="rcv_borderColor" />
+        <attr name="rcv_borderGradientStartColor" />
+        <attr name="rcv_borderGradientEndColor" />
+        <attr name="rcv_radius" />
+        <attr name="rcv_radius_LeftBottom" />
+        <attr name="rcv_radius_LeftTop" />
+        <attr name="rcv_radius_RightBottom" />
+        <attr name="rcv_radius_RightTop" />
+        <attr name="rcv_shadowColor" />
+        <attr name="rcv_shadowBlur" />
+        <attr name="rcv_aspectRatio" />
+    </declare-styleable>
+
+    <declare-styleable name="UIRoundCornerRelativeLayout">
+        <attr name="rcv_borderWidth" />
+        <attr name="rcv_borderColor" />
+        <attr name="rcv_borderGradientStartColor" />
+        <attr name="rcv_borderGradientEndColor" />
+        <attr name="rcv_radius" />
+        <attr name="rcv_radius_LeftBottom" />
+        <attr name="rcv_radius_LeftTop" />
+        <attr name="rcv_radius_RightBottom" />
+        <attr name="rcv_radius_RightTop" />
+        <attr name="rcv_shadowColor" />
+        <attr name="rcv_shadowBlur" />
+        <attr name="rcv_aspectRatio" />
+    </declare-styleable>
+
+    <declare-styleable name="UIRoundCornerConstraintLayout">
+        <attr name="rcv_borderWidth" />
+        <attr name="rcv_borderColor" />
+        <attr name="rcv_borderGradientStartColor" />
+        <attr name="rcv_borderGradientEndColor" />
+        <attr name="rcv_radius" />
+        <attr name="rcv_radius_LeftBottom" />
+        <attr name="rcv_radius_LeftTop" />
+        <attr name="rcv_radius_RightBottom" />
+        <attr name="rcv_radius_RightTop" />
+        <attr name="rcv_shadowColor" />
+        <attr name="rcv_shadowBlur" />
+        <attr name="rcv_aspectRatio" />
+    </declare-styleable>
+
+    <declare-styleable name="UIGradientTextView">
+        <attr name="startColor" format="color" />
+        <attr name="centerColor" format="color" />
+        <attr name="centerPosition" format="float" />
+        <attr name="endColor" format="color" />
+    </declare-styleable>
+</resources>

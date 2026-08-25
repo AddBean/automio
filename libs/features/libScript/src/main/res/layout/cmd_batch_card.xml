@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:background="@color/colorPrimary">
+
+    <com.hive.script.views.widgets.ScriptNumberView
+        android:id="@+id/number_hrz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:optNumberInput="true"
+        app:optNumberMax="200"
+        app:optNumberMin="1"
+        app:optNumberType="TYPE2"
+        app:scriptNumberName="@string/sc_cmd_number_hrz" />
+
+    <com.hive.script.views.widgets.ScriptNumberView
+        android:id="@+id/number_ver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:optNumberInput="true"
+        app:optNumberMax="200"
+        app:optNumberMin="1"
+        app:optNumberType="TYPE2"
+        app:scriptNumberName="@string/sc_cmd_number_ver" />
+
+    <com.hive.script.views.widgets.ScriptFloatView
+        android:id="@+id/number_gap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:optFloatInput="true"
+        app:optFloatMax="3600"
+        app:optFloatMin="0.01"
+        app:optFloatType="TYPE2"
+        app:optFloatUnit="@string/sc_unit_s"
+        app:scriptFloatEnable="true"
+        app:scriptFloatMaxDigits="2"
+        app:scriptFloatName="@string/sc_cmd_click_gap_duration"
+        app:scriptFloatRatio="1000" />
+
+    <com.hive.script.views.widgets.ScriptValueView
+        android:id="@+id/click_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scriptValueEditEnable="false"
+        app:scriptValueName="@string/sc_cmd_batch_click_type"
+        app:scriptValueTextColor="@color/colorAccent" />
+</LinearLayout>

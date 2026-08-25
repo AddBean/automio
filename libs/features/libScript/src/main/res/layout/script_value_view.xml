@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="46dp"
+    tools:background="@color/colorPrimary">
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/base.content.title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="12dp"
+        android:textSize="14sp" />
+
+    <com.hive.views.widgets.RoundLinearLayout
+        android:id="@+id/rl_value"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:divider="@drawable/xml_linearlayout_ver_divider"
+        android:dividerPadding="1dp"
+        android:orientation="horizontal"
+        android:showDividers="middle"
+        app:round_view_radius="6dp"
+        app:view_draw_paint_color="@color/colorPrimaryLight">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_weight="1">
+
+            <com.hive.script.views.widgets.ScriptSpanParamTextView
+                android:id="@+id/tv_value"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorSplitLine"
+                android:gravity="center"
+                android:imeOptions="actionDone"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:singleLine="true"
+                android:textColor="@color/textColorPrimary"
+                android:textColorHint="@color/colorTextSecondary"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="-" />
+
+            <View
+                android:id="@+id/btn_mask"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/rl_value"
+                android:layout_alignTop="@id/rl_value"
+                android:layout_alignEnd="@id/rl_value"
+                android:layout_alignBottom="@id/rl_value" />
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/iv_action"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+            android:padding="8dp"
+            android:src="@drawable/sc_cursor"
+            android:tint="@color/colorTextSecondary"
+            android:visibility="gone"
+            tools:visibility="visible" />
+    </com.hive.views.widgets.RoundLinearLayout>
+
+
+</RelativeLayout>

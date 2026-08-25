@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_state"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:divider="@color/public_bg2_press"
+    android:dividerPadding="@dimen/base_gap_margin"
+    android:orientation="vertical"
+    android:showDividers="middle">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp">
+
+        <ImageView
+            android:id="@+id/iv_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:background="@color/white_10" />
+
+        <ImageView
+            android:id="@+id/iv_edit"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="right|bottom"
+            android:layout_margin="22dp"
+            android:src="@drawable/ic_edit"
+            android:tint="@color/white" />
+    </FrameLayout>
+
+
+    <com.hive.script.views.widgets.ScriptNumberView
+        android:id="@+id/number_accuracy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:optNumberInput="true"
+        app:optNumberMax="100"
+        app:optNumberMin="1"
+        app:optNumberType="TYPE1"
+        app:optNumberUnit="@string/sc_unit_percent"
+        app:scriptNumberName="@string/sc_cmd_spot_accuracy" />
+
+    <com.hive.script.views.edit.views.OperateCommonEditView
+        android:id="@+id/operate_edit_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

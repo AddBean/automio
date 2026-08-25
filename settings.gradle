@@ -1,0 +1,25 @@
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
+}
+apply from: "./libs/common.gradle"
+include ':appScript'
+include ':libs:features:libScript'
+include ':libs:features:libOpenCV'
+include ':libs:features:libTimer'
+include ':libs:framework:libViews'
+include ':libs:framework:libBase'
+include ':libs:framework:libCompon'
+include ':libs:framework:libUtils'
+include ':libs:framework:libNet'
+include ':libs:features:libEditor'
+include ':libs:features:libFiles'
+include ':libs:features:libImage'
+include ':libs:features:libOcr'
+include ':libs:features:libAgent'
+include ':libs:features:libMCP'
+include ':libs:features:libPython'
+include ':libs:features:libAudio'
+
+include ':publish:zpublishScript'
+include ':baseApp'
+include ':libs:i8n'

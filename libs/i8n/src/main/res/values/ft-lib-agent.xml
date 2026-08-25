@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Agent Chat -->
+    <string name="agent_title">AI Assistant</string>
+    <string name="agent_chat_refresh">Refresh</string>
+    <string name="agent_chat_clear_record">Clear</string>
+    <string name="agent_chat_attachment_preview">Preview</string>
+    <string name="agent_chat_input_hint">Type message…</string>
+    <string name="agent_chat_select_image">Select Image</string>
+    <string name="agent_chat_send_message">Send</string>
+    <string name="agent_image_selected">Image ready to send</string>
+    <string name="agent_welcome_message">Start your first AI task!</string>
+    <string name="agent_chat_empty_title">What would you like to do?</string>
+    <string name="agent_chat_empty_subtitle">Try a scenario below, or type your own instruction</string>
+    <string name="agent_chat_empty_section_label">Quick scenarios</string>
+    <string name="agent_chat_example_douyin_title">Auto scroll Douyin</string>
+    <string name="agent_chat_example_douyin_desc">Browse videos and like favorites</string>
+    <string name="agent_chat_example_douyin_prompt">Help me auto-browse Douyin and like the first 5 videos</string>
+    <string name="agent_chat_example_xhs_title">Post on Xiaohongshu</string>
+    <string name="agent_chat_example_xhs_desc">Write and publish a note</string>
+    <string name="agent_chat_example_xhs_prompt">Help me write and publish a Xiaohongshu note about weekend cafe hopping</string>
+    <string name="agent_chat_example_engage_title">Auto like and comment</string>
+    <string name="agent_chat_example_engage_desc">Batch engagement to boost activity</string>
+    <string name="agent_chat_example_engage_prompt">Help me like and comment on popular posts under this topic</string>
+    <string name="agent_chat_example_phone_title">Operate the phone</string>
+    <string name="agent_chat_example_phone_desc">Simulate gestures for a given task</string>
+    <string name="agent_chat_example_phone_prompt">Help me open WeChat, find the latest chat and take a screenshot</string>
+    <string name="agent_new_conversation">✨ New chat</string>
+    <string name="agent_input_required">Enter message or select image</string>
+    <string name="agent_error_occurred">❌ Error: %s</string>
+    <string name="agent_chat_clear">Clear Chat</string>
+    <string name="agent_permission_required">⚠️ Accessibility required!</string>
+    <string name="agent_session_history">History</string>
+    <string name="agent_session_new">New Chat</string>
+    <string name="agent_menu_new_task">New Task</string>
+    <string name="agent_menu_history">History</string>
+    <string name="agent_session_empty_title">New Chat</string>
+    <string name="agent_session_empty_list">No history yet</string>
+    <string name="agent_session_empty_desc">Start a new chat and let Agent help you.</string>
+    <string name="agent_session_delete">Delete</string>
+    <string name="agent_session_switch_disabled">Please wait for the current task to finish before switching</string>
+    <string name="agent_session_delete_confirm_title">Delete this chat?</string>
+    <string name="agent_session_delete_confirm_message">This will remove the chat from this device. This action can’t be undone.</string>
+    <string name="agent_session_count_format">%d chats</string>
+    <string name="agent_session_convert">Convert to workflow</string>
+    <string name="agent_session_convert_confirm_title">Convert to workflow?</string>
+    <string name="agent_session_convert_confirm_message">This history item will be converted into a workflow automatically. After the conversion, the app will jump to the Workflow tab on the Resource page.</string>
+    <string name="agent_session_convert_confirm_action">Convert now</string>
+    <string name="agent_session_no_commands">No commands in this session</string>
+    <string name="agent_session_convert_success">Saved as workflow</string>
+    <string name="agent_session_load_failed">Failed to load session</string>
+    <string name="agent_session_time_just_now">Just now</string>
+    <string name="create_center_title">Create Center</string>
+    <string name="create_center_welcome_title">Welcome to Create Center</string>
+    <string name="create_center_welcome_desc">This is your unified creation entry for workflows, AI skills, and AI tools.</string>
+    <string name="create_center_workflow_title">Workflow</string>
+    <string name="create_center_workflow_desc">Create an automation workflow and continue editing in the visual editor.</string>
+    <string name="create_center_skill_title">AI Skill</string>
+    <string name="create_center_skill_desc">Define the AI\'s capability and behavior pattern.</string>
+    <string name="create_center_tool_title">AI Tool</string>
+    <string name="create_center_tool_desc">Publish a workflow as an MCP tool to extend Agent abilities.</string>
+
+    <!-- Agent Settings -->
+    <string name="agent_settings_title">AI Settings</string>
+    <string name="agent_settings_model">Model</string>
+    <string name="agent_settings_api_key">API Key</string>
+    <string name="agent_settings_temperature">Temperature</string>
+    <string name="agent_settings_max_tokens">Max Tokens</string>
+    <string name="agent_settings_save">Save</string>
+    <string name="agent_settings_reset">Reset</string>
+    <string name="agent_settings_test">Test</string>
+
+    <!-- Model Management -->
+    <string name="agent_model_title">Models</string>
+    <string name="agent_model_current">Current</string>
+    <string name="agent_model_available">Available</string>
+    <string name="agent_model_loading">Loading…</string>
+    <string name="agent_model_error">Load failed</string>
+    <string name="agent_model_refresh">Refresh</string>
+    <string name="agent_model_select">Select</string>
+    <string name="agent_model_info">Info</string>
+    <string name="agent_model_capabilities">Features</string>
+    <string name="agent_model_context_length">Context</string>
+    <string name="agent_model_training_data">Training</string>
+    <string name="agent_model_last_updated">Updated</string>
+    <string name="agent_model_provider">Provider</string>
+    <string name="agent_model_type">Type</string>
+    <string name="agent_model_size">Size</string>
+    <string name="agent_model_parameters">Params</string>
+    <string name="agent_model_multimodal">Multimodal</string>
+    <string name="agent_model_not_set">NOT SET</string>
+    <string name="agent_model_count">%d models</string>
+    <string name="agent_model_list">List</string>
+    <string name="agent_model_search_hint">Search model name or ID…</string>
+    <string name="agent_api_key_prefix">Key starts with sk-</string>
+    <string name="agent_cache_info">%1$d models cached %2$d hours ago</string>
+    <string name="agent_no_cache">No cache</string>
+
+    <!-- AI Memory View -->
+    <string name="agent_memory_view">AI Memory</string>
+    <string name="agent_memory_title">AI Memory</string>
+    <string name="agent_memory_empty">No memory yet</string>
+    <string name="agent_memory_char_count">%d chars</string>
+    <string name="agent_memory_clear_all">Clear All</string>
+    <string name="agent_memory_clear_confirm_title">Clear all AI memory?</string>
+    <string name="agent_memory_clear_confirm_message">This will remove all saved memory. This action cannot be undone.</string>
+    <string name="agent_memory_cleared">Memory cleared</string>
+    <string name="agent_memory_copy">Copy</string>
+    <string name="agent_memory_delete">Delete</string>
+    <string name="agent_memory_deleted">Deleted</string>
+
+    <!-- Debug Center -->
+    <string name="agent_debug_system_status">📊 System Status</string>
+    <string name="agent_debug_quick_actions">⚡ Quick Actions</string>
+    <string name="agent_debug_logs">📋 Logs</string>
+    <string name="agent_debug_performance">⚡ Performance</string>
+    <string name="agent_debug_memory">💾 Memory</string>
+    <string name="agent_debug_network">🌐 Network</string>
+    <string name="agent_debug_storage">💿 Storage</string>
+    <string name="agent_debug_clear_logs">Clear Logs</string>
+    <string name="agent_debug_export_logs">Export Logs</string>
+    <string name="agent_debug_refresh">Refresh</string>
+
+    <!-- Error Messages -->
+    <string name="agent_error_network">Network error</string>
+    <string name="agent_error_api_key">Invalid API key</string>
+    <string name="agent_error_model">Model error</string>
+    <string name="agent_error_timeout">Timeout</string>
+    <string name="agent_error_quota">Quota exceeded</string>
+    <string name="agent_error_permission">Permission denied</string>
+    <string name="agent_error_unknown">Unknown error</string>
+
+    <!-- Success Messages -->
+    <string name="agent_success_connected">Connected</string>
+    <string name="agent_success_settings_saved">Saved</string>
+    <string name="agent_success_model_changed">Model changed</string>
+    <string name="agent_success_cleared">Cleared</string>
+
+    <!-- Loading Messages -->
+    <string name="agent_loading_thinking">Thinking…</string>
+    <string name="agent_loading_processing">Processing…</string>
+    <string name="agent_loading_generating">Generating…</string>
+    <string name="agent_loading_analyzing">Analyzing…</string>
+    <string name="agent_loading_connecting">Connecting…</string>
+    <string name="agent_loading_loading">Loading…</string>
+
+    <!-- Tool Call -->
+    <string name="agent_tool_call">Tool Call</string>
+    <string name="agent_tool_executing">Executing…</string>
+    <string name="agent_tool_method">Method:</string>
+    <string name="agent_tool_parameters">Parameters:</string>
+    <string name="agent_tool_parameters_colon">Parameters:</string>
+    <string name="agent_tool_execution_result">Result:</string>
+    <string name="agent_tool_unknown">Unknown</string>
+    <string name="agent_tool_none">None</string>
+    <string name="agent_tool_execute_success">Successful</string>
+    <string name="agent_tool_execute_failed">Failed</string>
+    <string name="agent_tool_executing_status">Executing…</string>
+
+    <!-- Message Types -->
+    <string name="agent_message_copied">Copied</string>
+    <string name="agent_message_user">User</string>
+    <string name="agent_message_system">System</string>
+    <string name="agent_message_ai">Assistant</string>
+
+    <!-- Tabs -->
+    <string name="agent_tab_chat">AI Chat</string>
+    <string name="agent_tab_capability">Capability</string>
+    <string name="agent_tab_debug">🔧 Debug</string>
+    <string name="agent_tab_skill">AI Skills</string>
+    <string name="agent_tab_tool">AI Tools</string>
+
+    <!-- Settings Status -->
+    <string name="agent_settings_not_set">NOT SET</string>
+    <string name="agent_settings_modify">EDIT</string>
+
+    <!-- Tool List -->
+    <string name="agent_tool_list_empty">No tools yet</string>
+
+    <!-- Model Management -->
+    <string name="agent_select_model">Please Select Model</string>
+    <string name="agent_ai_model_management">Model Management</string>
+    <string name="agent_normal_model">Chat Model</string>
+    <string name="agent_multimodal_model">Vision Model</string>
+    <string name="agent_multimodal_required">Please select a model that supports vision</string>
+
+    <string name="agent_workflow_exception">Complex workflow execution exception</string>
+
+    <string name="agent_parse_stream_error">Error parsing stream response: %1$s</string>
+
+    <!-- McpTool Messages -->
+    <string name="agent_mcp_tool_client">MCP Tool Client</string>
+
+
+    <!-- AI Service Management -->
+    <string name="ai_service_management">AI Service Management</string>
+    <string name="ai_service_management_desc">Manage your AI service providers and model configurations</string>
+    <string name="ai_inference_settings">Inference Settings</string>
+    <string name="ai_inference_settings_desc">Configure default inference models</string>
+    <string name="ai_normal_inference">Normal Inference</string>
+    <string name="ai_multimodal_inference">Multimodal Inference</string>
+    <string name="ai_model_selection">Select AI Model</string>
+    <string name="ai_model_selection_desc">Select the inference model</string>
+    <string name="ai_model_not_set">NOT SET</string>
+    <string name="ai_vision_recognition">Vision</string>
+    <string name="ai_vision">Vision</string>
+    <string name="ai_function_call">Function Call</string>
+    <string name="ai_model_count">%d models</string>
+    <string name="ai_show_models">Show Models</string>
+    <string name="ai_add_model">Add Model</string>
+    <string name="ai_settings">Settings</string>
+    <string name="ai_model_name">Model Name</string>
+    <string name="ai_model_id">Model ID</string>
+    <string name="ai_model_name_id_required">Model name and ID cannot be empty</string>
+    <string name="ai_model_added">Model added</string>
+    <string name="ai_supports_function_call">Supports Function Call</string>
+    <string name="ai_supports_vision">Supports Vision</string>
+    <string name="ai_add_model_to_provider">Add model to %s</string>
+    <string name="ai_add">Add</string>
+    <string name="ai_cancel">Cancel</string>
+    <string name="ai_clear">Clear</string>
+    <string name="ai_show_password">Show</string>
+    <string name="ai_hide_password">Hide</string>
+    <string name="ai_enter_api_key">Please enter %s API Key</string>
+    <string name="ai_enter_api_key_and_base_url">Enter %s API Key and Base URL</string>
+    <string name="ai_set_api_key">Set %s API Key</string>
+    <string name="ai_save">Save</string>
+    <string name="ai_api_key_required">API Key cannot be empty</string>
+    <string name="ai_api_key_format_error">API Key format error</string>
+    <string name="ai_api_key_saved">%s API Key saved</string>
+    <string name="ai_api_key_cleared">%s API Key cleared, Provider automatically disabled</string>
+    <string name="ai_model_selected">Selected model: %s</string>
+    <string name="ai_provider_deepseek">DeepSeek</string>
+    <string name="ai_provider_default">Default</string>
+    <string name="ai_provider_default_desc">Built-in app AI service</string>
+    <string name="ai_provider_bailian">Alibaba Bailian</string>
+    <string name="ai_provider_bailian_desc">Alibaba Bailian Qwen</string>
+    <string name="ai_provider_bailian_code">Bailian Code</string>
+    <string name="ai_provider_bailian_code_desc">Alibaba Coding Plan (sk-sp-)</string>
+    <string name="agent_bailian_tool_image_info">Tool execution image info:</string>
+    <string name="ai_model_qwen_plus">Qwen Plus</string>
+    <string name="ai_model_qwen_max">Qwen Max</string>
+    <string name="ai_model_qwen_flash">Qwen Flash</string>
+    <string name="ai_model_qwen_turbo">Qwen Turbo</string>
+    <string name="ai_model_qwen35_plus">Qwen 3.5 Plus</string>
+    <string name="ai_model_qwen3_max">Qwen 3 Max</string>
+    <string name="ai_model_qwen_vl_plus">Qwen VL Plus</string>
+    <string name="ai_model_qwen_vl_max">Qwen VL Max</string>
+    <string name="ai_model_qwen_coder">Qwen Coder</string>
+    <string name="ai_provider_openai">OpenAI</string>
+    <string name="ai_provider_claude">Claude</string>
+    <string name="ai_provider_gemini">Gemini</string>
+    <string name="ai_provider_ollama">Ollama</string>
+    <string name="ai_provider_openrouter">OpenRouter</string>
+    <string name="ai_provider_kimi">Kimi</string>
+    <string name="ai_provider_kimi_desc">Moonshot Kimi (OpenAI-compatible)</string>
+    <string name="ai_provider_siliconflow">SiliconFlow</string>
+    <string name="ai_provider_siliconflow_desc">SiliconFlow model marketplace</string>
+    <string name="ai_provider_mimo">MiMo</string>
+    <string name="ai_provider_mimo_desc">Xiaomi MiMo</string>
+    <string name="ai_provider_minimax">MiniMax</string>
+    <string name="ai_provider_minimax_desc">MiniMax OpenAI-compatible API</string>
+    <string name="ai_provider_stepfun">StepFun</string>
+    <string name="ai_provider_stepfun_desc">StepFun OpenAI-compatible API</string>
+    <string name="ai_provider_openai_custom">Custom OpenAI</string>
+    <string name="ai_provider_openai_custom_desc">Custom OpenAI-compatible endpoint</string>
+    <string name="ai_provider_ark_agent_plan">Volcengine Ark Agent Plan</string>
+    <string name="ai_provider_ark_agent_plan_desc">Agent Plan only (/api/plan/v3). Do not use Coding Plan keys.</string>
+    <string name="ai_provider_ark_coding_plan">Volcengine Ark Coding Plan</string>
+    <string name="ai_provider_ark_coding_plan_desc">Coding Plan only (/api/coding/v3). Do not use Agent Plan keys.</string>
+
+    <!-- Agent Check Helper Messages -->
+    <string name="agent_model_go_configure">Go configure AI model</string>
+    <string name="agent_env_config_required">Alert</string>
+
+    <!-- Info Messages -->
+    <string name="info">Information</string>
+    <string name="agent_tool_params">Parameters</string>
+    <string name="agent_tool_params_label">Parameters:</string>
+    <string name="agent_tool_result">Execution result</string>
+
+    <!-- Agent Interface -->
+    <string name="agent_debug_center">🤖 Agent Debug Center</string>
+
+    <!-- Environment Configuration -->
+    <string name="agent_config_accessibility">Go enable accessibility service →</string>
+    <string name="agent_config_model">Go configure AI model →</string>
+    <string name="agent_config_environment">You need to configure the following environment</string>
+
+    <!-- Quick Action Buttons -->
+    <string name="agent_btn_solo_workflow">📋 SOLO Workflow</string>
+    <string name="agent_btn_tool_list">📋 Tool List</string>
+    <string name="agent_btn_function_call">🧪 Function Call</string>
+    <string name="agent_btn_mcp_tools">🔧 MCP Tools</string>
+    <string name="agent_btn_workflow_report">📊 Workflow Report</string>
+    <string name="agent_btn_pause_workflow">⏸️ Pause Workflow</string>
+    <string name="agent_btn_resume_workflow">▶️ Resume Workflow</string>
+    <string name="agent_btn_stop_workflow">⏹️ Stop Workflow</string>
+    <string name="agent_btn_basic_test">🧪 Basic Test</string>
+    <string name="agent_btn_performance_test">⚡ Performance Test</string>
+    <string name="agent_btn_error_test">🛡️ Error Test</string>
+
+    <!-- Agent System Messages -->
+    <string name="agent_request_stopped">Request stopped</string>
+    <string name="agent_unknown_error">Unknown error</string>
+    <string name="agent_http_error">HTTP error %1$d: %2$s</string>
+    <string name="agent_stop_all_requests">Stop all ongoing inference requests</string>
+    <string name="agent_disconnect_error">Error disconnecting: %1$s</string>
+    <string name="agent_stop_specific_request">Stop specific inference request: %1$s</string>
+    <string name="agent_request_ai">Request AI: %1$s</string>
+    <string name="agent_api_response">AI API response: %1$s</string>
+
+    <!-- XAgent Messages -->
+    <string name="agent_system_init_complete">XAgent system initialization complete</string>
+    <string name="agent_start_complex_workflow">Starting complex workflow execution</string>
+    <string name="agent_workflow_success">Complex workflow executed successfully</string>
+    <string name="agent_workflow_failed">Complex workflow execution failed</string>
+    <string name="agent_execution_failed">Execution failed</string>
+    <string name="agent_system_cleanup_complete">XAgent system cleanup complete</string>
+
+    <!-- AbstractChatProvider Messages -->
+    <string name="agent_invalid_chat_input">Invalid chat input</string>
+    <string name="agent_start_stream_request">Starting new stream request, clearing previous tool call states</string>
+    <string name="agent_current_tool_calls_count">Current tool calls count: %1$d</string>
+    <string name="agent_tool_call_info">Tool call: %1$s, ID: %2$s</string>
+    <string name="agent_duplicate_tool_calls">Duplicate tool calls detected, original count: %1$d, deduplicated count: %2$d</string>
+    <string name="agent_stream_response_complete">Stream response complete, final tool calls count: %1$d</string>
+    <string name="agent_final_tool_call">Final tool call: %1$s, ID: %2$s</string>
+    <string name="agent_stream_response_incomplete">Stream response incomplete</string>
+
+    <!-- McpTool Messages -->
+    <string name="agent_mcp_tool_description">Used to interact with MCP servers, perform Android automation and UI interaction operations</string>
+    <string name="agent_mcp_tools_list_failed">Failed to get Mcp tools list, returned result format is incorrect</string>
+    <string name="agent_mcp_get_tools_list">Get MCP tools list</string>
+    <string name="agent_mcp_get_resources_list">Get resources list</string>
+    <string name="agent_mcp_resource_uri">Resource URI</string>
+    <string name="agent_missing_params">Missing parameters</string>
+    <string name="agent_missing_name_param">Missing name parameter</string>
+    <string name="agent_call_failed_no_error">Call failed, no error message returned</string>
+    <string name="agent_call_failed">Call failed</string>
+    <string name="agent_get_tools_list_failed">Failed to get tools list</string>
+    <string name="agent_missing_uri_param">Missing uri parameter</string>
+    <string name="agent_read_resource_failed">Failed to read resource</string>
+    <string name="agent_unknown_tool">Unknown tool</string>
+    <string name="agent_no_description">No description</string>
+
+    <!-- AIAssistantTool Messages -->
+    <string name="agent_ai_assistant">AI Assistant</string>
+    <string name="agent_ai_assistant_description">Provides intelligent services such as AI conversation, text generation, translation, summarization, and analysis</string>
+    <string name="agent_unsupported_ai_operation">Unsupported AI assistant operation: %1$s</string>
+    <string name="agent_messages_param_required">messages parameter is required</string>
+    <string name="agent_chat_response">Received your message: \"%1$s\". In the new Agent architecture, AI conversations will be intelligently processed through AICoordinator.</string>
+    <string name="agent_prompt_param_required">prompt parameter is required</string>
+    <string name="agent_generate_response">Text generation request based on prompt \"%1$s\" received. In the new architecture, this will be processed through AI intelligence.</string>
+    <string name="agent_text_param_required">text parameter is required</string>
+    <string name="agent_chinese">Chinese</string>
+    <string name="agent_translate_response">Translation request received: translate \"%1$s\" to %2$s. In the new architecture, this will be processed through AI intelligence.</string>
+    <string name="agent_summarize_response">Summarization request received, text length: %1$d characters. In the new architecture, this will be processed through AI intelligence.</string>
+    <string name="agent_analyze_response">Analysis request received, type: %1$s, text length: %2$d characters. In the new architecture, this will be processed through AI intelligence.</string>
+    <string name="agent_ai_operation_type">Type of AI operation to perform</string>
+    <string name="agent_text_content_or_messages">Text content or conversation messages to process</string>
+    <string name="agent_extra_parameters">Additional parameters, such as target language, analysis type, etc.</string>
+    <string name="agent_target_language">Target language for translation</string>
+    <string name="agent_analysis_type">Analysis type: sentiment, keywords, structure, general</string>
+    <string name="agent_max_content_length">Maximum length of generated content</string>
+
+    <string name="script_top_status_paused">Paused</string>
+    <string name="script_top_status_task_failed">Task Failed</string>
+    <string name="script_top_status_completed">Completed</string>
+    <string name="script_top_status_executing">Executing</string>
+    <string name="script_top_status_calling">Calling Tools</string>
+    <string name="script_top_status_thinking">Thinking</string>
+    <string name="script_top_status_compressing_memory">Memory…</string>
+
+    <!-- Agent related strings -->
+    <string name="agent_tool_register">Register tool: %1$s (%2$s)</string>
+    <string name="agent_tool_unregister">Unregister tool: %1$s (%2$s)</string>
+    <string name="agent_tool_destroy_error">Error destroying tool: %1$s %2$s</string>
+    <string name="agent_tool_not_found">No suitable tool found: %1$s, preferred tools: %2$s</string>
+    <string name="agent_operation_timeout">Operation timeout: %1$dms</string>
+    <string name="agent_operation_cancelled">Operation cancelled</string>
+    <string name="agent_select_preferred_tool">Select preferred tool: %1$s (%2$s) for action: %3$s</string>
+    <string name="agent_no_preferred_tool">No tool found in preferred list for action %1$s: %2$s</string>
+    <string name="agent_use_specified_tool">Use specified tool: %1$s (%2$s)</string>
+
+    <!-- AIAgentConfig System Prompts -->
+    <string name="agent_config_optimized_user_prompt">Your task goal: %1$s</string>
+    <string name="agent_config_tool_result_with_extra" formatted="false">Tool result:\n%1$s\n\nPage info:\n%2$s</string>
+    <string name="agent_config_tool_result_simple">%1$s</string>
+    <string name="agent_config_tool_result_no_data">Execution successful, but no return data</string>
+
+
+    <string name="agent_status_tool_running">Executing tools…</string>
+    <string name="agent_tool_call_empty_result">Tool call failed, returned empty result</string>
+    <string name="agent_tool_call_exception">Tool call exception: %1$s</string>
+    <string name="agent_tool_result_simplified">Tool call result is too long and has been simplified</string>
+    <string name="ai_set_api_key_first">Please set %1$s API Key first</string>
+    <string name="ai_no_available_provider">No available AI service provider</string>
+
+    <string name="ai_coordinator_no_ai_model">No available AI model</string>
+    <string name="agent_env_config_required_content">This feature requires configuring the [AI Model] and enabling the [Accessibility] option. You can click below to enable it.</string>
+
+    <!-- Task Memory Summary -->
+    <string name="agent_task_memory_switch_title">Task Memory Summary</string>
+    <string name="agent_task_memory_switch_desc">Auto-summarize history in long conversations to reduce forgetting</string>
+    <string name="task_memory_history_label">[History]</string>
+    <string name="task_memory_recent_label">Recent:</string>
+    <string name="task_memory_tool_label">Tool</string>
+    <string name="task_memory_ai_label">AI</string>
+    <string name="task_memory_user_label">User</string>
+    <string name="task_memory_cleared">Task summary cleared: %s</string>
+    <string name="task_memory_ai_summary_failed">AI summary generation failed: %s</string>
+    <string name="task_memory_ai_summary_previous">Previous summary: %s</string>
+    <string name="task_memory_ai_summary_new_messages">New messages to summarize:</string>
+    <string name="task_memory_ai_summary_prompt">Summarize task execution history in 150 words or less:
+%s
+
+Requirements:
+1. List key operations only, connect with "→"
+2. No explanations, no extra words
+3. If previous summary is provided, output the complete combined summary (previous + new steps)
+4. Example: Open WeChat→Search contact→Send message</string>
+
+    <string name="agent_skill_mcp_tool_desc">Unified skill entrypoint. Required params vary by action; call action=help first.</string>
+    <string name="agent_skill_mcp_tool_extra_name">Skill</string>
+    <string name="agent_skill_action_help">View skill help</string>
+    <string name="agent_skill_action_list">View skill list</string>
+    <string name="agent_skill_action_run">Run skill</string>
+    <string name="agent_skill_action_create">Create skill</string>
+    <string name="agent_skill_action_update">Update skill</string>
+    <string name="agent_skill_action_delete">Delete skill</string>
+    <string name="agent_skill_action_default">Use skill</string>
+    <string name="agent_skill_create_missing_id">Missing required parameter: id</string>
+    <string name="agent_skill_create_missing_name">Missing required parameter: name</string>
+    <string name="agent_skill_create_missing_description">Missing required parameter: description</string>
+    <string name="agent_skill_create_missing_system_prompt">Missing required parameter: systemPrompt</string>
+    <string name="agent_skill_create_missing_allowed_tool_names">Missing required parameter: allowedToolNames</string>
+    <string name="agent_skill_create_missing_max_rounds">Missing required parameter: maxRounds</string>
+    <string name="agent_skill_create_missing_timeout_ms">Missing required parameter: timeoutMs</string>
+    <string name="agent_skill_create_missing_memory_group">Missing required parameter: memoryGroup</string>
+    <string name="agent_skill_create_failed">create_skill failed</string>
+    <string name="agent_skill_invalid_params">Invalid skill request parameters</string>
+    <string name="agent_skill_schema_user_prompt_desc">User prompt passed to the skill. Required for run</string>
+    <string name="agent_skill_not_initialized">Skill system is not initialized</string>
+    <string name="agent_skill_schema_action_desc">Action. Required params: run=id,userPrompt; create=name,description,systemPrompt,allowedToolNames,maxRounds,timeoutMs,memoryGroup (id auto-generated); update/delete=id</string>
+    <string name="agent_skill_schema_id_desc">Skill ID. Required for run, update, delete. For create: id is auto-generated locally, do not pass</string>
+    <string name="agent_skill_schema_allowed_tools_desc">Tool whitelist, e.g. buildin.click,buildin.input. Required for create</string>
+    <string name="agent_skill_schema_options_desc">Run options: timeoutMs, maxRounds, memoryGroup, depth, attachments</string>
+    <string name="agent_skill_schema_name_desc">Display name. Required for create</string>
+    <string name="agent_skill_schema_description_desc">Skill description shown in help/list. Required for create</string>
+    <string name="agent_skill_schema_system_prompt_desc">System prompt for the skill. Required for create</string>
+    <string name="agent_skill_schema_max_rounds_desc">Max rounds, e.g. 30. Required for create</string>
+    <string name="agent_skill_schema_timeout_ms_desc">Timeout in ms, e.g. 180000. Required for create</string>
+    <string name="agent_skill_schema_fallback_skill_id_desc">Fallback skill id</string>
+    <string name="agent_skill_schema_memory_group_desc">Memory group. Required for create (can be \"\")</string>
+    <string name="agent_skill_schema_options_timeout_ms_desc">Override timeout (ms) for this run</string>
+    <string name="agent_skill_schema_options_max_rounds_desc">Override max rounds for this run</string>
+    <string name="agent_skill_schema_options_memory_group_desc">Override memory group for this run</string>
+    <string name="agent_skill_schema_options_depth_desc">Call depth</string>
+    <string name="agent_skill_schema_options_attachments_desc">Attachment URLs</string>
+    <string name="agent_skill_error_missing_action">Missing action (call action=help first)</string>
+    <string name="agent_skill_error_unsupported_action">Unsupported action=%1$s (call action=help first)</string>
+    <string name="agent_skill_error_execute">skill execution failed</string>
+    <string name="agent_skill_error_missing_id_for_run">Missing id (call action=help first)</string>
+    <string name="agent_skill_error_inline_run_missing_params">For inline run without id, provide name, description, systemPrompt, allowedToolNames, maxRounds, timeoutMs, memoryGroup (same as create)</string>
+    <string name="agent_skill_error_missing_user_prompt">Missing userPrompt</string>
+    <string name="agent_skill_update_missing_id">Missing required parameter: id</string>
+    <string name="agent_skill_update_not_found">Custom skill not found: %1$s (call action=create first)</string>
+    <string name="agent_skill_delete_missing_id">Missing required parameter: id</string>
+    <string name="agent_skill_delete_not_found">Custom skill not found: %1$s (only custom skills can be deleted)</string>
+    <string name="ai_base_url_hint">OpenAI-compatible base URL</string>
+    <string name="ai_base_url_invalid">Enter a URL beginning with https:// or http://</string>
+    <string name="ai_base_url_http_warning">Warning: HTTP sends your API key without transport encryption.</string>
+    <string name="ai_base_url_required">Base URL is required</string>
+    <string name="ai_error_ark_agent_plan_auth_hint">Auth failed: use the API Key from Ark Agent Plan console with /api/plan/v3. Coding Plan keys need «Ark Coding Plan»; regular Ark keys are not accepted on Plan endpoints.</string>
+    <string name="ai_error_ark_coding_plan_auth_hint">Auth failed: use the API Key from Ark Coding Plan console with /api/coding/v3. Agent Plan keys need «Ark Agent Plan»; regular Ark keys are not accepted on Plan endpoints.</string>
+</resources>

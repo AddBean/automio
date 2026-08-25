@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    tools:background="@color/colorPrimary">
+
+    <LinearLayout
+        android:id="@+id/layoutGroup"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvGroup"
+            style="@style/base.content.title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/sc_param_edit_group_title"
+            android:textSize="14sp" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical">
+
+            <EditText
+                android:id="@+id/edGroup"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/bg_common_input"
+                android:paddingLeft="8dp"
+                android:paddingTop="4dp"
+                android:paddingRight="40dp"
+                android:paddingBottom="4dp"
+                android:singleLine="true"
+                android:textColor="@color/textColorPrimary"
+                android:textColorHint="@color/colorTextSecondary"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/ivGroupSelector"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_marginEnd="4dp"
+                android:tint="@color/colorAccent"
+                android:layout_gravity="right|center_vertical"
+                android:padding="11dp"
+                android:src="@drawable/icon_arr_down" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/lineGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvParam"
+            style="@style/base.content.title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/sc_param_edit_param_title"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/edParam"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/bg_common_input"
+            android:paddingLeft="8dp"
+            android:paddingTop="4dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="4dp"
+            android:singleLine="true"
+            android:textColor="@color/textColorPrimary"
+            android:textColorHint="@color/colorTextSecondary"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvValue"
+            style="@style/base.content.title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_weight="1"
+            android:text="@string/sc_param_edit_value_title"
+            android:textSize="14sp" />
+
+        <com.hive.script.views.widgets.ScriptSpanParamLayout
+            android:id="@+id/edValue"
+            android:layout_width="200dp"
+            android:layout_height="160dp"
+            android:layout_margin="4dp"
+            android:layout_marginLeft="20dp" />
+    </LinearLayout>
+</LinearLayout>

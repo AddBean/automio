@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hive.views.widgets.UIRoundCornerLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="12dp"
+    android:paddingTop="8dp"
+    android:paddingEnd="14dp"
+    android:paddingBottom="8dp"
+    app:rcv_radius="10dp"
+    app:rcv_borderWidth="0.5dp"
+    app:rcv_borderColor="#14FFFFFF"
+    android:background="#08FFFFFF">
+
+    <com.hive.timer.widget.TimeIconView
+        android:id="@+id/timeIcon"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_gravity="center_vertical"
+        app:timeIconDayColor="@color/textColorPrimary"
+        app:timeIconLineWidth="1.2dp"
+        app:timeIconNightColor="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/tvInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_weight="1"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="13sp"
+        tools:text="10:00:00" />
+</com.hive.views.widgets.UIRoundCornerLinearLayout>

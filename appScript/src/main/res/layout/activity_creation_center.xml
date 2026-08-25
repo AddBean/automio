@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryLight"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <com.carlos.ui.header.CommonHeader
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bg_color="@color/colorPrimaryLight"
+        app:center_text="@string/create_center_title"
+        app:center_text_color="@color/design_text_secondary"
+        app:enable_back="true"
+        app:left_img_color="@color/design_text_secondary"
+        app:show_btm_line="false" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingLeft="@dimen/design_spacing_page_horizontal"
+        android:paddingTop="@dimen/design_spacing_6"
+        android:paddingRight="@dimen/design_spacing_page_horizontal"
+        android:paddingBottom="@dimen/design_spacing_8">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.hive.views.widgets.UIRoundCornerLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/design_bg_welcome_card"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="24dp"
+                app:rcv_borderColor="@color/white_5"
+                app:rcv_borderWidth="1dp"
+                app:rcv_radius="28dp">
+
+                <com.hive.views.widgets.UIResourceIconView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    app:ri_resourceType="skill"
+                    app:ri_containerShape="circle" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/create_center_welcome_title"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/design_font_lg"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:lineSpacingExtra="4dp"
+                    android:text="@string/create_center_welcome_desc"
+                    android:textColor="@color/design_text_muted"
+                    android:textSize="@dimen/design_font_base" />
+            </com.hive.views.widgets.UIRoundCornerLinearLayout>
+
+            <com.hive.views.widgets.UIRoundCornerLinearLayout
+                android:id="@+id/card_create_workflow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/design_spacing_4"
+                android:background="@color/design_bg_card"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="20dp"
+                app:rcv_borderColor="@color/white_5"
+                app:rcv_borderWidth="1dp"
+                app:rcv_radius="24dp">
+
+                <com.hive.views.widgets.UIResourceIconView
+                    android:id="@+id/icon_creation_workflow"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:ri_resourceType="workflow" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/create_center_workflow_title"
+                        android:textColor="@color/design_text_secondary"
+                        android:textSize="@dimen/design_font_md"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/create_center_workflow_desc"
+                        android:textColor="@color/design_text_muted"
+                        android:textSize="@dimen/design_font_xs" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_arrow_right" />
+            </com.hive.views.widgets.UIRoundCornerLinearLayout>
+
+            <com.hive.views.widgets.UIRoundCornerLinearLayout
+                android:id="@+id/card_create_skill"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/design_spacing_3"
+                android:background="@color/design_bg_card"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="20dp"
+                app:rcv_borderColor="@color/white_5"
+                app:rcv_borderWidth="1dp"
+                app:rcv_radius="24dp">
+
+                <com.hive.views.widgets.UIResourceIconView
+                    android:id="@+id/icon_creation_skill"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:ri_resourceType="skill" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/create_center_skill_title"
+                        android:textColor="@color/design_text_secondary"
+                        android:textSize="@dimen/design_font_md"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/create_center_skill_desc"
+                        android:textColor="@color/design_text_muted"
+                        android:textSize="@dimen/design_font_xs" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_arrow_right" />
+            </com.hive.views.widgets.UIRoundCornerLinearLayout>
+
+            <com.hive.views.widgets.UIRoundCornerLinearLayout
+                android:id="@+id/card_create_tool"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/design_spacing_3"
+                android:background="@color/design_bg_card"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="20dp"
+                app:rcv_borderColor="@color/white_5"
+                app:rcv_borderWidth="1dp"
+                app:rcv_radius="24dp">
+
+                <com.hive.views.widgets.UIResourceIconView
+                    android:id="@+id/icon_creation_tool"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:ri_resourceType="tool" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/create_center_tool_title"
+                        android:textColor="@color/design_text_secondary"
+                        android:textSize="@dimen/design_font_md"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/create_center_tool_desc"
+                        android:textColor="@color/design_text_muted"
+                        android:textSize="@dimen/design_font_xs" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_arrow_right" />
+            </com.hive.views.widgets.UIRoundCornerLinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

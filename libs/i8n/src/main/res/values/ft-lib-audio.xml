@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Speech recognition result (讯飞/IFlyTek) -->
+    <string name="audio_parse_no_match">No match</string>
+    <string name="audio_parse_result">[Result] </string>
+    <string name="audio_parse_confidence">[Confidence] </string>
+</resources>

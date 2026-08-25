@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.hive.app.script">
+
+    <meta-data
+        android:name="android.max_aspect"
+        android:value="2.3" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <!--    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />-->
+
+    <!-- android 13 权限 -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name="com.hive.ScriptApplication"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:requestLegacyExternalStorage="true"
+        android:resizeableActivity="false"
+        android:supportsRtl="true"
+        android:theme="@style/AppBaseTheme"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:allowBackup">
+
+
+        <activity
+            android:name="com.hive.ui.setting.ActivityPermissionCenter"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name="com.hive.timer.ActivityScheduleTimerEditor"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.hive.ui.setting.ActivityUnlockSetting"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name="com.hive.ActivityTab"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name="com.hive.SchemeDispatchActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/SchemeDispatchTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="${MANIFEST_FILE_SCHEME_URL}"
+                    android:scheme="${MANIFEST_FILE_SCHEME_DOMAIN}" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.hive.ui.setting.ActivityWallpaper"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/activity_fade_anim" />
+
+        <activity
+            android:name="com.hive.ui.setting.ActivityLanguages"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hive.ui.skill.ActivityToolSelector"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hive.ui.skill.ActivitySkillAiCreate"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hive.ui.creation.ActivityCreationCenter"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hive.ui.skill.ActivitySkillDetail"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hive.ui.mcp.ActivityMcpToolDetail"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hive.ui.setting.ActivityMoreSetting"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hive.ui.mcp.ActivityMcpConnectGuide"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hive.ui.schedule.ActivityScheduledTasks"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.hive.ui.mcp.ActivityCreateMcpTool"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <service
+            android:name="com.hive.service.LiveWallpaperService"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_WALLPAPER">
+            <!-- 为实时壁纸配置intent-filter -->
+            <meta-data
+                android:name="android.service.wallpaper"
+                android:resource="@xml/live_wall_paper" />
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService" />
+            </intent-filter>
+        </service>
+
+    </application>
+</manifest>

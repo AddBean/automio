@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 未配置：琥珀色强调，提示用户去设置 -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/ai_ripple">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/design_accent_amber_10" />
+            <corners android:radius="@dimen/design_radius_md" />
+            <stroke
+                android:width="1dp"
+                android:color="@color/design_accent_amber" />
+        </shape>
+    </item>
+</ripple>

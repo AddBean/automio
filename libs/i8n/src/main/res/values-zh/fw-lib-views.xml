@@ -1,0 +1,32 @@
+<resources>
+    <string name="download_btn_download">下载</string>
+    <string name="download_add_title">添加下载</string>
+    <string name="download_add_hint">输入下载链接</string>
+    <string name="download_btn_cancel">取消</string>
+    <string name="pref_confirm">确定</string>
+    <string name="pref_cancel">取消</string>
+    <string name="setting_selector_error_low_min">选择必须大于%d个</string>
+    <string name="setting_selector_error_over_max">选择必须小于%d个</string>
+
+    <string name="loading">加载中</string>
+    <string name="no">否</string>
+    <string name="start">开始</string>
+    <string name="cancel">取消</string>
+    <string name="ok">确定</string>
+    <string name="empty">空</string>
+    <string name="delete">删除</string>
+    <string name="submit">提交</string>
+    <string name="no_more_date">Oops! 没有数据啦</string>
+    <string name="knew_tips">我知道啦</string>
+    <string name="load_error">加载失败</string>
+    <string name="load_retry">重试</string>
+    <string name="input_title">输入文本</string>
+
+    <string name="views_set_layout_res_required">请先调用setLayoutRes()方法设置弹窗所需的xml布局!</string>
+    <string name="views_setting_key_required">settingKey 必须设置！！</string>
+    <string name="agreement_prefix">我已阅读并同意</string>
+    <string name="agreement_text">用户协议</string>
+    <string name="agreement_middle">和</string>
+    <string name="agreement_privacy">隐私政策</string>
+
+</resources>

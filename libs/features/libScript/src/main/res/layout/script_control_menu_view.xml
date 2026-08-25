@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:parentTag="android.widget.FrameLayout">
+
+
+    <com.hive.script.views.logger.ScriptLoggerView
+        android:id="@+id/logger_view"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/menu_play"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="47dp" />
+
+    <com.hive.script.views.menu.ScriptControlMainView
+        android:id="@+id/menu_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.hive.script.views.menu.ScriptControlRecordView
+        android:id="@+id/menu_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/menu_main"
+        android:layout_gravity="center_horizontal"
+        tools:layout_marginTop="@dimen/base_gap_margin" />
+
+    <com.hive.script.views.menu.ScriptControlPlayView
+        android:id="@+id/menu_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/menu_record"
+        android:layout_gravity="center_horizontal"
+        tools:layout_marginTop="@dimen/base_gap_margin" />
+
+
+    <com.hive.script.views.menu.ScriptControlUnlockView
+        android:id="@+id/menu_screen_unlock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/menu_play"
+        tools:layout_marginTop="@dimen/base_gap_margin" />
+</merge>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:background="@drawable/xml_common_dialog_round_alert_bg"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.hive.views.widgets.TextDrawableView
+                android:id="@+id/tv_filter_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawablePadding="2dp"
+                android:drawableTint="@color/textColorPrimary"
+                android:gravity="center_vertical"
+                android:paddingLeft="12dp"
+                android:text="@string/sc_script_list_title_default"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="14sp"
+                app:drawableHeight="14dp"
+                app:drawableRight="@drawable/icon_arr_down"
+                app:drawableWidth="14dp" />
+
+            <ImageView
+                android:id="@+id/ivClose"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right"
+                android:layout_marginEnd="10dp"
+                android:padding="12dp"
+                android:src="@drawable/icon_close" />
+        </FrameLayout>
+
+
+        <com.hive.script.views.ScriptManagerLayoutForQuickStart
+            android:id="@+id/scriptManagerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp" />
+    </LinearLayout>
+
+</RelativeLayout>

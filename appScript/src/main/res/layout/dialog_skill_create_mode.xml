@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/mask_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_skill_form_sheet"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/design_spacing_page_horizontal"
+        android:paddingTop="@dimen/design_spacing_4"
+        android:paddingRight="@dimen/design_spacing_page_horizontal"
+        android:paddingBottom="@dimen/design_spacing_6">
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/design_border_subtle" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/design_spacing_4"
+            android:text="@string/skill_create_mode_title"
+            android:textColor="@color/design_text_secondary"
+            android:textSize="@dimen/design_font_xl"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/btn_ai_create"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/design_spacing_4"
+            android:background="@drawable/design_publish_input_bg"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:minHeight="72dp"
+            android:orientation="horizontal"
+            android:padding="@dimen/design_spacing_4">
+
+            <com.hive.views.widgets.UIResourceIconView
+                android:id="@+id/icon_skill_create"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                app:ri_resourceType="skill" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/design_spacing_4"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/skill_create_mode_ai"
+                    android:textColor="@color/design_text_secondary"
+                    android:textSize="@dimen/design_font_md"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/skill_create_mode_ai_desc"
+                    android:textColor="@color/design_text_muted"
+                    android:textSize="@dimen/design_font_xs" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_arrow_right" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_manual_create"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/design_spacing_3"
+            android:background="@drawable/design_publish_input_bg"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:minHeight="72dp"
+            android:orientation="horizontal"
+            android:padding="@dimen/design_spacing_4">
+
+            <FrameLayout
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@drawable/design_publish_icon_bg_sky">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_plus"
+                    android:tint="@color/design_accent_sky" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/design_spacing_4"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/skill_create_mode_manual"
+                    android:textColor="@color/design_text_secondary"
+                    android:textSize="@dimen/design_font_md"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/skill_create_mode_manual_desc"
+                    android:textColor="@color/design_text_muted"
+                    android:textSize="@dimen/design_font_xs" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_arrow_right" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

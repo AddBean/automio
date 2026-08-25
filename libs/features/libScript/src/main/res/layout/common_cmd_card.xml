@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/layout_main"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="@dimen/base_gap_margin"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <include
+            layout="@layout/common_cmd_card2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.hive.views.widgets.RoundRelativeLayout
+            android:id="@+id/layout_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:gravity="center_vertical"
+            app:round_view_radius="12dp"
+            app:round_view_type="round"
+            app:view_draw_paint_color="@color/colorPrimary">
+
+            <View
+                android:id="@+id/layout_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimaryLight" />
+
+            <LinearLayout
+                android:id="@+id/layout_index"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.hive.views.widgets.RoundRelativeLayout
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    app:round_view_radius="5dp"
+                    app:round_view_type="round"
+                    app:view_draw_paint_color="@color/colorPrimary">
+
+                    <TextView
+                        android:id="@+id/tv_index"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:lines="1"
+                        android:padding="2dp"
+                        android:singleLine="true"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        tools:text="111" />
+
+                    <ImageView
+                        android:id="@+id/drag_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </com.hive.views.widgets.RoundRelativeLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@+id/layout_index"
+                android:orientation="vertical">
+
+                <com.hive.views.widgets.TextDrawableView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:maxWidth="160dp"
+                    android:singleLine="true"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:text="TestTestTest" />
+
+                <com.hive.views.widgets.TextDrawableView
+                    android:id="@+id/tv_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_vertical"
+                    android:maxWidth="160dp"
+                    android:singleLine="true"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="12sp"
+                    tools:text="TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignEnd="@id/tv_name"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="-28dp" />
+
+
+            <ImageView
+                android:id="@+id/btn_more"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="4dp"
+                android:padding="6dp"
+                android:src="@drawable/sc_icon_more"
+                android:tint="@color/white" />
+
+            <FrameLayout
+                android:id="@+id/layout_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@color/white" />
+        </com.hive.views.widgets.RoundRelativeLayout>
+
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/layout_add"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="-20dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:background="@drawable/xml_btn_main_round_bg"
+            android:padding="2dp"
+            android:src="@drawable/sc_edit_add"
+            android:tint="@color/textColorPrimary" />
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:id="@+id/llDelayPart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="-20dp"
+        android:orientation="vertical">
+        <View
+            android:id="@+id/view_line1"
+            android:layout_width="1dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorSplitLine" />
+
+        <com.hive.views.widgets.TextDrawableView
+            android:id="@+id/tvDelay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawablePadding="4dp"
+            android:drawableTint="@color/colorTextSecondary"
+            android:gravity="center"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="14sp"
+            app:drawableHeight="12dp"
+            app:drawableLeft="@drawable/ic_time_wait"
+            app:drawableWidth="12dp"
+            tools:text="1111" />
+        <View
+            android:id="@+id/view_line3"
+            android:layout_width="1dp"
+            android:layout_height="12dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorSplitLine" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="horizontal"
+    tools:background="@color/color_black"
+    tools:parentTag="android.widget.RelativeLayout">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:textColor="@color/color_white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        tools:text="标题" />
+
+    <ImageView
+        android:id="@+id/iv_delete"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="-18dp"
+        android:padding="12dp"
+        android:src="@drawable/ic_close_common"
+        android:tint="@color/colorRed"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+</LinearLayout>

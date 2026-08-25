@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="@dimen/base_gap_margin"
+        android:background="@drawable/xml_common_dialog_round_alert_bg"
+        android:clickable="true"
+        android:tag="ScriptDialog"
+        android:focusable="true">
+
+        <ImageView
+            android:id="@+id/ivList"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginHorizontal="@dimen/base_gap_margin"
+            android:layout_marginTop="12dp"
+            android:padding="2dp"
+            android:src="@drawable/ic_file_list"
+            android:tint="@color/textColorPrimary"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/dialog_name_current_task"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/vItemBg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/base_gap_margin"
+            android:layout_marginTop="@dimen/base_gap_margin"
+            android:layout_marginBottom="@dimen/base_gap_margin"
+            android:background="@drawable/xml_pbg2_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.301"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            app:layout_constraintVertical_bias="1.0" />
+
+
+        <LinearLayout
+            android:id="@+id/tvLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/vItemBg">
+
+            <com.hive.views.widgets.TextDrawableView
+                android:id="@+id/tvName"
+                style="@style/base.content.title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:drawablePadding="4dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:maxLength="10"
+                android:singleLine="true"
+                android:text="@string/str_task_name"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="14sp"
+                android:tint="@color/colorTextSecondary"
+                app:drawableHeight="14dp"
+                app:drawableLeft="@drawable/logo"
+                app:drawableWidth="14dp"
+                tools:text="13471347686346186934763965978639475639781347134768634618693476396597863947563978" />
+
+            <com.hive.views.widgets.TextDrawableView
+                android:id="@+id/tvEdit"
+                style="@style/base.content.title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:drawablePadding="4dp"
+                android:drawableTint="@color/textColorPrimary"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:maxLength="10"
+                android:singleLine="true"
+                android:text="@string/str_task_edit"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="14sp"
+                android:tint="@color/colorTextSecondary"
+                app:drawableHeight="14dp"
+                app:drawableLeft="@drawable/script_edit"
+                app:drawableWidth="14dp" />
+        </LinearLayout>
+
+
+
+
+
+        <TextView
+            android:id="@+id/tvBtnLeft"
+            style="@style/base.button.stroke"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="@dimen/base_gap_margin"
+            android:layout_marginTop="@dimen/base_gap_margin"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="@dimen/big_gap_margin"
+            android:text="@string/cancel"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvBtnRight"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvLayout"
+            app:layout_goneMarginEnd="@dimen/base_gap_margin" />
+
+        <TextView
+            android:id="@+id/tvBtnRight"
+            style="@style/base.button"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="@dimen/base_gap_margin"
+            android:layout_marginEnd="@dimen/base_gap_margin"
+            android:layout_marginBottom="@dimen/big_gap_margin"
+            android:text="@string/str_replay"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvBtnLeft"
+            app:layout_constraintTop_toBottomOf="@+id/tvLayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

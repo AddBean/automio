@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 工作流设置：对齐「更多设置」design token（深色底 + 圆角卡片分组） -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/design_bg_overlay"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <com.carlos.ui.header.CommonHeader
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bg_color="@color/design_bg_overlay"
+        app:center_text="@string/setting_script_setting"
+        app:center_text_color="@color/design_text_primary"
+        app:center_text_size="@dimen/design_font_xl"
+        app:enable_back="true"
+        app:left_img_color="@color/design_text_secondary"
+        app:show_btm_line="true" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/design_spacing_page_horizontal"
+            android:paddingTop="@dimen/design_spacing_4"
+            android:paddingBottom="@dimen/design_spacing_8">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/design_spacing_3"
+                android:letterSpacing="0.12"
+                android:text="@string/setting_script_setting_1"
+                android:textAllCaps="true"
+                android:textColor="@color/design_text_muted"
+                android:textSize="@dimen/design_font_xs"
+                android:textStyle="bold" />
+
+            <com.hive.views.widgets.UIRoundCornerLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/design_spacing_6"
+                android:background="@color/design_permission_card_surface"
+                android:divider="@drawable/design_linearlayout_divider"
+                android:dividerPadding="@dimen/design_spacing_4"
+                android:orientation="vertical"
+                android:padding="@dimen/design_spacing_4"
+                android:showDividers="middle"
+                app:rcv_borderColor="@color/design_permission_card_border"
+                app:rcv_borderWidth="1dp"
+                app:rcv_radius="@dimen/design_radius_profile_group">
+
+                <com.hive.views.widgets.setting.SettingSwitchView
+                    android:id="@+id/setting_auto_authorize_on"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    app:settingDefValue="true"
+                    app:settingDes="@string/setting_auto_authorize_des"
+                    app:settingKey="@string/script_setting_auto_authorize"
+                    app:settingTitle="@string/setting_auto_authorize_title" />
+
+                <com.hive.views.widgets.setting.SettingSwitchView
+                    android:id="@+id/setting_show_unlock_on"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    app:settingDefValue="false"
+                    app:settingDes="@string/setting_show_unlock_on_des"
+                    app:settingKey="@string/script_setting_auto_unlock_key"
+                    app:settingTitle="@string/setting_show_unlock_on_title" />
+
+                <com.hive.views.widgets.setting.SettingSwitchView
+                    android:id="@+id/script_setting_keep_alive"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    app:settingDefValue="true"
+                    app:settingDes="@string/setting_keep_alive_des"
+                    app:settingKey="@string/script_setting_keep_alive"
+                    app:settingTitle="@string/setting_keep_alive_title" />
+            </com.hive.views.widgets.UIRoundCornerLinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/design_spacing_3"
+                android:letterSpacing="0.12"
+                android:text="@string/setting_script_setting_2"
+                android:textAllCaps="true"
+                android:textColor="@color/design_text_muted"
+                android:textSize="@dimen/design_font_xs"
+                android:textStyle="bold" />
+
+            <com.hive.views.widgets.UIRoundCornerLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/design_spacing_6"
+                android:background="@color/design_permission_card_surface"
+                android:divider="@drawable/design_linearlayout_divider"
+                android:dividerPadding="@dimen/design_spacing_4"
+                android:orientation="vertical"
+                android:padding="@dimen/design_spacing_4"
+                android:showDividers="middle"
+                app:rcv_borderColor="@color/design_permission_card_border"
+                app:rcv_borderWidth="1dp"
+                app:rcv_radius="@dimen/design_radius_profile_group">
+
+                <com.hive.views.widgets.setting.SettingSwitchView
+                    android:id="@+id/setting_adapter_screen_on"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    app:settingDefValue="true"
+                    app:settingDes="@string/setting_adapter_screen_on_des"
+                    app:settingKey="@string/script_setting_adapter_switch_key"
+                    app:settingTitle="@string/setting_adapter_screen_on_title" />
+
+                <com.hive.views.widgets.setting.SettingSwitchView
+                    android:id="@+id/setting_anti_detect_on"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    app:settingDefValue="false"
+                    app:settingDes="@string/setting_anti_detect_on_des"
+                    app:settingKey="@string/script_setting_anti_detect_key"
+                    app:settingTitle="@string/setting_anti_detect_on_title" />
+
+                <com.hive.views.widgets.setting.SettingSwitchView
+                    android:id="@+id/setting_lock_screen_on"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    app:settingDefValue="false"
+                    app:settingDes="@string/setting_lock_screen_on_des"
+                    app:settingKey="@string/script_setting_lock_switch_key"
+                    app:settingTitle="@string/setting_lock_screen_on_title" />
+
+                <com.hive.views.widgets.setting.SettingSwitchView
+                    android:id="@+id/setting_time_task_force_to_running"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    app:settingDefValue="false"
+                    app:settingDes="@string/setting_time_task_force_to_running_des"
+                    app:settingKey="@string/script_setting_time_task_force_to_running"
+                    app:settingTitle="@string/setting_time_task_force_to_running_title" />
+            </com.hive.views.widgets.UIRoundCornerLinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/design_spacing_3"
+                android:letterSpacing="0.12"
+                android:text="@string/setting_script_setting_3"
+                android:textAllCaps="true"
+                android:textColor="@color/design_text_muted"
+                android:textSize="@dimen/design_font_xs"
+                android:textStyle="bold" />
+
+            <com.hive.views.widgets.UIRoundCornerLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/design_spacing_6"
+                android:background="@color/design_permission_card_surface"
+                android:divider="@drawable/design_linearlayout_divider"
+                android:dividerPadding="@dimen/design_spacing_4"
+                android:orientation="vertical"
+                android:padding="@dimen/design_spacing_4"
+                android:showDividers="middle"
+                app:rcv_borderColor="@color/design_permission_card_border"
+                app:rcv_borderWidth="1dp"
+                app:rcv_radius="@dimen/design_radius_profile_group">
+
+                <com.hive.views.widgets.setting.SettingSwitchView
+                    android:id="@+id/setting_running_menu_on"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    app:settingDefValue="true"
+                    app:settingDes="@string/setting_running_menu_on_des"
+                    app:settingKey="@string/script_setting_running_menu_on"
+                    app:settingTitle="@string/setting_running_menu_on_title" />
+
+                <com.hive.views.widgets.setting.SettingSwitchView
+                    android:id="@+id/setting_running_tips_on"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    app:settingDefValue="false"
+                    app:settingDes="@string/setting_running_tips_on_des"
+                    app:settingKey="@string/script_setting_running_tips_switch_key"
+                    app:settingTitle="@string/setting_running_tips_title" />
+
+                <com.hive.views.widgets.setting.SettingSwitchView
+                    android:id="@+id/setting_frame_running"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    app:settingDefValue="false"
+                    app:settingDes="@string/setting_frame_running_des"
+                    app:settingKey="@string/script_setting_frame_running"
+                    app:settingTitle="@string/setting_frame_running_title" />
+
+                <com.hive.views.widgets.setting.SettingSwitchView
+                    android:id="@+id/setting_show_tracks_on"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    app:settingDefValue="true"
+                    app:settingDes="@string/setting_show_tracks_on_des"
+                    app:settingKey="@string/script_setting_show_tracks_key"
+                    app:settingTitle="@string/setting_show_tracks_on_title" />
+
+                <com.hive.views.widgets.setting.SettingSwitchView
+                    android:id="@+id/setting_show_record_on"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    app:settingDefValue="false"
+                    app:settingDes="@string/setting_show_record_on_des"
+                    app:settingKey="@string/script_setting_show_record_key"
+                    app:settingTitle="@string/setting_show_record_on_title" />
+            </com.hive.views.widgets.UIRoundCornerLinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/design_spacing_3"
+                android:letterSpacing="0.12"
+                android:text="@string/setting_script_setting_4"
+                android:textAllCaps="true"
+                android:textColor="@color/design_text_muted"
+                android:textSize="@dimen/design_font_xs"
+                android:textStyle="bold" />
+
+            <com.hive.views.widgets.UIRoundCornerLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/design_permission_card_surface"
+                android:divider="@drawable/design_linearlayout_divider"
+                android:dividerPadding="@dimen/design_spacing_4"
+                android:orientation="vertical"
+                android:padding="@dimen/design_spacing_4"
+                android:showDividers="middle"
+                app:rcv_borderColor="@color/design_permission_card_border"
+                app:rcv_borderWidth="1dp"
+                app:rcv_radius="@dimen/design_radius_profile_group">
+
+                <com.hive.views.widgets.setting.SettingSwitchView
+                    android:id="@+id/script_setting_editor_ignore_parse_error"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    app:settingDefValue="false"
+                    app:settingDes="@string/script_setting_editor_ignore_parse_error_des"
+                    app:settingKey="@string/script_setting_editor_ignore_parse_error"
+                    app:settingTitle="@string/script_setting_editor_ignore_parse_error_title" />
+
+                <com.hive.views.widgets.setting.SettingSwitchView
+                    android:id="@+id/script_setting_editor_bizer_enable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    app:settingDefValue="true"
+                    app:settingDes="@string/script_setting_editor_bizer_enable_des"
+                    app:settingKey="@string/script_setting_editor_bizer_enable"
+                    app:settingTitle="@string/script_setting_editor_bizer_enable_title" />
+            </com.hive.views.widgets.UIRoundCornerLinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

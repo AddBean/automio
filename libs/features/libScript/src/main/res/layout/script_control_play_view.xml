@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="180dp"
+    android:layout_height="@dimen/common_menu_height">
+
+    <com.hive.script.views.widgets.ScriptGradientAnimView
+        android:id="@+id/playing_anim_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:foreground="@drawable/xml_script_menu_main_bg5"
+        android:centerColor="#ff246BFD"
+        android:endColor="#ffff0000"
+        android:startColor="#F35B5B" />
+
+    <LinearLayout
+        android:id="@+id/playing_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/xml_script_menu_main_bg4"
+        android:orientation="horizontal"
+        android:paddingStart="4dp"
+        android:paddingEnd="7dp"
+        android:showDividers="middle">
+
+        <ImageView
+            android:id="@+id/btn_play_pause"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:paddingHorizontal="5dp"
+            android:src="@drawable/xml_script_play_pause"
+            android:tint="@color/textColorPrimary" />
+
+        <TextView
+            android:id="@+id/tv_play_status"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/sc_running_state_playing"
+            android:gravity="center"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/btn_play_stop"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_gravity="center_vertical"
+            android:alpha="0.9"
+            android:background="@drawable/xml_sc_btn_red_round_bg3"
+            android:gravity="center"
+            android:padding="7dp"
+            android:src="@drawable/sc_menu_quit"
+            android:textColor="@color/colorTextSecondary" />
+
+        <com.hive.script.views.widgets.RecordReplayView
+            android:id="@+id/btn_play_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="6dp"
+            android:gravity="center_vertical"
+            android:visibility="gone" />
+    </LinearLayout>
+</FrameLayout>
+

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Tab 标签区域 - 对齐 script-design FilterPill -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/design_spacing_2"
+        android:layout_marginBottom="@dimen/design_spacing_2"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/design_spacing_page_horizontal">
+
+        <TextView
+            android:id="@+id/tab_skill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_filter_pill_amber"
+            android:gravity="center"
+            android:minHeight="28dp"
+            android:paddingHorizontal="@dimen/design_spacing_4"
+            android:paddingVertical="@dimen/design_spacing_1_5"
+            android:text="@string/agent_tab_skill"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/design_font_xs"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tab_tool"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/design_spacing_2"
+            android:layout_toEndOf="@id/tab_skill"
+            android:background="@drawable/bg_filter_pill_inactive"
+            android:gravity="center"
+            android:minHeight="28dp"
+            android:paddingHorizontal="@dimen/design_spacing_4"
+            android:paddingVertical="@dimen/design_spacing_1_5"
+            android:text="@string/agent_tab_tool"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="@dimen/design_font_xs"
+            android:textStyle="bold" />
+
+
+        <!-- 筛选按钮：仅在 AI 工具 tab 时显示 -->
+        <com.hive.views.widgets.TextDrawableView
+            android:id="@+id/btn_filter_tool_type"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/design_filter_pill_height"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="@dimen/design_spacing_2"
+            android:background="@drawable/bg_filter_pill_inactive"
+            android:drawablePadding="@dimen/design_spacing_1"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center|end"
+            android:minHeight="28dp"
+            android:paddingLeft="@dimen/design_spacing_4"
+            android:paddingRight="@dimen/design_spacing_4"
+            android:text="@string/mcp_tool_filter_custom"
+            android:textColor="@color/design_text_secondary"
+            android:textSize="@dimen/design_font_sm"
+            android:visibility="gone"
+            app:drawableHeight="@dimen/design_font_3xs"
+            app:drawableRight="@drawable/ic_chevron_down"
+            app:drawableWidth="@dimen/design_font_3xs"
+            tools:visibility="visible" />
+    </RelativeLayout>
+
+    <!-- ViewPager 内容区域 -->
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

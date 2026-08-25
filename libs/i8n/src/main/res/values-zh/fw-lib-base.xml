@@ -1,0 +1,254 @@
+<resources>
+    <string name="update_start_download">开始后台下载！</string>
+    <string name="update_start_back_download">开始后台下载！</string>
+    <string name="update_dialog_install_title">是否安装新版本？</string>
+    <string name="update_dialog_install_cancel">取消</string>
+    <string name="update_dialog_install_confirm">立即安装</string>
+    <string name="update_dialog_download_confirm">马上更新</string>
+    <string name="update_dialog_download_back_confirm">后台下载</string>
+    <string name="update_dialog_download_title">检测到新版本</string>
+    <string name="update_dialog_downloading_info">已下载 %s%%</string>
+    <string name="update_dialog_progress_tips">下载进度</string>
+    <string name="update_dialog_downloading_title">下载更新中</string>
+    <string name="update_dialog_info_tips">更新内容：</string>
+    
+    <!-- 新增美化升级弹窗字符串 -->
+    <string name="update_dialog_title_new">发现新版本</string>
+    <string name="update_dialog_new_version">新版本</string>
+    <string name="update_dialog_downloading">正在下载更新</string>
+    <string name="update_dialog_cancel">稍后更新</string>
+    <string name="update_dialog_update_now">立即更新</string>
+    <string name="update_notification_title">正在下载最新版本</string>
+    <string name="update_notification_msg">正在下载</string>
+    <string name="update_notification_install">更新文件已下载完毕，点击安装更新！</string>
+    <string name="update_notification_install_msg">点击后安装最新版本</string>
+    <string name="float_permission_title">权限提示</string>
+    <string name="float_permission_content">需要悬浮窗权限，请去设置打开</string>
+    <string name="float_permission_confirm">去打开</string>
+    <string name="float_permission_cancel">取消</string>
+    <string name="permissions_lack_title">当前应用缺少如下权限，请授权后重试</string>
+    <string name="permissions_lack_msg">当前应用缺少如下权限</string>
+    <string name="permissions_lack_cancel">取消</string>
+    <string name="permissions_lack_jump">去授权</string>
+
+    <string name="base_list_empty">没有数据啦</string>
+    <string name="base_list_uppull">上拉加载哦</string>
+    <string name="base_list_loading">正在加载…</string>
+    <string name="base_list_loading_failed">加载失败喽</string>
+
+    <string name="android_permission_ACCESS_CHECKIN_PROPERTIES">访问登记属性</string>
+    <string name="android_permission_ACCESS_COARSE_LOCATION">获取错略位置</string>
+    <string name="android_permission_ACCESS_FINE_LOCATION">获取精确位置</string>
+    <string name="android_permission_ACCESS_LOCATION_EXTRA_COMMANDS">访问定位额外命令</string>
+    <string name="android_permission_ACCESS_MOCK_LOCATION">获取模拟定位信息</string>
+    <string name="android_permission_ACCESS_NETWORK_STATE">获取网络状态</string>
+    <string name="android_permission_ACCESS_SURFACE_FLINGER">访问Surface Flinger</string>
+    <string name="android_permission_ACCESS_WIFI_STATE">获取WiFi状态</string>
+    <string name="android_permission_ACCOUNT_MANAGER">账户管理</string>
+    <string name="android_permission_AUTHENTICATE_ACCOUNTS">验证账户</string>
+    <string name="android_permission_BATTERY_STATS">电量统计</string>
+    <string name="android_permission_BIND_APPWIDGET">绑定小插件</string>
+    <string name="android_permission_BIND_DEVICE_ADMIN">绑定设备管理</string>
+    <string name="android_permission_BIND_INPUT_METHOD">绑定输入法</string>
+    <string name="android_permission_BIND_REMOTEVIEWS">绑定RemoteView</string>
+    <string name="android_permission_BIND_WALLPAPER">绑定壁纸</string>
+    <string name="android_permission_BLUETOOTH">使用蓝牙</string>
+    <string name="android_permission_BLUETOOTH_ADMIN">蓝牙管理</string>
+    <string name="android_permission_BRICK">变成砖头</string>
+    <string name="android_permission_BROADCAST_PACKAGE_REMOVED">应用删除时广播</string>
+    <string name="android_permission_BROADCAST_SMS">收到短信时广播</string>
+    <string name="android_permission_BROADCAST_STICKY">连续广播</string>
+    <string name="android_permission_BROADCAST_WAP_PUSH">WAP PUSH广播</string>
+    <string name="android_permission_CALL_PHONE">拨打电话</string>
+    <string name="android_permission_CALL_PRIVILEGED">通话权限</string>
+    <string name="android_permission_CAMERA">拍照权限</string>
+    <string name="android_permission_CHANGE_COMPONENT_ENABLED_STATE">改变组件状态</string>
+    <string name="android_permission_CHANGE_CONFIGURATION">改变配置</string>
+    <string name="android_permission_CHANGE_NETWORK_STATE">改变网络状态</string>
+    <string name="android_permission_CHANGE_WIFI_MULTICAST_STATE">改变WiFi多播状态</string>
+    <string name="android_permission_CHANGE_WIFI_STATE">改变WiFi状态</string>
+    <string name="android_permission_CLEAR_APP_CACHE">清除应用缓存</string>
+    <string name="android_permission_CLEAR_APP_USER_DATA">清除用户数据</string>
+    <string name="android_permission_CWJ_GROUP">底层访问权限</string>
+    <string name="android_permission_CELL_PHONE_MASTER_EX">手机优化大师扩展权限</string>
+    <string name="android_permission_CONTROL_LOCATION_UPDATES">控制定位更新</string>
+    <string name="android_permission_DELETE_CACHE_FILES">删除缓存文件</string>
+    <string name="android_permission_DELETE_PACKAGES">删除应用</string>
+    <string name="android_permission_DEVICE_POWER">电源管理</string>
+    <string name="android_permission_DIAGNOSTIC">应用诊断</string>
+    <string name="android_permission_DISABLE_KEYGUARD">禁用键盘锁</string>
+    <string name="android_permission_DUMP">转存系统信息</string>
+    <string name="android_permission_EXPAND_STATUS_BAR">状态栏控制</string>
+    <string name="android_permission_FACTORY_TEST">工厂测试模式</string>
+    <string name="android_permission_FLASHLIGHT">使用闪光灯</string>
+    <string name="android_permission_FORCE_BACK">强制后退</string>
+    <string name="android_permission_GET_ACCOUNTS">访问账户Gmail列表</string>
+    <string name="android_permission_GET_PACKAGE_SIZE">获取应用大小</string>
+    <string name="android_permission_GET_TASKS">获取工作流信息</string>
+    <string name="android_permission_GLOBAL_SEARCH">允许全局搜索</string>
+    <string name="android_permission_HARDWARE_TEST">硬件测试</string>
+    <string name="android_permission_INJECT_EVENTS">注射事件</string>
+    <string name="android_permission_INSTALL_LOCATION_PROVIDER">安装定位提供</string>
+    <string name="android_permission_INSTALL_PACKAGES">安装应用程序</string>
+    <string name="android_permission_INTERNAL_SYSTEM_WINDOW">内部系统窗口</string>
+    <string name="android_permission_INTERNET">访问网络</string>
+    <string name="android_permission_KILL_BACKGROUND_PROCESSES">结束后台进程</string>
+    <string name="android_permission_MANAGE_ACCOUNTS">管理账户</string>
+    <string name="android_permission_MANAGE_APP_TOKENS">管理程序引用</string>
+    <string name="android_permission_MTWEAK_USER">高级权限</string>
+    <string name="android_permission_MTWEAK_FORUM">社区权限</string>
+    <string name="android_permission_MASTER_CLEAR">软格式化</string>
+    <string name="android_permission_MODIFY_AUDIO_SETTINGS">修改声音设置</string>
+    <string name="android_permission_MODIFY_PHONE_STATE">修改电话状态</string>
+    <string name="android_permission_MOUNT_FORMAT_FILESYSTEMS">格式化文件系统</string>
+    <string name="android_permission_MOUNT_UNMOUNT_FILESYSTEMS">挂载文件系统</string>
+    <string name="android_permission_NFC">允许NFC通讯</string>
+    <string name="android_permission_PERSISTENT_ACTIVITY">永久Activity</string>
+    <string name="android_permission_PROCESS_OUTGOING_CALLS">处理拨出电话</string>
+    <string name="android_permission_READ_CALENDAR">读取日程提醒</string>
+    <string name="android_permission_READ_CONTACTS">读取联系人</string>
+    <string name="android_permission_READ_FRAME_BUFFER">屏幕截图</string>
+    <string name="com_android_browser_permission_READ_HISTORY_BOOKMARKS">读取收藏夹和历史记录</string>
+    <string name="android_permission_READ_INPUT_STATE">读取输入状态</string>
+    <string name="android_permission_READ_LOGS">读取系统日志</string>
+    <string name="android_permission_READ_PHONE_STATE">读取电话状态</string>
+    <string name="android_permission_READ_SMS">读取短信内容</string>
+    <string name="android_permission_READ_SYNC_SETTINGS">读取同步设置</string>
+    <string name="android_permission_READ_SYNC_STATS">读取同步状态</string>
+    <string name="android_permission_REBOOT">重启设备</string>
+    <string name="android_permission_RECEIVE_BOOT_COMPLETED">开机自动允许</string>
+    <string name="android_permission_RECEIVE_MMS">接收彩信</string>
+    <string name="android_permission_RECEIVE_SMS">接收短信</string>
+    <string name="android_permission_RECEIVE_WAP_PUSH">接收Wap Push</string>
+    <string name="android_permission_RECORD_AUDIO">录音</string>
+    <string name="android_permission_REORDER_TASKS">最近工作流操作</string>
+    <string name="android_permission_RESTART_PACKAGES">结束系统工作流</string>
+    <string name="android_permission_SEND_SMS">发送短信</string>
+    <string name="android_permission_SET_ACTIVITY_WATCHER">设置Activity观察其</string>
+    <string name="com_android_alarm_permission_SET_ALARM">设置闹铃提醒</string>
+    <string name="android_permission_SET_ALWAYS_FINISH">设置总是退出</string>
+    <string name="android_permission_SET_ANIMATION_SCALE">设置动画缩放</string>
+    <string name="android_permission_SET_DEBUG_APP">设置调试程序</string>
+    <string name="android_permission_SET_ORIENTATION">设置屏幕方向</string>
+    <string name="android_permission_SET_PREFERRED_APPLICATIONS">设置应用参数</string>
+    <string name="android_permission_SET_PROCESS_LIMIT">设置进程限制</string>
+    <string name="android_permission_SET_TIME">设置系统时间</string>
+    <string name="android_permission_SET_TIME_ZONE">设置系统时区</string>
+    <string name="android_permission_SET_WALLPAPER">设置桌面壁纸</string>
+    <string name="android_permission_SET_WALLPAPER_HINTS">设置壁纸建议</string>
+    <string name="android_permission_SIGNAL_PERSISTENT_PROCESSES">发送永久进程信号</string>
+    <string name="android_permission_STATUS_BAR">状态栏控制</string>
+    <string name="android_permission_SUBSCRIBED_FEEDS_READ">访问订阅内容</string>
+    <string name="android_permission_SUBSCRIBED_FEEDS_WRITE">写入订阅内容</string>
+    <string name="android_permission_SYSTEM_ALERT_WINDOW">显示系统窗口</string>
+    <string name="android_permission_UPDATE_DEVICE_STATS">更新设备状态</string>
+    <string name="android_permission_USE_CREDENTIALS">使用证书</string>
+    <string name="android_permission_USE_SIP">使用SIP视频</string>
+    <string name="android_permission_VIBRATE">使用振动</string>
+    <string name="android_permission_WAKE_LOCK">唤醒锁定</string>
+    <string name="android_permission_WRITE_APN_SETTINGS">写入GPRS接入点设置</string>
+    <string name="android_permission_WRITE_CALENDAR">写入日程提醒</string>
+    <string name="android_permission_WRITE_CONTACTS">写入联系人</string>
+    <string name="android_permission_WRITE_EXTERNAL_STORAGE">写入外部存储</string>
+    <string name="android_permission_READ_EXTERNAL_STORAGE">读取外部存储</string>
+    <string name="android_permission_WRITE_GSERVICES">写入Google地图数据</string>
+    <string name="com_android_browser_permission_WRITE_HISTORY_BOOKMARKS">写入收藏夹和历史记录</string>
+    <string name="android_permission_WRITE_SECURE_SETTINGS">读写系统敏感设置</string>
+    <string name="android_permission_WRITE_SETTINGS">读写系统设置</string>
+    <string name="android_permission_WRITE_SMS">编写短信</string>
+    <string name="android_permission_CREATE_SHORTCUT">创建快捷方式</string>
+
+    <string name="privacy_agreement_msg">查看 [用户协议] 和 [隐私协议]</string>
+    <string name="agreement_left_text">不同意</string>
+    <string name="agreement_right_text">同意</string>
+    <string name="agreement_left_title">隐私政策</string>
+    <string name="agreement_left_content">欢迎您使用本APP，我们非常重视您的隐私和个人信息保护。未经您的授权，我们不会收集、使用和共享您的个人信息，在您使用我们的服务前，请充分阅读并理解相关政策。</string>
+    <string name="first_enter_main_loading">正在加载中…</string>
+    <string name="android_permission_ACCESS_DOWNLOAD_MANAGER">访问下载目录权限</string>
+    <string name="base_app_proxy_error">关闭代理后再试！</string>
+
+    <!-- 错误代码消息 -->
+    <string name="error_unknown">未知错误</string>
+    <string name="error_tool_not_found">工具未找到</string>
+    <string name="error_invalid_params">参数无效</string>
+    <string name="error_permission_denied">权限不足</string>
+    <string name="error_network">网络错误</string>
+    <string name="error_timeout">超时</string>
+    <string name="error_execution_failed">执行失败</string>
+    <string name="error_resource_unavailable">资源不可用</string>
+    <string name="error_context_invalid">上下文无效</string>
+    <string name="error_task_stop">任务停止</string>
+    <string name="error_task_pause">任务暂停</string>
+    <string name="error_task_error">任务错误</string>
+    <string name="error_ai_no_provider">没有可用的提供者</string>
+    <string name="error_ai_service_unavailable">服务不可用</string>
+    <string name="error_ai_invalid_request">无效请求</string>
+    <string name="error_ai_network">网络错误</string>
+    <string name="error_ai_auth_failed">认证失败</string>
+    <string name="error_ai_request_error">请求出错</string>
+    <string name="error_ai_request_cancel">用户取消请求</string>
+
+    <!-- MCP相关字符串 -->
+    <string name="mcp_operation_success">操作成功</string>
+    <string name="mcp_operation_failed">操作失败</string>
+
+    <!-- 分享相关 -->
+    <string name="base_share_to">分享到</string>
+    <string name="base_load_fragment_failed">加载插件Fragment失败</string>
+    <string name="base_downloaded">已下载%d%%</string>
+
+    <!-- 工程师/日志 (调试UI) -->
+    <string name="base_max_chars">不能超过40字</string>
+    <string name="base_copied_to_clipboard">已复制到剪贴板</string>
+    <string name="base_copied_all_to_clipboard">已复制全部到剪贴板</string>
+    <string name="base_copy_item">复制该条</string>
+    <string name="base_format">格式化</string>
+    <string name="base_collapse_item">收起该条</string>
+    <string name="base_expand">展开</string>
+    <string name="base_collapse">收起</string>
+
+    <string name="base_engineer_enter_mode">进入工程模式</string>
+    <string name="base_engineer_pwd_error">密码错误</string>
+    <string name="base_engineer_switch_error">切换出错！</string>
+    <string name="base_engineer_player_not_registered">播放器组件未注册</string>
+    <string name="base_engineer_player_url_empty">播放地址不能为空！</string>
+    <string name="base_engineer_p2p_not_registered">p2p组件未注册</string>
+    <string name="base_engineer_player_p2p_not_registered">播放器或p2p组件未注册</string>
+    <string name="base_engineer_clearing">正在后台清理</string>
+    <string name="base_engineer_clear_success_exit">清理成功,即将退出！</string>
+    <string name="base_engineer_clear_title">清理提示</string>
+    <string name="base_engineer_clear_msg">清除数据后app将被重置！</string>
+    <string name="base_engineer_clear_confirm">确认清理</string>
+
+    <!-- 异常/错误 -->
+    <string name="base_download_error">下载出错</string>
+    <string name="base_file_verify_error">文件校验出错</string>
+    <string name="base_upload_error">上传出错</string>
+
+    <!-- ListRecyclerView -->
+    <string name="base_set_item_view_factory_required">必须先调用setItemViewFactory方法</string>
+    <string name="base_file_not_exist_path">文件不存在 path = %1$s</string>
+
+    <!-- 下载相关字符串 -->
+    <string name="download_error">下载出错！</string>
+
+    <!-- 网络异常字符串 -->
+    <string name="network_error_retry">网络异常,请稍后再试~</string>
+    <string name="network_parse_error">解析结果错误</string>
+    <string name="network_ssl_error">证书错误~</string>
+    <string name="network_unknown">服务器出错</string>
+    <string name="network_unauthorized">亲，您没有权限操作噢</string>
+    <string name="network_forbidden">额，出了点问题</string>
+    <string name="network_not_found">服务器异常,请稍后再试~</string>
+    <string name="network_timeout">亲，您的手机网络不太顺畅喔~</string>
+    <string name="network_gateway_timeout">亲，您的手机网络不太顺畅喔~</string>
+    <string name="network_internal_error">亲，服务器异常~</string>
+    <string name="network_bad_gateway">服务器异常,请稍后再试~</string>
+    <string name="network_service_unavailable">服务器异常,请稍后再试~</string>
+    <string name="network_default_error">服务器异常,请稍后再试~</string>
+
+    <string name="list_status_loading">加载中…</string>
+    <string name="list_no_more_data">没有啦</string>
+    <string name="list_pull_up_to_load_more">下拉加载</string>
+    <string name="list_status_load_failed">加载失败</string>
+</resources>

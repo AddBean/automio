@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="skill_management">Skill 管理</string>
+    <string name="skill_add">添加 Skill</string>
+    <string name="skill_list_empty">暂无 Skill</string>
+    <string name="skill_count">共 %d 个 Skill</string>
+    <string name="skill_empty_title">暂无能力组件</string>
+    <string name="skill_empty_desc">创建 AI 技能后，即可在本机 Agent 中使用。</string>
+    <string name="skill_empty_action">去创作中心</string>
+
+    <string name="skill_create_title">创建 AI 技能</string>
+    <string name="skill_edit_title">编辑 AI 技能</string>
+    <string name="skill_create_mode_title">选择创作方式</string>
+    <string name="skill_create_mode_ai">AI 创建</string>
+    <string name="skill_create_mode_ai_desc">输入需求，让 AI 自动生成技能配置草稿。</string>
+    <string name="skill_create_mode_manual">手动创建</string>
+    <string name="skill_create_mode_manual_desc">手动填写技能名、提示词和工具绑定。</string>
+    <string name="skill_ai_create_title">AI 创建技能</string>
+    <string name="skill_ai_create_desc">描述您想创建的技能，AI 会先生成一个可编辑的草稿，确认后再保存。</string>
+    <string name="skill_ai_create_requirement_hint">例如：创建一个工作流规划技能，把用户目标拆成自动化步骤。</string>
+    <string name="skill_ai_create_examples">参考示例</string>
+    <string name="skill_ai_example_1">创建一个工作流规划技能，把用户目标拆成自动化步骤</string>
+    <string name="skill_ai_example_2">创建一个页面分析技能，读取当前界面并建议下一步操作</string>
+    <string name="skill_ai_example_3">创建一个表单填写技能，根据页面内容生成输入文本</string>
+    <string name="skill_ai_example_4">创建一个工作流调试技能，分析失败原因并给出修复建议</string>
+    <string name="skill_ai_create_generate">AI 生成技能草稿</string>
+    <string name="skill_ai_create_generating">AI 正在生成草稿...</string>
+    <string name="skill_ai_create_failed">AI 草稿生成失败</string>
+    <string name="skill_ai_create_parse_failed">AI 返回内容无法解析为技能草稿，请重试。</string>
+    <string name="skill_save">保存</string>
+    <string name="skill_required_fields_tip">请填写完整必填信息</string>
+
+    <string name="skill_field_id_hint">Skill ID（如 skill.xxx）</string>
+    <string name="skill_field_name_label">技能名</string>
+    <string name="skill_field_name_hint">输入技能名称</string>
+    <string name="skill_field_desc_label">技能介绍</string>
+    <string name="skill_field_desc_hint">简要描述该技能的用途</string>
+    <string name="skill_field_prompt_label">系统提示词</string>
+    <string name="skill_field_prompt_hint">定义 AI 的系统角色与行为指令</string>
+    <string name="skill_field_timeout_label">超时时长（秒）</string>
+    <string name="skill_field_timeout_hint">60</string>
+    <string name="skill_field_max_rounds_label">技能的最大轮次</string>
+    <string name="skill_field_max_rounds_hint">10</string>
+
+    <string name="skill_link_tools">关联工具</string>
+    <string name="skill_link_tools_label">技能的工具绑定</string>
+    <string name="skill_link_tools_empty">点击选择要绑定的工具</string>
+    <string name="skill_link_tools_summary">已选择 %d 个工具</string>
+
+    <string name="skill_tool_selector_title">选择工具</string>
+    <string name="skill_selected_tools_count">已选择：%d</string>
+    <string name="skill_tool_selector_empty_title">暂无工具</string>
+    <string name="skill_tool_selector_empty_desc">请先创建 AI 工具，再返回绑定。</string>
+
+    <string name="skill_delete_title">删除 Skill</string>
+    <string name="skill_delete_message">确定删除「%s」？</string>
+    <string name="skill_detail_title">技能详情</string>
+    <string name="skill_detail_custom">自定义技能</string>
+    <string name="skill_detail_builtin">内置技能</string>
+    <string name="skill_detail_tools">关联工具</string>
+    <string name="skill_detail_prompt">系统提示词</string>
+    <string name="skill_detail_meta">配置与来源</string>
+    <string name="skill_detail_no_description">暂未补充技能描述。</string>
+    <string name="skill_detail_config_badge">轮数 %1$d · 超时 %2$s秒</string>
+    <string name="skill_detail_meta_rounds">最大轮数：%1$d</string>
+    <string name="skill_detail_meta_timeout">超时时间：%1$d ms</string>
+    <string name="skill_detail_meta_sources">来源工作流：%1$s</string>
+    <string name="skill_detail_meta_version">版本：%1$s</string>
+    <string name="skill_run_prompt_hint">描述你希望这个技能执行的任务</string>
+    <string name="skill_run_title">运行技能：%1$s</string>
+    <string name="skill_run_status_success">技能执行完成</string>
+    <string name="skill_run_status_partial">部分完成</string>
+    <string name="skill_run_tool_errors">工具错误</string>
+</resources>

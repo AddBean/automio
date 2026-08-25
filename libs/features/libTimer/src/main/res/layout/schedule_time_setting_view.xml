@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="8dp">
+
+        <!-- Task selection card -->
+        <com.hive.views.widgets.UIRoundCornerRelativeLayout
+            android:id="@+id/layout_task_select"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="20dp"
+            app:rcv_radius="16dp"
+            app:rcv_borderWidth="1dp"
+            app:rcv_borderColor="#0FFFFFFF"
+            android:background="#0fFFFFFF">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tv_task_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/timer_schedule_editor_task_title"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="10sp"
+                        tools:ignore="SmallSp" />
+
+                    <TextView
+                        android:id="@+id/tv_task_required"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/colorRed"
+                        android:textSize="10sp"
+                        android:layout_marginStart="2dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_task_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    tools:text="自动评论助手" />
+
+                <TextView
+                    android:id="@+id/tv_task_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="10sp"
+                    tools:text="保存后会按照当前规则自动执行该工作流" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_task_arrow"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/setting_arrow"
+                app:tint="@color/colorTextSecondary" />
+        </com.hive.views.widgets.UIRoundCornerRelativeLayout>
+
+        <!-- Type selector chips -->
+        <com.hive.views.widgets.UIRoundCornerLinearLayout
+            android:id="@+id/layout_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingTop="16dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="16dp"
+            app:rcv_radius="16dp"
+            app:rcv_borderWidth="1dp"
+            app:rcv_borderColor="#0FFFFFFF"
+            android:background="#0fFFFFFF">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:orientation="horizontal">
+
+                <com.hive.views.widgets.UIRoundCornerTextView
+                    android:id="@+id/tv_type_daily"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    app:rcv_radius="12dp"
+                    app:rcv_borderWidth="0.5dp"
+                    app:rcv_borderColor="#1AFFFFFF"
+                    android:background="#141418"
+                    tools:text="每天重复" />
+
+                <com.hive.views.widgets.UIRoundCornerTextView
+                    android:id="@+id/tv_type_week"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    app:rcv_radius="12dp"
+                    app:rcv_borderWidth="0.5dp"
+                    app:rcv_borderColor="#1AFFFFFF"
+                    android:background="#141418"
+                    tools:text="每天不同" />
+
+                <com.hive.views.widgets.UIRoundCornerTextView
+                    android:id="@+id/tv_type_repeat"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    app:rcv_radius="12dp"
+                    app:rcv_borderWidth="0.5dp"
+                    app:rcv_borderColor="#1AFFFFFF"
+                    android:background="#141418"
+                    tools:text="间隔执行" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_type_helper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="10sp"
+                tools:text="添加一个或多个固定时间，每天重复执行" />
+        </com.hive.views.widgets.UIRoundCornerLinearLayout>
+
+        <!-- Dynamic content area (daily/week/repeat views) -->
+        <com.hive.views.widgets.UIRoundCornerFrameLayout
+            android:id="@+id/layout_type_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="8dp"
+            app:rcv_radius="16dp"
+            app:rcv_borderWidth="1dp"
+            app:rcv_borderColor="#0FFFFFFF"
+            android:background="#08FFFFFF" />
+    </LinearLayout>
+
+    <!-- Hidden save/close buttons for ScheduleTimerLayout code compatibility -->
+    <View
+        android:id="@+id/iv_close"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone" />
+
+    <View
+        android:id="@+id/iv_ok"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone" />
+
+    <FrameLayout
+        android:id="@+id/layout_menu_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+</FrameLayout>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="timer_hour">时</string>
+    <string name="timer_minus">分</string>
+    <string name="timer_sec">秒</string>
+    <string name="time_alarm_setting_title">添加定时</string>
+    <string name="alarm_time_change_type">重复类型</string>
+    <string name="schedule_time_change_type">定时类型</string>
+    <string name="time_alarm_setting_info">%1$s时%2$s分%3$s秒</string>
+    <string name="time_week_setting_title">重复星期</string>
+    <string name="alarm_time_delete">执行后删除</string>
+    <string name="alarm_time_enable">是否开启</string>
+    <string name="alarm_keep_enable">是否保活</string>
+    <string name="time_week_once">一次性</string>
+    <string name="time_week_everyday">每天</string>
+    <array name="week_list">
+        <item name="time_week_1">星期一</item>
+        <item name="time_week_2">星期二</item>
+        <item name="time_week_3">星期三</item>
+        <item name="time_week_4">星期四</item>
+        <item name="time_week_5">星期五</item>
+        <item name="time_week_6">星期六</item>
+        <item name="time_week_7">星期日</item>
+    </array>
+
+    <array name="timer_menu_repeat_array">
+        <item>一次</item>
+        <item>每天</item>
+        <item>自定义</item>
+    </array>
+
+    <array name="schedule_menu_repeat_array">
+        <item>每天重复</item>
+        <item>每天不同</item>
+        <item>间隔执行</item>
+    </array>
+
+    <array name="week_list2">
+        <item name="time_week_0">星期一</item>
+        <item name="time_week_1">星期二</item>
+        <item name="time_week_2">星期三</item>
+        <item name="time_week_3">星期四</item>
+        <item name="time_week_4">星期五</item>
+        <item name="time_week_5">星期六</item>
+        <item name="time_week_6">星期日</item>
+    </array>
+    <array name="week_list_short">
+        <item>周一</item>
+        <item>周二</item>
+        <item>周三</item>
+        <item>周四</item>
+        <item>周五</item>
+        <item>周六</item>
+        <item>周日</item>
+    </array>
+    <string name="time_selector_setting_title">选择时间</string>
+    <string name="schedule_time_gap_title">间隔时间</string>
+    <string name="timer_minus_unit">分钟</string>
+    <array name="timer_logger_filter_name">
+        <item>每天重复</item>
+        <item>每天不同</item>
+        <item>间隔执行</item>
+    </array>
+
+    <array name="timer_logger_level_name">
+        <item>全部日志</item>
+        <item>警告等级</item>
+        <item>错误等级</item>
+    </array>
+    <string name="timer_script_try_start">尝试启动定时工作流</string>
+    <string name="script_schedule_record_title">运行日志</string>
+    <string name="timer_log_clear_action">清空</string>
+    <string name="timer_log_empty_title">暂无运行日志</string>
+    <string name="timer_log_empty_desc">任务执行后，日志记录会展示在这里</string>
+    <string name="timer_clear_log_title">清空日志提示</string>
+    <string name="timer_clear_log_msg">清空日志后，日志记录将无法恢复！</string>
+    <string name="timer_service_title">定时工作流运行中，请勿关闭~</string>
+    <string name="timer_service_content">暂无运行中的定时工作流</string>
+    <string name="timer_service_running_title">执行倒计时：%s</string>
+    <string name="timer_service_running_content">执行时间：%s</string>
+    <string name="timer_alarm_info_2">执行时间</string>
+
+    <string name="timer_schedule_add">创建定时工作流</string>
+    <string name="timer_schedule_enabled_summary">已启用</string>
+    <string name="timer_schedule_empty_title">暂无定时任务</string>
+    <string name="timer_schedule_empty_desc">点击右上角 + 创建定时任务</string>
+    <string name="timer_schedule_editor_save">保存</string>
+    <string name="timer_schedule_editor_title">添加定时</string>
+    <string name="timer_schedule_editor_task_title">选择工作流</string>
+    <string name="timer_schedule_editor_task_placeholder">请选择要执行的工作流</string>
+    <string name="timer_schedule_editor_task_desc">保存后会按照当前规则自动执行该工作流</string>
+    <string name="timer_schedule_editor_task_ready">已选择工作流</string>
+    <string name="timer_schedule_editor_task_required">请先选择一个工作流</string>
+    <string name="timer_schedule_editor_type_daily_hint">添加一个或多个固定时间，每天按时执行。</string>
+    <string name="timer_schedule_editor_type_week_hint">按星期拆分执行时间，适合工作日和周末不同安排。</string>
+    <string name="timer_schedule_editor_type_repeat_hint">按分钟间隔循环执行，适合轮询类任务。</string>
+    <string name="timer_schedule_week_day_empty">暂无执行时间</string>
+    <string name="timer_schedule_last_run_format">上次 %s</string>
+    <string name="timer_schedule_next_run_label">下次</string>
+    <string name="timer_schedule_next_run_none">-</string>
+    <string name="timer_schedule_status_success">成功</string>
+    <string name="timer_schedule_status_warning">警告</string>
+    <string name="timer_schedule_status_failed">失败</string>
+
+    <string name="timer_schedule_timer_add">添加定时闹钟</string>
+    <string name="timer_schedule_timer_delete_title">删除定时器</string>
+    <string name="timer_schedule_timer_delete">确定删除定时器吗？</string>
+    <string name="calentar_permission_title">权限提示</string>
+    <string name="calentar_permission_content">该功能需要读取/写入系统的日历来设置定时工作流，因此需要日历权限，请授权后继续</string>
+    <string name="calentar_permission_left_text">取消</string>
+    <string name="calentar_permission_right_text">授权</string>
+
+    <string name="timer_alarm_info_1">执行倒计时</string>
+</resources>

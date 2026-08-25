@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/view_top"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="@color/color_black_translucence" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/view_top"
+        android:layout_marginTop="-20dp"
+        android:background="@drawable/xml_dark_round_rect_373a4_bg">
+
+        <ImageView
+            android:id="@+id/iv_filter"
+            android:layout_width="@dimen/x_file_menu_height"
+            android:layout_height="@dimen/x_file_menu_height"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="8dp"
+            android:padding="8dp"
+            android:src="@drawable/x_file_filter"
+            android:tint="@color/color_ff383838" />
+
+        <com.hive.files.views.XFileNavigationBar
+            android:id="@+id/file_navigation_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x_file_menu_height"
+            android:layout_toLeftOf="@id/iv_filter" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignBottom="@id/file_navigation_bar"
+            android:background="@color/white_6" />
+
+        <FrameLayout
+            android:id="@+id/frag_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/layout_paste"
+            android:layout_below="@id/file_navigation_bar" />
+
+
+        <LinearLayout
+            android:id="@+id/layout_paste"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x_file_menu_height"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:background="@color/color_white"
+            android:orientation="horizontal">
+
+            <com.hive.views.widgets.TextDrawableView
+                android:id="@+id/btn_file_paste_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/btn_file_paste_cancel"
+                android:textColor="@color/color_ff383838"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <com.hive.views.widgets.TextDrawableView
+                android:id="@+id/btn_file_paste_now"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/btn_file_selected"
+                android:textColor="@color/color_blue"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignTop="@id/layout_paste"
+            android:background="@color/white_6" />
+    </RelativeLayout>
+</RelativeLayout>

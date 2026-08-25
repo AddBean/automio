@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_state"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/xml_common_dialog_round_alert_bg"
+        android:clickable="true"
+        android:tag="ScriptDialog">
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="16dp"
+            android:padding="8dp"
+            android:src="@drawable/icon_close"
+            android:tint="@color/textColorPrimary" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/dialog_copy_text_input_title"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+
+            <com.hive.views.widgets.MaxHeightLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:heightDimen="300dp">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/layoutList"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical" />
+                </ScrollView>
+            </com.hive.views.widgets.MaxHeightLayout>
+
+            <com.hive.views.widgets.TextDrawableView
+                android:id="@+id/tvAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:drawablePadding="4dp"
+                android:drawableTint="@color/colorAccent"
+                android:text="@string/sc_multiple_selector_add"
+                android:textColor="@color/colorAccent"
+                android:textSize="14sp"
+                app:drawableHeight="14dp"
+                app:drawableLeft="@drawable/icon_plus_thin"
+                app:drawableWidth="14dp" />
+
+            <Button
+                android:id="@+id/btn_submit"
+                style="@style/base.button.square"
+                android:layout_width="200dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/pref_confirm"
+                android:textColor="@color/color_white"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

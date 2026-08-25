@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Tab 激活状态背景：bg-white/10 border border-white/5 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#1Affffff" />
+    <corners android:radius="12dp" />
+    <stroke
+        android:width="1dp"
+        android:color="#0Dffffff" />
+</shape>

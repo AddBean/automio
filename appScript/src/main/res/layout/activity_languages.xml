@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/design_bg_overlay"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <com.carlos.ui.header.CommonHeader
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bg_color="@color/design_bg_overlay"
+        app:center_text="@string/layout_account_languages"
+        app:center_text_color="@color/design_text_primary"
+        app:center_text_size="@dimen/design_font_xl"
+        app:enable_back="true"
+        app:left_img_color="@color/design_text_secondary"
+        app:show_btm_line="true" />
+
+    <com.hive.views.list_view.ListRecyclerView
+        android:id="@+id/list_languages"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingHorizontal="@dimen/design_spacing_page_horizontal"
+        android:paddingTop="@dimen/design_spacing_4"
+        android:paddingBottom="@dimen/design_spacing_8" />
+</LinearLayout>

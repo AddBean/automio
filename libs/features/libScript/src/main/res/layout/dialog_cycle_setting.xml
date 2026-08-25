@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_state"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/xml_common_dialog_round_alert_bg"
+        android:clickable="true"
+        android:tag="ScriptDialog">
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="16dp"
+            android:padding="9dp"
+            android:src="@drawable/icon_close"
+            android:tint="@color/textColorPrimary" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/dialog_name_cycle_setting"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <!--            <com.hive.script.views.widgets.ScriptNumberView-->
+            <!--                android:id="@+id/play_step"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                app:optNumberDefault="1"-->
+            <!--                app:optNumberInput="true"-->
+            <!--                app:optNumberMax="10000"-->
+            <!--                app:optNumberMin="1"-->
+            <!--                app:optNumberType="TYPE1"-->
+            <!--                app:scriptNumberName="@string/sc_play_step" />-->
+
+            <com.hive.script.views.widgets.ScriptTabSelectorView
+                android:id="@+id/play_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                app:scriptName="@string/sc_play_infinite"
+                app:tabBackground="@drawable/xml_selector_round_tab_item_view"
+                app:tabDefaultValue="0"
+                app:tabNameList="@string/sc_play_type_list"
+                app:tabTxtColor="@drawable/xml_selector_round_tab_item_view_color"
+                app:tabValueList="0,1" />
+
+            <com.hive.script.views.widgets.ScriptNumberView
+                android:id="@+id/play_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:optNumberDefault="1"
+                app:optNumberInput="true"
+                app:optNumberMax="1000"
+                app:optNumberMin="1"
+                app:optNumberType="TYPE1"
+                app:optNumberUnit="@string/sc_unit_times"
+                app:scriptNumberName="@string/sc_play_count" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorSplitLine" />
+
+            <RelativeLayout
+                android:id="@+id/layoutOpt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+
+                <TextView
+                    android:id="@+id/btnCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="-20dp"
+                    android:layout_marginTop="16dp"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="6dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="6dp"
+                    android:text="@string/sc_close"
+                    android:textColor="#FF968E"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/btnSubmit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="18dp"
+                    android:background="@drawable/xml_btn_accent_round_bg"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="6dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="6dp"
+                    android:text="@string/pref_confirm"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

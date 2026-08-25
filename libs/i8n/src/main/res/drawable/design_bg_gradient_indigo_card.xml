@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Indigo 渐变卡片背景（用于余额卡片） -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:startColor="#1A246BFD"
+        android:centerColor="#0D8b5cf6"
+        android:endColor="#00000000"
+        android:angle="135" />
+    <corners android:radius="@dimen/design_radius_2xl" />
+</shape>

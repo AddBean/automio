@@ -1,0 +1,65 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.BaseProject" parent="Theme.AppCompat.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/public_bg</item>
+<!--        <item name="android:fontFamily" >@font/tomoro_font</item>-->
+        <!-- Status bar color. -->
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:statusBarColor">@color/colorPrimary</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="AppThemeSplash" parent="Theme.AppCompat.NoActionBar">
+<!--        <item name="android:windowBackground">@drawable/bg_splash</item>-->
+<!--        <item name="android:windowBackground">@drawable/ic_point_index1</item>-->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+        <item name="android:background">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowEnterAnimation">@null</item>
+        <item name="android:windowShowAnimation">@null</item>
+        <item name="android:windowExitAnimation">@null</item>
+    </style>
+
+
+<!--    <style name="Bottom_Translucent_NoTitle_NoDimEnabled" parent="Theme.Design.BottomSheetDialog">-->
+<!--        <item name="android:background">@android:color/transparent</item>-->
+<!--        <item name="android:windowBackground">@android:color/transparent</item>-->
+<!--        <item name="android:backgroundDimEnabled">false</item>-->
+<!--    </style>-->
+
+    <style name="Translucent_NoTitle_Default" parent="android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <!-- PageStatusView自定义属性-->
+    <declare-styleable name="PageStatusView">
+        <!--        上半部分图片    -->
+        <attr name="status_image" format="reference" />
+        <!--        标题    -->
+        <attr name="status_title" format="string|reference"/>
+        <!--        描述    -->
+        <attr name="status_des" format="string|reference"/>
+        <!--    状态view处理的业务类型    -->
+        <attr name="handle_business_type" format="integer">
+            <enum name="error" value="0"/>
+            <enum name="empty" value="1"/>
+        </attr>
+        <attr name="status_image_mirror" format="boolean"/>
+        <!--    状态类型  -->
+        <attr name="status_type" format="string"></attr>
+    </declare-styleable>
+</resources>

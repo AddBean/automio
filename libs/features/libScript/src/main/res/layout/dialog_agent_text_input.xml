@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/layout_state"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/xml_common_dialog_round_alert_bg"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:tag="ScriptDialog">
+
+        <!-- 顶部信息：图标 + 标题 + 提示 + 关闭 -->
+        <RelativeLayout
+            android:id="@+id/layout_header_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp">
+
+            <LinearLayout
+                android:id="@+id/layout_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="10dp"
+                android:paddingBottom="8dp"
+                tools:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:background="@drawable/xml_agent_icon_bg">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_agent"
+                            app:tint="@color/textColorPrimary" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="@string/script_provider_new_task"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_tip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center"
+                    android:paddingHorizontal="24dp"
+                    android:text="@string/script_agent_input_tip"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_close"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="6dp"
+                android:layout_marginEnd="10dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/sc_opt_cancel"
+                android:padding="16dp"
+                android:src="@drawable/icon_close"
+                app:tint="@color/white" />
+        </RelativeLayout>
+
+        <!-- 语音识别态（覆盖内容区域） -->
+        <LinearLayout
+            android:id="@+id/layout_voice_recognizing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="18dp"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/xml_voice_interact_content_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="18dp">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+
+                    <com.hive.views.widgets.VoiceWaveformView
+                        android:id="@+id/waveform_view"
+                        android:layout_width="52dp"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="-10dp" />
+
+                    <TextView
+                        android:id="@+id/tv_voice_result"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:alpha="0.96"
+                        android:ellipsize="end"
+                        android:lineSpacingExtra="3dp"
+                        android:maxLines="4"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="14sp"
+                        tools:text="实时识别到的文字会显示在这里……" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/btn_stop_and_finish"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="26dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/xml_btn_red_round_bg"
+                android:gravity="center"
+                android:text="@string/script_agent_voice_stop_and_finish"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- 底部输入栏 -->
+        <LinearLayout
+            android:id="@+id/layout_input_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginHorizontal="2dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/xml_agent_dialog_input_bg"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:padding="15dp"
+            tools:visibility="visible">
+
+            <FrameLayout
+                android:id="@+id/btn_mic"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/xml_agent_input_edit_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_mic"
+                    app:tint="@color/textColorPrimary" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:background="@drawable/xml_agent_input_edit_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/edit_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimaryLight"
+                    android:gravity="top|start"
+                    android:hint="@string/script_provider_task_prompt"
+                    android:imeOptions="actionSend"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:maxLines="4"
+                    android:minLines="1"
+                    android:paddingVertical="10dp"
+                    android:textColor="@color/textColorPrimary"
+                    android:textColorHint="@color/colorTextSecondary"
+                    android:textSize="14sp"
+                    tools:text="测试测试" />
+
+                <ImageView
+                    android:id="@+id/btn_submit"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="bottom"
+                    android:clickable="true"
+                    android:contentDescription="@string/chat_send_message"
+                    android:focusable="true"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_send"
+                    android:tint="@color/color_blue"
+                    app:tint="@color/color_blue" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

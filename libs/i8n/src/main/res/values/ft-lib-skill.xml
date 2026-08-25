@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="skill_management">Skill Management</string>
+    <string name="skill_add">Add Skill</string>
+    <string name="skill_list_empty">No skills</string>
+    <string name="skill_count">Total %d skills</string>
+    <string name="skill_empty_title">No capability assets</string>
+    <string name="skill_empty_desc">Create an AI skill to make it available to your local Agent.</string>
+    <string name="skill_empty_action">Open Create Center</string>
+
+    <string name="skill_create_title">Create AI Skill</string>
+    <string name="skill_edit_title">Edit AI Skill</string>
+    <string name="skill_create_mode_title">Choose creation mode</string>
+    <string name="skill_create_mode_ai">AI Create</string>
+    <string name="skill_create_mode_ai_desc">Describe the requirement and let AI draft the skill configuration.</string>
+    <string name="skill_create_mode_manual">Manual Create</string>
+    <string name="skill_create_mode_manual_desc">Fill in the skill name, prompt, and bindings yourself.</string>
+    <string name="skill_ai_create_title">AI Create Skill</string>
+    <string name="skill_ai_create_desc">Describe the skill you want, and AI will generate a draft you can edit before saving.</string>
+    <string name="skill_ai_create_requirement_hint">For example: Create a workflow planning skill that turns a goal into automation steps.</string>
+    <string name="skill_ai_create_examples">Examples</string>
+    <string name="skill_ai_example_1">Create a workflow planning skill that breaks a goal into automation steps</string>
+    <string name="skill_ai_example_2">Create a page analysis skill that reads the current screen and suggests the next action</string>
+    <string name="skill_ai_example_3">Create a form filling skill that generates input text based on page content</string>
+    <string name="skill_ai_example_4">Create a workflow debugging skill that explains failures and suggests fixes</string>
+    <string name="skill_ai_create_generate">Generate Skill Draft</string>
+    <string name="skill_ai_create_generating">Generating draft…</string>
+    <string name="skill_ai_create_failed">AI draft generation failed</string>
+    <string name="skill_ai_create_parse_failed">AI response could not be parsed into a skill draft. Try again.</string>
+    <string name="skill_save">Save</string>
+    <string name="skill_required_fields_tip">Please fill in all required fields</string>
+
+    <string name="skill_field_id_hint">Skill ID (e.g. skill.xxx)</string>
+    <string name="skill_field_name_label">Skill Name</string>
+    <string name="skill_field_name_hint">Enter skill name</string>
+    <string name="skill_field_desc_label">Skill Intro</string>
+    <string name="skill_field_desc_hint">Briefly describe what this skill is for</string>
+    <string name="skill_field_prompt_label">System Prompt</string>
+    <string name="skill_field_prompt_hint">Define the AI role and behavior instructions</string>
+    <string name="skill_field_timeout_label">Timeout (Seconds)</string>
+    <string name="skill_field_timeout_hint">60</string>
+    <string name="skill_field_max_rounds_label">Max Rounds</string>
+    <string name="skill_field_max_rounds_hint">10</string>
+
+    <string name="skill_link_tools">Link tools</string>
+    <string name="skill_link_tools_label">Tool Binding</string>
+    <string name="skill_link_tools_empty">Tap to choose tools to bind</string>
+    <string name="skill_link_tools_summary">%d tools selected</string>
+
+    <string name="skill_tool_selector_title">Select tools</string>
+    <string name="skill_selected_tools_count">Selected: %d</string>
+    <string name="skill_tool_selector_empty_title">No tools</string>
+    <string name="skill_tool_selector_empty_desc">Create an AI tool first, then come back to bind it.</string>
+
+    <string name="skill_delete_title">Delete Skill</string>
+    <string name="skill_delete_message">Delete skill \"%s\"?</string>
+    <string name="skill_detail_title">Skill Detail</string>
+    <string name="skill_detail_custom">Custom skill</string>
+    <string name="skill_detail_builtin">Built-in skill</string>
+    <string name="skill_detail_tools">Linked tools</string>
+    <string name="skill_detail_prompt">System prompt</string>
+    <string name="skill_detail_meta">Config &amp; sources</string>
+    <string name="skill_detail_no_description">No description yet.</string>
+    <string name="skill_detail_config_badge">Rounds %1$d · Timeout %2$ss</string>
+    <string name="skill_detail_meta_rounds">Max rounds: %1$d</string>
+    <string name="skill_detail_meta_timeout">Timeout: %1$d ms</string>
+    <string name="skill_detail_meta_sources">Source workflows: %1$s</string>
+    <string name="skill_detail_meta_version">Version: %1$s</string>
+    <string name="skill_run_prompt_hint">Describe what you want this skill to do</string>
+    <string name="skill_run_title">Run Skill: %1$s</string>
+    <string name="skill_run_status_success">Skill completed</string>
+    <string name="skill_run_status_partial">Partially completed</string>
+    <string name="skill_run_tool_errors">Tool errors</string>
+</resources>

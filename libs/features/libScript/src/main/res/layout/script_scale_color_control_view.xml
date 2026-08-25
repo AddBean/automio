@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:parentTag="android.widget.FrameLayout">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="4dp"
+        android:background="@drawable/xml_dark_round_rect"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        tools:ignore="UselessParent">
+
+        <com.hive.views.widgets.RoundCoverView
+            android:id="@+id/view_color"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:background="@color/color_blue"
+            app:round_view_type="circle"
+            app:view_draw_paint_color="#000000" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/text_color"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:text="111111"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="14sp" />
+        </FrameLayout>
+
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:background="@drawable/xml_btn_blue_round_bg"
+            android:text="@string/ok"
+            android:textColor="@color/textColorPrimary" />
+    </LinearLayout>
+</merge>

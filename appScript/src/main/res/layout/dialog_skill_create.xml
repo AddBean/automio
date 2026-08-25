@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.carlos.ui.header.CommonHeader
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:center_text="@string/skill_create_title"
+            app:center_text_color="@color/design_text_secondary"
+            app:enable_back="true"
+            app:bg_color="@color/colorPrimary"
+            app:left_img_color="@color/design_text_secondary"
+            app:right_text="@string/skill_save"
+            app:right_text_color="@color/design_accent_amber"
+            app:right_text_size="@dimen/design_font_xl"
+            app:show_btm_line="false" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/design_border_subtle" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:fillViewport="true"
+            android:paddingLeft="@dimen/design_spacing_page_horizontal"
+            android:paddingRight="@dimen/design_spacing_page_horizontal"
+            android:paddingBottom="@dimen/design_spacing_6"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/edit_skill_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/design_publish_input_bg"
+                    android:hint="@string/skill_field_id_hint"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="@dimen/design_spacing_3"
+                    android:textColor="@color/design_text_secondary"
+                    android:textColorHint="@color/design_text_muted"
+                    android:textSize="@dimen/design_font_md"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/skill_field_name_label"
+                    android:textAllCaps="true"
+                    android:textColor="@color/design_text_muted"
+                    android:textSize="@dimen/design_font_xs"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edit_skill_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_2"
+                    android:background="@drawable/design_publish_input_bg"
+                    android:hint="@string/skill_field_name_hint"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:minHeight="48dp"
+                    android:padding="@dimen/design_spacing_3"
+                    android:textColor="@color/design_text_secondary"
+                    android:textColorHint="@color/design_text_muted"
+                    android:textSize="@dimen/design_font_md" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_4"
+                    android:text="@string/skill_field_desc_label"
+                    android:textAllCaps="true"
+                    android:textColor="@color/design_text_muted"
+                    android:textSize="@dimen/design_font_xs"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edit_skill_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_2"
+                    android:background="@drawable/design_publish_input_bg"
+                    android:gravity="top|start"
+                    android:hint="@string/skill_field_desc_hint"
+                    android:inputType="textMultiLine"
+                    android:minHeight="88dp"
+                    android:padding="@dimen/design_spacing_3"
+                    android:textColor="@color/design_text_secondary"
+                    android:textColorHint="@color/design_text_muted"
+                    android:textSize="@dimen/design_font_md" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_4"
+                    android:text="@string/skill_field_prompt_label"
+                    android:textAllCaps="true"
+                    android:textColor="@color/design_text_muted"
+                    android:textSize="@dimen/design_font_xs"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edit_skill_prompt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_2"
+                    android:background="@drawable/design_publish_input_bg"
+                    android:gravity="top|start"
+                    android:hint="@string/skill_field_prompt_hint"
+                    android:inputType="textMultiLine"
+                    android:minHeight="120dp"
+                    android:padding="@dimen/design_spacing_3"
+                    android:textColor="@color/design_text_secondary"
+                    android:textColorHint="@color/design_text_muted"
+                    android:textSize="@dimen/design_font_md" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/skill_field_timeout_label"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/edit_timeout_ms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="-1"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/skill_field_max_rounds_label"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/edit_max_rounds"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="-1"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_4"
+                    android:text="@string/skill_link_tools_label"
+                    android:textAllCaps="true"
+                    android:textColor="@color/design_text_muted"
+                    android:textSize="@dimen/design_font_xs"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/btn_link_tools"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_2"
+                    android:background="@drawable/design_publish_input_bg"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:minHeight="56dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/design_spacing_4"
+                    android:paddingTop="@dimen/design_spacing_3"
+                    android:paddingRight="@dimen/design_spacing_4"
+                    android:paddingBottom="@dimen/design_spacing_3">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/skill_link_tools"
+                            android:textColor="@color/design_text_secondary"
+                            android:textSize="@dimen/design_font_md" />
+
+                        <TextView
+                            android:id="@+id/tv_tools_summary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/design_spacing_1"
+                            android:text="@string/skill_link_tools_empty"
+                            android:textColor="@color/design_text_muted"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_arrow_right" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/design_spacing_1" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,26 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- 时钟外圈 -->
+    <path
+        android:pathData="M12,12m-9,0a9,9 0,1 1,18,0a9,9 0,1 1,-18,0"
+        android:strokeWidth="2"
+        android:strokeColor="@color/textColorPrimary"
+        android:fillColor="@android:color/transparent" />
+    <!-- 时钟指针 -->
+    <path
+        android:pathData="M12,7 L12,12 L15.5,14"
+        android:strokeWidth="2"
+        android:strokeColor="@color/textColorPrimary"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <!-- 左上角返回箭头（简化版） -->
+    <path
+        android:pathData="M3,12a9,9 0,0 0,15 6.5"
+        android:strokeWidth="2"
+        android:strokeColor="@color/textColorPrimary"
+        android:strokeLineCap="round"
+        android:fillColor="@android:color/transparent" />
+</vector>

@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hive.views.StatefulLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_state"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:defState="content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/xml_common_dialog_round_bottom_bg"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:paddingTop="40dp"
+        android:tag="ScriptDialog">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="58dp">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:gravity="center_vertical"
+                android:text="@string/sc_image_manager_title"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iv_close"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="1dp"
+                android:padding="21dp"
+                android:src="@drawable/icon_close"
+                app:tint="@color/textColorPrimary" />
+
+            <com.hive.views.widgets.TextDrawableView
+                android:id="@+id/ivSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/xml_btn_blue_round_bg_2"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/white"
+                android:gravity="center"
+                android:paddingHorizontal="14dp"
+                android:singleLine="true"
+                android:text="@string/sc_selector_submit"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:visibility="gone"
+                app:drawableHeight="12dp"
+                app:drawableLeft="@drawable/sc_ic_checked"
+                app:drawableWidth="12dp"
+                tools:visibility="visible" />
+        </FrameLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorSplitLine" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="2dp"
+            android:background="@color/colorPrimary">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@color/colorPrimaryLight" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="47.5dp"
+                android:background="@color/colorSplitLine" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.hive.script.views.widgets.ScriptTabListView
+                    android:id="@+id/tabListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorSplitLine" />
+
+                <com.hive.views.widgets.TextDrawableView
+                    android:id="@+id/insertImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="38dp"
+                    android:background="@drawable/xml_btn_round_bg"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@color/white"
+                    android:gravity="center"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="@string/sc_selector_insert_image"
+                    android:textColor="@color/white"
+                    app:drawableHeight="14dp"
+                    app:drawableLeft="@drawable/icon_plus_thin"
+                    app:drawableWidth="14dp" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/llEditWrap"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="end"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="26dp"
+                    android:background="@color/colorSplitLine" />
+
+                <com.hive.views.widgets.TextDrawableView
+                    android:id="@+id/btnSelectedAll"
+                    style="@style/base.content.title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:singleLine="true"
+                    android:src="@drawable/icon_close"
+                    android:text="@string/sc_list_item_selected_all"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:id="@+id/llEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_marginStart="12dp"
+                    android:gravity="center_vertical|end"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+
+                    <com.hive.views.widgets.TextDrawableView
+                        android:id="@+id/btnNew"
+                        style="@style/base.content.title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:singleLine="true"
+                        android:src="@drawable/icon_close"
+                        android:text="@string/sc_list_item_add"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="14sp" />
+
+                    <com.hive.views.widgets.TextDrawableView
+                        android:id="@+id/btnEdit"
+                        style="@style/base.content.title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:singleLine="true"
+                        android:src="@drawable/icon_close"
+                        android:text="@string/sc_list_item_edit"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="14sp" />
+
+                    <com.hive.views.widgets.TextDrawableView
+                        android:id="@+id/btnSort"
+                        style="@style/base.content.title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:singleLine="true"
+                        android:src="@drawable/icon_close"
+                        android:text="@string/sort"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="14sp" />
+
+                    <com.hive.views.widgets.TextDrawableView
+                        android:id="@+id/btnMove"
+                        style="@style/base.content.title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:singleLine="true"
+                        android:src="@drawable/icon_close"
+                        android:text="@string/move"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="14sp" />
+
+                    <com.hive.views.widgets.TextDrawableView
+                        android:id="@+id/btnDelete"
+                        style="@style/base.content.title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:singleLine="true"
+                        android:src="@drawable/icon_close"
+                        android:text="@string/delete"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="14sp" />
+
+                    <com.hive.views.widgets.TextDrawableView
+                        android:id="@+id/btnCancel"
+                        style="@style/base.content.title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:singleLine="true"
+                        android:src="@drawable/icon_close"
+                        android:text="@string/cancel"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/photoViewWrapper"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:clickable="true"
+                android:focusable="true">
+
+                <com.hive.largeimg.PhotoView
+                    android:id="@+id/photoView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/ivPhotoClose"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:layout_marginBottom="80dp"
+                    android:background="@drawable/xml_btn_red_round_bg"
+                    android:padding="14dp"
+                    android:src="@drawable/ic_close"
+                    app:tint="@color/white" />
+            </FrameLayout>
+        </FrameLayout>
+
+    </LinearLayout>
+</com.hive.views.StatefulLayout>

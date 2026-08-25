@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!-- 往SDCard写入数据权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INSTALL_PACKAGES"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+    <!--管理所有文件权限-->
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <queries>
+        <intent>
+
+            <action
+                android:name="android.intent.action.VIEW" />
+
+            <category
+                android:name="android.intent.category.BROWSABLE" />
+
+            <data
+                android:scheme="https" />
+        </intent>
+
+    </queries>
+    <application android:requestLegacyExternalStorage="true">
+
+        <activity
+            android:name="com.hive.files.handler.preview.XPreviewActivity"
+            android:theme="@style/PreviewBaseTheme" />
+        <activity
+            android:name="com.hive.files.XFileSearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hive.files.XFileActivity"
+            android:screenOrientation="portrait" />
+    </application>
+</manifest>

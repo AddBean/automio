@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 圆角 ripple 效果，用于转换和删除按钮 -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/ai_ripple">
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <corners android:radius="10dp" />
+            <solid android:color="@android:color/white" />
+        </shape>
+    </item>
+</ripple>

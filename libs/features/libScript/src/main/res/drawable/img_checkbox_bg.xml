@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_selected="true">
+        <layer-list>
+            <item>
+                <shape android:shape="oval">
+                    <solid android:color="@color/white" />
+                    <corners android:radius="20dp" />
+                </shape>
+            </item>
+            <item android:drawable="@drawable/icon_selected" />
+        </layer-list>
+    </item>
+
+    <item>
+        <layer-list>
+
+            <item android:drawable="@drawable/icon_unselected" />
+        </layer-list>
+    </item>
+
+</selector>

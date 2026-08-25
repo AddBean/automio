@@ -1,0 +1,16 @@
+ext {
+    libVersion = [
+            libBase  : "2.0.7",
+            libCompon: "2.0.0",
+            libUtils : "2.0.0",
+            libViews : "2.0.0",
+            libNet   : "2.0.1",
+            libEditor: "2.0.0",
+            libScript: "2.0.0",
+            libFiles : "2.0.0",
+            libTimer : "2.0.0",
+            libImage : "2.0.0",
+            libOpenCV: "2.0.2",
+            libOcr   : "2.0.0"
+    ]
+}

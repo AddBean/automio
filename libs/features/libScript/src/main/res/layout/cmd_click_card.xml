@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.hive.script.views.widgets.ScriptRandomSizeView
+        android:id="@+id/random_size"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:sbMaxValue="16"
+        app:sbMinValue="0"
+        app:sbValue="8"
+        app:scriptName="@string/sc_random_title" />
+</LinearLayout>

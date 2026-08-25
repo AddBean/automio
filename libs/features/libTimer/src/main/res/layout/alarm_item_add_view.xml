@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.hive.views.widgets.UIRoundCornerTextView
+        android:id="@+id/tvInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:drawablePadding="6dp"
+        android:drawableTint="@color/colorTextSecondary"
+        android:gravity="center"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
+        android:text="@string/timer_schedule_timer_add"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="13sp"
+        app:rcv_radius="12dp"
+        app:rcv_borderWidth="0.5dp"
+        app:rcv_borderColor="#1AFFFFFF"
+        android:background="#141418"
+        app:drawableHeight="12dp"
+        app:drawableLeft="@drawable/icon_plus_thin"
+        app:drawableWidth="12dp" />
+</RelativeLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="160dp"
+    android:height="88dp"
+    android:viewportWidth="160"
+    android:viewportHeight="88">
+    <!-- 深色主题协调的录音气泡：圆角矩形+底部小三角 -->
+    <path
+        android:fillColor="@color/voice_bubble_fill"
+        android:pathData="M28,0 L132,0 Q144,0 144,12 L144,48 Q144,60 132,60 L100,60 L88,88 L76,60 L28,60 Q16,60 16,48 L16,12 Q16,0 28,0 Z" />
+</vector>

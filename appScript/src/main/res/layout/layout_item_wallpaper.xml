@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:layoutDirection="ltr"
+    tools:background="@color/colorPrimary">
+
+    <com.hive.views.widgets.RectRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:rectRate="1.7">
+
+        <com.hive.views.widgets.RoundFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            app:round_view_radius="12dp"
+            app:round_view_type="round"
+            app:view_draw_paint_color="@color/colorPrimary">
+
+            <ImageView
+                android:id="@+id/ivWallpaper"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/ivPlus"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center"
+                android:src="@drawable/icon_plus_thin"
+                app:tint="@color/colorTextSecondary" />
+        </com.hive.views.widgets.RoundFrameLayout>
+
+        <View
+            android:id="@+id/vChecked"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/xml_wallpaper_checked" />
+    </com.hive.views.widgets.RectRelativeLayout>
+
+
+</RelativeLayout>

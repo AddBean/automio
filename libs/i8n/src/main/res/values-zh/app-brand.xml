@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Automio</string>
+    <string name="accessibility_name" translatable="false">Automio</string>
+    <string name="accessibility_description" formatted="false">Automio 需要无障碍服务权限才能执行自动化，不会通过无障碍服务收集个人信息。</string>
+    <string name="str_auto_click_tip" translatable="false">#👆Automio</string>
+    <string name="sc_guide_des2">找到“Automio”并打开开关</string>
+</resources>

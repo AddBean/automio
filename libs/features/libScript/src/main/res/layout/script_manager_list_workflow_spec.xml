@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hive.views.StatefulLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_state"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:defState="progress"
+    app:emptyLayout="@layout/script_manager_list_workflow_empty"
+    app:transparent="true"
+    tools:background="@color/colorPrimary">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 标题 + 描述（跟随列表滚动） -->
+            <include
+                android:id="@+id/layout_title"
+                layout="@layout/script_workflow_header" />
+
+            <com.hive.views.list_view.ListRecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:clipToPadding="false"
+                android:paddingBottom="88dp"
+                android:minHeight="200dp"
+                tools:listitem="@layout/fragment_script_item_workflow_spec" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</com.hive.views.StatefulLayout>

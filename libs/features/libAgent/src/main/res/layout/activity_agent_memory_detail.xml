@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@drawable/xml_pbg_gradient_bg"
+    android:orientation="vertical">
+
+    <com.carlos.ui.header.CommonHeader
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bg_color="@color/colorPrimaryLight"
+        app:center_text_color="@color/textColorPrimary"
+        app:enable_back="true"
+        app:left_img_color="@color/header_back_icon_tint"
+        app:show_btm_line="false" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:padding="12dp"
+            android:background="@drawable/xml_setting_round_bg"
+            android:textColor="@color/ai_text_primary"
+            android:textSize="13sp" />
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/btnCopy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/ai_button_primary_selector"
+            android:text="@string/agent_memory_copy"
+            android:textColor="@color/ai_button_text"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ai_button_secondary"
+            android:text="@string/agent_memory_delete"
+            android:textColor="@color/ai_text_primary"
+            android:textSize="14sp" />
+    </LinearLayout>
+</LinearLayout>

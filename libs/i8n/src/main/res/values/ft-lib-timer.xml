@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="timer_hour">H</string>
+    <string name="timer_minus">M</string>
+    <string name="timer_sec">S</string>
+    <string name="time_alarm_setting_title">Add Timer</string>
+    <string name="alarm_time_change_type">Repeat Type</string>
+    <string name="schedule_time_change_type">Timer Type</string>
+    <string name="time_alarm_setting_info" formatted="false">%sH%sM%sS</string>
+    <string name="time_week_setting_title">Repeat Days</string>
+    <string name="alarm_time_delete">Delete after execution</string>
+    <string name="alarm_time_enable">Switch?</string>
+    <string name="alarm_keep_enable">Keep Alive?</string>
+    <string name="time_week_once">One-time</string>
+    <string name="time_week_everyday">Daily</string>
+    <array name="week_list">
+        <item name="time_week_1">Mon</item>
+        <item name="time_week_2">Tue</item>
+        <item name="time_week_3">Wed</item>
+        <item name="time_week_4">Thu</item>
+        <item name="time_week_5">Fri</item>
+        <item name="time_week_6">Sat</item>
+        <item name="time_week_7">Sun</item>
+    </array>
+
+    <array name="timer_menu_repeat_array">
+        <item>Once</item>
+        <item>Daily</item>
+        <item>Custom</item>
+    </array>
+
+    <array name="schedule_menu_repeat_array">
+        <item>Repeat Daily</item>
+        <item>Different</item>
+        <item>Interval</item>
+    </array>
+
+    <array name="week_list2">
+        <item name="time_week_0">Mon</item>
+        <item name="time_week_1">Tue</item>
+        <item name="time_week_2">Wed</item>
+        <item name="time_week_3">Thu</item>
+        <item name="time_week_4">Fri</item>
+        <item name="time_week_5">Sat</item>
+        <item name="time_week_6">Sun</item>
+    </array>
+    <array name="week_list_short">
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
+        <item>Sun</item>
+    </array>
+    <string name="time_selector_setting_title">Select Time</string>
+    <string name="schedule_time_gap_title">Interval</string>
+    <string name="timer_minus_unit">M</string>
+    <array name="timer_logger_filter_name">
+        <item>Repeat Daily</item>
+        <item>Different</item>
+        <item>Interval</item>
+    </array>
+
+    <array name="timer_logger_level_name">
+        <item>All Logs</item>
+        <item>Warning Level</item>
+        <item>Error Level</item>
+    </array>
+    <string name="timer_script_try_start">Trying to Start Timer Task</string>
+    <string name="script_schedule_record_title">Execution Log</string>
+    <string name="timer_log_clear_action">Clear</string>
+    <string name="timer_log_empty_title">No logs yet</string>
+    <string name="timer_log_empty_desc">Execution records will appear here after the task runs</string>
+    <string name="timer_clear_log_title">Clear Logs</string>
+    <string name="timer_clear_log_msg">Logs cannot be recovered after clearing!</string>
+    <string name="timer_service_title">Timer task running, do not close~</string>
+    <string name="timer_service_content">No active timer tasks</string>
+    <string name="timer_service_running_title">Countdown：%s</string>
+    <string name="timer_service_running_content">Execution：%s</string>
+    <string name="timer_alarm_info_2">Execution</string>
+
+    <string name="timer_schedule_add">Create</string>
+    <string name="timer_schedule_enabled_summary">Enabled</string>
+    <string name="timer_schedule_empty_title">No scheduled tasks</string>
+    <string name="timer_schedule_empty_desc">Tap + in the top-right to create one</string>
+    <string name="timer_schedule_editor_save">Save</string>
+    <string name="timer_schedule_editor_title">Add Schedule</string>
+    <string name="timer_schedule_editor_task_title">Workflow</string>
+    <string name="timer_schedule_editor_task_placeholder">Select a workflow to run</string>
+    <string name="timer_schedule_editor_task_desc">The selected workflow will run automatically with this schedule</string>
+    <string name="timer_schedule_editor_task_ready">Workflow selected</string>
+    <string name="timer_schedule_editor_task_required">Please select a workflow first</string>
+    <string name="timer_schedule_editor_type_daily_hint">Add one or more fixed times and run them every day.</string>
+    <string name="timer_schedule_editor_type_week_hint">Split execution time by weekday for different routines.</string>
+    <string name="timer_schedule_editor_type_repeat_hint">Run on a repeating minute interval for polling-style tasks.</string>
+    <string name="timer_schedule_week_day_empty">No times set</string>
+    <string name="timer_schedule_last_run_format">Last %s</string>
+    <string name="timer_schedule_next_run_label">Next</string>
+    <string name="timer_schedule_next_run_none">-</string>
+    <string name="timer_schedule_status_success">Success</string>
+    <string name="timer_schedule_status_warning">Warning</string>
+    <string name="timer_schedule_status_failed">Failed</string>
+
+    <string name="timer_schedule_timer_add">Add</string>
+    <string name="timer_schedule_timer_delete_title">Delete Timer</string>
+    <string name="timer_schedule_timer_delete">Confirm deletion of timer？</string>
+    <string name="calentar_permission_title">Tips</string>
+    <string name="calentar_permission_content">This feature requires calendar access to manage timer tasks. Please grant permission</string>
+    <string name="calentar_permission_left_text">Cancel</string>
+    <string name="calentar_permission_right_text">Authorize</string>
+
+    <string name="timer_alarm_info_1">Countdown</string>
+
+</resources>

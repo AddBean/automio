@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/design_bg_publish_detail"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <com.carlos.ui.header.CommonHeader
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bg_color="@color/design_bg_publish_detail"
+        app:center_text="@string/skill_tool_selector_title"
+        app:center_text_color="@color/design_text_secondary"
+        app:enable_back="true"
+        app:left_img_color="@color/design_text_secondary"
+        app:show_btm_line="false" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingTop="@dimen/design_spacing_4">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingLeft="@dimen/design_spacing_page_horizontal"
+            android:paddingRight="@dimen/design_spacing_page_horizontal"
+            android:paddingBottom="@dimen/design_spacing_6" />
+
+        <LinearLayout
+            android:id="@+id/layout_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/design_spacing_6"
+            android:visibility="gone">
+
+            <com.hive.views.widgets.UIResourceIconView
+                android:id="@+id/icon_selector_empty"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginBottom="@dimen/design_spacing_6"
+                app:ri_resourceType="skill"
+                app:ri_containerShape="circle"
+                app:ri_iconTint="@color/design_text_muted" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/skill_tool_selector_empty_title"
+                android:textColor="@color/design_text_tertiary"
+                android:textSize="@dimen/design_font_xl" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/design_spacing_2"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/design_spacing_4"
+                android:text="@string/skill_tool_selector_empty_desc"
+                android:textColor="@color/design_text_muted"
+                android:textSize="@dimen/design_font_base" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/design_bg_publish_detail"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/design_spacing_page_horizontal"
+        android:paddingTop="@dimen/design_spacing_3"
+        android:paddingRight="@dimen/design_spacing_page_horizontal"
+        android:paddingBottom="@dimen/design_spacing_5">
+
+        <TextView
+            android:id="@+id/tv_selected_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/design_text_muted"
+            android:textSize="@dimen/design_font_xs" />
+
+        <TextView
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_filter_pill_inactive"
+            android:gravity="center"
+            android:paddingStart="@dimen/design_spacing_4"
+            android:paddingEnd="@dimen/design_spacing_4"
+            android:text="@string/pref_cancel"
+            android:textColor="@color/design_text_secondary"
+            android:textSize="@dimen/design_font_md" />
+
+        <View
+            android:layout_width="@dimen/design_spacing_3"
+            android:layout_height="1dp" />
+
+        <TextView
+            android:id="@+id/btn_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_skill_primary_btn"
+            android:gravity="center"
+            android:paddingStart="@dimen/design_spacing_4"
+            android:paddingEnd="@dimen/design_spacing_4"
+            android:text="@string/pref_confirm"
+            android:textColor="@color/white"
+            android:textSize="@dimen/design_font_md" />
+    </LinearLayout>
+</LinearLayout>

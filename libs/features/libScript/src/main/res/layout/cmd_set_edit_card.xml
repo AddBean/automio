@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/action1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <com.hive.script.views.widgets.ScriptValueView
+            android:id="@+id/systemParam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:scriptValueEditEnable="false"
+            app:scriptValueName="@string/sc_cmd_system_select"
+            app:scriptValueTextColor="@color/colorAccent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/action2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <com.hive.script.views.widgets.ScriptSpanParamLayout
+            android:id="@+id/paramContent"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:gravity="top"
+            android:padding="8dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/action3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:background="@color/colorPrimary"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/base.content.title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/sc_cmd_select_param_regex"
+            android:textSize="14sp" />
+
+        <com.hive.script.views.widgets.ScriptSpanParamLayout
+            android:id="@+id/regexParam"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:gravity="top"
+            android:padding="8dp"
+            app:scriptHint="@string/sc_cmd_select_param_regex_hint" />
+
+        <com.hive.script.views.widgets.ScriptValueView
+            android:id="@+id/srcParam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:scriptValueEditEnable="false"
+            app:scriptValueName="@string/sc_cmd_select_param_src_param"
+            app:scriptValueTextColor="@color/colorAccent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/action4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <com.hive.script.views.widgets.ScriptValueView
+            android:id="@+id/paramExpression"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:scriptValueEditEnable="false"
+            app:scriptValueName="@string/sc_cmd_select_param_expre"
+            app:scriptValueTextColor="@color/colorAccent" />
+    </LinearLayout>
+
+    <com.hive.script.views.widgets.ScriptValueView
+        android:id="@+id/targetParam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scriptValueEditEnable="false"
+        app:scriptValueName="@string/sc_cmd_select_param_title"
+        app:scriptValueTextColor="@color/colorAccent" />
+</LinearLayout>

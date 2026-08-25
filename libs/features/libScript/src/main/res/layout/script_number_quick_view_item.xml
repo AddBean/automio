@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.hive.views.widgets.TextDrawableView
+        android:id="@+id/tvValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/xml_round_line_dark_bg_2"
+        android:paddingLeft="12dp"
+        android:paddingTop="4dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="4dp"
+        android:textColor="@color/colorTextSecondary"
+        android:textSize="12sp"
+        tools:text="测试" />
+</FrameLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Indigo 渐变卡片背景 + shadow（用于余额卡片） -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Shadow layer (shadow-[0_0_24px_-4px_rgba(99,102,241,0.15)]) -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#193366f1" /> <!-- indigo-500/10 with slight opacity for shadow -->
+            <corners android:radius="@dimen/design_radius_2xl" />
+        </shape>
+    </item>
+
+    <!-- Main gradient background -->
+    <item
+        android:left="4dp"
+        android:right="4dp"
+        android:top="4dp"
+        android:bottom="4dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#26246BFD"
+                android:centerColor="#1A8b5cf6"
+                android:endColor="#00000000"
+                android:angle="135" />
+            <stroke
+                android:width="1dp"
+                android:color="@color/design_accent_indigo_10" />
+            <corners android:radius="@dimen/design_radius_2xl" />
+        </shape>
+    </item>
+</layer-list>

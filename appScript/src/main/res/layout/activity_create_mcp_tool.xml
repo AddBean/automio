@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/design_bg_primary">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/design_spacing_5"
+        android:paddingEnd="@dimen/design_spacing_5"
+        android:paddingTop="@dimen/design_spacing_8"
+        android:paddingBottom="@dimen/design_spacing_4">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/design_bg_toolbar_icon"
+            android:padding="10dp"
+            android:src="@drawable/ic_back_svg" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/create_mcp_tool_title"
+            android:textColor="@color/design_text_secondary"
+            android:textSize="@dimen/design_font_xl"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+    </LinearLayout>
+
+    <!-- Content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:paddingStart="@dimen/design_spacing_5"
+        android:paddingEnd="@dimen/design_spacing_5"
+        android:paddingTop="@dimen/design_spacing_4">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Tip Card -->
+            <LinearLayout
+                android:id="@+id/layout_tip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/design_spacing_4"
+                android:layout_marginBottom="@dimen/design_spacing_6"
+                android:background="@drawable/design_tip_card_bg">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/create_mcp_tool_tip"
+                    android:textColor="@color/design_text_secondary"
+                    android:textSize="@dimen/design_font_base"
+                    android:lineSpacingMultiplier="1.2" />
+            </LinearLayout>
+
+            <!-- Tool Name -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/create_mcp_tool_name_label"
+                android:textColor="@color/design_text_muted"
+                android:textSize="@dimen/design_font_sm"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/design_spacing_2" />
+
+            <EditText
+                android:id="@+id/et_tool_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/design_input_bg"
+                android:padding="14dp"
+                android:hint="@string/create_mcp_tool_name_hint"
+                android:textColorHint="@color/design_text_tertiary"
+                android:textColor="@color/design_text_secondary"
+                android:textSize="@dimen/design_font_lg"
+                android:maxLines="1"
+                android:inputType="text"
+                android:layout_marginBottom="@dimen/design_spacing_4" />
+
+            <!-- Tool Description -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/create_mcp_tool_desc_label"
+                android:textColor="@color/design_text_muted"
+                android:textSize="@dimen/design_font_sm"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/design_spacing_2" />
+
+            <EditText
+                android:id="@+id/et_tool_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/design_input_bg"
+                android:padding="14dp"
+                android:hint="@string/create_mcp_tool_desc_hint"
+                android:textColorHint="@color/design_text_tertiary"
+                android:textColor="@color/design_text_secondary"
+                android:textSize="@dimen/design_font_lg"
+                android:minLines="3"
+                android:maxLines="5"
+                android:inputType="textMultiLine"
+                android:gravity="top|start"
+                android:layout_marginBottom="@dimen/design_spacing_4" />
+
+            <!-- Bind Workflow -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/create_mcp_tool_workflow_label"
+                android:textColor="@color/design_text_muted"
+                android:textSize="@dimen/design_font_sm"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/design_spacing_2" />
+
+            <LinearLayout
+                android:id="@+id/layout_workflow_selector"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/design_input_bg"
+                android:padding="14dp"
+                android:gravity="center_vertical">
+
+                <com.hive.views.widgets.UIResourceIconView
+                    android:id="@+id/icon_workflow_selector"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    app:ri_resourceType="workflow" />
+
+                <TextView
+                    android:id="@+id/tv_workflow_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/design_spacing_3"
+                    android:text="@string/create_mcp_tool_select_workflow_placeholder"
+                    android:textColor="@color/design_text_tertiary"
+                    android:textSize="@dimen/design_font_lg"
+                    android:maxLines="1"
+                    android:ellipsize="end" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_arrow_right" />
+
+                <TextView
+                    android:id="@+id/tv_workflow_empty"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/design_spacing_3"
+                    android:text="@string/create_mcp_tool_no_workflow"
+                    android:textColor="@color/design_text_muted"
+                    android:textSize="@dimen/design_font_base"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Create Button -->
+    <TextView
+        android:id="@+id/btn_create"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/design_spacing_5"
+        android:layout_marginEnd="@dimen/design_spacing_5"
+        android:layout_marginBottom="@dimen/design_spacing_6"
+        android:background="@drawable/design_btn_sky_bg"
+        android:gravity="center"
+        android:paddingTop="@dimen/design_spacing_4"
+        android:paddingBottom="@dimen/design_spacing_4"
+        android:text="@string/create_mcp_tool_btn"
+        android:textColor="@color/white"
+        android:textSize="@dimen/design_font_lg"
+        android:textStyle="bold"
+        android:enabled="false"
+        android:alpha="0.5" />
+
+</LinearLayout>

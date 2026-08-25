@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/xml_dark_round_rect"
+    android:gravity="center"
+    android:layout_margin="4dp"
+    android:orientation="vertical">
+
+
+    <com.hive.script.views.widgets.ScriptNumberView
+        android:id="@+id/number_hrz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:optNumberInput="true"
+        app:optNumberMax="200"
+        app:optNumberMin="1"
+        app:optNumberType="TYPE2"
+        app:scriptNumberName="@string/sc_cmd_number_hrz" />
+
+    <com.hive.script.views.widgets.ScriptNumberView
+        android:id="@+id/number_ver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:optNumberInput="true"
+        app:optNumberMax="200"
+        app:optNumberMin="1"
+        app:optNumberType="TYPE2"
+        app:scriptNumberName="@string/sc_cmd_number_ver" />
+
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_margin="12dp"
+        android:layout_marginLeft="12dp"
+        android:background="@drawable/xml_btn_blue_round_bg"
+        android:text="@string/ok"
+        android:textColor="@color/textColorPrimary" />
+
+</LinearLayout>

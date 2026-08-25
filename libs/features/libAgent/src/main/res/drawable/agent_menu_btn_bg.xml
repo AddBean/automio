@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Agent Floating Menu Button Ripple -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/color_white_translucence">
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/colorAccent" />
+            <size android:width="44dp" android:height="44dp" />
+        </shape>
+    </item>
+</ripple>

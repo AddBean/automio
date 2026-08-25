@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:background="@color/colorPrimary"
+
+    tools:parentTag="RelativeLayout">
+
+    <LinearLayout
+        android:id="@+id/main_menu"
+        android:layout_width="260dp"
+        android:layout_height="300dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/xml_elegant_card_bg"
+        android:elevation="4dp"
+        android:orientation="vertical"
+        android:stateListAnimator="@null">
+
+        <!-- 控制按钮区域 - 弱化设计 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:layout_margin="4dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="2dp">
+
+            <com.hive.views.widgets.TextDrawableView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:drawablePadding="4dp"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:drawableHeight="16dp"
+                app:drawableLeft="@drawable/logo"
+                app:drawableRadius="4dp"
+                app:drawableWidth="16dp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:padding="4dp"
+                android:src="@drawable/ic_home_svg" />
+
+            <!-- 分割线 -->
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="20dp"
+                android:layout_marginHorizontal="4dp"
+                android:background="@color/tech_content_border"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/btn_close"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:padding="4dp"
+                android:src="@drawable/ic_close_svg"
+                android:visibility="gone" />
+
+            <!-- 分割线 -->
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="20dp"
+                android:layout_marginHorizontal="4dp"
+                android:background="@color/tech_content_border" />
+
+            <ImageView
+                android:id="@+id/btn_mini"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:padding="4dp"
+                android:src="@drawable/ic_minimize_svg" />
+
+        </LinearLayout>
+
+        <!-- 分割线 -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/tech_content_border" />
+        <!-- 主要内容区域 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- 左侧 Tab 区域 -->
+            <LinearLayout
+                android:id="@+id/tab_container"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="2dp">
+
+                <!-- 智能体 Tab -->
+                <com.hive.views.widgets.TextDrawableView
+                    android:id="@+id/tab_agent"
+                    android:layout_width="38dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/xml_tab_active_bg"
+                    android:gravity="center"
+                    android:paddingVertical="8dp"
+                    android:text="@string/ui_script_agent"
+                    android:textColor="@color/white"
+                    android:textSize="8sp"
+                    android:textStyle="bold"
+                    app:drawableHeight="16dp"
+                    app:drawableTop="@drawable/ic_agent"
+                    app:drawableWidth="16dp" />
+
+
+                <!-- 录制 Tab -->
+                <com.hive.views.widgets.TextDrawableView
+                    android:id="@+id/tab_record"
+                    android:layout_width="38dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="12dp"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:paddingVertical="8dp"
+                    android:text="@string/ui_script_record"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="8sp"
+                    android:textStyle="bold"
+                    app:drawableHeight="16dp"
+                    app:drawableTop="@drawable/ic_record_svg"
+                    app:drawableWidth="16dp" />
+
+
+                <!-- 工作流 Tab -->
+                <com.hive.views.widgets.TextDrawableView
+                    android:id="@+id/tab_workflow"
+                    android:layout_width="38dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="12dp"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:paddingVertical="8dp"
+                    android:text="@string/ui_script_workflow"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="8sp"
+                    android:textStyle="bold"
+                    app:drawableHeight="16dp"
+                    app:drawableTop="@drawable/ic_workflow_svg"
+                    app:drawableWidth="16dp" />
+
+            </LinearLayout>
+
+            <!-- 分割线 -->
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="4dp"
+                android:background="@color/tech_content_border" />
+
+            <!-- 右侧内容区域 -->
+            <FrameLayout
+                android:id="@+id/content_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- 智能体内容 -->
+                <com.hive.script.views.menu.contents.ScriptAgentContentView
+                    android:id="@+id/content_agent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible"
+                    tools:visibility="gone" />
+
+                <!-- 录制内容 -->
+                <com.hive.script.views.menu.contents.ScriptRecordContentView
+                    android:id="@+id/content_record"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <!-- 工作流内容 -->
+                <com.hive.script.views.menu.contents.ScriptWorkflowContentView
+                    android:id="@+id/content_workflow"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    tools:visibility="gone" />
+
+            </FrameLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <!-- 抽屉按钮 -->
+    <ImageView
+        android:id="@+id/btn_drawer_right"
+        android:layout_width="28dp"
+        android:layout_height="56dp"
+        android:background="@drawable/xml_control_handle_left_bg"
+        android:elevation="2dp"
+        android:padding="5dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_drawer_curve_left" />
+
+    <ImageView
+        android:id="@+id/btn_drawer_left"
+        android:layout_width="28dp"
+        android:layout_height="56dp"
+        android:background="@drawable/xml_control_handle_right_bg"
+        android:elevation="2dp"
+        android:padding="5dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_drawer_curve_right" />
+
+</merge>

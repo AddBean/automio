@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:parentTag="android.widget.FrameLayout">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@drawable/xml_dark_round_rect"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:layout_margin="4dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <com.hive.views.widgets.TextDrawableView
+            android:id="@+id/tv_count"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/xml_btn_blue_round_line_bg"
+            android:drawablePadding="12dp"
+            android:gravity="center"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            android:text="单指滑动"
+            android:textSize="12sp"
+            android:textColor="@color/color_blue"
+            android:textStyle="bold"
+            app:drawableHeight="6dp"
+            app:drawableRight="@drawable/icon_mini_arr_down"
+            app:drawableTint="@color/color_blue"
+            app:drawableWidth="12dp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/xml_btn_default_round_bg"
+            android:text="@string/ok"
+            android:textColor="@color/color_white" />
+
+    </LinearLayout>
+</merge>

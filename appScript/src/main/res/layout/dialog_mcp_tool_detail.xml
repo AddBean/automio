@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_65">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="24dp">
+
+            <ImageView
+                android:id="@+id/iv_close"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/mcp_tool_detail_close"
+                android:padding="10dp"
+                android:src="@drawable/sc_menu_close"
+                android:tint="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:minWidth="0dp"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="20dp">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fillViewport="true"
+                android:overScrollMode="never">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_mcp_detail_surface"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <com.hive.views.widgets.UIResourceIconView
+                        android:id="@+id/icon_tool_dialog"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        app:ri_resourceType="tool"
+                        app:ri_containerShape="circle" />
+
+                    <TextView
+                        android:id="@+id/tv_tool_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:background="@drawable/bg_filter_pill_inactive"
+                        android:fontFamily="sans-serif-medium"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="5dp"
+                        android:text="CUSTOM TOOL"
+                        android:textAllCaps="true"
+                        android:textColor="@color/design_text_muted"
+                        android:textSize="@dimen/design_font_3xs" />
+
+                    <TextView
+                        android:id="@+id/tv_tool_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:textColor="@android:color/white"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        tools:text="openApp" />
+
+                    <TextView
+                        android:id="@+id/tv_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:lineSpacingExtra="4dp"
+                        android:textColor="@color/design_text_muted"
+                        android:textSize="@dimen/design_font_base"
+                        tools:text="Open an app by package name or URL scheme" />
+
+                    <TextView
+                        android:id="@+id/tv_params_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:text="@string/mcp_tool_detail_params"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/design_font_sm"
+                        android:textStyle="bold"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+
+                    <ScrollView
+                        android:id="@+id/scroll_params"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:maxHeight="180dp"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/tv_params"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_filter_pill_inactive"
+                            android:fontFamily="monospace"
+                            android:lineSpacingExtra="3dp"
+                            android:padding="14dp"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            tools:text="packageName (required)\nOpen target package or scheme" />
+                    </ScrollView>
+
+                    <LinearLayout
+                        android:id="@+id/layout_script_path"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/tv_script_path_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mcp_tool_script_path"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/design_font_sm"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_script_path"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/bg_filter_pill_inactive"
+                            android:ellipsize="middle"
+                            android:fontFamily="monospace"
+                            android:maxLines="3"
+                            android:padding="14dp"
+                            android:textColor="@color/design_text_muted"
+                            android:textSize="12sp"
+                            tools:text="/storage/emulated/0/Automio/scripts/MyTool" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tv_btn_change_script"
+                                android:layout_width="0dp"
+                                android:layout_height="44dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/bg_empty_state_btn"
+                                android:fontFamily="sans-serif-medium"
+                                android:gravity="center"
+                                android:text="@string/mcp_tool_change_script"
+                                android:textColor="@color/design_accent_indigo"
+                                android:textSize="@dimen/design_font_sm" />
+
+                            <TextView
+                                android:id="@+id/tv_btn_edit_script"
+                                android:layout_width="0dp"
+                                android:layout_height="44dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/bg_filter_pill_inactive"
+                                android:fontFamily="sans-serif-medium"
+                                android:gravity="center"
+                                android:text="@string/mcp_tool_edit_script"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/design_font_sm" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_btn_ok"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:gravity="center"
+            android:text="@string/mcp_tool_detail_ok"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</FrameLayout>

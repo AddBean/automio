@@ -1,0 +1,30 @@
+<resources>
+    <string name="download_btn_download">Download</string>
+    <string name="download_add_title">Add Download</string>
+    <string name="download_add_hint">Enter download link</string>
+    <string name="download_btn_cancel">Cancel</string>
+    <string name="pref_confirm">Confirm</string>
+    <string name="pref_cancel">Cancel</string>
+    <string name="setting_selector_error_low_min">Selection must be greater than %d</string>
+    <string name="setting_selector_error_over_max">Selection must be less than %d</string>
+    <string name="loading">Loading</string>
+    <string name="no">No</string>
+    <string name="start">Start</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="empty">Empty</string>
+    <string name="delete">Delete</string>
+    <string name="submit">Submit</string>
+    <string name="no_more_date">Oops! No more data</string>
+    <string name="knew_tips">Got it</string>
+    <string name="load_error">Load failed</string>
+    <string name="load_retry">Retry</string>
+    <string name="input_title">Enter text</string>
+
+    <string name="views_set_layout_res_required">setLayoutRes() must be called first to set the dialog layout</string>
+    <string name="views_setting_key_required">settingKey must be set</string>
+    <string name="agreement_prefix">I have read and agree to the </string>
+    <string name="agreement_text">User Agreement</string>
+    <string name="agreement_middle"> and </string>
+    <string name="agreement_privacy">Privacy Policy</string>
+</resources>

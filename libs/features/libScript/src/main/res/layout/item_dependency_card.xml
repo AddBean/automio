@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 依赖资源卡片 item（对齐 script-design DependencySelectSheet.tsx AssetGrid）
+     - padding: p-2.5 = 10dp
+     - 图标容器: w-9 h-9 = 36dp
+     - 图标大小: text-base = 16dp
+     - 文字: text-[11px] font-semibold
+     - 选中标记: top-1.5 right-1.5 w-5 h-5 = top:6dp right:6dp 20x20dp
+     - Check图标: size={12} = 12dp
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_dependency_card"
+    android:clickable="true"
+    android:focusable="true"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!-- 图标容器: w-9 h-9 = 36dp -->
+        <FrameLayout
+            android:id="@+id/icon_container"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/bg_dependency_icon_container">
+
+            <!-- 图标: size={16} -->
+            <ImageView
+                android:id="@+id/iv_icon"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_activity"
+                app:tint="@color/design_text_slate_200" />
+        </FrameLayout>
+
+        <!-- 名称: text-[11px] font-semibold truncate（单行截断） -->
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/design_text_slate_400"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            tools:text="资源名称" />
+    </LinearLayout>
+
+    <!-- 选中标记: top-1.5 right-1.5 w-5 h-5 = top:6dp right:6dp 20x20dp -->
+    <FrameLayout
+        android:id="@+id/check_container"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="6dp"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_dependency_check_circle" />
+
+        <!-- Check图标: size={12} -->
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_check"
+            app:tint="@color/design_text_primary" />
+    </FrameLayout>
+</FrameLayout>

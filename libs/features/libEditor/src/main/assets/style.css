@@ -1,0 +1,43 @@
+
+
+@charset "UTF-8";
+
+
+html {
+  height: 100%;
+}
+
+body {
+  overflow: scroll;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  min-height:100%;
+}
+
+#editor {
+  display: table-cell;
+
+  -webkit-user-select: auto !important;
+  -webkit-user-modify: read-write !important;
+
+  outline: 0px solid transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+blockquote{
+background-color: whitesmoke;
+border-left: 4px solid #999999;
+font-size: 15px;
+font-weight: 100;
+padding: 10px 15px;
+margin-left: 0px;
+margin-right : 0px;
+}
+
+#editor[placeholder]:empty:not(:focus):before {
+  content: attr(placeholder);
+  opacity: .5;
+}}

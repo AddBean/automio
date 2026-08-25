@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="8dp"
+    android:paddingVertical="4dp"
+    tools:background="@color/colorPrimary">
+
+    <com.hive.views.widgets.CustomRoundImageView
+        android:id="@+id/messageImageView"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:visibility="gone"
+        app:image_radius="12dp"
+        app:image_type="round"
+        tools:background="@color/colorPrimaryLight"
+        tools:layout_height="200dp"
+        tools:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/messageInfoLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/chat_message_assistant_bg"
+        android:orientation="vertical">
+
+        <!-- 思考过程区域（可选） -->
+        <LinearLayout
+            android:id="@+id/reasoningLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <TextView
+                android:id="@+id/reasoningTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="2dp"
+                android:textColor="@color/design_text_slate_400"
+                android:textSize="13sp"
+                tools:text="------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="2dp"
+            android:padding="12dp"
+            android:textColor="@color/design_text_slate_300"
+            android:textIsSelectable="true"
+            android:textSize="13sp"
+            tools:text="------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" />
+    </LinearLayout>
+
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/statusIndicator"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="4dp"
+        android:visibility="gone"
+        app:indicatorColor="@color/colorAccent"
+        app:indicatorName="BallBeatIndicator" />
+</LinearLayout> 

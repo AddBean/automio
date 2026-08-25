@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- AI 模型：通用层结构符号（类似 Keras/TF 模型图） -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="@color/colorAccent"
+        android:pathData="M4,6 L20,6 L20,8 L4,8 Z M6,11 L18,11 L18,13 L6,13 Z M8,16 L16,16 L16,18 L8,18 Z"/>
+</vector>

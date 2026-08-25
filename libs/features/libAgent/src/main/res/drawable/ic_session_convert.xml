@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 转换为工作流图标：简洁的箭头+框设计 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="18dp"
+    android:height="18dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- 外框 -->
+    <path
+        android:pathData="M4,4 L20,4 L20,20 L4,20 Z"
+        android:strokeWidth="2"
+        android:strokeColor="@color/design_accent_indigo"
+        android:fillColor="@android:color/transparent" />
+
+    <!-- 转换箭头 -->
+    <path
+        android:pathData="M8,12 L16,12"
+        android:strokeWidth="2"
+        android:strokeColor="@color/design_accent_indigo" />
+
+    <path
+        android:pathData="M12,8 L16,12 L12,16"
+        android:strokeWidth="2"
+        android:strokeColor="@color/design_accent_indigo"
+        android:fillColor="@android:color/transparent" />
+</vector>

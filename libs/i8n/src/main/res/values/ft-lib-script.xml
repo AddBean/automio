@@ -1,0 +1,1904 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Command dialog input strings -->
+    <string name="cmd_name_script_start">Start</string>
+    <string name="cmd_name_script_start_describe">Start</string>
+    <string name="cmd_name_script_done">End</string>
+    <string name="cmd_name_script_done_describe">End</string>
+    <string name="cmd_wait_for_operate_name">Wait for User</string>
+    <string name="cmd_wait_for_operate_des">Show dialog waiting for user operation</string>
+    
+    <!-- Agent view strings -->
+    <string name="script_tips_unlock_title">Unlock</string>
+    <string name="script_tips_unlock_msg">Unlock screen</string>
+    <string name="script_tips_unlock_success_title">Success</string>
+    <string name="script_tips_unlock_success">Unlock verified!</string>
+    <string name="script_tips_task_completed">Completed</string>
+    <string name="script_tips_i_know">OK</string>
+    <string name="script_tips_continue_task">Continue</string>
+    <string name="script_provider_new_task">Start Agent Task</string>
+    <string name="script_provider_continue_task">Continue</string>
+    <string name="script_provider_task_prompt">Enter task requirements</string>
+    <string name="script_agent_input_tip">Describe the task you want the Agent to complete.</string>
+    
+    <!-- Tool related strings - moved to strings_tools.xml -->
+    
+    <!-- Camera capture strings -->
+    <string name="script_capture_camera_failed_with_error">Photo failed: %s</string>
+    <string name="script_capture_camera_interrupted">Photo interrupted</string>
+    <string name="script_capture_camera_failed">Photo failed</string>
+    
+    <!-- Command execution strings -->
+    <string name="script_command_execute_success">Executed</string>
+    <string name="script_command_execute_may_success">May have executed, verify results</string>
+    
+    <!-- Permission related strings -->
+    <string name="sc_permission_lock_install_shortcut">Need shortcut permission, enable in settings</string>
+    <string name="sc_permission_snap_screen_failure">Screenshot permission denied, try again!</string>
+    <string name="sc_permission_notification_failure">Notification permission denied, try again!</string>
+    <string name="sc_permission_download">Download Permission</string>
+    <string name="sc_permission_record_audio">Record audio Permission</string>
+    <string name="sc_permission_none">None</string>
+    <string name="sc_permission_capture">Screenshot</string>
+    <string name="sc_permission_camera">Camera</string>
+    <string name="sc_permission_storage">Storage</string>
+    <string name="sc_permission_accessibility_service">Accessibility</string>
+    <string name="sc_permission_aggregate_title">Missing permissions</string>
+
+    <!-- Dialog strings -->
+    <string name="confirm">Confirm</string>
+    <string name="sc_dialog_name_hint">Enter name</string>
+    <string name="sc_dialog_name_title">Save Workflow</string>
+    <string name="sc_dialog_edit_name">Name</string>
+    <string name="sc_dialog_name">Name</string>
+    <string name="sc_check_input_check_empty">Name required</string>
+    <string name="sc_check_input_check_empty_2">Name too short (min 2 chars)</string>
+    <string name="sc_check_input_check_empty_3">Name too long (max 50 chars)</string>
+    <string name="sc_check_input_check_empty_4">Name already exists!</string>
+
+    <!-- Workflow bundle import -->
+    <string name="sc_bundle_import_success">Bundle imported</string>
+    <string name="sc_bundle_import_failed">Import failed</string>
+    <string name="sc_bundle_import_not_bundle">Workflow, skill and tool bundle formats are supported. Please select a valid bundle .zip file</string>
+    <string name="sc_bundle_import_missing_tools">Missing tools: %s</string>
+    <string name="sc_bundle_import_manifest_invalid">Invalid bundle manifest</string>
+    <string name="sc_bundle_import_version_unsupported">Unsupported bundle format (v1 deprecated)</string>
+    <string name="sc_bundle_import_unzip_failed">Unzip failed</string>
+    <string name="sc_bundle_import_missing_script_dir">Missing script directory: %s</string>
+    <string name="sc_bundle_import_install_failed">Install failed</string>
+    <string name="sc_bundle_default_tool_desc">Tool from bundle: %s</string>
+    <string name="sc_bundle_import_tool_register_failed">Tool register failed: %s</string>
+    <string name="sc_bundle_import_tool_uid_missing">Tool uid missing: %s</string>
+    <string name="sc_bundle_import_skill_register_failed">Skill register failed: %s</string>
+    <string name="sc_bundle_export_failed">Bundle export failed</string>
+    <string name="sc_bundle_import_conflict_title">Resolve import conflicts</string>
+    <string name="sc_bundle_import_conflict_hint">The following items already exist locally. Checked = overwrite, unchecked = skip.</string>
+    <string name="sc_bundle_import_conflict_continue">Continue</string>
+    <string name="sc_bundle_import_conflict_item_workflow">Workflow: %s</string>
+    <string name="sc_bundle_import_conflict_item_skill">Skill: %s</string>
+    <string name="sc_bundle_import_conflict_item_tool">Tool: %s</string>
+    <string name="sc_bundle_import_conflict_subtitle_versions">Local: %1$s  Bundle: %2$s</string>
+    <string name="sc_bundle_import_success_skill">Skill bundle imported</string>
+    <string name="sc_bundle_import_success_tool">Tool bundle imported</string>
+    <string name="sc_export_dependency_title">Select Export Dependencies</string>
+    <string name="sc_export_dependency_hint">Dependencies below are auto-detected. Check or uncheck as needed. For nested skills, manually add any missing dependencies.</string>
+    <string name="sc_export_dependency_skills">Skills</string>
+    <string name="sc_export_dependency_tools">Tools</string>
+    <string name="sc_export_dependency_scripts">Workflows</string>
+    <string name="sc_export_dependency_permissions">Permissions</string>
+    <string name="sc_export_dependency_scanned">Detected</string>
+    <string name="sc_export_dependency_optional">Optional</string>
+    <string name="sc_export_dependency_export">Export</string>
+    <string name="sc_export_dependency_required_cannot_uncheck">Detected dependencies are required and cannot be unchecked.</string>
+    <string name="sc_export_dependency_required_missing">Missing required dependencies. Export aborted.</string>
+    <!-- 新版依赖选择器 -->
+    <string name="sc_export_dependency_tab_resources">Dependencies</string>
+    <string name="sc_export_dependency_tab_resources_with_count">Dependencies (%d)</string>
+    <string name="sc_export_dependency_tab_permissions">Permissions</string>
+    <string name="sc_export_dependency_tab_permissions_with_count">Permissions (%d)</string>
+    <string name="sc_export_dependency_workflows">Workflows</string>
+    <string name="sc_export_dependency_select_permissions">Select required permissions</string>
+    <string name="sc_export_dependency_confirm_publish">Confirm Export</string>
+    <string name="sc_orphan_cleanup_btn">Clean unused</string>
+    <string name="sc_orphan_cleanup_toast">Removed %d orphan skill(s), %d tool(s), %d custom tool(s) from storage.</string>
+    <string name="sc_orphan_cleanup_none">No orphan skills or tools found.</string>
+    
+    <!-- Additional strings -->
+    <string name="script_tips_execution_completed">Completed!</string>
+    <string name="script_tips_execution_error">Error!</string>
+    <string name="required_asterisk">*</string>
+    <string name="script_select_parameter">Select</string>
+    <string name="script_input_hint">Enter</string>
+    <string name="script_agent_thinking">Thinking</string>
+    <string name="script_agent_stop">Stop</string>
+    <string name="script_agent_pause_resume">Pause/Resume</string>
+    <string name="script_agent_collapse">Collapse</string>
+    <string name="script_agent_skill_running">Skill running</string>
+
+    <!-- Accessibility Service -->
+    
+    <!-- Command Descriptions -->
+    <string name="cmd_des_batch_click">Batch click [%1$d,%2$d]</string>
+    <string name="cmd_des_click">Click [%1$d,%2$d]</string>
+    <string name="cmd_des_delay">Delay [%.2f] seconds</string>
+    <string name="cmd_des_end">End</string>
+    <string name="cmd_des_fastclick">Fast click [%d] times</string>
+    <string name="cmd_des_for">Sub-workflow loop [%d] times</string>
+    <string name="cmd_des_for_infinate">Infinite loop sub-workflow</string>
+    <string name="cmd_des_if">If</string>
+    <string name="cmd_des_longclick">Long press [%1$f,%2$f]</string>
+    <string name="cmd_des_openapp">Open app [%s]</string>
+    <string name="cmd_des_openscheme">Open link [%s]</string>
+    <string name="cmd_des_openappname">Open app [%s]</string>
+    <string name="cmd_des_printf">Output [%s]</string>
+    <string name="cmd_des_spot1">After recognizing pattern [click]</string>
+    <string name="cmd_des_spot2">After recognizing pattern [long press]</string>
+    <string name="cmd_des_spot3">After recognizing pattern [fast click]</string>
+    <string name="cmd_des_spot4">After recognizing pattern [exit]</string>
+    <string name="cmd_des_spot_color1">After recognizing color [click]</string>
+    <string name="cmd_des_spot_color2">After recognizing color [long press]</string>
+    <string name="cmd_des_spot_color3">After recognizing color [fast click]</string>
+    <string name="cmd_des_spot_color4">After recognizing color [exit]</string>
+    <string name="cmd_name_click_layout1">After recognizing control [click]</string>
+    <string name="cmd_name_click_layout2">After recognizing control [long press]</string>
+    <string name="cmd_name_click_layout3">After recognizing control [fast click]</string>
+    <string name="cmd_name_click_layout4">After recognizing control [exit]</string>
+    <string name="cmd_des_click_layout1">Click control [%s]</string>
+    <string name="cmd_des_click_layout2">Long press control [%s]</string>
+    <string name="cmd_des_click_layout3">Fast click control [%s]</string>
+    <string name="cmd_des_click_layout4">After recognizing control [exit]</string>
+    <string name="cmd_des_spot_text1">After finding text [click]</string>
+    <string name="cmd_des_spot_text2">After finding text [long press]</string>
+    <string name="cmd_des_spot_text3">After finding text [fast click]</string>
+    <string name="cmd_des_spot_text4">After finding text [exit]</string>
+    <string name="cmd_des_scale_out">Swipe to zoom out</string>
+    <string name="cmd_des_scale_in">Swipe to zoom in</string>
+    <string name="cmd_des_scale">Zoom in/out</string>
+    <string name="cmd_des_multiple">Swipe gesture</string>
+    <string name="cmd_des_scroll">Swipe gesture</string>
+    <string name="cmd_des_scroll_multiple">Swipe gesture</string>
+    <string name="cmd_des_root">Start execution</string>
+    <string name="cmd_des_jump">Jump to anchor %d</string>
+    <string name="cmd_des_jump_point">Anchor %s</string>
+    <string name="cmd_des_load_script">%s</string>
+    <string name="cmd_des_action_back">Execute back</string>
+    <string name="cmd_des_play_audio">Play notification sound</string>
+    <string name="cmd_des_action_home">Return to desktop</string>
+    <string name="cmd_des_action_recent">Task manager</string>
+    <string name="cmd_des_action_screen_lock">Execute screen lock</string>
+    <string name="cmd_des_action_screen_shot">Execute system screenshot</string>
+    <string name="cmd_des_action_open_notifications">Open notification panel</string>
+    
+    <!-- Command Names -->
+    <string name="cmd_name_notification_name">Check notification panel</string>
+    <string name="cmd_des_notification_des">Notification panel shows \"%s\"</string>
+    <string name="cmd_name_view_name">Check page</string>
+    <string name="cmd_des_view_des">Page shows \"%s\"</string>
+    <string name="cmd_name_image_name">Check pattern</string>
+    <string name="cmd_des_image_des">Page shows pattern</string>
+    <string name="cmd_name_color_name">Check color</string>
+    <string name="cmd_des_color_des">Page shows color</string>
+    <string name="cmd_name_batch_click">Batch click</string>
+    <string name="cmd_name_click">Click coordinates</string>
+    <string name="cmd_name_if_name">If satisfied</string>
+    <string name="cmd_name_if_name_not">If not satisfied</string>
+    <string name="cmd_des_if_des">%s</string>
+    <string name="cmd_name_delay">Delay wait</string>
+    <string name="cmd_name_end">Execute end</string>
+    <string name="cmd_name_fastclick">Continuous click</string>
+    <string name="cmd_name_for">Workflow loop</string>
+    <string name="cmd_name_if">If</string>
+    <string name="cmd_name_longclick">Long press click</string>
+    <string name="cmd_name_openapp">Open app</string>
+    <string name="cmd_name_openscheme">Open link</string>
+    <string name="cmd_name_openappname">Open app</string>
+    <string name="cmd_name_printf">Output text</string>
+    <string name="cmd_name_toast">Show toast</string>
+    <string name="cmd_name_time_calibrator">On-the-hour time</string>
+    <string name="cmd_name_time_calibrator_des">Calibrate on-the-hour time by [%s]</string>
+    <string name="cmd_name_input">Input text</string>
+    <string name="cmd_name_load_script">Reference workflow</string>
+    <string name="cmd_name_spot">Recognize pattern</string>
+    <string name="cmd_name_scroll">Swipe gesture</string>
+    <string name="cmd_name_scroll_multiple">Swipe gesture</string>
+    <string name="cmd_name_root">Start execution</string>
+    <string name="cmd_name_exit">Exit workflow</string>
+    <string name="cmd_name_jump">Jump to</string>
+    <string name="cmd_name_jump_point">Anchor</string>
+    <string name="cmd_name_action_back">Execute back</string>
+    <string name="cmd_name_play_audio">Play notification sound</string>
+    <string name="cmd_name_action_home">Return to desktop</string>
+    <string name="cmd_name_action_unlock">Unlock screen</string>
+    <string name="cmd_name_action_wakeup">Wake up screen</string>
+    <string name="cmd_name_action_recent">Recent tasks</string>
+    <string name="cmd_name_action_screen_lock">Execute screen lock</string>
+    <string name="cmd_name_action_screen_shot">Execute screenshot</string>
+    <string name="cmd_name_action_open_notifications">Open notification panel</string>
+    <string name="cmd_name_input_des">%s</string>
+    <string name="cmd_input_method_success">Input method input may have succeeded, please confirm the result before proceeding</string>
+    <string name="cmd_input_method_fallback">Input method input failed, falling back to traditional method</string>
+    <string name="cmd_input_failure">Input failed!</string>
+    <string name="cmd_input_traditional_success">Input may have succeeded, please confirm the result before proceeding</string>
+    <string name="cmd_input_traditional_failure">Input failed, please check if the target input box exists or has focus. If repeated input failures occur, please use another method to input</string>
+    <string name="cmd_input_method_not_enabled">Input method not enabled, please enable it in system settings</string>
+    <string name="cmd_input_method_switch_failed">Failed to switch to input method</string>
+    <string name="cmd_input_method_success_text">Successfully input text using input method</string>
+    <string name="cmd_input_method_error">Error while inputting with input method: %s</string>
+    <string name="cmd_input_target_index_not_found">Unable to find input box #%1$d. Check targetId and targetIndex.</string>
+    <string name="cmd_name_load_script_des">Run script [%s]</string>
+    <string name="cmd_name_run_skill">Run skill</string>
+    <string name="cmd_name_run_skill_des">Run skill [%s]</string>
+    <string name="sc_run_skill_menu_title">Select skill</string>
+    <string name="sc_cmd_run_skill">Skill</string>
+    <string name="sc_cmd_run_skill_prompt">User prompt (optional)</string>
+    <string name="cmd_run_skill_empty">Please select a skill</string>
+    <string name="cmd_run_skill_no_provider">Agent service not available</string>
+
+    <!-- Workflow Management -->
+    <string name="script_save_name">Enter name</string>
+    <string name="str_task_name">Workflow name</string>
+    <string name="str_replay">Replay</string>
+    <string name="str_edit">Edit</string>
+    <string name="str_ready_to_record">Record scenario</string>
+    <string name="str_ready_to_record_where">Record scenario</string>
+    <string name="str_cycle_times">Loops</string>
+    <string name="dialog_name_current_task">Replay recorded workflow?</string>
+    <string name="sc_dialog_infinite_btn">Infinite loop</string>
+    <string name="dialog_name_play">Run</string>
+    <string name="dialog_name_cycle_setting">Loop settings</string>
+    <string name="sc_fast_count">Clicks</string>
+    <string name="sc_fast_interval">Interval</string>
+    <string name="sc_loop_unit">ms</string>
+    <string name="sc_fask_check_count_1">Clicks required</string>
+    <string name="sc_fask_check_count_2">Interval required</string>
+    <string name="sc_fask_check_count_3">Min 1 click</string>
+    <string name="sc_fask_check_count_4">Min 64ms interval</string>
+    <string name="dialog_name_open_scheme">Enter link</string>
+    <string name="dialog_name_if_commend">Add condition</string>
+    <string name="dialog_name_for_commend">Add loop</string>
+    <string name="dialog_name_open_scheme_hint">Enter link to open</string>
+    <string name="sc_check_scheme_input_check_empty">Link required</string>
+    <string name="sc_check_scheme_input_check_empty_2">Min 2 characters</string>
+    <string name="sc_fast_tap_tips">Confirm fast click coordinates</string>
+    <string name="sc_app_selector_title">Select app</string>
+    <string name="sc_script_list_title">Workflows</string>
+    <string name="sc_loop_name">Loops: </string>
+    <string name="sc_script_loop_infinite_msg">Infinite loop</string>
+    <string name="sc_delete_selected_title">Delete selected</string>
+    <string name="sc_delete_title">Delete workflow</string>
+    <string name="sc_delete_content">Cannot be recovered</string>
+    <string name="sc_delete_confirm">Delete</string>
+    <string name="sc_delete_success">Deleted!</string>
+    <string name="sc_shortcut_title">Create shortcut</string>
+    <string name="sc_shortcut_content">Run from desktop</string>
+    <string name="sc_shortcut_confirm">Create</string>
+    <string name="sc_dialog_lock_short_title">Permission</string>
+    <string name="sc_dialog_lock_short_content">Need shortcut permission</string>
+    <string name="sc_dialog_lock_short_confirm">Authorize</string>
+    <string name="sc_permission_lock_install_shortcut_success">Grant permission and try again!</string>
+    <string name="sc_short_run_title">Run [%s] workflow?</string>
+    <string name="sc_short_run_start">Run</string>
+    <string name="sc_short_permission_title">Enable Accessibility</string>
+    <string name="sc_short_permission_start">Enable</string>
+    <string name="sc_script_edit_title">Close</string>
+    <string name="sc_script_edit_title2">Back</string>
+    <string name="sc_script_edit_fold">Collapse</string>
+    <string name="sc_script_edit_unfold">Expand</string>
+    <string name="sc_script_edit_save">Save &amp; Exit</string>
+    <string name="sc_edit_save_success">Saved</string>
+    <string name="sc_edit_save_success2">Saved</string>
+    <string name="sc_script_edit_add_title">Add command</string>
+    <string name="sc_empty_add">Add command</string>
+    <string name="sc_edit_record_cmd">Insert recording</string>
+    <string name="sc_edit_add_group">Insert workflow</string>
+    <string name="sc_edit_load_script_cmd">Reference workflow</string>
+    <string name="sc_edit_run_skill_cmd">Run skill</string>
+    <string name="sc_add_type_title">Select insert type</string>
+    <string name="sc_add_type_1">Normal workflow</string>
+    <string name="sc_add_type_2">Loop workflow</string>
+    <string name="sc_script_list_selector_title">Select the workflow to insert</string>
+    <string name="sc_script_list_selector_title2">Please select scheduled workflow</string>
+    
+    <!-- Command Parameters -->
+    <string name="sc_cmd_click_x">X coordinate</string>
+    <string name="sc_cmd_click_y">Y coordinate</string>
+    <string name="sc_cmd_duration">Duration</string>
+    <string name="sc_cmd_duration_msg">Note: Actual wait time is a random value between [minimum duration] and [maximum duration]</string>
+    <string name="sc_cmd_click_gap_duration">Click interval</string>
+    <string name="sc_cmd_start_duration">Minimum duration</string>
+    <string name="sc_cmd_end_duration">Maximum duration</string>
+    <string name="sc_cmd_offset_x">Horizontal offset</string>
+    <string name="sc_cmd_offset_y">Vertical offset</string>
+    <string name="sc_cmd_for_loop">Loop count</string>
+    <string name="sc_cmd_spot_accuracy">Recognition accuracy</string>
+    <string name="sc_cmd_spot_color">Find color</string>
+    <string name="sc_cmd_spot_threshold">Recognition tolerance</string>
+    <string name="sc_cmd_fast_click_count">Fast click count</string>
+    <string name="sc_cmd_fast_click_duration">Fast click interval</string>
+    <string name="sc_cmd_press_duration">Long press time</string>
+    <string name="sc_cmd_open_app">Open app</string>
+    <string name="sc_cmd_jump_point">Select anchor</string>
+    <string name="sc_cmd_load_script">Select script</string>
+    <string name="sc_cmd_open_time_calibrator">On-the-hour calibration type</string>
+    <string name="sc_cmd_open_notify_app">Monitor app</string>
+    <string name="sc_cmd_set_rect">Valid area</string>
+    <string name="sc_cmd_batch_click_type">Click mode</string>
+    <string name="sc_cmd_open_link">Open link</string>
+    <string name="sc_for_title">Sub-workflow</string>
+    <string name="sc_for_more_txt">Manage sub-workflow</string>
+    
+    <!-- Units -->
+    <string name="sc_unit_du">DEG</string>
+    <string name="sc_unit_s">S</string>
+    <string name="sc_unit_px">PIX</string>
+    <string name="sc_unit_ms">MS</string>
+    <string name="sc_unit_percent">%</string>
+    <string name="sc_unit_times">times</string>
+    
+    <!-- Tips and Messages -->
+    <string name="sc_layout_tap_tips">Please tap to select control</string>
+    <string name="sc_snap_sc_tips">Please frame the click area</string>
+    <string name="sc_snap_color_tips">Please tap to pick color</string>
+    <string name="sc_node_notfound_msg">Specified control not found, execution failed</string>
+    <string name="sc_click_long_comfirm_title">Add click control command</string>
+    <string name="sc_click_long_comfirm_ok">Add</string>
+    <string name="sc_click_long_comfirm_content">Add this control?</string>
+    <string name="sc_snap_confirm">Confirm</string>
+    <string name="dialog_screen_snap">Auto recognition</string>
+    <string name="sc_cmd_spot_success">Recognition successful</string>
+    <string name="sc_cmd_spot_failure">Recognition failed, try lowering accuracy</string>
+    <string name="dialog_screen_snap_color">Auto recognize color</string>
+    <string name="sc_cmd_spot_color_success">Recognition successful</string>
+    <string name="sc_cmd_spot_color_failure">Recognition failed, try lowering accuracy</string>
+    <string name="task_add">Compose</string>
+    <string name="sc_close">Close</string>
+    <string name="sc_input_type">Input type</string>
+    <string name="sc_input_type_list">Replace,Append</string>
+    <string name="sc_input_anim_input">Animated input</string>
+    <string name="sc_input_target_index_title">Input index</string>
+    <string name="sc_input_target_index_hint">Enter the matched input index, starting from 1</string>
+    <string name="sc_spot_click_type">Type</string>
+    <string name="sc_spot_click_type_list">Click,Long press,Fast click,Drag</string>
+    <string name="sc_if_post_action_type">Execute after satisfied</string>
+    <string name="sc_if_post_action_delay">Delay execution</string>
+    <string name="sc_if_post_action_type_list">No action,Click,Long press</string>
+    <string name="sc_if_post_action_type_list_notification">Open notification,No action</string>
+    <string name="sc_if_post_action_reverse">Reverse condition</string>
+    <string name="sc_if_post_action_reverse_list">No,Yes</string>
+    <string name="sc_random_title">Random radius</string>
+    <string name="sc_node_errer_msg2">Click control failed</string>
+    <string name="dialog_screen_layout_spot">Control recognition</string>
+    <string name="sc_edit_layout_title_id">ID search</string>
+    <string name="sc_edit_layout_title_text">Text search</string>
+    <string name="sc_edit_layout_title_tag">Tag search</string>
+    <string name="sc_play_infinite">Infinite loop</string>
+    <string name="sc_play_count">Loop count</string>
+    <string name="sc_play_confirm">Start running</string>
+    <string name="sc_play_run_now">Run Now</string>
+    <string name="sc_play_type_list">Off,On</string>
+    <string name="sc_play_step">Start command</string>
+    <string name="sc_nav_root_cmd">Root command</string>
+    <string name="dialog_color_picker">Color picker</string>
+    <string name="dialog_play_stop_title">Run ended</string>
+    <string name="dialog_play_stop_msg">running</string>
+    <string name="dialog_play_stop_time">Workflow total time: %s</string>
+    <string name="sc_click_to_exit">Exited running!</string>
+    <string name="sc_scale_inout_angle">Zoom angle</string>
+    <string name="dialog_scale_in_out_title">Zoom configuration</string>
+    <string name="dialog_batch_click_title">Batch click configuration</string>
+    <string name="sc_scale_inout_type_list">Zoom in,Zoom out</string>
+    <string name="sc_scale_inout_name">Zoom type</string>
+    <string name="sc_scale_inout_duration">Duration</string>
+    <string name="sc_spot_layout_name_1">Adjust zoom gesture</string>
+    <string name="sc_spot_layout_name_2">Touch screen drag and pick color</string>
+    <string name="sc_spot_layout_name_3">Touch to select recognition area</string>
+    <string name="sc_spot_layout_name_4">Click red frame to select control</string>
+    <string name="sc_spot_layout_name_5">Set multi-finger gesture</string>
+    <string name="sc_spot_layout_name_6">Set valid recognition area</string>
+    <string name="sc_spot_layout_name_7">Set click area</string>
+    <string name="dialog_copy_title">Copy text to clipboard</string>
+    <string name="dialog_name_copy_hint">Enter text to copy to clipboard</string>
+    <string name="dialog_input_title">Auto input text</string>
+    <string name="dialog_name_input_hint">Input text to specified input box</string>
+    <string name="sc_cpoy_tag">Command copy</string>
+    <string name="cmd_copy_name">Copy to clipboard</string>
+    <string name="cmd_copy_des">Copy text to clipboard</string>
+    <string name="sc_edit_insert_type_title">Batch insert</string>
+    <string name="sc_edit_insert_type_title_2">Workflow command</string>
+    <string name="sc_edit_insert_type_title_3">System command</string>
+
+    <!-- Toast Tool -->
+    <string name="tool_toast_name">Show Toast</string>
+    <string name="tool_toast_description">Display a toast message</string>
+    <string name="tool_toast_content_desc">Toast content to display</string>
+    <string name="tool_toast_example">Hello World</string>
+    <string name="tool_toast_error_empty">Parameters cannot be empty</string>
+    <string name="tool_toast_error_content_empty">content parameter cannot be empty</string>
+
+    <!-- Scroll Tool -->
+    <string name="tool_scroll_name">Scroll Screen</string>
+    <string name="tool_scroll_description">Scroll the screen</string>
+    <string name="tool_scroll_points_desc">Scroll path point sequence, format: x1,y1,x2,y2…(coordinates range 0–1)</string>
+    <string name="tool_scroll_times_desc">Time interval for each scroll segment (milliseconds), format: t1,t2…</string>
+    <string name="tool_scroll_error_points_empty">points parameter cannot be empty</string>
+    <string name="tool_scroll_error_times_empty">times parameter cannot be empty</string>
+    <string name="tool_scroll_error_points_format">points parameter format error, must be even number of values</string>
+    <string name="tool_scroll_error_times_min">At least one time interval required</string>
+    <string name="tool_scroll_error_coord_range">Coordinate values must be in 0–1 range</string>
+    <string name="tool_scroll_error_format">Parameter format error: %s</string>
+
+    <!-- Permission Request Tool -->
+    <string name="tool_permission_name">Request Phone Permission</string>
+    <string name="tool_permission_description">Request phone permissions</string>
+    <string name="tool_permission_desc">Standard Android permission code, currently supports: screenshot permission(android.permission.CAPTURE), camera permission(android.permission.CAMERA)</string>
+    <string name="tool_permission_error_empty">permission parameter cannot be empty</string>
+
+    <!-- Screen Layout Tool -->
+    <string name="tool_layout_name">Get Current Page Layout Info</string>
+    <string name="tool_layout_description">Get current page layout information, including all visible UI elements and their properties. Coordinates are normalized to
+
+        0-1 range</string>
+    <string name="tool_layout_error_service">Accessibility service not started</string>
+    <string name="tool_layout_success">Successfully obtained layout info, %d nodes total, coordinates normali
+
+        zed to 0-1 range</string>
+    <string name="tool_layout_error_no_elements">No visible UI elements on current page,use other tool</string>
+    <string name="tool_layout_error_failed">Failed to get layout information</string>
+    <string name="tool_layout_error_exception">Layout info exception: %s</string>
+
+    <!-- Long Press Tool -->
+    <string name="tool_press_name">Long Press Coordinate</string>
+    <string name="tool_press_description">Long press at coordinate</string>
+    <string name="tool_press_x_desc">X coordinate, range 0–1</string>
+    <string name="tool_press_y_desc">Y coordinate, range 0–1</string>
+    <string name="tool_press_duration_desc">Long press duration (milliseconds)</string>
+    <string name="tool_press_error_empty">Parameters cannot be empty</string>
+    <string name="tool_press_error_x_empty">x parameter cannot be empty or format error</string>
+    <string name="tool_press_error_y_empty">y parameter cannot be empty or format error</string>
+    <string name="tool_press_error_x_range">x parameter must be in 0–1 range</string>
+    <string name="tool_press_error_y_range">y parameter must be in 0–1 range</string>
+    <string name="tool_press_error_duration_negative">duration parameter cannot be less than 0</string>
+
+    <!-- Screen Text Recognition Tool -->
+    <string name="tool_read_screen_text_name">Recognize phone screen text content</string>
+    <string name="tool_read_screen_text_description">Recognize current phone screen text content, using OCR to recognize text or read layout text</string>
+    <string name="tool_read_screen_text_error_permission">This command lacks necessary permissions: %s</string>
+
+    <!-- Permission Request Tool -->
+    <string name="tool_permission_error_invalid">permission parameter is incorrect, acceptable parameters are: %s</string>
+
+    <!-- Open Tool (merged: app + scheme), params: action, uri, reopen -->
+    <string name="tool_open_name">Open</string>
+    <string name="tool_open_description">Open app (by package or pkg:class) or open URL/scheme. Params: action, uri, reopen.</string>
+    <string name="tool_open_action_desc">openApp or openScheme</string>
+    <string name="tool_open_uri_desc">For openApp: pkg or pkg:class (e.g. com.tencent.mm or com.tencent.mm:LauncherUI). For openScheme: URL or scheme (e.g. https://example.com or tel:13800138000)</string>
+    <string name="tool_open_reopen_desc">Only for openApp: true = kill and relaunch, false = just open. Default true</string>
+    <string name="tool_open_error_action_invalid">action must be openApp or openScheme</string>
+    <string name="tool_open_error_uri_empty">uri cannot be empty</string>
+
+    <!-- Open Scheme Tool -->
+    <string name="tool_open_scheme_name">Open URL Link or Scheme</string>
+    <string name="tool_open_scheme_description">Open URL link or scheme</string>
+    <string name="tool_open_scheme_desc">URL link or scheme to open</string>
+    <string name="tool_open_scheme_error_empty">scheme parameter cannot be empty</string>
+
+    <!-- Open App Tool -->
+    <string name="tool_open_app_name">Open App</string>
+    <string name="tool_open_app_description">Open app</string>
+    <string name="tool_open_app_name_desc">App name</string>
+    <string name="tool_open_app_package_desc">App package name</string>
+    <string name="tool_open_app_class_desc">App class name (optional, use - for default launch)</string>
+    <string name="tool_open_app_action_desc">Open method: open or reopen (reopen will kill process)</string>
+    <string name="tool_open_app_error_package_empty">packageName parameter cannot be empty</string>
+    <string name="tool_open_app_error_action_invalid">action parameter can only be open or reopen</string>
+
+    <!-- Input Text Tool -->
+    <string name="tool_input_name">Input Text</string>
+    <string name="tool_input_description">Input text to specified viewId EditText control, remember to confirm result after input, if input fails, try long press paste copy method</string>
+    <string name="tool_input_text_desc">Text content to input</string>
+    <string name="tool_input_view_id_desc">Target input box ID (EditText ID), if not specified, use currently focused input box by default</string>
+    <string name="tool_input_target_index_desc">When multiple EditText controls match the same targetId, choose the nth one, starting from 1. Defaults to 1.</string>
+    <string name="tool_input_mode_desc">Input method: full (overwrite) or append</string>
+    <string name="tool_input_x_desc">Target input box center X coordinate (0-1 normalized). If specified, click first then input to focused EditText</string>
+    <string name="tool_input_y_desc">Target input box center Y coordinate (0-1 normalized). If specified, click first then input to focused EditText</string>
+    <string name="tool_input_error_content_empty">content parameter cannot be empty</string>
+    <string name="tool_input_error_action_invalid">action parameter can only be full or append</string>
+    <string name="tool_input_error_target_index_invalid">targetIndex must be an integer greater than or equal to 1</string>
+
+    <!-- Click Tool -->
+    <string name="tool_click_name">Click Coordinate</string>
+    <string name="tool_click_description">Click at coordinate</string>
+    <string name="tool_click_x_desc">X coordinate, range 0–1</string>
+    <string name="tool_click_y_desc">Y coordinate, range 0–1</string>
+    <string name="tool_click_error_empty">Parameters cannot be empty</string>
+    <string name="tool_click_error_x_empty">x parameter cannot be empty</string>
+    <string name="tool_click_error_y_empty">y parameter cannot be empty</string>
+    <string name="tool_click_error_x_gt_1">x parameter cannot be greater than 1</string>
+    <string name="tool_click_error_y_gt_1">y parameter cannot be greater than 1</string>
+    <string name="tool_click_error_x_lt_0">x parameter cannot be less than 0</string>
+    <string name="tool_click_error_y_lt_0">y parameter cannot be less than 0</string>
+
+    <!-- Interact Tool (Merged: click/clickView) -->
+    <string name="tool_interact_name">Interact</string>
+    <string name="tool_interact_description">Unified interaction: prefer targetId/targetTag; fallback to x/y (0–1)</string>
+    <string name="tool_interact_action_desc">Action type: click, press (long press), fastClick (fast tap)</string>
+    <string name="tool_interact_target_id_desc">Target view ID: viewIdResourceName (preferred, use - to ignore)</string>
+    <string name="tool_interact_target_tag_desc">Target view tag (optional, use - to ignore)</string>
+    <string name="tool_interact_x_desc">X coordinate, range 0–1 (used when no targetId/targetTag)</string>
+    <string name="tool_interact_y_desc">Y coordinate, range 0–1 (used when no targetId/targetTag)</string>
+    <string name="tool_interact_fast_count_desc">Fast click count (only valid when action is fastClick and using target mode)</string>
+    <string name="tool_interact_fast_gap_desc">Fast click interval in ms (only valid when action is fastClick and using target mode)</string>
+    <string name="tool_interact_press_duration_desc">Long press duration in ms (valid for press; also used by coordinate press)</string>
+    <string name="tool_interact_error_invalid_action">action must be one of: click, press, fastClick</string>
+    <string name="tool_interact_error_missing_target">Either targetId/targetTag or x/y must be provided</string>
+    <string name="tool_interact_error_x_range">x must be in range 0–1</string>
+    <string name="tool_interact_error_y_range">y must be in range 0–1</string>
+    <string name="tool_interact_error_fast_click_coord">fastClick is not supported in coordinate mode; use targetId/targetTag</string>
+    <string name="tool_interact_error_fast_count_positive">fastCount must be greater than 0</string>
+    <string name="tool_interact_error_fast_gap_negative">fastGap cannot be less than 0</string>
+    <string name="tool_interact_error_press_duration_negative">pressDuration cannot be less than 0</string>
+
+    <!-- Delay Tool -->
+    <string name="tool_delay_name">Delay</string>
+    <string name="tool_delay_description">Delay</string>
+    <string name="tool_delay_duration_desc">Delay time (milliseconds)</string>
+    <string name="tool_delay_end_duration_desc">End delay time (milliseconds), for random delay range (optional)</string>
+    <string name="tool_delay_error_duration_empty">duration parameter cannot be empty or format error</string>
+    <string name="tool_delay_error_duration_negative">duration parameter cannot be less than 0</string>
+    <string name="tool_delay_error_end_duration_less">endDuration parameter cannot be less than duration parameter</string>
+
+    <!-- Copy Tool -->
+    <string name="tool_copy_name">Copy Content</string>
+    <string name="tool_copy_description">Copy content</string>
+    <string name="tool_copy_content_desc">Content to copy to clipboard</string>
+    <string name="tool_copy_error_content_empty">content parameter cannot be empty</string>
+
+    <!-- Wait Tool -->
+    <string name="tool_wait_name">Wait</string>
+    <string name="tool_wait_description">Wait for specified time</string>
+    <string name="tool_wait_time_desc">Wait time in milliseconds</string>
+    <string name="tool_wait_error_time_empty">time parameter cannot be empty</string>
+    <string name="tool_wait_error_time_format">time parameter must be a number</string>
+
+    <!-- Screen Text Tool -->
+    <string name="tool_text_name">Read Screen Text</string>
+    <string name="tool_text_description">Read text from screen</string>
+    <string name="tool_text_error_service">Accessibility service not started</string>
+    <string name="tool_text_success">Text read successfully</string>
+    <string name="tool_text_error_failed">Failed to read text</string>
+    <string name="tool_text_error_exception">Text reading exception: %s</string>
+
+    <!-- Get Installed App List Tool -->
+    <string name="tool_get_installed_app_list_name">Get Installed App List</string>
+    <string name="tool_get_installed_app_list_description">Get installed app list</string>
+
+    <!-- Fast Click Tool -->
+    <string name="tool_fast_click_name">Fast Click</string>
+    <string name="tool_fast_click_description">Fast click</string>
+    <string name="tool_fast_click_x_desc">X coordinate, range 0–1</string>
+    <string name="tool_fast_click_y_desc">Y coordinate, range 0–1</string>
+    <string name="tool_fast_click_count_desc">Click count</string>
+    <string name="tool_fast_click_gap_desc">Click interval time (milliseconds)</string>
+    <string name="tool_fast_click_error_params_empty">Parameters cannot be empty</string>
+    <string name="tool_fast_click_error_x_empty">x parameter cannot be empty or format error</string>
+    <string name="tool_fast_click_error_y_empty">y parameter cannot be empty or format error</string>
+    <string name="tool_fast_click_error_x_range">x parameter must be in range 0–1</string>
+    <string name="tool_fast_click_error_y_range">y parameter must be in range 0–1</string>
+    <string name="tool_fast_click_error_count_positive">count parameter must be greater than 0</string>
+    <string name="tool_fast_click_error_gap_negative">gap parameter cannot be less than 0</string>
+
+    <!-- Dialog Messages -->
+    <string name="dialog_wait_timeout">Wait timeout, dialog closed</string>
+    <string name="dialog_user_confirmed">User clicked confirm</string>
+    <string name="dialog_user_canceled">User clicked cancel</string>
+    <string name="dialog_default_title">Notice</string>
+    <string name="dialog_default_message">-</string>
+    <string name="dialog_default_confirm">Confirm</string>
+    <string name="dialog_default_cancel">Cancel</string>
+
+    <!-- Curl Tool -->
+    <string name="tool_curl_name">Send HTTP Request</string>
+    <string name="tool_curl_description">Send HTTP request and get response</string>
+    <string name="tool_curl_url_desc">Request URL address</string>
+    <string name="tool_curl_method_desc">HTTP request method: GET, POST, PUT, DELETE</string>
+    <string name="tool_curl_headers_desc">Request headers, format: key:value,key:value</string>
+    <string name="tool_curl_form_data_desc">Form data, format: key:value,key:value</string>
+    <string name="tool_curl_body_desc">Request body content</string>
+    <string name="tool_curl_response_id_desc">Parameter ID to store response result</string>
+    <string name="tool_curl_error_url_empty">url parameter cannot be empty</string>
+    <string name="tool_curl_error_method_invalid">method parameter must be one of GET, POST, PUT or DELETE</string>
+
+    <!-- Python Executor Tool -->
+    <string name="tool_python_executor_name">Python Executor</string>
+    <string name="tool_python_executor_description">Execute Python code and return the result. IMPORTANT: You MUST call action=help first to learn the environment and examples, then call action=run.</string>
+    <string name="tool_python_executor_action_desc">Action mode: help (read how to write Python here) or run (execute code). IMPORTANT: call help before run.</string>
+    <string name="tool_python_executor_code_desc">Python code to execute</string>
+    <string name="tool_python_executor_error_code_empty">code parameter cannot be empty</string>
+    <string name="tool_python_executor_error_action_invalid">action parameter must be help or run</string>
+    <string name="tool_python_executor_help_title">Python Executor Help</string>
+
+    <!-- Download Tool -->
+    <string name="tool_download_name">Download File</string>
+    <string name="tool_download_description">Download a file from URL to local storage. Returns local path on success, or error message on failure.</string>
+    <string name="tool_download_url_desc">The URL of the file to download</string>
+    <string name="tool_download_path_desc">Optional save directory. Defaults to Download folder.</string>
+    <string name="tool_download_error_url_empty">Download URL cannot be empty</string>
+
+    <!-- Click View Tool -->
+    <string name="tool_click_view_name">Click View</string>
+    <string name="tool_click_view_description">Click view</string>
+    <string name="tool_click_view_target_id_desc">Target view ID: viewIdResourceName (preferred, use - to ignore)</string>
+    <string name="tool_click_view_target_text_desc">Target view text content (optional)</string>
+    <string name="tool_click_view_target_text_examples">Login, Confirm</string>
+    <string name="tool_click_view_target_tag_desc">Target view tag (optional)</string>
+    <string name="tool_click_view_action_desc">Click action type: click(click), press(long press), fastClick(fast click)</string>
+    <string name="tool_click_view_fast_count_desc">Fast click count (only valid when action is fastClick)</string>
+    <string name="tool_click_view_fast_gap_desc">Fast click interval (milliseconds, only valid when action is fastClick)</string>
+    <string name="tool_click_view_press_duration_desc">Long press duration (milliseconds, only valid when action is press)</string>
+    <string name="tool_click_view_error_no_target">At least one of targetId, targetText or targetTag must be specified</string>
+    <string name="tool_click_view_error_invalid_action">action parameter can only be click, press or fastClick</string>
+    <string name="tool_click_view_error_fast_count_positive">fastCount parameter must be greater than 0</string>
+    <string name="tool_click_view_error_fast_gap_negative">fastGap parameter cannot be less than 0</string>
+    <string name="tool_click_view_error_press_duration_negative">pressDuration parameter cannot be less than 0</string>
+
+    <!-- System Action Tools -->
+    <string name="tool_action_screenshot_name">Execute Phone System Screenshot</string>
+    <string name="tool_action_screenshot_description">Execute phone system screenshot (only trigger screenshot, no return image)</string>
+    <string name="tool_action_screen_lock_name">Execute Screen Lock</string>
+    <string name="tool_action_screen_lock_description">Execute screen lock</string>
+    <string name="tool_action_recent_name">Open Task Manager</string>
+    <string name="tool_action_recent_description">Open task manager</string>
+    <string name="tool_action_notifications_name">Open Notification Panel</string>
+    <string name="tool_action_notifications_description">Open notification panel</string>
+    <string name="tool_action_back_name">Execute Back</string>
+    <string name="tool_action_back_description">Execute back</string>
+    <string name="tool_action_home_name">Return to Desktop</string>
+    <string name="tool_action_home_description">Return to phone desktop</string>
+    <string name="tool_action_system_name">System Action</string>
+    <string name="tool_action_system_description">Execute a system action: back, home, recent, or notifications</string>
+    <string name="tool_action_system_action_type_desc">Action type: back, home, recent, notifications</string>
+    <string name="tool_action_system_error_action_type_empty">actionType cannot be empty</string>
+    <string name="tool_action_system_error_action_type_invalid">actionType must be one of: %s</string>
+
+    <!-- Copy Tool -->
+    <string name="tool_copy_example_text">Copied text content</string>
+
+    <!-- Open App Tool -->
+    <string name="tool_open_app_example">WeChat</string>
+
+    <!-- Widget Script Agent Content View -->
+    <string name="widget_agent_title">Agent</string>
+    <string name="widget_agent_start">Start</string>
+    <string name="widget_agent_description">Click to start an agent task</string>
+
+    <!-- Widget Script Record Content View -->
+    <string name="widget_record_title">Record</string>
+    <string name="widget_record_description">Click to start recording, system will record your operation steps</string>
+
+    <!-- Click Text Tool -->
+    <string name="tool_click_text_name">Click Text</string>
+    <string name="tool_click_text_description">Find and click specified text. Note: When multiple identical texts appear on screen, adjust the findDirection parameter to adapt, and try to use exact match mode.</string>
+    <string name="tool_click_text_text_desc">Text content to click</string>
+    <string name="tool_click_text_text_examples">OK, Login</string>
+    <string name="tool_click_text_find_direction_desc">Search direction: 0(top-left priority), 1(top-right priority), 2(bottom-left priority), 3(bottom-right priority)</string>
+    <string name="tool_click_text_action_desc">Click action type: click, press (long press), fastClick</string>
+    <string name="tool_click_text_action_examples">click, press, fastClick</string>
+    <string name="tool_click_text_find_type_desc">Search method: contains or equals (exact match)</string>
+    <string name="tool_click_text_find_type_examples">contains, equals</string>
+    <string name="tool_click_text_fast_count_desc">Fast click count (only valid when action is fastClick)</string>
+    <string name="tool_click_text_fast_gap_desc">Fast click interval (milliseconds, only valid when action is fastClick)</string>
+    <string name="tool_click_text_press_duration_desc">Long press duration (milliseconds, only valid when action is press)</string>
+    <string name="tool_click_text_ocr_type_desc">Search type: 0[control search, more accurate], 1[OCR text recognition, better adaptation]</string>
+    <string name="tool_click_text_random_desc">Random offset range (pixels, 0 means no random offset)</string>
+    <string name="tool_click_text_error_text_empty">text parameter cannot be empty</string>
+    <string name="tool_click_text_error_invalid_action">action parameter can only be click, press or fastClick</string>
+    <string name="tool_click_text_error_invalid_find_type">findType parameter can only be contains or equals</string>
+    <string name="tool_click_text_error_fast_count_positive">fastCount parameter must be greater than 0</string>
+    <string name="tool_click_text_error_fast_gap_negative">fastGap parameter cannot be less than 0</string>
+    <string name="tool_click_text_error_press_duration_negative">pressDuration parameter cannot be less than 0</string>
+    <string name="tool_click_text_error_find_direction_invalid">findDirection parameter can only be 0, 1, 2 or 3</string>
+    <string name="tool_click_text_error_ocr_type_invalid">ocrType parameter can only be 0 or 1</string>
+    <string name="tool_click_text_error_random_negative">random parameter cannot be less than 0</string>
+
+    <!-- Dialog Tools -->
+    <string name="tool_dialog_name">Dialog</string>
+    <string name="tool_dialog_description">Unified dialog: confirm / input / select / wait</string>
+    <string name="tool_dialog_type_desc">Dialog type: confirm, input, select, wait</string>
+    <string name="tool_dialog_error_invalid_type">type must be one of: confirm, input, select, wait</string>
+    <string name="tool_dialog_error_message_required">message is required for confirm/wait</string>
+    <string name="tool_dialog_error_inputs_required">inputs is required for input</string>
+    <string name="tool_dialog_error_items_required">items is required for select</string>
+    <string name="tool_dialog_error_multi_select_required">multiSelect is required for select</string>
+
+    <string name="tool_dialog_confirm_name">Show Confirmation Dialog</string>
+    <string name="tool_dialog_confirm_description">Show a user confirmation dialog, important operations require user confirmation to continue</string>
+    <string name="tool_dialog_confirm_title_desc">Dialog title, no more than 6 characters</string>
+    <string name="tool_dialog_confirm_title_examples">Operation Prompt</string>
+    <string name="tool_dialog_confirm_message_desc">Continue execution?</string>
+    <string name="tool_dialog_confirm_message_examples">Hello World</string>
+    <string name="tool_dialog_confirm_cancel_btn_desc">Cancel button text</string>
+    <string name="tool_dialog_confirm_cancel_btn_examples">Cancel</string>
+    <string name="tool_dialog_confirm_submit_btn_desc">Confirm button text</string>
+    <string name="tool_dialog_confirm_submit_btn_examples">Confirm</string>
+    <string name="tool_dialog_confirm_countdown_desc">Dialog countdown close duration (seconds), positive number for countdown duration</string>
+    <string name="tool_dialog_confirm_countdown_examples">15</string>
+    <string name="tool_dialog_image_desc">Image(s) to display: url (http/https), path (file://, /, content://), base64 (data:image/...;base64,), or blob (blob:http://...). Multiple images separated by |</string>
+    <string name="tool_dialog_image_examples">https://example.com/a.png or url1|url2</string>
+    <string name="tool_dialog_confirm_error_params_empty">Parameters cannot be empty</string>
+    <string name="tool_dialog_confirm_error_title_empty">title parameter cannot be empty</string>
+    <string name="tool_dialog_confirm_error_countdown_empty">countdown parameter cannot be empty</string>
+    <string name="tool_dialog_confirm_error_countdown_invalid">countdown parameter must be a valid number</string>
+
+    <string name="tool_dialog_input_name">Show Input Dialog</string>
+    <string name="tool_dialog_input_description">Show an input dialog where users can enter single or multiple information items</string>
+    <string name="tool_dialog_input_title_desc">Dialog title</string>
+    <string name="tool_dialog_input_title_examples">Basic Information</string>
+    <string name="tool_dialog_input_inputs_desc">Input item label list, separate multiple labels with |</string>
+    <string name="tool_dialog_input_inputs_examples">Name|Age|Origin</string>
+    <string name="tool_dialog_input_hints_desc">Hint text list, separate multiple hints with |, optional parameter</string>
+    <string name="tool_dialog_input_hints_examples">Please enter name|Please enter age|Please enter origin</string>
+    <string name="tool_dialog_input_requires_desc">Required list, separate multiple boolean values with |, optional parameter</string>
+    <string name="tool_dialog_input_requires_examples">true|true|false</string>
+    <string name="tool_dialog_input_defaults_desc">Default value list, separate multiple default values with |, optional parameter</string>
+    <string name="tool_dialog_input_defaults_examples">Zhang San|18|</string>
+    <string name="tool_dialog_input_error_inputs_empty">inputs parameter cannot be empty</string>
+    <string name="tool_dialog_input_error_input_empty">Input item label cannot be empty</string>
+    <string name="tool_dialog_input_error_hints_mismatch">hints parameter count does not match inputs parameter count</string>
+    <string name="tool_dialog_input_error_requires_mismatch">requires parameter count does not match inputs parameter count</string>
+    <string name="tool_dialog_input_error_defaults_mismatch">defaults parameter count does not match inputs parameter count</string>
+
+    <string name="tool_dialog_selector_name">Show Multi-Selection Dialog</string>
+    <string name="tool_dialog_selector_description">Show a multi-selection dialog for users to select one or more options from multiple choices</string>
+    <string name="tool_dialog_selector_title_desc">Selection dialog title</string>
+    <string name="tool_dialog_selector_title_examples">Please Select Operation</string>
+    <string name="tool_dialog_selector_items_desc">Selection item list, separate multiple options with |</string>
+    <string name="tool_dialog_selector_items_examples">Option 1|Option 2|Option 3</string>
+    <string name="tool_dialog_selector_multi_select_desc">Whether to support multi-selection, true for multi-select mode, false for single-select mode</string>
+    <string name="tool_dialog_selector_multi_select_examples">false, true</string>
+    <string name="tool_dialog_selector_error_items_empty">items parameter cannot be empty</string>
+    <string name="tool_dialog_selector_error_multi_select_empty">multiSelect parameter cannot be empty</string>
+
+    <string name="tool_wait_operate_name">Show Wait Operation Dialog</string>
+    <string name="tool_wait_operate_description">Show a dialog waiting for user operation, user clicks confirm to continue after completing operation</string>
+    <string name="tool_wait_operate_title_desc">Dialog title, no more than 6 characters</string>
+    <string name="tool_wait_operate_title_examples">Wait Operation</string>
+    <string name="tool_wait_operate_message_desc">Dialog prompt message</string>
+    <string name="tool_wait_operate_message_examples">Please complete operation and click confirm</string>
+    <string name="tool_wait_operate_cancel_btn_desc">Cancel button text</string>
+    <string name="tool_wait_operate_cancel_btn_examples">Cancel</string>
+    <string name="tool_wait_operate_submit_btn_desc">Confirm button text</string>
+    <string name="tool_wait_operate_submit_btn_examples">Confirm</string>
+    <string name="tool_wait_operate_countdown_desc">Dialog countdown close duration (seconds), default -1 means no countdown</string>
+    <string name="tool_wait_operate_countdown_examples">-1</string>
+    <string name="tool_capture_camera_name">Take Photo</string>
+    <string name="tool_capture_camera_description">Use camera to take photos, can specify front or rear camera, only for multimodal inference</string>
+    <string name="tool_capture_camera_type_desc">Camera type, rear: rear camera, front: front camera</string>
+    <string name="tool_capture_camera_type_examples">rear, front</string>
+    <string name="tool_capture_camera_flash_desc">Whether to enable flash, default off</string>
+    <string name="tool_capture_camera_flash_examples">true, false</string>
+    <string name="tool_capture_camera_success">Photo taken successfully!</string>
+    <string name="tool_capture_camera_failed">Photo failed</string>
+
+    <string name="tool_capture_screen_name">Capture Current Screen</string>
+    <string name="tool_capture_screen_description">Capture current screen and read image, only for multimodal inference</string>
+    <string name="tool_capture_screen_success">Screenshot successful!</string>
+    <string name="tool_capture_save_to_gallery_desc">Whether to save to device gallery, default false</string>
+
+    <string name="tool_memory_note_name">Memory KV Store</string>
+    <string name="tool_memory_note_description">Store and retrieve task memory by key-value for long workflows</string>
+    <string name="tool_memory_note_param_op_desc">Operation type: get, set, or listKey</string>
+    <string name="tool_memory_note_param_group_desc">Memory group name, default is memory</string>
+    <string name="tool_memory_note_param_key_desc">Memory key name. Empty means default key "default"</string>
+    <string name="tool_memory_note_param_value_desc">Memory value content used by set operation</string>
+    <string name="tool_memory_note_param_default_desc">Optional fallback when get cannot find the key</string>
+    <string name="tool_memory_note_param_persist_desc">Whether to persist to local MMKV. Default false. When true, value survives app restart and loads on next init</string>
+    <string name="tool_memory_note_error_invalid_op">op must be one of: get, set, listKey</string>
+    <string name="tool_memory_note_error_invalid_group">group must contain only letters, numbers, and underscore</string>
+    <string name="tool_memory_note_error_invalid_key">key format invalid. Use letters/numbers/underscore and start with a letter or underscore</string>
+    <string name="tool_memory_note_error_missing_value">value is required for set operation</string>
+    <string name="tool_memory_note_set_success">Memory updated</string>
+    <string name="tool_memory_note_get_success">Memory read success</string>
+    <string name="tool_memory_note_list_success">Memory keys listed</string>
+
+    <string name="tool_load_script_error_not_exist">This tool does not exist!</string>
+    <string name="tool_execute_failed">Execution failed</string>
+
+    <!-- UI Strings -->
+    <string name="ui_param_output">Output Variable</string>
+    <string name="ui_param_select_value">Variable Selection</string>
+    <string name="ui_param_value">Variable Value</string>
+    <string name="ui_param_input">Input Parameter</string>
+    <string name="ui_param_name">Parameter Name</string>
+    <string name="ui_param_select">Parameter Selection</string>
+    <string name="ui_param_hint">Hint Text</string>
+    <string name="ui_param_default">Default Value</string>
+    <string name="ui_param_required">Required</string>
+    <string name="ui_dialog_label">Label</string>
+    <string name="ui_dialog_input_hint">Please enter</string>
+    <string name="ui_script_agent">Agent</string>
+    <string name="ui_script_record">Record</string>
+    <string name="ui_script_workflow">Workflow</string>
+
+    <string name="sc_script_list_title_default">All Workflows</string>
+    <string name="sc_filter_title">Select Category</string>
+    <string name="sc_filter_all">All Workflows</string>
+    <string name="sc_input_tag_title">Set Script Category</string>
+    <string name="sc_input_tag_hint">Enter script category name</string>
+
+    <string name="cmd_name_read_screen_layout">Read Screen Layout Information</string>
+    <string name="cmd_des_read_screen_layout">Read screen layout information</string>
+    <string name="sc_cmd_spot_image_not_found">Image click failed</string>
+    <string name="sc_cmd_spot_text_not_found">Text not found: %s</string>
+    <string name="sc_cmd_click_view_not_found">View not found: [viewId:%1$s text:%2$s tag:%3$s ]</string>
+    <string name="sc_copy_fail">Copy failed</string>
+    <string name="sc_curl_error_url">Request failed</string>
+
+    <string name="cmd_dialog_confirm_name">Show Confirmation Dialog</string>
+    <string name="cmd_dialog_confirm_des">Show a dialog with title, message, and cancel/confirm buttons</string>
+    <string name="cmd_dialog_selector_name">Show Selection Dialog</string>
+    <string name="cmd_dialog_selector_des">Show a selection dialog with title and multiple options</string>
+    <string name="cmd_dialog_input_name">Show Input Dialog</string>
+    <string name="cmd_dialog_input_des">Show an input dialog with multiple input fields</string>
+    <string name="cmd_name_get_app_list">Get Installed App List</string>
+    <string name="cmd_des_get_app_list">Get the list of installed apps</string>
+    <string name="cmd_name_capture_screen">Capture Current Screen</string>
+    <string name="cmd_des_capture_screen">Capture the current screen and save the image</string>
+    <string name="cmd_name_capture_camera">Take Photo with Camera</string>
+    <string name="cmd_des_capture_camera">Use the camera to take a photo and save the image</string>
+    <string name="sc_capture_screen">Screenshot saved to: %s</string>
+    <string name="sc_capture_screen_failed">Screenshot failed</string>
+    <string name="sc_capture_screen_projection_invalid">Screen projection expired, auto-recovering...</string>
+    <string name="sc_capture_screen_request_permission">Requesting screenshot permission again</string>
+    <string name="sc_capture_screen_permission_denied">User denied screenshot permission</string>
+    <string name="sc_permission_already_granted">Permission already granted</string>
+    <string name="sc_permission_grant_failed">Permission grant failed</string>
+
+    <!-- Python Executor -->
+    <string name="script_python_not_specified">Python code or file path not specified</string>
+    <string name="script_python_provider_unavailable">Python environment not available</string>
+    <string name="script_python_unknown_error">Unknown error occurred while executing Python script</string>
+    <string name="script_python_file_not_exist">Python file does not exist: %1$s</string>
+    <string name="script_python_exec_success">Execution successful: %1$s</string>
+    <string name="script_python_exec_failed">Execution failed</string>
+    <string name="script_python_exec_failed_code">Execution failed, return code: %1$d</string>
+    <string name="script_python_output_saved">Output variables saved to: %1$s</string>
+    <string name="script_python_parse_failed">Failed to parse output variables: %1$s</string>
+    <string name="script_python_executor_name">Python Executor</string>
+    <string name="script_python_exec_code">Code: %1$s…</string>
+    <string name="script_python_exec_file">File: %1$s</string>
+    <string name="script_python_exec_failed_msg">Execution failed: %1$s</string>
+    <string name="script_python_code_edit_title">Python Code</string>
+    <string name="script_python_code_edit_hint">Enter Python code</string>
+    <string name="script_python_code_edit_empty">Python code cannot be empty!</string>
+
+    <!-- MCP Tool Builder -->
+    <string name="mcp_tool_param_desc">Describe the tool call purpose (max 10 chars)</string>
+    <string name="mcp_tool_param_example1">Tap confirm</string>
+    <string name="mcp_tool_param_example2">Return home</string>
+    <string name="mcp_tool_param_delay_desc">Wait duration after execution, in milliseconds</string>
+    <string name="mcp_tool_accessibility_required">Accessibility permission required. Please enable it first</string>
+
+    <!-- CmdScriptEnd -->
+    <string name="cmd_script_done_set_vars">, set variables: %1$s</string>
+
+    <!-- Script Parser -->
+    <string name="script_parse_error_line">Line %1$d, %2$s</string>
+
+    <!-- Script Tool Builder -->
+    <string name="script_tool_missing_permissions">This command requires permissions: %1$s</string>
+
+    <!-- Dialog -->
+    <string name="script_dialog_multi_select"> (Multi-select)</string>
+    <string name="script_input_hint_format">Please enter %1$s</string>
+    <string name="script_clicker_request">Clicker request</string>
+    <string name="sc_capture_camera">Camera photo saved to: %s</string>
+
+    <!-- Script Provider strings -->
+    <string name="script_provider_tool_name">Tool Name</string>
+    <string name="script_provider_add_tool">Publish Agent Tool</string>
+    <string name="script_provider_select_script">Select Script</string>
+
+    <string name="ui_dialog_number_hint">Please enter</string>
+    <string name="ui_dialog_search_hint">Search</string>
+
+    <!-- Status and prompts -->
+    <string name="ui_status_waiting">Waiting…</string>
+    <string name="ui_status_thinking">Thinking</string>
+    <string name="ui_status_camera_loading">Taking photo…</string>
+    <string name="ui_status_not_supported">This command does not support editing yet!</string>
+
+    <!-- Buttons and operations -->
+    <string name="ui_btn_start">Start</string>
+    <string name="ui_btn_edit">Edit</string>
+    <string name="ui_btn_execute">Execute</string>
+    <string name="ui_btn_finish_record">Finish Recording</string>
+    <string name="ui_btn_stop_record">Stop Recording</string>
+    <string name="ui_btn_finish_unlock">Finish Unlocking</string>
+    <string name="ui_btn_clear">Clear</string>
+    <string name="ui_btn_export">Export</string>
+    <string name="ui_btn_refresh">Refresh</string>
+
+    <!-- Titles and descriptions -->
+    <string name="ui_title_set_title">Set Title</string>
+    <string name="ui_title_workflow_name">Workflow Name</string>
+    <string name="ui_title_test_command">Test Command</string>
+    <string name="ui_title_single_finger_swipe">Single Finger Swipe</string>
+
+    <!-- Recording related -->
+    <string name="ui_record_start_hint">Click to start recording, the system will record your operation steps</string>
+    <string name="ui_agent_start_hint">Click to start an agent task</string>
+
+    <!-- AI Coordinator related -->
+    <string name="ai_coordinator_streaming">Streaming</string>
+    <string name="ai_coordinator_start" formatted="false">Start %s coordination workflow: %s</string>
+    <string name="ai_coordinator_thinking">Calling AI for %s…</string>
+    <string name="ai_coordinator_inference_failed">AI inference failed: %s</string>
+    <string name="ai_coordinator_request_failed">AI request failed!</string>
+    <string name="ai_coordinator_empty_response">AI returned empty or ambiguous response</string>
+    <string name="ai_coordinator_tool_calling">AI returned tool call: %s</string>
+    <string name="ai_coordinator_workflow_completed">Workflow completed.</string>
+    <string name="ai_coordinator_max_tool_calls">Maximum tool call rounds reached, workflow may be incomplete.</string>
+    <string name="ai_coordinator_task_paused">Task paused</string>
+    <string name="ai_coordinator_task_stopped">Task stopped</string>
+    <string name="ai_coordinator_unknown_error">Unknown error</string>
+
+    <!-- MCP protocol related -->
+    <string name="mcp_parse_error">Parse error: %s</string>
+    <string name="mcp_missing_tool_name">Missing tool name</string>
+    <string name="mcp_tool_not_exist">Tool \'%s\' does not exist</string>
+    <string name="mcp_tool_execution_success">Operation successful</string>
+    <string name="mcp_tool_execution_failed">Tool execution failed: %s</string>
+    <string name="mcp_missing_resource_uri">Missing resource URI</string>
+    <string name="mcp_resource_not_exist">Resource \'%s\' does not exist</string>
+    <string name="mcp_resource_read_failed">Resource read failed: %s</string>
+    <string name="mcp_missing_prompt_name">Missing prompt name</string>
+    <string name="mcp_prompt_not_exist">Prompt \'%s\' does not exist</string>
+    <string name="mcp_unknown_method">Unknown method: %s</string>
+
+    <!-- Script provider related -->
+    <string name="script_provider_tool_description">Please describe the tool\'s functionality in detail for AI understanding</string>
+
+    <!-- Script state machine related -->
+    <string name="script_state_init">Initializing</string>
+    <string name="script_state_running">Running</string>
+    <string name="script_state_pending">Ready</string>
+    <string name="script_state_paused">Paused</string>
+    <string name="script_state_editing">Editing</string>
+    <string name="script_state_recording">Recording</string>
+    <string name="script_state_recording_unlock">Recording unlock</string>
+    <string name="script_record_state_recording">Recording</string>
+    <string name="script_record_state_insert_cmd">Insert command</string>
+    <string name="script_editing_state_editing">Editing</string>
+    <string name="script_editing_state_insert_record">Insert record</string>
+    <string name="script_editing_state_insert_cmd">Insert command</string>
+
+    <!-- Permission management related -->
+    <string name="permission_camera_denied">Camera permission denied: %s</string>
+    <string name="permission_camera_init_failed">Camera initialization failed: %s</string>
+    <string name="permission_granted_info" formatted="false">Granted permissions: [%s], Denied permissions: [%s]</string>
+    <string name="permission_capture">Screenshot permission</string>
+    <string name="permission_camera">Camera permission</string>
+    <string name="permission_storage">Storage permission</string>
+    <string name="permission_bind_accessibility_service">Accessibility service permission</string>
+    <string name="permission_network">Network permission</string>
+    <string name="permission_location">Location permission</string>
+    <string name="permission_download">Download directory permission</string>
+
+    <!-- Agent view related -->
+    <string name="agent_status_thinking">Thinking</string>
+    <string name="agent_status_tool_calling">Calling tool</string>
+    <string name="agent_status_executing">Executing</string>
+    <string name="agent_status_completed">Task completed</string>
+    <string name="agent_status_failed">Task failed</string>
+    <string name="agent_timeline_user_input">User</string>
+    <string name="agent_timeline_ai_thinking">Thinking</string>
+    <string name="agent_timeline_tool_call">Tool</string>
+    <string name="agent_timeline_system_message">System</string>
+    <string name="agent_timeline_waiting">Waiting…</string>
+    <string name="agent_timeline_executing">Executing…</string>
+    <string name="agent_timeline_completed">Completed</string>
+    <string name="agent_timeline_success">✓ Success</string>
+    <string name="agent_timeline_failure">✗ Failure</string>
+
+    <!-- Command related -->
+    <string name="cmd_name_request_permission">Request Permission</string>
+    <string name="cmd_des_request_permission">Request phone authorization; if commands require permissions, use this command to attempt obtaining phone permissions</string>
+
+    <!-- Application related -->
+    <string name="sc_app_not_installed">App not installed or package is wrong: %s</string>
+    <string name="sc_accessibility_service_not_started">Accessibility service not started</string>
+    <string name="sc_app_launch_failed">Failed to launch app or switch to foreground: %s</string>
+
+    <string name="sc_sys_output1">Output Variable</string>
+
+    <string name="sc_sys_output2">Output Variable 1</string>
+
+    <string name="sc_sys_output3">Output Variable 2</string>
+
+    <string name="sc_sys_toast">Toast Message</string>
+
+    <string name="sc_sys_output_des1">Default output variable 1</string>
+
+    <string name="sc_sys_output_des2">Default output variable 2</string>
+
+    <string name="sc_sys_output_des3">Default output variable 3</string>
+
+    <string name="sc_sys_toast_des">Show toast message</string>
+
+    <string name="param_write_only">Write Only</string>
+
+    <string name="mcp_prompt_generation_failed">Prompt generation failed: %s</string>
+
+    <string name="agent_status_paused">Paused</string>
+    <string name="cmd_ctr_menu_1">Back</string>
+    <string name="cmd_ctr_menu_2">Home</string>
+    <string name="cmd_ctr_menu_3">Recent</string>
+    <string name="cmd_ctr_menu_4">Screenshot</string>
+    <string name="cmd_ctr_menu_5">Lock screen</string>
+    <string name="cmd_ctr_menu_6">Notification</string>
+    <string name="cmd_ctr_menu_7">App</string>
+    <string name="cmd_ctr_menu_8">Link</string>
+    <string name="cmd_ctr_menu_9">Copy</string>
+    <string name="cmd_ctr_menu_10">Combo</string>
+    <string name="cmd_ctr_menu_11">Zoom</string>
+    <string name="cmd_ctr_menu_12">Button</string>
+    <string name="cmd_ctr_menu_13">Pattern</string>
+    <string name="cmd_ctr_menu_14">Color</string>
+    <string name="cmd_ctr_menu_15">Multi</string>
+    <string name="cmd_ctr_menu_16">Batch</string>
+    <string name="cmd_ctr_menu_17">Input</string>
+    <string name="cmd_ctr_menu_open_app">Open App</string>
+    <string name="cmd_ctr_menu_open_link">Open Link</string>
+    <string name="cmd_ctr_menu_toast">Show Toast</string>
+    <string name="cmd_ctr_menu_copy_clip">Copy Text</string>
+    <string name="cmd_ctr_menu_exit">Exit Task</string>
+    <string name="cmd_ctr_menu_unlock">Unlock</string>
+    <string name="sc_copy_success">Copy successful!</string>
+    <string name="cmd_ctr_menu_delay">Delayed Wait</string>
+    <string name="cmd_ctr_menu_image">Pattern</string>
+    <string name="cmd_ctr_menu_click_scroll">Gesture</string>
+    <string name="cmd_ctr_menu_fast_click">Combo</string>
+    <string name="cmd_ctr_menu_layout">Button</string>
+    <string name="cmd_ctr_menu_color">Color</string>
+    <string name="cmd_ctr_menu_cmd_title">Logic</string>
+    <string name="cmd_ctr_menu_for">Insert Loop</string>
+    <string name="cmd_ctr_menu_for_break">Break Loop</string>
+    <string name="cmd_ctr_menu_if">If Condition</string>
+    <string name="cmd_ctr_menu_jump">Jump Anchor</string>
+    <string name="cmd_ctr_menu_jump_point">Add Anchor</string>
+    <array name="sc_finger_count">
+        <item>One</item>
+        <item>Two</item>
+        <item>Three</item>
+        <item>Four</item>
+        <item>Five</item>
+    </array>
+    <string name="sc_multiple_type_list">One,Two,Three,Four,Five</string>
+    <string name="sc_multiple_type_list_name">Number</string>
+    <string name="dialog_multiple_title">Configuration</string>
+    <string name="sc_spot_find_type">Mode</string>
+    <string name="sc_spot_find_type_list">Block,Precise</string>
+    <string name="sc_app_search_hint">Enter app to search</string>
+    <string name="sc_export_error_msg">Export error : $1%s</string>
+    <string name="sc_import_btn_txt">Import</string>
+    <string name="sc_import_dialog_title">File import</string>
+    <string name="sc_import_version_error">Imported task version too high, please upgrade app before importing！</string>
+    <string name="sc_import_error">Import task error</string>
+    <string name="sc_import_success">Import successful</string>
+    <string name="sc_shot_service_context">Running</string>
+    <string name="sc_accessibility_serice_interrupt_msg">Service interrupted abnormally</string>
+    <string name="script_import_btn_txt">Import now</string>
+    <string name="script_export_btn_txt">Export to here</string>
+    <string name="sc_export_error">Export error, please try again!</string>
+    <string name="sc_export_success">Export successful！</string>
+    <string name="script_running_title">Running</string>
+    <string name="script_running_text">Running</string>
+    <string name="script_running_ticker">Do not close</string>
+    <string name="sc_delete_list_empty_error">Deletion item cannot be empty！</string>
+    <string name="sc_list_item_run">Run</string>
+    <string name="sc_list_item_add">New</string>
+    <string name="sc_list_item_edit">Edit</string>
+    <string name="sc_list_item_more">More</string>
+    <string name="sc_list_item_import">Import</string>
+    <string name="sc_save_conflict_title">Compatibility Tips</string>
+    <string name="sc_save_conflict_content">This task\'s resolution is inconsistent with your phone\'s; force-saving may cause coordinate confusion.</string>
+    <string name="sc_save_conflict_confirm">Ignore and Save</string>
+    <string name="sc_unknown_script_size">Unknown Res</string>
+    <string name="sc_info_dialog_title">Task Info</string>
+    <string name="sc_scope_dependencies">Dependencies</string>
+    <string name="sc_scope_manage_title">Scoped Dependencies</string>
+    <string name="sc_scope_empty">No scoped dependencies</string>
+    <string name="sc_scope_item_skill">Skill: %1$s</string>
+    <string name="sc_scope_item_tool">Tool: %1$s</string>
+    <string name="sc_scope_edit_skill_title">Edit Scoped Skill</string>
+    <string name="sc_scope_edit_tool_title">Edit Scoped Tool</string>
+    <string name="sc_scope_skill_tools_hint">Comma-separated scoped tool function names</string>
+    <string name="sc_script_info_0">Version</string>
+    <string name="sc_script_info_1">Path</string>
+    <string name="sc_script_info_2">Update</string>
+    <string name="sc_script_info_3">Device</string>
+    <string name="sc_script_info_4">Screen</string>
+    <string name="sc_script_info_5">Requires permission</string>
+    <string name="sc_script_info_6">Task duration</string>
+
+    <string name="setting_running_tips_title">Running tips</string>
+
+    <string name="setting_auto_authorize_des">Some tasks require permissions (e.g., “Read screen”); enabling this will grant them automatically</string>
+    <string name="setting_auto_authorize_title">Auto authorize</string>
+    <string name="setting_keep_alive_des">Low power mode may kill the app during scheduled tasks; it’s recommended to disable it！</string>
+    <string name="setting_keep_alive_title">Disable low power mode</string>
+    <string name="setting_running_tips_on_des">Toggle pop-ups at the start/end of tasks; disable for faster execution</string>
+    <string name="setting_adapter_screen_on_title">Coordinate adaptation</string>
+    <string name="setting_adapter_screen_on_des">Automatically scale coordinates for different resolutions</string>
+    <string name="setting_lock_screen_on_title">Lock screen</string>
+    <string name="setting_lock_screen_on_des">	Lock screen automatically after task completion</string>
+    <string name="setting_time_task_force_to_running_title">Force scheduled tasks</string>
+    <string name="setting_time_task_force_to_running_des">Force stop current tasks to run scheduled ones</string>
+    <string name="setting_anti_detect_on_title">Anti-detection</string>
+    <string name="setting_anti_detect_on_des">Add random values to generated coordinates automatically</string>
+    <string name="setting_show_tracks_on_title">Execution path</string>
+    <string name="setting_show_tracks_on_des">Show task path while running</string>
+    <string name="setting_show_record_on_title">Show task logs</string>
+    <string name="setting_show_record_on_des">Display real-time logs</string>
+    <string name="setting_show_unlock_on_title">Auto unlock</string>
+    <string name="setting_show_unlock_on_des">Auto unlock during tasks (requires pre-recorded unlock gesture</string>
+    <string name="setting_frame_running_des">Show red-green indicator frame during execution</string>
+    <string name="setting_frame_running_title">Red-green frame</string>
+    <string name="setting_running_menu_on_des">Display menu during tasks</string>
+    <string name="setting_running_menu_on_title">Task menu</string>
+    <string name="script_setting_editor_bizer_enable_des">Enable curve connections</string>
+    <string name="script_setting_editor_bizer_enable_title">Editor connections</string>
+
+    <string name="str_stop_record">Pause</string>
+    <string name="str_resume_record">Resume</string>
+    <string name="str_change_list">Task list</string>
+    <string name="str_play">Play</string>
+    <string name="script_default_name">Untitled-</string>
+    <string name="sc_save_wrong_not_changed">Cron task not set, please check！</string>
+    <string name="script_accessibility_service_not_open">Insufficient permissions, enable accessibility first!</string>
+    <string name="script_already_has_script_running">Task is already running, cannot start a new one</string>
+    <string name="script_accessibility_service_not_exist">Execution failed, script not found, please check if deleted</string>
+    <string name="script_log_accessibility_service_edit_tip">Execution failed, editing in progress, cannot run task！</string>
+    <string name="script_log_accessibility_service_not_open">Execution failed, no accessibility permission!</string>
+    <string name="script_log_accessibility_service_not_exist">Run failed, script not found. Check if deleted!</string>
+    <string name="script_log_accessibility_service_has_been_canceled">Execution canceled by user</string>
+    <string name="script_log_already_has_script_running">Run failed, a task is already running!</string>
+    <string name="script_log_stop_success">Stopped the running task！</string>
+    <string name="script_log_running_success">Run successfully！</string>
+
+    <string name="script_manager_list_empty">Script list is empty, start recording!</string>
+    <string name="script_alarm_dialog_tip_btn_1">Close tip</string>
+    <string name="script_alarm_dialog_tip_btn_2">Cancel Run</string>
+    <string name="script_before_running_tips_title">Task starting：%s</string>
+    <string name="script_before_running_tips_msg">Task will start in %s</string>
+    <string name="sc_edit_comment_title">Set remarks</string>
+    <string name="sc_edit_comment_hint">Please enter remarks</string>
+    <string name="sc_edit_comment_empty">Input cannot be empty</string>
+    <string name="script_log_accessibility_service_lock">Unlock required, but no gesture recorded</string>
+    <string name="sc_running_auto_lock_tip_title">Screen unlock required</string>
+    <string name="sc_running_auto_lock_tip_msg">Pre-record unlock gesture for auto unlock</string>
+    <string name="sc_running_auto_lock_tip_success_title">Verification Success！</string>
+    <string name="sc_running_auto_lock_tip_success">Unlock verified successfully！</string>
+    <array name="permission_confirm_btn_list">
+        <item>Allow</item>
+        <item>Confirm</item>
+        <item>OK</item>
+        <item>Start</item>
+        <item>Share</item>
+    </array>
+    <array name="permission_cancel_btn_list">
+        <item>cancel</item>
+        <item>NO</item>
+    </array>
+    <string name="sc_x_start_title">Start</string>
+    <string name="sc_x_end_title">End</string>
+    <string name="sc_x_cmd_end_title">Loop end</string>
+    <string name="sc_not_support_edit">Cannot be edited</string>
+    <string name="sc_condition_view_edit_title" formatted="false">If %s %s conditions：</string>
+    <string name="sc_condition_notification_edit_text" formatted="false">If %s %s appears in the notification bar</string>
+    <string name="sc_condition_view_edit_text" formatted="false">If %s %s appears on the screen,use %s;</string>
+    <string name="sc_condition_view_edit_image" formatted="false">Pattern %s detected ，matching accuracy: %s；</string>
+    <string name="sc_condition_view_edit_color" formatted="false">Color %s detected ，tolerance: %s；</string>
+    <string name="cnd_action_name_notification_equals">Equals</string>
+    <string name="cnd_action_name_notification_contains">Contains</string>
+    <string name="cnd_action_name_notification_start_with">Starts with</string>
+    <string name="cnd_action_name_notification_end_with">Ends with</string>
+
+    <string name="cnd_action_name_menu_1">Precise</string>
+    <string name="cnd_action_name_menu_2">Normal</string>
+    <string name="cnd_action_name_menu_3">Fuzzy</string>
+
+    <string name="script_condition_add">Add</string>
+    <string name="sc_condition_notification_edit_text_menu">Notification Appears</string>
+    <string name="sc_condition_notification_edit_text_view">Text Appears on Screen</string>
+    <string name="sc_condition_notification_edit_text_image">Image Appears on Screen</string>
+    <string name="sc_condition_notification_edit_text_color">Color Appears on Screen</string>
+    <string name="sc_condition_edit_text_menu_title">Select Condition Type</string>
+    <string name="sc_jump_menu_title">Select Anchor</string>
+    <string name="sc_load_script_menu_title">Select Script to Run</string>
+    <string name="sc_edit_condition_notification_edit_text_default">Edit Text</string>
+    <string name="sc_edit_condition_view_edit_text_default">Input</string>
+    <string name="sc_condition_edit_text_input_title">Enter Content</string>
+    <string name="sc_condition_edit_text_input_hint">Enter Content</string>
+    <string name="script_edit_too_large">Image Too Large to Save！</string>
+    <string name="script_edit_save_success">Saved! Check the Album</string>
+    <string name="sc_add_cmd_if_error">A Condition Is Required！</string>
+    <string name="sc_edit_check_error">Check the Command</string>
+    <string name="sc_edit_condition_title">Conditions</string>
+
+    <string name="sc_edit_record_set_size_dialog_title">Tips</string>
+    <string name="sc_edit_record_set_size_dialog_msg">Confirm Setting?</string>
+    <string name="sc_edit_record_set_size_dialog_confirm">Confirm</string>
+    <string name="sc_edit_layout_rect_not_seted">Full Screen</string>
+    <string name="sc_edit_layout_rect_seted">Partial</string>
+    <string name="sc_need_acc_title">Permission Tips</string>
+    <string name="sc_need_acc_content">Accessibility Service Required for Features Like Tap and Swipe; Follow Guide to Enable</string>
+    <string name="sc_need_acc_confirm">Open</string>
+    <string name="sc_cmd_number_hrz">Horizontal</string>
+    <string name="sc_cmd_number_ver">Vertical</string>
+    <string name="script_control_main_exit">Close</string>
+    <string name="script_control_main_home">Home</string>
+    <string name="script_control_main_play">Play</string>
+    <string name="script_control_main_edit">Edit</string>
+    <string name="script_control_main_record">Record</string>
+    <string name="script_control_main_script">Task</string>
+    <string name="script_control_main_min">Min</string>
+    <string name="sc_menu_stop_record">Stop</string>
+    <string name="sc_start_from_current_page">Current Page</string>
+    <string name="sc_start_from_home_page">Go to Home</string>
+    <string name="sc_start_from_app_page">Specific App</string>
+    <string name="permission_storage_dialog_title">Tips</string>
+    <string name="permission_storage_dialog_msg">Storage Permission Required for Import/Export. Enable?</string>
+    <string name="permission_storage_dialog_btn1">Open</string>
+    <string name="sc_app_alert_title">Tips</string>
+    <string name="sc_app_alert_content">Permission Required to Access Installed Apps. Grant to Proceed!</string>
+    <string name="sc_app_alert_confirm">Authorize</string>
+    <string name="service_access_start_success">Service Started! Use Floating Menu to Record Tasks！</string>
+    <string name="sc_running_request_permission_title">Tips</string>
+    <string name="sc_running_request_permission_content">We Need Screen Info to Run. Agree to Proceed.</string>
+    <string name="sc_running_request_permission_confirm">Agree</string>
+    <string name="sc_output_not_support">Export Not Supported Yet！</string>
+    <string name="sc_unfold_fail">No More Nodes to Expand~</string>
+    <string name="sc_fold_fail">No More Nodes to Collapse~</string>
+    <string name="script_share_content" formatted="false">【%s】【%s】&#10;[%s]&#10;Copy Task Code and Import via List&#10;Download: %s</string>
+    <string name="sc_share_input_title">Import Task</string>
+    <string name="sc_share_input_hint">Paste Shared Task Info</string>
+    <string name="script_share_error_1">Unable to Parse Text！</string>
+    <string name="cmd_value_has_worng_range">[Min] Can’t Be Greater Than [Max]</string>
+    <string name="cmd_line_node_label_1">Subtask</string>
+    <string name="cmd_line_node_label_2">Continue</string>
+    <string name="cmd_line_node_label_no">NO</string>
+    <string name="cmd_line_node_label_yes">YES</string>
+    <string name="sc_open_scheme_failed">Failed to Open Link！</string>
+    <string name="sc_share_app_info">Search &amp; Download [%s]</string>
+    <string name="sc_condition_color_selecter_name">Select Color</string>
+    <string name="sc_condition_image_selecter_name">Select Image</string>
+    <string name="sc_image_selector_title">Recently</string>
+    <string name="sc_color_picker_recent_color_title">Recently</string>
+    <string name="sc_condition_view_edit_no">Not Met</string>
+    <string name="sc_condition_view_edit_yes">Met</string>
+    <string name="sc_params_group_main">Default</string>
+    <string name="sc_params_group_user">My Presets</string>
+    <string name="cmd_toast_defualt">Please enter tips！</string>
+    <string name="sc_record_click_none_view">No Clickable/Input Elements Found</string>
+    <string name="setting_script_setting_1">Permission</string>
+    <string name="setting_script_setting_2">Task</string>
+    <string name="setting_script_setting_3">UI Settings</string>
+    <string name="setting_script_setting_4">Editor</string>
+    <string name="sc_name_batch_delay">Batch Edit</string>
+    <string name="sc_cmd_unlock_not_setting">Unlock Failed! No Unlock Task Set！</string>
+    <string name="sc_cmd_unlock_add_not_setting">No Unlock Task Set. Configure It First!</string>
+    <string name="sc_unlock_success_title">Tips</string>
+    <string name="sc_unlock_success_content">Lock Screen Recording Saved! Verify Now</string>
+    <string name="sc_unlock_success_confirm">Verify Now</string>
+    <string name="sc_help_link_look_guide">View Guide</string>
+    <string name="script_notification_service_name">Notification Service</string>
+    <string name="sc_permission_unlock_service">Unlock Screen Permission</string>
+    <string name="sc_permission_bind_notification_listener">Notification Permission</string>
+    <string name="cmd_ctr_menu_lock">Lock Screen</string>
+    <string name="cmd_ctr_menu_notification">Notification</string>
+    <string name="sc_notifiction_preimssion_tip">Enable Notification Permission！</string>
+    <string name="sc_edit_confirm_title">Exit Alert</string>
+    <string name="sc_edit_confirm_msg">Task not saved yet,Save now？</string>
+    <string name="sc_edit_confirm_ok">Save</string>
+    <string name="sc_edit_confirm_no_save">Not Save</string>
+    <string name="sc_edit_untouchable_confirm_title">Warning Tip</string>
+    <string name="sc_edit_untouchable_confirm_msg">Some Commands Not Executable. Check Disabled Commands in Flowchart!</string>
+    <string name="sc_edit_untouchable_confirm_ok">Ignore</string>
+    <string name="sc_edit_untouch_wraning_info">Nodes After “Infinite Loop” or “Break” May Not Execute!</string>
+    <string name="cmd_name_break">Exit Loop</string>
+    <string name="cmd_des_break">Exit Latest Loop</string>
+    <string name="cmd_ctr_menu_recent">Recent</string>
+    <string name="cmd_ctr_menu_home">Home</string>
+    <string name="cmd_ctr_menu_back">Back</string>
+    <string name="cmd_ctr_menu_snapshot">Screenshot</string>
+    <string name="sc_item_edit_name">Edit</string>
+    <string name="sc_item_edit_share">Share</string>
+    <string name="sc_waring_edit_panel_open">Close Editor First！</string>
+    <string name="sc_waring_edit_panel_other_open">Close Other Task Editors First!</string>
+    <string name="sc_running_state_playing">Running</string>
+    <string name="sc_running_state_pause">Paused</string>
+    <string name="str_task_edit">Edit</string>
+    <string name="sc_multiple_selector_add">Add</string>
+    <string name="sc_if_condition_add_app_title">Specify App [All]</string>
+    <string name="sc_selector_insert_image">Screenshot</string>
+    <string name="quick_to_fill_title">Quick Fill</string>
+    <string name="cmd_0_1s">0.1s</string>
+    <string name="cmd_0_3s">0.3s</string>
+    <string name="cmd_0_5s">0.5s</string>
+    <string name="cmd_1s">1s</string>
+    <string name="cmd_2s">2s</string>
+    <string name="cmd_3s">3s</string>
+    <string name="cmd_5s">5s</string>
+    <string name="cmd_10s">10s</string>
+    <string name="cmd_15s">15s</string>
+    <string name="cmd_20s">20s</string>
+    <string name="cmd_25s">25s</string>
+    <string name="cmd_30s">30s</string>
+    <string name="cmd_1m">1m</string>
+    <string name="cmd_2m">2m</string>
+    <string name="sc_already_fill">Filled in</string>
+    <string name="cmd_name_time_calibrator_5s">5s</string>
+    <string name="cmd_name_time_calibrator_10s">10s</string>
+    <string name="cmd_name_time_calibrator_30s">30s</string>
+    <string name="cmd_name_time_calibrator_60s">On the Hour</string>
+    <string name="sc_cmd_open_time_calibrator_msg" formatted="false">Note: This command will delay until the hour&#10;For example, if you run this command at 11:59:35, it will delay to 12:00:00</string>
+    <string name="sc_runing_edit_start">Running</string>
+    <string name="sc_runing_edit_end">Execution completed</string>
+    <string name="sc_execute_title">Tips</string>
+    <string name="sc_execute_content">The edit window will be temporarily hidden during execution and will reappear after completion</string>
+    <string name="sc_execute_left_text">Cancel</string>
+    <string name="sc_execute_right_text">Execute</string>
+    <string name="sc_roll_back_last_cmd_success">Previous step undone</string>
+    <string name="sc_roll_back_last_cmd_failed">No previous step</string>
+    <string name="sc_cmd_open_app_action">Open type</string>
+    <string name="sc_cmd_open_app_action_list">Open home, launch app</string>
+    <string name="sc_notification_request_title">Tips</string>
+    <string name="sc_notification_request_msg">This task requires notification access. Enable now?</string>
+    <string name="sc_notification_request_confirm">Open</string>
+    <string name="cmd_jump_point_not_found">Anchor not found. Please add one first！</string>
+    <string name="sc_jump_point_empty">Add an anchor first！</string>
+    <string name="sc_script_list_empty">Script is empty！</string>
+    <string name="sc_share_input_wraning">The other app version is outdated. Check compatibility!</string>
+    <string name="cmd_load_script_error">Referenced task does not exist!</string>
+    <string name="sc_to_many_command_tip">Calculating... Use "Referenced Task" to reduce commands~</string>
+    <string name="sc_auto_layout_success">Auto layout completed！</string>
+    <string name="sc_more_down_edit">Expand</string>
+    <string name="sc_more_up_edit">Collapse</string>
+    <array name="sc_params_group_list_main">
+        <item>Var1</item>
+        <item>Var2</item>
+        <item>Var3</item>
+        <item>Var4</item>
+        <item>Var5</item>
+        <item>Var6</item>
+        <item>Var7</item>
+        <item>Var8</item>
+        <item>Var9</item>
+        <item>Var10</item>
+    </array>
+    <string name="property_special_use_fgs_subtype">This app relies on accessibility services for gestures like tapping and swiping</string>
+
+    <string name="sc_error">Operation error</string>
+
+    <string name="sc_upload_success">Upload successful!</string>
+    <string name="sc_backup_to_cloud">Backup to Cloud</string>
+    <string name="sc_skill_file_not_found">Skill file not found</string>
+    <string name="sc_tool_file_not_found">Tool file not found</string>
+
+    <string name="task_cloud">Cloud</string>
+    <string name="sc_resource_tab_workflow">Workflow</string>
+    <string name="sc_resource_tab_skill">Skill</string>
+    <string name="sc_resource_tab_tool">Tool</string>
+    <string name="sc_resource_backup_upload_title">Upload Backup</string>
+    <string name="sc_resource_backup_upload_content">Upload to cloud for easy recovery anytime</string>
+    <string name="sc_resource_backup_upload_success">Backup uploaded successfully</string>
+    <string name="sc_resource_backup_delete_success">Backup deleted successfully</string>
+    <string name="sc_resource_backup_no_permission">This resource does not allow backup</string>
+
+    <string name="sc_opt_delete">Delete</string>
+    <string name="sc_opt_cancel">Cancel</string>
+    <string name="sc_opt_all">Select All</string>
+
+    <string name="sc_off">OFF</string>
+    <string name="sc_cmd_spot_text">Click Text</string>
+    <string name="cmd_text_default_text">Edit Text</string>
+    <string name="dialog_copy_text_input_title">Enter Text</string>
+    <string name="dialog_name_text_context_hint">Enter Text</string>
+    <string name="cmd_ctr_menu_18">Click Text</string>
+    <string name="cmd_ctr_menu_text">Click Text</string>
+    <string name="sc_spot_text_find_type_list">Contains,Equals</string>
+
+    <string name="sc_add_param">Add Variable</string>
+    <string name="sc_params_manager_title">Variable Management</string>
+    <string name="sc_param_id_empty">Variable cannot be empty</string>
+    <string name="sc_param_name_empty">Variable name cannot be empty</string>
+    <string name="sc_param_value_empty">Variable value cannot be empty</string>
+    <string name="sc_param_empty">Variable cannot be empty</string>
+    <string name="dialog_add_params">Add Variable</string>
+    <string name="sc_param_edit_group_title">Group Name</string>
+    <string name="sc_param_edit_param_title">Variable Name</string>
+    <string name="sc_param_edit_value_title">Initial Value</string>
+    <string name="sc_param_hint">group name</string>
+    <string name="sc_param_name_hint">variable name</string>
+    <string name="sc_param_value_hint">variable value</string>
+    <string name="sc_param_id_error">Variable format error, no spaces or special characters allowed</string>
+    <string name="sc_param_group_id_error">Variable format error, no spaces or special characters allowed</string>
+
+    <string name="cmd_name_read_screen_text">Read Screen</string>
+    <string name="cmd_des_read_screen_text">Read Screen Text</string>
+    <string name="cmd_ctr_menu_read_screen_text">Read Screen</string>
+    <string name="sc_cmd_select_param_title">Store Variable</string>
+
+    <string name="cmd_ctr_menu_19">Read Text</string>
+    <string name="script_setting_editor_ignore_parse_error_title">Rescue Mode</string>
+    <string name="script_setting_editor_ignore_parse_error_des">Ignore script errors, force compatibility with problematic tasks</string>
+
+    <string name="sc_condition_view_edit_or">Any</string>
+    <string name="sc_condition_view_edit_and">All</string>
+    <string name="script_calculator_hint">Enter expression</string>
+    <string name="script_calculator_param_key">Variable</string>
+    <string name="dialog_add_params_expression">Variable formula</string>
+    <string name="cmd_name_condition_param_name">When variable meets condition</string>
+    <string name="cmd_name_condition_param_des" formatted="false">If %s %s %s</string>
+    <string name="sc_condition_view_edit_param" formatted="false">Variable %s meets %s value %s</string>
+    <string name="sc_condition_param_selecter_name">Select variable</string>
+    <string name="cnd_action_name_param_contains">Contains</string>
+    <string name="cnd_action_name_param_equals">Equals</string>
+    <string name="cnd_action_name_param_greater">Greater than</string>
+    <string name="cnd_action_name_param_less">Less than</string>
+    <string name="cnd_action_name_param_isEmpty">Is empty</string>
+    <string name="cnd_action_name_param_be_contains">Contained in</string>
+    <string name="sc_condition_notification_edit_text_param">When variable meets condition</string>
+    <string name="sc_condition_notification_edit_text_permission">Check Permission</string>
+    <string name="cmd_name_condition_permission_name">Permission Check</string>
+    <string name="cmd_des_condition_permission_des">Check if %1$s granted</string>
+    <string name="sc_condition_permission_edit_text">When %1$s granted</string>
+    <string name="sc_condition_permission_select_hint">Select permissions</string>
+    <string name="sc_condition_param_value_edit_name">Click to edit</string>
+    <string name="cmd_set_name">Variable</string>
+    <string name="cmd_set_des">Set variable 【%s】</string>
+    <string name="sc_selector_submit">Confirm</string>
+    <string name="sc_image_selector_no_image_selected">Select image first!</string>
+    <string name="sc_param_manager_edit_title">Edit variable</string>
+    <string name="sc_permission_location">Location permission</string>
+    <string name="sc_clipboard_read_screen">Screen text recognition result</string>
+    <string name="sc_edit_insert_type_title_4">Advanced command</string>
+    <string name="cmd_ctr_menu_set">Variable</string>
+    <string name="sc_params_group_sys">System</string>
+    <string name="sc_sys_clipboard">Clipboard</string>
+    <string name="sc_sys_location">Location</string>
+    <string name="sc_sys_timestamp">Timestamp</string>
+    <string name="sc_sys_random">Random Number</string>
+    <string name="sc_sys_device">Device Info</string>
+    <string name="sc_sys_datetime">Datetime</string>
+    <string name="sc_sys_datetime_des">Current date and time, e.g.: 2025–09–01 12:30:30</string>
+    <string name="sc_sys_granted_permissions">Permissions</string>
+    <string name="sc_sys_granted_permissions_des">Currently granted system permissions</string>
+    <string name="sc_get_clipboard_running">Getting clipboard content</string>
+    <string name="sc_condition_edit_set_param_menu_title">Select operation type</string>
+    <string name="sc_condition_edit_set_param_menu_content">Variable Assignment</string>
+    <string name="sc_condition_edit_set_param_menu_regular">Match Regex</string>
+    <string name="sc_condition_edit_set_param_menu_system">System Variable</string>
+    <string name="sc_condition_edit_set_param_menu_expression">Variable Formula</string>
+    <string name="sc_cmd_system_select">System Variable</string>
+    <string name="sc_cmd_select_param_expre">Variable Formula</string>
+    <string name="sc_cmd_select_param_src_param">Match Content</string>
+    <string name="sc_device_model">Model</string>
+    <string name="sc_device_brand">Brand</string>
+    <string name="sc_device_facturer">Manufacturer</string>
+    <string name="sc_device_resolution">Resolution</string>
+    <string name="sc_device_plat">Platform</string>
+    <string name="sc_device_lang">Language</string>
+    <string name="sc_device_country">Country</string>
+    <string name="sc_device_osver">OS v-name</string>
+    <string name="sc_device_oscode">OS v-code</string>
+    <string name="cmd_curl_des">API request</string>
+    <string name="cmd_curl_name">API request</string>
+    <string name="sc_permission_network">Network permission</string>
+    <string name="sc_cmd_select_curl_header_title">Request Header</string>
+    <string name="sc_cmd_select_curl_param_title">Form Parameter</string>
+    <string name="sc_cmd_select_curl_body_title">Request Body</string>
+    <string name="sc_cmd_select_curl_target_title">Save result</string>
+    <string name="sc_cmd_select_curl_method_title">Method</string>
+    <string name="sc_cmd_select_curl_method_type_list">GET,POST,PUT,DEL</string>
+    <string name="sc_cmd_select_curl_url_title">API URL</string>
+    <string name="sc_curl_url_edit_text_input_title">API URL</string>
+    <string name="sc_curl_url_edit_text_input_hint">Must start with http:// or https://</string>
+    <string name="sc_curl_body_edit_text_input_title">Request body</string>
+    <string name="sc_curl_body_edit_text_input_hint">Enter request body</string>
+    <string name="sc_curl_edit_text_empty">Unset</string>
+    <string name="sc_curl_edit_text_no_empty">Setted</string>
+    <string name="sc_curl_url_edit_text_empty">API URL cannot be empty!</string>
+    <string name="sc_curl_target_edit_text_empty">Storage variable cannot be empty!</string>
+    <string name="sc_curl_url_edit_text_error">Invalid URL format!</string>
+    <string name="sc_curl_header_edit_text_input_title">Edit request header</string>
+    <string name="sc_curl_form_edit_text_input_title">Edit request form</string>
+    <string name="sc_curl_param_key_edit_text_input_title">Key name</string>
+    <string name="sc_curl_param_value_edit_text_input_title">Key value</string>
+    <string name="sc_curl_param_value_edit_text_input_hint">Enter key value</string>
+    <string name="sc_curl_param_key_edit_text_input_hint">Enter key name</string>
+    <string name="cmd_name_read_view_text">Read View</string>
+    <string name="cmd_name_read_view_text_des">Read view text to %s</string>
+    <string name="cmd_ctr_menu_read_view_text">Read view</string>
+    <string name="sc_edit_read_view_text_title_id">View ID</string>
+    <string name="sc_edit_read_view_text_title_param_is">Store Variable</string>
+    <string name="cmd_ai_request_name">AI request</string>
+    <string name="cmd_ai_request_des">Request AI API</string>
+    <string name="review_violate_respone">Response not displayed due to regulations</string>
+    <string name="ai_rights_over_limit">Usage limit reached!</string>
+    <string name="net_error_server">Server error! Please try again later</string>
+    <string name="cmd_ctr_menu_ai_request">AI request</string>
+    <string name="sc_edit_insert_type_title_5">Smart command</string>
+    <string name="sc_edit_read_view_text_title_ai_request_id">Save result</string>
+    <string name="sc_edit_read_view_text_title_ai_prompt">AI prompt</string>
+    <string name="sc_curl_ai_prompt_edit_text_input_title">AI prompt</string>
+    <string name="sc_curl_ai_prompt_edit_text_input_hint">Enter prompt</string>
+    <string name="sc_curl_body_click_text_input_title">Target text</string>
+    <string name="sc_curl_body_click_text_input_hint">Enter target text</string>
+    <string name="sc_curl_body_click_id_input_title">View ID</string>
+    <string name="sc_curl_body_click_id_input_hint">Enter view ID</string>
+    <string name="sc_curl_body_click_tag_input_title">View tag</string>
+    <string name="sc_curl_body_click_tag_input_hint">Enter view tag</string>
+    <string name="sc_record_node_list_selected_title">Select view</string>
+    <string name="node_list_item_node_id">View ID</string>
+    <string name="node_list_item_node_tag">View tag</string>
+    <string name="node_list_item_node_text">View text</string>
+    <string name="sc_read_view_text_tab">Read type</string>
+    <string name="sc_read_view_text_type_list">Text,Tag,All</string>
+    <string name="sc_read_view_text_count_tab">Read range</string>
+    <string name="sc_read_view_text_count_list">Single,All</string>
+    <string name="cmd_ctr_menu_20">Read view</string>
+    <string name="cmd_ctr_menu_21">AI request</string>
+    <string name="cmd_ctr_menu_22">Variable</string>
+    <string name="cmd_ctr_menu_23">API request</string>
+    <string name="sc_edit_read_view_text_title_ai_error">Return on error</string>
+    <string name="sc_curl_ai_error_edit_text_input_title">Edit error message</string>
+    <string name="sc_curl_ai_error_edit_text_input_hint">Enter error message</string>
+    <string name="sc_clean_all">Clear</string>
+    <string name="sc_paste">Paste</string>
+    <string name="sc_copy">Copy</string>
+    <string name="sc_format">Format JSON</string>
+    <string name="sc_edit_hint">Click to enter content</string>
+    <string name="sc_param_manger">Variable</string>
+    <string name="error_cmd_click_text_empty">Set text to find</string>
+    <string name="sc_sys_clipboard_des">Read/Write clipboard</string>
+    <string name="sc_sys_location_des">Read phone IP location</string>
+    <string name="sc_sys_timestamp_des">Read phone timestamp in ms</string>
+    <string name="sc_sys_random_des">Read a random value 1-100</string>
+    <string name="sc_sys_device_des">Read device info including brand, Android version, resolution, etc.</string>
+    <string name="sc_device_resolution_des">Read phone resolution</string>
+    <string name="sc_device_brand_des">Read phone brand</string>
+    <string name="sc_device_model_des">Read phone model</string>
+    <string name="sc_device_osver_des">Read phone OS version name</string>
+    <string name="sc_device_oscode_des">Read phone OS version code</string>
+    <string name="sc_device_country_des">Read phone region setting</string>
+    <string name="sc_device_lang_des">Read phone language setting</string>
+    <string name="param_read_only">Read-only</string>
+    <string name="sc_quick_action_regex">Regexes</string>
+    <string name="sc_quick_action_regex_0">Extract 100 Chars</string>
+    <string name="sc_quick_action_regex_1">Extract number</string>
+    <string name="sc_quick_action_regex_2">Extract phone number</string>
+    <string name="sc_quick_action_regex_3">Extract email</string>
+    <string name="sc_quick_action_regex_4">Extract URL</string>
+    <string name="sc_quick_action_regex_5">Postal code</string>
+    <string name="sc_quick_action_regex_6">Extract Chinese</string>
+    <string name="sc_quick_action_regex_7">Extract ID number</string>
+    <string name="sc_quick_action_regex_8">Extract IP address</string>
+    <string name="sc_quick_action_regex_9">Extract date</string>
+    <string name="sc_quick_action_regex_10">Extract time</string>
+    <string name="sc_quick_action_regex_11">Extract datetime</string>
+    <string name="sc_quick_action_regex_12">Extract QQ number</string>
+    <string name="sc_quick_action_regex_13">Extract WeChat ID</string>
+    <string name="sc_quick_action_regex_14">Extract license plate</string>
+    <string name="sc_cmd_select_param_regex">Regex formula</string>
+    <string name="sc_cmd_select_param_regex_hint">Enter regex formula</string>
+    <string name="sc_if_post_action_param">Save text after condition met</string>
+    <string name="sc_edit_layout_title_direct">Direction</string>
+    <string name="sc_cmd_direct_menu_title">Search direction</string>
+    <string name="dialog_share_title">Share task to</string>
+    <string name="sc_share_pwd_title">Share password</string>
+    <string name="sc_check_pwd_input_check_empty">Password cannot be empty!</string>
+    <string name="sc_check_pwd_input_check_empty_2">Password must be at least 6 characters!</string>
+    <string name="sc_share_ctrl_title">Permission control</string>
+    <string name="sc_share_ctr_type_list">Off,On</string>
+    <string name="sc_share_ctr_type_title">Encrypted share</string>
+    <string name="sc_share_ctr_edit_type_title">Edit permission</string>
+    <string name="sc_share_ctr_edit_type_list">Off,On</string>
+    <string name="sc_share_ctr_run_type_title">Run permission</string>
+    <string name="sc_share_ctr_view_type_title">View permission</string>
+    <string name="sc_share_ctr_share_type_title">Share permission</string>
+    <string name="sc_share_ctr_cloud_type_title">Backup permission</string>
+    <string name="sc_share_ctr_expire_type_title">Expiration time</string>
+    <string name="sc_share_pwd_none">Unset</string>
+    <string name="sc_share_pwd_set">Setted</string>
+    <string name="sc_share_pwd_text_input_title">Enter share password</string>
+    <string name="sc_share_pwd_text_input_hint">Password must be at least 6 characters</string>
+    <string name="sc_script_info_pwd">Encrypted</string>
+    <string name="sc_switch_on">Yes</string>
+    <string name="sc_switch_off">No</string>
+    <string name="sc_no_permission_edit">Task cannot be edited</string>
+    <string name="sc_no_permission_share">Task cannot be shared</string>
+    <string name="sc_no_permission_run">Task cannot be run!</string>
+    <string name="sc_no_permission_cloud">Task cannot be backed up</string>
+    <string name="sc_input_password_title">Unlock password</string>
+    <string name="sc_input_password_hint">Enter task share password</string>
+    <string name="sc_password_error">Incorrect password, contact the sharer!</string>
+    <string name="sc_password_empty">Password cannot be empty!</string>
+    <string name="script_expired">Task has expired!</string>
+    <string name="sc_share_time_title">Time limit</string>
+    <string name="sc_share_time_info">%.1fDays</string>
+    <string name="sc_time_day_select_title">Time limit</string>
+    <string name="sc_time_day_none">No limit</string>
+    <string name="sc_time_hour_1">1 hour</string>
+    <string name="sc_time_hour_2">2 hours</string>
+    <string name="sc_time_day_1">1 day</string>
+    <string name="sc_time_day_3">3 days</string>
+    <string name="sc_time_day_7">7 days</string>
+    <string name="sc_time_day_30">1 month</string>
+    <string name="sc_time_day_60">2 months</string>
+    <string name="sc_item_edit_lock">Locked</string>
+    <string name="sc_item_edit_unlock">Unlocked</string>
+    <string name="sc_item_edit_expire_time">Expires in %d days</string>
+    <string name="sc_left_days">%s days</string>
+    <string name="sc_time_day_already_expired">Expired</string>
+    <string name="sc_item_upload_name">Backup</string>
+    <string name="sc_item_publish_name">Register Tool</string>
+    <string name="sc_upload_title">Upload backup</string>
+    <string name="sc_upload_content">You can restore from "Cloud Backup" anytime after uploading</string>
+    <string name="sc_current_app">Foreground app name</string>
+    <string name="sc_current_app_des">Get the name of the current foreground app</string>
+    <string name="sc_current_app_pkg">Foreground app package name</string>
+    <string name="sc_current_app_pkg_des">Get the package name of the current foreground app</string>
+    <string name="sc_current_app_vname">Foreground app version name</string>
+    <string name="sc_current_app_vname_des">Get the version name of the current foreground app</string>
+    <string name="sc_current_app_vcode">Foreground app version code</string>
+    <string name="sc_current_app_vcode_des">Get the version code of the current foreground app</string>
+    <string name="sc_edit_condition_view_ocr_type_0">View text</string>
+    <string name="sc_edit_condition_view_ocr_type_1">OCR recognition</string>
+
+    <string name="sc_open_scheme_edit_text_input_title">Jump Link</string>
+    <string name="sc_open_scheme_edit_text_input_hint">Enter Jump Link</string>
+    <string name="sc_open_scheme_edit_text_input_error_0">Link Cannot Be Empty</string>
+    <string name="sc_open_scheme_edit_text_input_error_1">Invalid Link Format</string>
+    <string name="cmd_des_click_text1">Find Text</string>
+    <string name="sc_cmd_drag">Match Drag</string>
+    <string name="sc_drag_layout_name_1">Match Drag</string>
+
+    <string name="sc_setting_none">Unset</string>
+    <string name="sc_setting_seted">Set</string>
+    <string name="sc_cmd_offset">Offset</string>
+    <string name="sc_drag_type_name">Drag Type</string>
+    <string name="sc_drag_type_list">Press,Direct</string>
+    <string name="sc_cmd_drag_duration">Drag Duration</string>
+    <string name="sc_drag_not_set_error">Match Drag Not Set</string>
+    <string name="sc_offset_info_draw">Offset %d</string>
+    <string name="sc_drag_start_1">START</string>
+    <string name="sc_drag_end_1">OFFSET</string>
+    <string name="sc_drag_start_2">START</string>
+    <string name="sc_drag_end_2">END</string>
+    <string name="finish">Finish</string>
+    <string name="done">Done</string>
+    <string name="sc_edit_insert_type_title_n_1">Logic Control</string>
+    <string name="sc_edit_insert_type_title_n_2">Insert Reference</string>
+    <string name="sc_edit_insert_type_title_n_3">Auto Recognition</string>
+    <string name="sc_edit_insert_type_title_n_4">Text Operation</string>
+    <string name="sc_edit_insert_type_title_n_5">Gesture Click</string>
+    <string name="sc_edit_insert_type_title_n_6">System Command</string>
+    <string name="sc_edit_insert_type_title_7">Common Commands</string>
+    <string name="sc_edit_insert_type_title_n_8">Advanced</string>
+    <string name="sc_drag_layout_name_2">Set Offset Point</string>
+    <string name="sc_insert_param">Insert Var</string>
+    <string name="sc_image_selector_recent">Recently</string>
+    <string name="sc_image_selector_add">Favorites</string>
+    <string name="sc_image_manager_title">Image Management</string>
+    <string name="sc_image_manager_title_2">Image Selection</string>
+    <string name="sc_click_view_name">Set Click Position</string>
+    <string name="cmd_ai_request_quick_name">Prompts</string>
+
+    <!-- Script Start/End Edit View Strings -->
+    <string name="script_start_input_variable">Input Variable</string>
+    <string name="script_start_select_variable">Select a variable</string>
+    <string name="script_start_variable_name">Variable Name</string>
+    <string name="script_start_variable_name_hint">Variable name, e.g., name, gender, etc.</string>
+    <string name="script_start_hint_text">Hint Text</string>
+    <string name="script_start_hint_text_hint">Input field hint text</string>
+    <string name="script_start_default_value">Default Value</string>
+    <string name="script_start_default_value_hint">Input field default value</string>
+    <string name="script_start_required">Required</string>
+    <string name="script_start_required_hint">Whether this parameter is required</string>
+    <string name="script_start_add_variable">Add Variable</string>
+    <string name="script_start_parameter_name">Parameter Name</string>
+    <string name="script_start_parameter_name_hint">Please enter parameter name</string>
+    <string name="script_start_hint_text_edit">Hint Text</string>
+    <string name="script_start_hint_text_edit_hint">Please enter hint text</string>
+    <string name="script_start_default_value_edit">Default Value</string>
+    <string name="script_start_default_value_edit_hint">Please enter default value</string>
+    <string name="script_start_remember">Remember for next run</string>
+    <string name="script_end_set_variable_value">Set Variable Value</string>
+    <string name="script_end_enter_variable_value">Please enter variable value</string>
+
+    <string name="sc_cmd_ai_tip_msg">AI commands use the provider configured on this device.</string>
+    <string name="ai_request_limit">Your AI request limit has been reached!</string>
+    <string name="sc_quick_action_ai_1">Chat Reply</string>
+    <string name="sc_quick_action_ai_2">Comment Reply</string>
+    <string name="sc_quick_action_ai_3">Chat Retort</string>
+    <string name="sc_quick_action_ai_4">Check-in Message</string>
+    <string name="sc_quick_action_ai_7">Thank You Reply</string>
+    <string name="sc_quick_action_ai_6">Comfort Message</string>
+    <string name="sc_quick_action_ai_5">Blessing Message</string>
+    <string name="sc_quick_action_ai_8">Holiday Blessing</string>
+    <string name="sc_quick_action_ai_8_prompt" formatted="false">You are a holiday blessing creator, focusing on providing festive greetings for various holidays (e.g., Spring Festival, Christmas, Mid-Autumn Festival). Your task is to generate warm, sincere, or humorous greetings based on the holiday theme. The language should be natural and close to life, making the recipient feel the warmth and joy of the holiday. Here is the holiday scene: &#10;【Holiday Information】</string>
+    <string name="sc_quick_action_ai_7_prompt" formatted="false">You are a thank you message creator, focusing on providing concise and sincere thank you messages for different occasions (e.g., receiving gifts, help). Your task is to express gratitude in a natural and friendly language, avoiding overly formal or stiff expressions, making the other person feel your sincerity. Here is the reason for thanks: &#10;【Reason for Thanks】</string>
+    <string name="sc_quick_action_ai_6_prompt" formatted="false">You are a comfort message creator, focusing on providing care and support for people who are feeling down or confused. Your task is to generate sincere and warm replies, using a natural and gentle tone to convey comfort, making the other person feel understood and supported. Here is the description of the situation: &#10;【Situation Description】</string>
+    <string name="sc_quick_action_ai_5_prompt">You are a blessing message creator, focusing on providing warm, sincere, or humorous blessings for various occasions (e.g., birthdays, holidays, weddings). Your task is to generate concise and heartfelt messages based on the scene, using natural and close-to-life language, making the recipient feel warm or amused.</string>
+    <string name="sc_quick_action_ai_4_prompt" formatted="false">You are a check-in message creator, focusing on providing concise, interesting, and positive messages for daily check-ins. Your task is to generate short phrases suitable for the check-in theme, which can be humorous, motivational, or personal. Ensure the language is natural, conversational, and full of positive energy, able to inspire or resonate. Here is the check-in content: &#10;【Check-in Content】</string>
+    <string name="sc_quick_action_ai_3_prompt" formatted="false">You are a chat retort expert, focusing on cleverly retorting others in a humorous, witty, or relaxed manner. Your task is to quickly generate responses based on the other person\'s chat content that are polite yet unarguable. Ensure the language is natural, conversational, with a touch of humor or clever sarcasm. Here is the other person\'s statement: &#10;【Other Person\'s Statement】</string>
+    <string name="sc_quick_action_ai_2_prompt" formatted="false">You are a comment generator specifically for replying to user comments. Your goal is to respond to comments in a natural, brief, and conversational manner. The reply content should not have any AI-related tone or hints, and should not include words like thank you or assist. Focus on directly and genuinely responding to the user\'s comment content. Ensure each reply is close to the user\'s expressed meaning, resonates, and is as concise and straightforward as possible. Here is the user\'s comment: &#10;【User Comment】</string>
+    <string name="sc_quick_action_ai_1_prompt" formatted="false">You are a chat reply assistant, focusing on interacting with users in a natural, brief, and conversational manner. Your task is to respond to the user\'s chat content in a real and close-to-life way. Avoid any AI-related hints or assistant tone, keep the conversation light and natural, and do not use thank you or formal expressions. Ensure each reply is direct, resonates, and fits the chat context. Here is the user\'s message: &#10;【User Message】</string>
+
+    <string name="sc_cmd_drag_press_duration">Press duration</string>
+    <string name="sc_record_logger_title">Log</string>
+    <string name="sc_next_cmd_info">Next: %s</string>
+    <string name="sc_logger_mini">Real-time log</string>
+    <string name="sc_read_text">Read: %s</string>
+    <string name="sc_set_param_text" formatted="false">Set [%s]: %s</string>
+    <string name="sc_snop_stoped">Screen reading service stopped!</string>
+    <string name="sc_logger_menu_text">Log</string>
+    <string name="cmd_download_name">Download</string>
+    <string name="cmd_download_des">Download network file</string>
+    <string name="sc_download_progress_format">Download progress %d%%</string>
+    <string name="sc_download_format">Start download: %s</string>
+    <string name="sc_download_success">Download successful!</string>
+    <string name="sc_download_failure">Download failed!</string>
+    <string name="sc_download_url_edit_text_empty">Download link cannot be empty</string>
+    <string name="sc_cmd_select_download_target_title">Save path</string>
+    <string name="sc_cmd_download_tip_msg">Note: Do not select save to album for non-media files!</string>
+    <string name="sc_cmd_select_download_url_title">Download link</string>
+    <string name="sc_curl_start_request_url">Request link:</string>
+    <string name="sc_curl_dowload_edit_text_input_title">Download file</string>
+    <string name="sc_download_url_edit_text_input_hint">Please enter the file address to download</string>
+    <string name="sc_cmd_select_download_grallery_title">Save to gallery</string>
+    <string name="sc_cmd_select_download_grallery_type_list">Yes,No</string>
+    <string name="sc_image_selector_new_folder">New</string>
+    <string name="sc_image_selector_new_folder_hint">Please enter album name</string>
+    <string name="sc_image_selector_new_folder_exist">The album already exists!</string>
+    <string name="sc_list_item_selected_all">Select All</string>
+    <string name="sc_list_item_unselected_all">Deselect All</string>
+    <string name="sc_image_selector_new_folder_empty">Album name cannot be empty</string>
+
+    <string name="sort">Sort</string>
+    <string name="sc_image_selector_sort">Long press to sort</string>
+    <string name="sc_dialog_image_manager_sort_empty">No albums to sort</string>
+    <string name="move">Move</string>
+    <string name="sc_image_selector_move">Move to album</string>
+    <string name="sc_dialog_image_manager_move_empty">Please select an image first</string>
+    <string name="sc_list_delete_title">Delete prompt</string>
+    <string name="sc_list_delete_title_des">Confirm deletion?</string>
+
+    <string name="sc_permision_image_title">Permission prompt</string>
+    <string name="sc_permision_image_content">To manage the gallery/add images, we need to access your gallery and storage permissions. Please agree to continue!</string>
+    <string name="sc_permision_image_confirm">Agree</string>
+    <string name="sc_error_file_not_exist">Task file does not exist!</string>
+    <string name="sc_param_group_list_title">Select group</string>
+
+    <!--    是否覆盖同名脚本-->
+    <string name="sc_upload_same_name_content">The script name already exists, do you want to overwrite it?</string>
+    <!--    覆盖提示-->
+    <string name="sc_upload_same_name_title">Overwrite prompt</string>
+    <string name="sc_edit_move_up_failed">At the Top</string>
+    <string name="sc_edit_move_down_failed">At the Bottom</string>
+
+    <string name="timer_schedule_add_title">Scheduled Tasks</string>
+<!--    <string name="agent_env_config_required_access">去打开辅助功能</string>-->
+<!--    <string name="agent_env_config_required_model">去配置AI模型</string>-->
+
+    <string name="agent_env_config_required_access">Enable Accessibility</string>
+    <string name="agent_env_config_required_model">Configure AI Model</string>
+
+    <!-- Input Method Service strings -->
+    <string name="input_method_status_ready">Ready</string>
+    <string name="input_method_unknown_app">Unknown App</string>
+    <string name="input_method_mode_animated">Animated Input</string>
+    <string name="input_method_mode_normal">Normal Mode</string>
+    <string name="input_method_no_content">No Content</string>
+    <string name="input_method_status_inputting">Inputting…</string>
+    <string name="input_method_status_success">Input Success</string>
+    <string name="input_method_status_error">Input Failed</string>
+    <string name="input_method_status_animated_inputting">Animated Inputting…</string>
+    <string name="input_method_log_started">Input method started, ready to input text</string>
+    <string name="input_method_log_finished">Input method finished</string>
+    <string name="input_method_log_text_committed">Successfully input text: %s</string>
+    <string name="input_method_log_text_failed">Failed to input text: %s</string>
+    <string name="input_method_log_animated_committed">Successfully animated input text: %s</string>
+    <string name="input_method_log_animated_failed">Failed to animated input text: %s</string>
+    <string name="input_method_log_text_appended">Successfully appended text: %s</string>
+    <string name="input_method_log_text_append_failed">Failed to append text: %s</string>
+    <string name="input_method_log_app_info_failed">Failed to get app info: %s</string>
+
+    <!-- Resource Publish (api_publish_feature_design) -->
+    <string name="rp_select_tool">Select Tool</string>
+    <string name="rp_resource_info">Resource Info</string>
+    <string name="rp_description">Description</string>
+    <string name="rp_type_workflow">Workflow</string>
+
+    <!-- Publish center (PublishCenterOverlay, design-spec profile overlays) -->
+
+    <!-- Resource / publish detail page (PublishDetailOverlay shell alignment) -->
+    <string name="rp_detail_section_intro">Detailed introduction</string>
+    <string name="rp_detail_tested_devices">Tested devices</string>
+    <string name="rp_detail_dependencies">Dependencies</string>
+    <string name="rp_detail_permissions">Permissions</string>
+    <string name="rp_detail_no_dependencies">No extra dependencies</string>
+    <string name="rp_detail_no_special_permissions">No special permissions</string>
+    <string name="workflow_detail_title">Task Manager</string>
+    <string name="workflow_detail_backup">Backup</string>
+    <string name="workflow_detail_records">Records</string>
+    <string name="workflow_detail_run_now">Run Now</string>
+    <string name="workflow_detail_intro_empty">No description yet.</string>
+    <string name="workflow_detail_updated_at">Updated %1$s</string>
+    <string name="workflow_detail_path">Path %1$s</string>
+
+    <!-- PublishDetailOverlay (script-desgin PublishDetailOverlay.tsx) -->
+    <string name="rp_all_devices_compatible">All devices</string>
+
+    <!-- 发布验证错误提示 -->
+
+    <!-- Workflow creation mode dialog -->
+    <string name="workflow_create_mode_title">Choose Creation Method</string>
+    <string name="workflow_create_mode_record">Record Creation</string>
+    <string name="workflow_create_mode_record_desc">Generate workflow automatically by recording operations</string>
+    <string name="workflow_create_mode_manual">Manual Creation</string>
+    <string name="workflow_create_mode_manual_desc">Edit script nodes and workflow logic manually</string>
+
+
+
+    <!-- Voice / TTS / ASR -->
+    <string name="script_agent_voice_recognizing_desc">Converting your speech to text…</string>
+    <string name="script_agent_voice_stop_and_finish">Stop</string>
+    <string name="tool_voice_interact_name">Voice Interaction</string>
+    <string name="tool_voice_interact_description">Supports TTS prompt, ASR speech recognition, and TTS followed by ASR</string>
+    <string name="tool_voice_interact_mode_desc">Mode: tts, asr, tts_asr</string>
+    <string name="tool_voice_interact_mode_examples">tts, asr, tts_asr</string>
+    <string name="tool_voice_interact_tts_text_desc">Text to speak in TTS mode, required for tts/tts_asr</string>
+    <string name="tool_voice_interact_tts_text_examples">Task completed</string>
+    <string name="tool_voice_interact_prefer_language_desc">ASR preferred language code, e.g. zh-CN, en-US</string>
+    <string name="tool_voice_interact_prefer_language_examples">zh-CN</string>
+    <string name="tool_voice_interact_timeout_desc">Timeout in milliseconds</string>
+    <string name="tool_voice_interact_listen_stop_mode_desc">ASR stop mode: duration (fixed time) or auto (silence auto stop)</string>
+    <string name="tool_voice_interact_listen_stop_mode_examples">duration, auto</string>
+    <string name="tool_voice_interact_listen_duration_desc">ASR fixed listening duration (ms), only works when listenStopMode=duration</string>
+    <string name="tool_voice_interact_silence_stop_desc">Auto stop ASR after silence in milliseconds</string>
+    <string name="tool_voice_interact_title_desc">Dialog title</string>
+    <string name="tool_voice_interact_title_examples">Voice Interaction</string>
+    <string name="tool_voice_interact_show_ui_desc">Whether to show voice state UI dialog</string>
+    <string name="tool_voice_interact_app_key_desc">Optional speech service app key for provider initialization</string>
+    <string name="tool_voice_interact_region_desc">Optional speech service region for provider initialization</string>
+    <string name="tool_voice_interact_keep_audio_desc">Whether to keep TTS/ASR audio files after use, default false (delete after use)</string>
+    <string name="tool_voice_interact_error_mode_empty">mode cannot be empty</string>
+    <string name="tool_voice_interact_error_mode_invalid">mode must be one of: tts, asr, tts_asr</string>
+    <string name="tool_voice_interact_error_tts_text_empty">ttsText is required in tts/tts_asr mode</string>
+    <string name="tool_voice_interact_error_listen_stop_mode_invalid">listenStopMode must be one of: duration, auto</string>
+    <string name="tool_voice_interact_error_permission_record_audio">RECORD_AUDIO permission is required for ASR mode</string>
+    <string name="tool_voice_interact_error_audio_provider_unavailable">Audio provider unavailable</string>
+    <string name="tool_voice_interact_error_audio_config_missing">Audio config missing. Configure speech keys via Keystore or local.properties</string>
+    <string name="tool_voice_interact_error_audio_init_failed">Audio provider init failed</string>
+    <string name="tool_voice_interact_error_asr_provider_unavailable">ASR provider unavailable</string>
+    <string name="tool_voice_interact_error_tts_provider_unavailable">TTS provider unavailable</string>
+    <string name="tool_voice_interact_error_asr_failed">ASR failed</string>
+    <string name="tool_voice_interact_error_tts_failed">TTS failed</string>
+    <string name="tool_voice_interact_status_preparing">Preparing voice interaction…</string>
+    <string name="tool_voice_interact_status_speaking">Speaking…</string>
+    <string name="tool_voice_interact_status_listening">Listening…</string>
+    <string name="tool_voice_interact_title_default">Voice Interaction</string>
+    <string name="cmd_voice_interact_name">Voice Interaction</string>
+    <string name="cmd_voice_interact_des">Supports tts, asr and tts_asr voice interaction modes</string>
+    <string name="cmd_voice_tts_name">TTS Speak</string>
+    <string name="cmd_voice_asr_name">ASR Speech Recognition</string>
+    <string name="sc_edit_voice_tts_text">TTS Text</string>
+    <string name="sc_edit_voice_listen_stop_mode">Listen Stop Mode</string>
+    <string name="sc_edit_voice_listen_stop_mode_list">Auto,Duration</string>
+    <string name="sc_edit_voice_listen_duration">Listen Duration</string>
+    <string name="sc_edit_voice_silence_stop">Silence Stop</string>
+</resources>

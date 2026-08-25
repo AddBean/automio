@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_main_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.carlos.ui.header.StatusBarPlaceholderView
+        android:id="@+id/status_bar_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:extraHeight="8dp" />
+
+    <!-- 与 Web 端一致：无辅助功能时提示（个人 Tab 不显示） -->
+    <LinearLayout
+        android:id="@+id/layout_a11y_banner"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/design_a11y_banner_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/design_spacing_5"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <ImageView
+            android:layout_width="@dimen/design_spacing_5"
+            android:layout_height="@dimen/design_spacing_5"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_alert_circle"
+            app:tint="@color/design_text_primary" />
+
+        <TextView
+            android:id="@+id/tv_a11y_banner_message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/design_spacing_2"
+            android:layout_weight="1"
+            android:text="@string/main_toolbar_banner_message"
+            android:textColor="@color/design_text_primary"
+            android:textSize="@dimen/design_font_base"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/btn_a11y_banner_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_toolbar_banner_action"
+            android:paddingHorizontal="@dimen/design_spacing_2"
+            android:paddingVertical="@dimen/design_spacing_1"
+            android:text="@string/main_toolbar_banner_action"
+            android:textColor="@color/design_text_primary"
+            android:textSize="@dimen/design_font_md"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/design_spacing_5">
+
+            <TextView
+                android:id="@+id/tv_toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/design_text_primary"
+                android:textSize="@dimen/design_toolbar_title_text"
+                android:textStyle="bold"
+                tools:text="发现" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:id="@+id/layout_toolbar_agent_actions"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/design_toolbar_icon_btn_size"
+                android:layout_marginEnd="@dimen/design_spacing_2"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/btn_toolbar_agent_new_task"
+                    android:layout_width="@dimen/design_toolbar_icon_btn_size"
+                    android:layout_height="@dimen/design_toolbar_icon_btn_size"
+                    android:background="@drawable/floating_chat_btn_bg"
+                    android:clickable="true"
+                    android:contentDescription="@string/agent_menu_new_task"
+                    android:focusable="true"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_menu_add"
+                    app:tint="@color/design_text_tertiary" />
+
+                <ImageView
+                    android:id="@+id/btn_toolbar_agent_history"
+                    android:layout_width="@dimen/design_toolbar_icon_btn_size"
+                    android:layout_height="@dimen/design_toolbar_icon_btn_size"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/floating_chat_btn_bg"
+                    android:clickable="true"
+                    android:contentDescription="@string/agent_menu_history"
+                    android:focusable="true"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_menu_history"
+                    app:tint="@color/design_text_tertiary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_toolbar_a11y"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_toolbar_a11y_disabled"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/design_spacing_3"
+                android:paddingVertical="6dp">
+
+                <ImageView
+                    android:id="@+id/iv_toolbar_a11y_icon"
+                    android:layout_width="@dimen/design_spacing_4"
+                    android:layout_height="@dimen/design_spacing_4"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_shield_alert"
+                    app:tint="@color/design_a11y_pill_disabled_text" />
+
+                <TextView
+                    android:id="@+id/tv_toolbar_a11y_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/design_spacing_2"
+                    android:letterSpacing="0.1"
+                    android:text="@string/main_toolbar_a11y_disabled_short"
+                    android:textAllCaps="true"
+                    android:textColor="@color/design_a11y_pill_disabled_text"
+                    android:textSize="@dimen/design_font_sm"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_gravity="bottom"
+            android:background="@color/design_border" />
+    </FrameLayout>
+
+</LinearLayout>

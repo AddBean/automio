@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x_file_menu_height"
+        android:layout_gravity="top"
+        android:background="@drawable/xml_gradient_bottom_bg"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/btn_file_close"
+            android:layout_width="@dimen/x_file_menu_height"
+            android:layout_height="@dimen/x_file_menu_height"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="6dp"
+            android:gravity="center"
+            android:padding="22dp"
+            android:src="@drawable/icon_close"
+            android:text="@string/btn_file_open_select"
+            android:textSize="10sp"
+            android:tint="@color/color_ff383838"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.hive.views.widgets.TextDrawableView
+            android:id="@+id/btn_file_select_info"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="6dp"
+            android:gravity="center"
+            android:text="1/1"
+            android:textColor="@color/color_ff383838"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/btn_file_close"
+            app:layout_constraintRight_toLeftOf="@id/btn_file_select" />
+
+        <ImageView
+            android:id="@+id/btn_file_select"
+            android:layout_width="@dimen/x_file_menu_height"
+            android:layout_height="@dimen/x_file_menu_height"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="6dp"
+            android:gravity="center"
+            android:padding="18dp"
+            android:src="@drawable/xml_x_file_selected_bg"
+            android:text="@string/btn_file_open_select"
+            android:textSize="10sp"
+            android:tint="@color/color_ff383838"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/white_6"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layout_buttom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x_file_menu_height"
+        android:layout_gravity="bottom"
+        android:background="@drawable/xml_gradient_top_bg"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.hive.views.widgets.TextDrawableView
+            android:id="@+id/btn_file_new_fold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTint="@color/color_ff383838"
+            android:gravity="center"
+            android:text="@string/btn_file_new_fold"
+            android:textColor="@color/color_ff383838"
+            android:textSize="10sp"
+            app:drawableHeight="26dp"
+            app:drawableTop="@drawable/x_file_new_folder"
+            app:drawableWidth="26dp" />
+
+        <com.hive.views.widgets.TextDrawableView
+            android:id="@+id/btn_file_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTint="@color/color_ff383838"
+            android:gravity="center"
+            android:text="@string/btn_file_delete"
+            android:textColor="@color/color_ff383838"
+            android:textSize="10sp"
+            app:drawableHeight="26dp"
+            app:drawableTop="@drawable/x_file_delete"
+            app:drawableWidth="26dp" />
+
+        <com.hive.views.widgets.TextDrawableView
+            android:id="@+id/btn_file_move"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTint="@color/color_ff383838"
+            android:gravity="center"
+            android:text="@string/btn_file_move"
+            android:textColor="@color/color_ff383838"
+            android:textSize="10sp"
+            app:drawableHeight="26dp"
+            app:drawableTop="@drawable/x_file_move"
+            app:drawableWidth="26dp" />
+
+        <com.hive.views.widgets.TextDrawableView
+            android:id="@+id/btn_file_recover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTint="@color/color_ff383838"
+            android:gravity="center"
+            android:text="@string/btn_file_remove"
+            android:textColor="@color/color_ff383838"
+            android:textSize="10sp"
+            android:visibility="gone"
+            app:drawableHeight="26dp"
+            app:drawableTop="@drawable/x_file_recover"
+            app:drawableWidth="26dp"
+            tools:visibility="visible" />
+
+        <com.hive.views.widgets.TextDrawableView
+            android:id="@+id/btn_file_copy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTint="@color/color_ff383838"
+            android:gravity="center"
+            android:text="@string/btn_file_copy"
+            android:textColor="@color/color_ff383838"
+            android:textSize="10sp"
+            app:drawableHeight="26dp"
+            app:drawableTop="@drawable/x_file_copy"
+            app:drawableWidth="26dp" />
+
+        <com.hive.views.widgets.TextDrawableView
+            android:id="@+id/btn_file_rename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTint="@color/color_ff383838"
+            android:gravity="center"
+            android:text="@string/btn_file_rename"
+            android:textColor="@color/color_ff383838"
+            android:textSize="10sp"
+            android:visibility="gone"
+            app:drawableHeight="26dp"
+            app:drawableTop="@drawable/x_file_delete"
+            app:drawableWidth="26dp" />
+
+        <com.hive.views.widgets.TextDrawableView
+            android:id="@+id/btn_file_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTint="@color/color_ff383838"
+            android:gravity="center"
+            android:text="@string/btn_file_share"
+            android:textColor="@color/color_ff383838"
+            android:textSize="10sp"
+            app:drawableHeight="26dp"
+            app:drawableTop="@drawable/x_file_share"
+            app:drawableWidth="26dp" />
+
+        <com.hive.views.widgets.TextDrawableView
+            android:id="@+id/btn_file_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTint="@color/color_ff383838"
+            android:gravity="center"
+            android:text="@string/btn_file_more"
+            android:textColor="@color/color_ff383838"
+            android:textSize="10sp"
+            app:drawableHeight="26dp"
+            app:drawableTop="@drawable/x_file_more"
+            app:drawableWidth="26dp" />
+    </LinearLayout>
+
+</FrameLayout>

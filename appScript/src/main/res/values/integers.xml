@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer name="ad_float_download">1</integer>
+    <integer name="ad_float_home">2</integer>
+    <integer name="ad_float_personal">3</integer>
+
+    <integer name="ad_card_feed">0</integer>
+
+    <integer name="ad_interstitial_main">0</integer>
+
+</resources>

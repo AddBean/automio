@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hive.views.StatefulLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_state"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:orientation="vertical"
+    app:defState="content"
+    app:emptyLayout="@layout/x_file_empty_view"
+    app:emptyText="@string/x_file_empty_txt"
+    app:progressText="@string/x_file_progress_txt"
+    app:transparent="true">
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/layout_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingTop="8dp" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <com.hive.files.views.XFileFastTouchBar
+        android:id="@+id/touch_bar"
+        android:layout_width="20dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true" />
+
+</com.hive.views.StatefulLayout>

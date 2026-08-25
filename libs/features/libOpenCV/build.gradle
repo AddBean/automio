@@ -1,0 +1,115 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    
+}
+
+android {
+    // 修改 namespace 避免与 Maven 依赖的 OpenCV 冲突
+    namespace "com.hive.opencv"
+    compileSdk rootProject.ext.android.compileSdkVersion
+    defaultConfig {
+        minSdk rootProject.ext.android.minSdkVersion
+        targetSdk rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+    }
+    buildFeatures {
+        aidl(true)
+        viewBinding true
+        buildConfig true  // Required for BuildConfig in AGP 9.0.0
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    sourceSets {
+        main {
+            // 注释掉旧的预编译 .so 文件，使用 Maven 依赖的 OpenCV 4.12.0
+            // jniLibs.srcDirs = ['src/main/native/libs']
+            
+            // 排除旧的 OpenCV Java 包装类，使用 Maven 依赖的 4.12.0 版本
+            // 旧代码备份在 src/main/java/org/opencv (已被排除)
+            java.srcDirs = ['src/main/java']
+            java.excludes = [
+                'org/opencv/android/**',
+                'org/opencv/calib3d/**',
+                'org/opencv/core/**',
+                'org/opencv/dnn/**',
+                'org/opencv/engine/**',
+                'org/opencv/features2d/**',
+                'org/opencv/imgcodecs/**',
+                'org/opencv/imgproc/**',
+                'org/opencv/ml/**',
+                'org/opencv/objdetect/**',
+                'org/opencv/osgi/**',
+                'org/opencv/photo/**',
+                'org/opencv/utils/**',
+                'org/opencv/video/**',
+                'org/opencv/videoio/**'
+            ]
+            // 排除 Kotlin 文件，这些文件也由 Maven 依赖提供
+            // 注意：MatAt.kt 和 MatMatMul.kt 已删除，由 Maven 依赖提供
+            kotlin {
+                exclude('org/opencv/**')
+            }
+            
+            aidl.srcDirs = []  // AIDL 也由 Maven 依赖提供
+        }
+    }
+    
+    // 排除重复的资源和库
+    packagingOptions {
+        // 如果有重复的 .so 文件，优先使用 Maven 依赖的版本
+        pickFirst 'lib/arm64-v8a/libopencv_java4.so'
+        pickFirst 'lib/armeabi-v7a/libopencv_java4.so'
+        pickFirst 'lib/x86/libopencv_java4.so'
+        pickFirst 'lib/x86_64/libopencv_java4.so'
+    }
+    compileOptions {
+        sourceCompatibility rootProject.ext.javaVersion
+        targetCompatibility rootProject.ext.javaVersion
+    }
+    kotlinOptions {
+        jvmTarget = rootProject.ext.javaVersion.toString()
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+repositories {
+    flatDir {
+        dirs './libs'
+    }
+}
+
+dependencies {
+    // OpenCV 4.12.0 - 支持 Android 16+ 的 16KB 页面大小
+    // 从 Maven Central 获取，Native 库已支持 16KB 页面对齐
+    api rootProject.ext.publicDependencies.opencv
+    
+//    api(name: 'opencv-sdk-4.3.0', ext: 'aar')
+//    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+
+    implementation project(path: ':libs:framework:libViews')
+    implementation project(path: ':libs:framework:libUtils')
+    implementation project(path: ':libs:framework:libCompon')
+    implementation project(path: ':libs:framework:libNet')
+    implementation project(path: ':libs:framework:libBase')
+    implementation project(path: ':libs:features:libImage')
+
+}

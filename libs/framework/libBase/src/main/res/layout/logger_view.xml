@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/layout_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/layout_top"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#ff21272e">
+
+            <ImageView
+                android:id="@+id/iv_min"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="3dp"
+                android:padding="9dp"
+                android:src="@drawable/icon_logger_min"
+                android:tint="#C7C7C7" />
+
+            <TextView
+                android:id="@+id/tv_selector"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:text="Verbose"
+                android:textColor="@color/color_blue"
+                android:textSize="14dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iv_close"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginRight="12dp"
+                android:padding="13dp"
+                android:src="@drawable/icon_close"
+                android:tint="#C7C7C7" />
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/layout_top">
+
+            <com.hive.engineer.LoggerMainView
+                android:id="@+id/logger_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFEBEBEB" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/xml_logger_filter_grad_bg">
+
+                <TextView
+                    android:id="@+id/tv_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="26dp"
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/xml_search_find_txt_bg"
+                    android:ellipsize="middle"
+                    android:gravity="center"
+                    android:hint="查找"
+                    android:imeOptions="actionGo"
+                    android:inputType="text"
+                    android:maxEms="12"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:singleLine="true"
+                    android:textColor="@color/color_blue"
+                    android:textColorHint="@color/color_blue"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    tools:text="查找" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/iv_pause"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:src="@drawable/xml_logger_pasue" />
+
+                <ImageView
+                    android:id="@+id/iv_clear"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:src="@drawable/icon_logger_clear" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_selector"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_top"
+            android:layout_centerHorizontal="true"
+            android:background="#ff21272e"
+            android:orientation="vertical"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@+id/layout_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#5f000000"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/layout_menu_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="#ff21272e"
+                android:orientation="vertical"
+                android:padding="6dp" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_max"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/xml_logger_max_bg"
+        android:padding="12dp"
+        android:src="@drawable/icon_logger_max"
+        android:tint="@color/white"
+        android:visibility="gone" />
+</RelativeLayout>

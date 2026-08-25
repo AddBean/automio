@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="6dp"
+    android:background="@drawable/xml_workflow_item_bg"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/workflow_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="工作流名称"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="12sp" />
+
+    <com.hive.views.widgets.TextDrawableView
+        android:id="@+id/btn_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/xml_sc_btn_gray_round_bg"
+        android:drawableTint="@color/white"
+        android:gravity="center"
+        android:padding="6dp"
+        android:text="编辑"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:drawableHeight="14dp"
+        app:drawableTop="@drawable/sc_menu_edit"
+        app:drawableWidth="14dp" />
+
+    <com.hive.views.widgets.TextDrawableView
+        android:id="@+id/btn_execute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/xml_sc_btn_green_round_bg"
+        android:drawableTint="@color/white"
+        android:gravity="center"
+        android:padding="6dp"
+        android:text="执行"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:drawableHeight="14dp"
+        app:drawableTop="@drawable/sc_menu_play"
+        app:drawableWidth="14dp" />
+
+</LinearLayout> 

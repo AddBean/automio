@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 工具栏图标圆形背景 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="@color/design_bg_toolbar_icon" />
+    <size android:width="40dp" android:height="40dp" />
+</shape>
