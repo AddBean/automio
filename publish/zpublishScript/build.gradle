@@ -49,19 +49,19 @@ android {
         return fromEnv != null ? fromEnv.trim() : ''
     }
     def storeFilePath = propOrEnv('automio.release.storeFile', 'RELEASE_STORE_FILE')
-    def storePassword = propOrEnv('automio.release.storePassword', 'RELEASE_STORE_PASSWORD')
-    def keyAlias = propOrEnv('automio.release.keyAlias', 'RELEASE_KEY_ALIAS')
-    def keyPassword = propOrEnv('automio.release.keyPassword', 'RELEASE_KEY_PASSWORD')
-    def hasReleaseSigning = storeFilePath && storePassword && keyAlias && keyPassword &&
+    def releaseStorePassword = propOrEnv('automio.release.storePassword', 'RELEASE_STORE_PASSWORD')
+    def releaseKeyAlias = propOrEnv('automio.release.keyAlias', 'RELEASE_KEY_ALIAS')
+    def releaseKeyPassword = propOrEnv('automio.release.keyPassword', 'RELEASE_KEY_PASSWORD')
+    def hasReleaseSigning = storeFilePath && releaseStorePassword && releaseKeyAlias && releaseKeyPassword &&
             rootProject.file(storeFilePath).isFile()
 
     signingConfigs {
         if (hasReleaseSigning) {
             release {
                 storeFile rootProject.file(storeFilePath)
-                storePassword storePassword
-                keyAlias keyAlias
-                keyPassword keyPassword
+                storePassword releaseStorePassword
+                keyAlias releaseKeyAlias
+                keyPassword releaseKeyPassword
             }
         }
     }
