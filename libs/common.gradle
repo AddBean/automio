@@ -88,7 +88,8 @@ class GradleUtils {
             vcode = 1000
             System.out.println("Using default versionCode: " + vcode)
         } else {
-            vcode = vcode.toInteger() + 2431 - paddingVersion
+            // 开源仓已重写历史；偏移从 1 起算，避免旧私有仓的 2431 基数
+            vcode = vcode.toInteger() + 1 - paddingVersion
         }
         
         // 确保 versionCode 始终为正整数（Android 要求）

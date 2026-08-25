@@ -7,3 +7,10 @@
 # automio.msSpeechRegion=eastasia
 # automio.audioAsrProviderId=ms
 # automio.xfAppId=
+
+## Release signing (optional, local assembleRelease only).
+## CI uses GitHub Secrets; never commit keystore or passwords.
+# automio.release.storeFile=keys/automio-release.keystore
+# automio.release.storePassword=
+# automio.release.keyAlias=automio
+# automio.release.keyPassword=

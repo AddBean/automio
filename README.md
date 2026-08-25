@@ -209,6 +209,7 @@ Automio 是跑在 Android 上的 **全功能手机 Agent**：一边用大模型�
 
 - JDK 17、Android SDK 36  
 - 包名：`com.agent.automio`
+- **预编译 APK**：到 [GitHub Releases](https://github.com/AddBean/automio/releases) 下载（推送 `v*` tag 会自动构建并上传）
 
 ```bash
 ./gradlew :publish:zpublishScript:assembleDebug
@@ -220,6 +221,12 @@ APK 输出：`publish/zpublishScript/build/outputs/apk/`
 ./gradlew test
 ./gradlew :publish:zpublishScript:lintDebug
 ./gradlew scanI18n
+```
+
+发布正式包（需本机配置 `local.properties` 签名项，或依赖 CI）：
+
+```bash
+git tag v1.0.0 && git push origin v1.0.0
 ```
 
 ### 上手三步
