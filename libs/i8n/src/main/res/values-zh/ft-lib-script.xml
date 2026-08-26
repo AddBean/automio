@@ -1345,8 +1345,8 @@
 
     <!-- 对话框工具 -->
     <string name="tool_dialog_name">弹出对话框</string>
-    <string name="tool_dialog_description">统一对话框：confirm/input/select/wait</string>
-    <string name="tool_dialog_type_desc">对话框类型：confirm(确认)、input(输入)、select(选择)、wait(等待)</string>
+    <string name="tool_dialog_description">需要用户响应时显示确认、输入、选择或等待对话框；固定延时请用 delay</string>
+    <string name="tool_dialog_type_desc">类型：confirm 确认；input 输入；select 选择；wait 暂停并等待用户操作。默认 confirm</string>
     <string name="tool_dialog_error_invalid_type">type 参数只能是 confirm、input、select 或 wait</string>
     <string name="tool_dialog_error_message_required">confirm/wait 类型必须提供 message 参数</string>
     <string name="tool_dialog_error_inputs_required">input 类型必须提供 inputs 参数</string>
@@ -1355,17 +1355,17 @@
 
     <string name="tool_dialog_confirm_name">弹出确认框</string>
     <string name="tool_dialog_confirm_description">弹出一个用户确认框，重要操作需要用户确认才能继续执行</string>
-    <string name="tool_dialog_confirm_title_desc">弹框的标题，不超过 6 个字</string>
+    <string name="tool_dialog_confirm_title_desc">标题，建议不超过 6 个字</string>
     <string name="tool_dialog_confirm_title_examples">操作提示</string>
-    <string name="tool_dialog_confirm_message_desc">是否继续执行？</string>
+    <string name="tool_dialog_confirm_message_desc">confirm/wait 的提示内容</string>
     <string name="tool_dialog_confirm_message_examples">Hello World</string>
-    <string name="tool_dialog_confirm_cancel_btn_desc">取消按钮的文字</string>
+    <string name="tool_dialog_confirm_cancel_btn_desc">取消按钮文字</string>
     <string name="tool_dialog_confirm_cancel_btn_examples">取消</string>
-    <string name="tool_dialog_confirm_submit_btn_desc">确认按钮的文字</string>
+    <string name="tool_dialog_confirm_submit_btn_desc">确认按钮文字</string>
     <string name="tool_dialog_confirm_submit_btn_examples">确认</string>
-    <string name="tool_dialog_confirm_countdown_desc">弹框自动关闭倒计时时长（单位秒,>0），必须传入</string>
+    <string name="tool_dialog_confirm_countdown_desc">自动关闭秒数，默认 15；-1 表示不自动关闭</string>
     <string name="tool_dialog_confirm_countdown_examples">-1</string>
-    <string name="tool_dialog_image_desc">要展示的图片：支持 url（http/https）、path（file://、/、content://）、base64（data:image/…;base64,）、blob（blob:http://…）。多图用 | 分隔</string>
+    <string name="tool_dialog_image_desc">图片 URL、路径、base64 或 blob；多图用 | 分隔</string>
     <string name="tool_dialog_image_examples">https://example.com/a.png 或 url1|url2</string>
     <string name="tool_dialog_confirm_error_params_empty">参数不能为空</string>
     <string name="tool_dialog_confirm_error_title_empty">title参数不能为空</string>
@@ -1376,13 +1376,13 @@
     <string name="tool_dialog_input_description">弹出一个输入项对话框，用户可输入单个或多个信息项</string>
     <string name="tool_dialog_input_title_desc">对话框的标题</string>
     <string name="tool_dialog_input_title_examples">基本信息</string>
-    <string name="tool_dialog_input_inputs_desc">输入项标签列表，用|分隔多个标签</string>
+    <string name="tool_dialog_input_inputs_desc">input 时必填；输入项标签用 | 分隔</string>
     <string name="tool_dialog_input_inputs_examples">姓名|年龄|籍贯</string>
-    <string name="tool_dialog_input_hints_desc">提示文本列表，用|分隔多个提示，可选参数</string>
+    <string name="tool_dialog_input_hints_desc">各输入项提示，用 | 分隔</string>
     <string name="tool_dialog_input_hints_examples">请输入姓名|请输入年龄|请输入籍贯</string>
-    <string name="tool_dialog_input_requires_desc">是否必填列表，用|分隔多个布尔值，可选参数</string>
+    <string name="tool_dialog_input_requires_desc">各输入项是否必填，用 | 分隔</string>
     <string name="tool_dialog_input_requires_examples">true|true|false</string>
-    <string name="tool_dialog_input_defaults_desc">默认值列表，用|分隔多个默认值，可选参数</string>
+    <string name="tool_dialog_input_defaults_desc">各输入项默认值，用 | 分隔</string>
     <string name="tool_dialog_input_defaults_examples">张三|18|</string>
     <string name="tool_dialog_input_error_inputs_empty">inputs参数不能为空</string>
     <string name="tool_dialog_input_error_input_empty">输入项标签不能为空</string>
@@ -1394,9 +1394,9 @@
     <string name="tool_dialog_selector_description">弹出一个多选框，让用户从多个选项中选择一个或多个</string>
     <string name="tool_dialog_selector_title_desc">选择框的标题</string>
     <string name="tool_dialog_selector_title_examples">请选择操作</string>
-    <string name="tool_dialog_selector_items_desc">选择项列表，用|分隔多个选项</string>
+    <string name="tool_dialog_selector_items_desc">select 时必填；选项用 | 分隔</string>
     <string name="tool_dialog_selector_items_examples">选项1|选项2|选项3</string>
-    <string name="tool_dialog_selector_multi_select_desc">是否支持多选，true为多选模式，false为单选模式</string>
+    <string name="tool_dialog_selector_multi_select_desc">select 时是否多选，默认 false</string>
     <string name="tool_dialog_selector_multi_select_examples">false, true</string>
     <string name="tool_dialog_selector_error_items_empty">items参数不能为空</string>
     <string name="tool_dialog_selector_error_multi_select_empty">multiSelect参数不能为空</string>

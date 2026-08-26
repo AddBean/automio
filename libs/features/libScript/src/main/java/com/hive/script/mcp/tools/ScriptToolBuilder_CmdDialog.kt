@@ -40,6 +40,7 @@ class ScriptToolBuilder_CmdDialog : McpToolBuilder() {
                     description = GlobalApp.getString(com.hive.i8n.R.string.tool_dialog_type_desc),
                     required = false,
                     examples = listOf("confirm", "input", "select", "wait"),
+                    enumValues = listOf("confirm", "input", "select", "wait"),
                 ),
                 McpActionParameters(
                     name = "title",
@@ -80,7 +81,7 @@ class ScriptToolBuilder_CmdDialog : McpToolBuilder() {
                     name = "countdown",
                     type = "string",
                     description = GlobalApp.getString(com.hive.i8n.R.string.tool_dialog_confirm_countdown_desc),
-                    required = true,
+                    required = false,
                     examples = listOf(GlobalApp.getString(com.hive.i8n.R.string.tool_dialog_confirm_countdown_examples)),
                 )
                 ,
@@ -140,10 +141,9 @@ class ScriptToolBuilder_CmdDialog : McpToolBuilder() {
         if (action.paramValues["title"].isNullOrBlank()) {
             return CheckActionResult(false, GlobalApp.getString(com.hive.i8n.R.string.tool_dialog_confirm_error_title_empty))
         }
-        if (action.paramValues["countdown"].isNullOrBlank()) {
-            return CheckActionResult(false, GlobalApp.getString(com.hive.i8n.R.string.tool_dialog_confirm_error_countdown_empty))
-        }
-        if (action.paramValues["countdown"]?.toIntOrNullCompat() == null) {
+        if (!action.paramValues["countdown"].isNullOrBlank() &&
+            action.paramValues["countdown"]?.toIntOrNullCompat() == null
+        ) {
             return CheckActionResult(false, GlobalApp.getString(com.hive.i8n.R.string.tool_dialog_confirm_error_countdown_invalid))
         }
 
@@ -168,9 +168,6 @@ class ScriptToolBuilder_CmdDialog : McpToolBuilder() {
             "select" -> {
                 if (action.paramValues["items"].isNullOrBlank()) {
                     return CheckActionResult(false, GlobalApp.getString(com.hive.i8n.R.string.tool_dialog_error_items_required))
-                }
-                if (action.paramValues["multiSelect"].isNullOrBlank()) {
-                    return CheckActionResult(false, GlobalApp.getString(com.hive.i8n.R.string.tool_dialog_error_multi_select_required))
                 }
             }
         }

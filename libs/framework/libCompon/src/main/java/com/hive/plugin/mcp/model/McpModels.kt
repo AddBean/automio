@@ -28,7 +28,8 @@ data class McpActionParameters(
     @SerializedName("required") val required: Boolean = true,
     @SerializedName("description") val description: String? = null,
     @SerializedName("examples") val examples: List<String>? = null,
-    @SerializedName("localParam") val localParam: String? = null
+    @SerializedName("localParam") val localParam: String? = null,
+    @SerializedName("enumValues") val enumValues: List<String>? = null
 )
 
 /** 动作执行结果 */

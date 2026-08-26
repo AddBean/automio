@@ -118,6 +118,11 @@ object ScriptMcpRegister {
                                 "examples",
                                 JsonArray().apply { exs.forEach { add(JsonPrimitive(it)) } })
                         }
+                        param.enumValues?.let { values ->
+                            add(
+                                "enum",
+                                JsonArray().apply { values.forEach { add(JsonPrimitive(it)) } })
+                        }
                     })
                 }
             })

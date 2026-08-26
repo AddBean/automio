@@ -703,8 +703,8 @@
 
     <!-- Dialog Tools -->
     <string name="tool_dialog_name">Dialog</string>
-    <string name="tool_dialog_description">Unified dialog: confirm / input / select / wait</string>
-    <string name="tool_dialog_type_desc">Dialog type: confirm, input, select, wait</string>
+    <string name="tool_dialog_description">Ask the user to confirm, enter, select, or complete an action; use delay for timed waits</string>
+    <string name="tool_dialog_type_desc">Type: confirm, input, select, or wait (pause for user action). Default: confirm</string>
     <string name="tool_dialog_error_invalid_type">type must be one of: confirm, input, select, wait</string>
     <string name="tool_dialog_error_message_required">message is required for confirm/wait</string>
     <string name="tool_dialog_error_inputs_required">inputs is required for input</string>
@@ -713,17 +713,17 @@
 
     <string name="tool_dialog_confirm_name">Show Confirmation Dialog</string>
     <string name="tool_dialog_confirm_description">Show a user confirmation dialog, important operations require user confirmation to continue</string>
-    <string name="tool_dialog_confirm_title_desc">Dialog title, no more than 6 characters</string>
+    <string name="tool_dialog_confirm_title_desc">Short dialog title</string>
     <string name="tool_dialog_confirm_title_examples">Operation Prompt</string>
-    <string name="tool_dialog_confirm_message_desc">Continue execution?</string>
+    <string name="tool_dialog_confirm_message_desc">Prompt shown for confirm/wait</string>
     <string name="tool_dialog_confirm_message_examples">Hello World</string>
-    <string name="tool_dialog_confirm_cancel_btn_desc">Cancel button text</string>
+    <string name="tool_dialog_confirm_cancel_btn_desc">Cancel button label</string>
     <string name="tool_dialog_confirm_cancel_btn_examples">Cancel</string>
-    <string name="tool_dialog_confirm_submit_btn_desc">Confirm button text</string>
+    <string name="tool_dialog_confirm_submit_btn_desc">Confirm button label</string>
     <string name="tool_dialog_confirm_submit_btn_examples">Confirm</string>
-    <string name="tool_dialog_confirm_countdown_desc">Dialog countdown close duration (seconds), positive number for countdown duration</string>
+    <string name="tool_dialog_confirm_countdown_desc">Auto-close seconds; default 15, -1 disables it</string>
     <string name="tool_dialog_confirm_countdown_examples">15</string>
-    <string name="tool_dialog_image_desc">Image(s) to display: url (http/https), path (file://, /, content://), base64 (data:image/...;base64,), or blob (blob:http://...). Multiple images separated by |</string>
+    <string name="tool_dialog_image_desc">Image URL, path, base64, or blob; separate multiple images with |</string>
     <string name="tool_dialog_image_examples">https://example.com/a.png or url1|url2</string>
     <string name="tool_dialog_confirm_error_params_empty">Parameters cannot be empty</string>
     <string name="tool_dialog_confirm_error_title_empty">title parameter cannot be empty</string>
@@ -734,13 +734,13 @@
     <string name="tool_dialog_input_description">Show an input dialog where users can enter single or multiple information items</string>
     <string name="tool_dialog_input_title_desc">Dialog title</string>
     <string name="tool_dialog_input_title_examples">Basic Information</string>
-    <string name="tool_dialog_input_inputs_desc">Input item label list, separate multiple labels with |</string>
+    <string name="tool_dialog_input_inputs_desc">Required for input; labels separated by |</string>
     <string name="tool_dialog_input_inputs_examples">Name|Age|Origin</string>
-    <string name="tool_dialog_input_hints_desc">Hint text list, separate multiple hints with |, optional parameter</string>
+    <string name="tool_dialog_input_hints_desc">Input hints separated by |</string>
     <string name="tool_dialog_input_hints_examples">Please enter name|Please enter age|Please enter origin</string>
-    <string name="tool_dialog_input_requires_desc">Required list, separate multiple boolean values with |, optional parameter</string>
+    <string name="tool_dialog_input_requires_desc">Required flags separated by |</string>
     <string name="tool_dialog_input_requires_examples">true|true|false</string>
-    <string name="tool_dialog_input_defaults_desc">Default value list, separate multiple default values with |, optional parameter</string>
+    <string name="tool_dialog_input_defaults_desc">Default values separated by |</string>
     <string name="tool_dialog_input_defaults_examples">Zhang San|18|</string>
     <string name="tool_dialog_input_error_inputs_empty">inputs parameter cannot be empty</string>
     <string name="tool_dialog_input_error_input_empty">Input item label cannot be empty</string>
@@ -752,9 +752,9 @@
     <string name="tool_dialog_selector_description">Show a multi-selection dialog for users to select one or more options from multiple choices</string>
     <string name="tool_dialog_selector_title_desc">Selection dialog title</string>
     <string name="tool_dialog_selector_title_examples">Please Select Operation</string>
-    <string name="tool_dialog_selector_items_desc">Selection item list, separate multiple options with |</string>
+    <string name="tool_dialog_selector_items_desc">Required for select; options separated by |</string>
     <string name="tool_dialog_selector_items_examples">Option 1|Option 2|Option 3</string>
-    <string name="tool_dialog_selector_multi_select_desc">Whether to support multi-selection, true for multi-select mode, false for single-select mode</string>
+    <string name="tool_dialog_selector_multi_select_desc">Allow multiple selections; default false</string>
     <string name="tool_dialog_selector_multi_select_examples">false, true</string>
     <string name="tool_dialog_selector_error_items_empty">items parameter cannot be empty</string>
     <string name="tool_dialog_selector_error_multi_select_empty">multiSelect parameter cannot be empty</string>
