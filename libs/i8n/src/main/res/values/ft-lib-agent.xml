@@ -62,6 +62,8 @@
     <string name="create_center_import_title">Import Bundle</string>
     <string name="create_center_import_desc">Import a .zip resource pack (workflow + skills / tools / permissions).</string>
     <string name="workflow_detail_share_export">Share / Export</string>
+    <string name="workflow_detail_share">Share</string>
+    <string name="workflow_detail_export_local">Export to local</string>
 
     <!-- Agent Settings -->
     <string name="agent_settings_title">AI Settings</string>

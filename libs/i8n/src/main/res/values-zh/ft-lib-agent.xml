@@ -140,6 +140,8 @@
     <string name="create_center_import_title">导入资源包</string>
     <string name="create_center_import_desc">导入 .zip 资源包（工作流 + 技能 / 工具 / 权限声明）。</string>
     <string name="workflow_detail_share_export">分享 / 导出</string>
+    <string name="workflow_detail_share">分享</string>
+    <string name="workflow_detail_export_local">导出到本地</string>
 
     <!-- Agent Settings -->
     <string name="agent_settings_title">AI助手设置</string>

@@ -33,6 +33,7 @@ import com.hive.script.views.beans.ScriptInfoModel
 import com.hive.script.views.dialog.DialogScriptAlert
 import com.hive.script.views.dialog.DialogInputMessage
 import com.hive.script.views.dialog.DialogScriptInfo
+import com.hive.script.views.dialog.DialogScriptLoading
 import com.hive.script.views.dialog.DialogScriptScopeManager
 import com.hive.script.views.dialog.DialogShareConfirm
 import com.hive.script.views.edit.DialogScriptEdit
@@ -386,6 +387,22 @@ class ActivityWorkflowDetail : BaseFragmentActivity() {
             ?.show()
     }
 
+    private fun showShareOrExportChooser() {
+        val items = arrayOf(
+            getString(com.hive.i8n.R.string.workflow_detail_share),
+            getString(com.hive.i8n.R.string.workflow_detail_export_local)
+        )
+        android.app.AlertDialog.Builder(this)
+            .setTitle(getString(com.hive.i8n.R.string.workflow_detail_share_export))
+            .setItems(items) { _, which ->
+                when (which) {
+                    0 -> shareWorkflow()
+                    1 -> exportWorkflowToLocal()
+                }
+            }
+            .show()
+    }
+
     private fun shareWorkflow() {
         val info = currentData ?: return
         if (info.scriptMate?.hasControlShare() != true) {
@@ -416,6 +433,45 @@ class ActivityWorkflowDetail : BaseFragmentActivity() {
                 }
             })
             .show()
+    }
+
+    private fun exportWorkflowToLocal() {
+        val info = currentData ?: return
+        if (!ScriptConst.supportImport) {
+            CommonToast.show(com.hive.i8n.R.string.sc_output_not_support)
+            return
+        }
+        ActivitySelectorWrapper.startFolderSelector(
+            getString(com.hive.i8n.R.string.script_export_btn_txt),
+            object : ActivitySelectorWrapper.OnFileSelectedListener {
+                override fun onFileSelected(file: List<File>) {
+                    val loading = DialogScriptLoading(this@ActivityWorkflowDetail).show()
+                    val workflowDir = File(info.scriptPath!!)
+                    val outputZip = File(
+                        file[0],
+                        "${info.scriptName ?: workflowDir.name}${ScriptConst.Script_File_Suffix}"
+                    )
+                    ScriptShareHelper.exportWorkflowBundleZipWithDialog(
+                        workflow = info,
+                        workflowDir = workflowDir,
+                        outputZip = outputZip,
+                        context = this@ActivityWorkflowDetail,
+                        onScanComplete = { loading.dismiss() },
+                        onSuccess = {
+                            CommonToast.show(com.hive.i8n.R.string.sc_export_success)
+                        },
+                        onCancel = { loading.dismiss() },
+                        onError = {
+                            loading.dismiss()
+                            CommonToast.getInstance().showToastLong(
+                                it.message
+                                    ?: getString(com.hive.i8n.R.string.sc_bundle_export_failed)
+                            )
+                        }
+                    )
+                }
+            }
+        )
     }
 
     private fun confirmDelete() {
@@ -540,7 +596,7 @@ class ActivityWorkflowDetail : BaseFragmentActivity() {
             actions = listOf(
                 ResourceOverflowAction(getString(com.hive.i8n.R.string.btn_file_rename)) { renameWorkflow() },
                 ResourceOverflowAction(getString(com.hive.i8n.R.string.btn_file_copy)) { copyWorkflow() },
-                ResourceOverflowAction(getString(com.hive.i8n.R.string.workflow_detail_share_export)) { shareWorkflow() },
+                ResourceOverflowAction(getString(com.hive.i8n.R.string.workflow_detail_share_export)) { showShareOrExportChooser() },
                 ResourceOverflowAction(getString(com.hive.i8n.R.string.delete), danger = true) { confirmDelete() }
             )
         )
