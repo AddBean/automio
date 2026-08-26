@@ -20,6 +20,7 @@ import com.hive.script.net.data.ScriptCustomMcpTool
 import com.hive.script.utils.ScriptHelper
 import com.hive.script.views.beans.ScriptInfoModel
 import com.hive.script.views.dialog.DialogInputMessage
+import com.hive.script.views.dialog.ResourceDetailIntroEditor
 import com.hive.script.views.edit.DialogScriptEdit
 import com.hive.ui.base.BaseResourceDetailActivity
 import com.hive.ui.common.ResourceQuickRunController
@@ -30,6 +31,7 @@ import com.hive.views.widgets.CommonToast
 import com.hive.views.resource.ResourceDetailActionStyle
 import com.hive.views.resource.ResourceDetailBadgeVariant
 import com.hive.views.resource.ResourceDetailType
+import com.hive.views.resource.ResourceDetailIntroSectionBinder
 import com.hive.views.resource.ResourceDetailTypeStyleResolver
 import com.hive.views.resource.ResourceDetailViewFactory
 import com.hive.views.resource.ResourceOverflowAction
@@ -48,6 +50,7 @@ class ActivityMcpToolDetail : BaseResourceDetailActivity<ActivityMcpToolDetail.T
     )
 
     private var layoutParamsContainer: LinearLayout? = null
+    private var introSectionBinder: ResourceDetailIntroSectionBinder? = null
 
     private val scriptProvider: IScriptProvider? by lazy {
         ComponentManager.getInstance().getProvider(IScriptProvider::class.java) as? IScriptProvider
@@ -76,6 +79,13 @@ class ActivityMcpToolDetail : BaseResourceDetailActivity<ActivityMcpToolDetail.T
         ResourceRunStateStore.ensureRegistered()
         ResourceRunStateStore.addListener(runStateListener)
         layoutParamsContainer = findViewById(R.id.layout_params_container)
+        introSectionBinder = ResourceDetailIntroSectionBinder.attach(
+            findViewById(R.id.layout_section_description),
+            findViewById(R.id.btn_edit_intro),
+            findViewById(R.id.layout_intro_content),
+            findViewById(R.id.layout_intro_add_host)
+        )
+        introSectionBinder?.setOnEditListener { editDescription() }
         ResourceDetailViewFactory.styleActionButton(btnEdit, ResourceDetailActionStyle.ACCENT)
     }
 
@@ -98,9 +108,8 @@ class ActivityMcpToolDetail : BaseResourceDetailActivity<ActivityMcpToolDetail.T
             ResourceDetailType.TOOL,
             if (isCustom) ResourceDetailBadgeVariant.FILLED else ResourceDetailBadgeVariant.SUBTLE
         )
-        tvDescription?.text = data.toolDescription.ifBlank {
-            getString(com.hive.i8n.R.string.mcp_tool_detail_no_description)
-        }
+        tvDescription?.text = data.toolDescription
+        introSectionBinder?.bind(data.toolDescription, isCustom())
         updateActionsVisibility()
         updateRunButtonState()
         renderParams(parseSchema())
@@ -196,6 +205,24 @@ class ActivityMcpToolDetail : BaseResourceDetailActivity<ActivityMcpToolDetail.T
             if (running) com.hive.i8n.R.string.script_state_running
             else com.hive.i8n.R.string.sc_list_item_run
         )
+    }
+
+    private fun editDescription() {
+        val data = currentData ?: return
+        if (!isCustom()) return
+        val scriptPath = data.customTool?.scriptPath ?: return
+        ResourceDetailIntroEditor.show(this, data.toolDescription) { newDescription ->
+            ScriptMcpRegister.registerCustomTool(
+                scriptName = data.toolDisplayName.ifBlank { data.toolName },
+                scriptDesc = newDescription,
+                scriptPath = scriptPath,
+                toolId = data.toolName,
+                overwriteIfExists = true,
+                persistToSp = true
+            )
+            currentData = data.copy(toolDescription = newDescription)
+            render(currentData!!)
+        }
     }
 
     private fun openInfoEditor() {

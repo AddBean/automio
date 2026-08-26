@@ -29,6 +29,7 @@ import com.hive.script.scope.ScriptScopeRepository
 import com.hive.script.scope.ScriptScopeSnapshot
 import com.hive.script.utils.ScriptHelper
 import com.hive.script.utils.ScriptShareHelper
+import com.hive.script.utils.WorkflowIntroFileHelper
 import com.hive.script.views.beans.ScriptInfoModel
 import com.hive.script.views.dialog.DialogCommonSelector
 import com.hive.script.views.dialog.DialogScriptAlert
@@ -37,6 +38,7 @@ import com.hive.script.views.dialog.DialogScriptInfo
 import com.hive.script.views.dialog.DialogScriptLoading
 import com.hive.script.views.dialog.DialogScriptScopeManager
 import com.hive.script.views.dialog.DialogShareConfirm
+import com.hive.script.views.dialog.ResourceDetailIntroEditor
 import com.hive.script.views.edit.DialogScriptEdit
 import com.hive.script.scope.SkillFileHelper
 import com.hive.script.views.manager.ScriptManager
@@ -46,6 +48,7 @@ import com.hive.utils.utils.StringUtils
 import com.hive.views.resource.ResourceDetailActionStyle
 import com.hive.views.resource.ResourceDetailBadgeVariant
 import com.hive.views.resource.ResourceDetailType
+import com.hive.views.resource.ResourceDetailIntroSectionBinder
 import com.hive.views.resource.ResourceDetailTypeStyleResolver
 import com.hive.views.resource.ResourceDetailViewFactory
 import com.hive.views.resource.ResourceOverflowAction
@@ -79,6 +82,7 @@ class ActivityWorkflowDetail : BaseFragmentActivity() {
     private var tvVersion: TextView? = null
     private var tvMeta: TextView? = null
     private var tvIntro: MarkdownTextView? = null
+    private var introSectionBinder: ResourceDetailIntroSectionBinder? = null
     private var tvDeviceSummary: TextView? = null
     private var tvDependencySummary: TextView? = null
     private var tvPermissionSummary: TextView? = null
@@ -145,6 +149,13 @@ class ActivityWorkflowDetail : BaseFragmentActivity() {
         tvVersion = findViewById(R.id.tv_version)
         tvMeta = findViewById(R.id.tv_meta)
         tvIntro = findViewById(R.id.tv_intro)
+        introSectionBinder = ResourceDetailIntroSectionBinder.attach(
+            findViewById(R.id.layout_section_intro),
+            findViewById(R.id.btn_edit_intro),
+            findViewById(R.id.layout_intro_content),
+            findViewById(R.id.layout_intro_add_host)
+        )
+        introSectionBinder?.setOnEditListener { editIntro() }
         tvDeviceSummary = findViewById(R.id.tv_device_summary)
         tvDependencySummary = findViewById(R.id.tv_dependency_summary)
         tvPermissionSummary = findViewById(R.id.tv_permission_summary)
@@ -183,16 +194,13 @@ class ActivityWorkflowDetail : BaseFragmentActivity() {
         )
         tvMeta?.text = buildMetaLine(info)
 
-        val introText = buildIntroMarkdown(info)
-        val isEmptyIntro = introText == getString(com.hive.i8n.R.string.workflow_detail_intro_empty)
-        tvIntro?.loadMarkdown(introText)
-        tvIntro?.setTextColor(
-            if (isEmptyIntro) {
-                ContextCompat.getColor(this, com.hive.i8n.R.color.design_text_muted)
-            } else {
-                ContextCompat.getColor(this, android.R.color.white)
-            }
-        )
+        val introText = readIntroText(info)
+        val editable = info.scriptMate?.hasControlEdit() == true
+        if (introText.isNotBlank()) {
+            tvIntro?.loadMarkdown(introText)
+            tvIntro?.setTextColor(ContextCompat.getColor(this, android.R.color.white))
+        }
+        introSectionBinder?.bind(introText, editable)
 
         bindIcon(info)
         bindDevices(mate)
@@ -364,16 +372,24 @@ class ActivityWorkflowDetail : BaseFragmentActivity() {
         return ""
     }
 
-    private fun buildIntroMarkdown(info: ScriptInfoModel): String {
-        val path = info.scriptPath ?: return getString(com.hive.i8n.R.string.workflow_detail_intro_empty)
-        val introFile = listOf("README.md", "readme.md", "intro.md", "desc.md", "description.md")
-            .map { File(path, it) }
-            .firstOrNull { it.exists() && it.isFile }
-        val introFromFile = introFile?.readText()?.trim().orEmpty()
-        if (introFromFile.isNotBlank()) return introFromFile
-        val tag = info.scriptMate?.tag?.trim().orEmpty()
-        if (tag.isNotBlank()) return tag
-        return getString(com.hive.i8n.R.string.workflow_detail_intro_empty)
+    private fun readIntroText(info: ScriptInfoModel): String {
+        return WorkflowIntroFileHelper.readIntro(info.scriptPath)
+    }
+
+    private fun editIntro() {
+        val info = currentData ?: return
+        if (info.scriptMate?.hasControlEdit() != true) {
+            CommonToast.show(com.hive.i8n.R.string.sc_no_permission_edit)
+            return
+        }
+        val path = info.scriptPath ?: return
+        ResourceDetailIntroEditor.show(this, readIntroText(info)) { newIntro ->
+            if (!WorkflowIntroFileHelper.writeIntro(path, newIntro)) {
+                CommonToast.show(com.hive.i8n.R.string.sc_copy_fail)
+                return@show
+            }
+            render(info)
+        }
     }
 
     private fun editWorkflow() {

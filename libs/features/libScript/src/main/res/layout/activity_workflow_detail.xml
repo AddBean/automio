@@ -125,6 +125,7 @@
 
             <!-- Intro section -->
             <LinearLayout
+                android:id="@+id/layout_section_intro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -149,9 +150,24 @@
                         android:textColor="@color/design_text_muted"
                         android:textSize="@dimen/design_font_sm"
                         android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/btn_edit_intro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rp_detail_edit_intro"
+                        android:textColor="@color/design_accent_indigo"
+                        android:textSize="@dimen/design_font_sm"
+                        android:visibility="gone" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layout_intro_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/design_spacing_3"
@@ -165,6 +181,13 @@
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/design_font_base" />
                 </LinearLayout>
+
+                <FrameLayout
+                    android:id="@+id/layout_intro_add_host"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_3"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <!-- Resource info section -->

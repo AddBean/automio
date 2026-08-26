@@ -6,8 +6,10 @@ package com.hive.views.resource
 import android.content.Context
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -122,6 +124,44 @@ object ResourceDetailViewFactory {
         }
     }
 
+    fun styleSectionEditLink(textView: TextView?) {
+        val target = textView ?: return
+        target.textSize =
+            target.resources.getDimension(R.dimen.design_font_sm) / target.resources.displayMetrics.scaledDensity
+        target.setTextColor(ContextCompat.getColor(target.context, com.hive.i8n.R.color.design_accent_indigo))
+        target.setPadding(
+            target.resources.getDimensionPixelSize(R.dimen.design_spacing_2),
+            target.resources.getDimensionPixelSize(R.dimen.design_spacing_1),
+            0,
+            target.resources.getDimensionPixelSize(R.dimen.design_spacing_1)
+        )
+        target.isClickable = true
+        target.isFocusable = true
+    }
+
+    fun createAddIntroCard(context: Context, label: String, onClick: () -> Unit): View {
+        return TextView(context).apply {
+            text = label
+            gravity = Gravity.CENTER
+            textSize = resources.getDimension(R.dimen.design_font_base) / resources.displayMetrics.scaledDensity
+            setTextColor(ContextCompat.getColor(context, com.hive.i8n.R.color.design_text_muted))
+            setPadding(
+                resources.getDimensionPixelSize(R.dimen.design_spacing_4),
+                resources.getDimensionPixelSize(R.dimen.design_spacing_4),
+                resources.getDimensionPixelSize(R.dimen.design_spacing_4),
+                resources.getDimensionPixelSize(R.dimen.design_spacing_4)
+            )
+            background = createOutlineSurfaceDrawable(context, clickable = true)
+            layoutParams = FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            isClickable = true
+            isFocusable = true
+            setOnClickListener { onClick() }
+        }
+    }
+
     fun createInfoCard(
         context: Context,
         title: String,
@@ -212,5 +252,75 @@ object ResourceDetailViewFactory {
 
     private fun dp(context: Context, value: Int): Int {
         return (value * context.resources.displayMetrics.density).toInt()
+    }
+}
+
+/**
+ * 资源详情页「介绍/描述」区块统一显隐与编辑入口。
+ * - 有内容 + 可编辑：标题旁显示「编辑」
+ * - 无内容 + 可编辑：轻量「添加介绍」卡
+ * - 无内容 + 不可编辑：整块隐藏
+ */
+class ResourceDetailIntroSectionBinder private constructor(
+    private val sectionRoot: View,
+    private val btnEditIntro: TextView?,
+    private val layoutContent: View?,
+    private val layoutAddHost: ViewGroup?
+) {
+    private var addCard: View? = null
+    private var onEditListener: (() -> Unit)? = null
+
+    fun setOnEditListener(listener: () -> Unit) {
+        onEditListener = listener
+        btnEditIntro?.setOnClickListener { listener() }
+    }
+
+    fun bind(content: String, editable: Boolean) {
+        val hasContent = content.isNotBlank()
+        when {
+            !hasContent && !editable -> sectionRoot.visibility = View.GONE
+            !hasContent && editable -> {
+                sectionRoot.visibility = View.VISIBLE
+                btnEditIntro?.visibility = View.GONE
+                layoutContent?.visibility = View.GONE
+                showAddCard()
+            }
+            else -> {
+                sectionRoot.visibility = View.VISIBLE
+                hideAddCard()
+                layoutContent?.visibility = View.VISIBLE
+                btnEditIntro?.visibility = if (editable) View.VISIBLE else View.GONE
+            }
+        }
+    }
+
+    private fun showAddCard() {
+        val host = layoutAddHost ?: return
+        host.visibility = View.VISIBLE
+        if (addCard != null) return
+        val context = sectionRoot.context
+        addCard = ResourceDetailViewFactory.createAddIntroCard(
+            context,
+            context.getString(com.hive.i8n.R.string.rp_detail_add_intro)
+        ) { onEditListener?.invoke() }
+        host.addView(addCard)
+    }
+
+    private fun hideAddCard() {
+        layoutAddHost?.visibility = View.GONE
+    }
+
+    companion object {
+        fun attach(
+            sectionRoot: View?,
+            btnEditIntro: TextView?,
+            layoutContent: View?,
+            layoutAddHost: ViewGroup?
+        ): ResourceDetailIntroSectionBinder? {
+            if (sectionRoot == null) return null
+            btnEditIntro?.setText(com.hive.i8n.R.string.rp_detail_edit_intro)
+            ResourceDetailViewFactory.styleSectionEditLink(btnEditIntro)
+            return ResourceDetailIntroSectionBinder(sectionRoot, btnEditIntro, layoutContent, layoutAddHost)
+        }
     }
 }

@@ -1838,6 +1838,10 @@
     <string name="rp_type_workflow">流程</string>
 
     <string name="rp_detail_section_intro">详细介绍</string>
+    <string name="rp_detail_edit_intro">编辑</string>
+    <string name="rp_detail_add_intro">添加介绍</string>
+    <string name="rp_detail_intro_edit_title">编辑介绍</string>
+    <string name="rp_detail_intro_input_hint">介绍一下这个资源的用途…</string>
     <string name="rp_detail_tested_devices">已实测机型</string>
     <string name="rp_detail_dependencies">依赖组件</string>
     <string name="rp_detail_permissions">所需权限</string>

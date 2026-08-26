@@ -17,6 +17,7 @@ import com.hive.plugin.agent.model.SkillSpec
 import com.hive.plugin.provider.IAgentProvider
 import com.hive.plugin.provider.IMcpProvider
 import com.hive.script.views.dialog.DialogInputMessage
+import com.hive.script.views.dialog.ResourceDetailIntroEditor
 import com.hive.ui.base.BaseResourceDetailActivity
 import com.hive.ui.common.ResourceQuickRunController
 import com.hive.ui.common.ResourceRunStateStore
@@ -24,6 +25,7 @@ import com.hive.utils.utils.IntentUtils
 import com.hive.views.resource.ResourceDetailActionStyle
 import com.hive.views.resource.ResourceDetailBadgeVariant
 import com.hive.views.resource.ResourceDetailType
+import com.hive.views.resource.ResourceDetailIntroSectionBinder
 import com.hive.views.resource.ResourceDetailTypeStyleResolver
 import com.hive.views.resource.ResourceDetailViewFactory
 import com.hive.views.resource.ResourceOverflowAction
@@ -36,6 +38,7 @@ class ActivitySkillDetail : BaseResourceDetailActivity<SkillSpec>() {
     private var tvPrompt: MarkdownTextView? = null
     private var tvMeta: TextView? = null
     private var layoutTools: FlowLayout? = null
+    private var introSectionBinder: ResourceDetailIntroSectionBinder? = null
 
     private val agentProvider: IAgentProvider? by lazy {
         ComponentManager.getInstance().getProvider(IAgentProvider::class.java) as? IAgentProvider
@@ -83,6 +86,13 @@ class ActivitySkillDetail : BaseResourceDetailActivity<SkillSpec>() {
         tvPrompt = findViewById(R.id.tv_prompt)
         tvMeta = findViewById(R.id.tv_meta)
         layoutTools = findViewById(R.id.layout_tools)
+        introSectionBinder = ResourceDetailIntroSectionBinder.attach(
+            findViewById(R.id.layout_section_description),
+            findViewById(R.id.btn_edit_intro),
+            findViewById(R.id.layout_intro_content),
+            findViewById(R.id.layout_intro_add_host)
+        )
+        introSectionBinder?.setOnEditListener { editDescription() }
         ResourceDetailViewFactory.styleActionButton(btnEdit, ResourceDetailActionStyle.ACCENT)
         // 更多按钮已移至 CommonHeader 右上角，通过 setRightClickListener 绑定
     }
@@ -116,9 +126,8 @@ class ActivitySkillDetail : BaseResourceDetailActivity<SkillSpec>() {
             ResourceDetailType.SKILL,
             if (custom) ResourceDetailBadgeVariant.FILLED else ResourceDetailBadgeVariant.SUBTLE
         )
-        tvDescription?.text = skill.description.ifBlank {
-            getString(com.hive.i8n.R.string.skill_detail_no_description)
-        }
+        tvDescription?.text = skill.description
+        introSectionBinder?.bind(skill.description, isCustom())
         renderTools(skill.allowedToolNames)
         tvPrompt?.loadMarkdown(skill.systemPrompt)
         tvMeta?.text = buildMetaText(skill)
@@ -215,6 +224,17 @@ class ActivitySkillDetail : BaseResourceDetailActivity<SkillSpec>() {
             if (running) com.hive.i8n.R.string.script_state_running
             else com.hive.i8n.R.string.sc_list_item_run
         )
+    }
+
+    private fun editDescription() {
+        val skill = currentData ?: return
+        if (!isCustom()) return
+        ResourceDetailIntroEditor.show(this, skill.description) { newDescription ->
+            val updated = skill.copy(description = newDescription)
+            SkillPersistence.addOrUpdateSkill(updated)
+            agentProvider?.registerSkillSpec(updated)
+            reloadSkill(updated.id)
+        }
     }
 
     private fun openSkillEditor() {
