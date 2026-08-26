@@ -34,6 +34,8 @@ import com.hive.views.view_manager.HiveViewManagerOfActivity
 import com.hive.views.view_manager.HiveViewManagerOfFloat
 import com.hive.views.view_manager.IHiveViewManager
 import android.view.OrientationEventListener
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import java.util.Stack
 
 /**
@@ -64,6 +66,9 @@ abstract class BaseScriptDialog(context: Context?) : BaseLayout(context) {
 
     private var layoutRoot: FrameLayout? = null
 
+    /** 应用导航栏 inset 前，内容区原始 paddingBottom */
+    private var baseContentPaddingBottom: Int? = null
+
     // 用于监听物理设备方向变化（悬浮窗应用需要）
     private var orientationEventListener: OrientationEventListener? = null
     private var lastLandscapeState: Boolean = GlobalApp.isLandscape()
@@ -91,10 +96,54 @@ abstract class BaseScriptDialog(context: Context?) : BaseLayout(context) {
             }
         }
         initWindow()
+        applyNavigationBarInsets()
         initOrientationListener()
         post {
             initWindowContentTouch()
         }
+    }
+
+    /**
+     * 弹层挂在 DecorView 上，会穿过系统导航栏。
+     * - 底部 sheet / 全高内容：给 tag=ScriptDialog 补 padding，背景延伸进导航区
+     * - 居中卡片：给外层补 padding，整体上移，避免卡片内部留白
+     */
+    private fun applyNavigationBarInsets() {
+        ViewCompat.setOnApplyWindowInsetsListener(this) { _, windowInsets ->
+            val navBottom = windowInsets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
+            val scriptDialog = windowView?.findViewWithTag<View>("ScriptDialog")
+            val target = if (scriptDialog != null && isBottomAnchored(scriptDialog)) {
+                scriptDialog
+            } else {
+                layoutRoot ?: this
+            }
+            val base = baseContentPaddingBottom ?: target.paddingBottom.also {
+                baseContentPaddingBottom = it
+            }
+            target.setPadding(
+                target.paddingLeft,
+                target.paddingTop,
+                target.paddingRight,
+                base + navBottom
+            )
+            windowInsets
+        }
+        ViewCompat.requestApplyInsets(this)
+    }
+
+    private fun isBottomAnchored(view: View): Boolean {
+        val lp = view.layoutParams ?: return false
+        if (lp.height == LayoutParams.MATCH_PARENT || lp.height == FrameLayout.LayoutParams.MATCH_PARENT) {
+            return true
+        }
+        if (lp is android.widget.RelativeLayout.LayoutParams) {
+            return lp.rules[android.widget.RelativeLayout.ALIGN_PARENT_BOTTOM] ==
+                android.widget.RelativeLayout.TRUE
+        }
+        if (lp is FrameLayout.LayoutParams) {
+            return lp.gravity and Gravity.BOTTOM == Gravity.BOTTOM
+        }
+        return false
     }
 
     private var isTouchInBar = false

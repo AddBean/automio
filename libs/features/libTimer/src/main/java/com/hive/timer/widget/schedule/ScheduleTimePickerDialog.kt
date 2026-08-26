@@ -11,6 +11,9 @@ import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
 import android.widget.TextView
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import com.hive.timer.R
 import com.hive.timer.widget.TimePickerView
 import java.util.Calendar
@@ -29,11 +32,28 @@ class ScheduleTimePickerDialog(context: Context) : Dialog(context, android.R.sty
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
         window?.setGravity(Gravity.BOTTOM)
+        window?.let { WindowCompat.setDecorFitsSystemWindows(it, false) }
 
         mask = findViewById(R.id.mask)
         timePickerView = findViewById(R.id.timePickerView)
         btnCancel = findViewById(R.id.btn_cancel)
         btnOk = findViewById(R.id.btn_ok)
+
+        val sheet = findViewById<View>(R.id.sheet)
+        if (sheet != null) {
+            val basePaddingBottom = sheet.paddingBottom
+            ViewCompat.setOnApplyWindowInsetsListener(sheet) { v, insets ->
+                val navBottom = insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
+                v.setPadding(
+                    v.paddingLeft,
+                    v.paddingTop,
+                    v.paddingRight,
+                    basePaddingBottom + navBottom
+                )
+                insets
+            }
+            ViewCompat.requestApplyInsets(sheet)
+        }
 
         findViewById<TextView>(R.id.tv_time_title)?.setText(com.hive.i8n.R.string.time_selector_setting_title)
         findViewById<TextView>(R.id.btn_cancel)?.setText(com.hive.i8n.R.string.cancel)
