@@ -30,6 +30,7 @@ import com.hive.script.scope.ScriptScopeSnapshot
 import com.hive.script.utils.ScriptHelper
 import com.hive.script.utils.ScriptShareHelper
 import com.hive.script.views.beans.ScriptInfoModel
+import com.hive.script.views.dialog.DialogCommonSelector
 import com.hive.script.views.dialog.DialogScriptAlert
 import com.hive.script.views.dialog.DialogInputMessage
 import com.hive.script.views.dialog.DialogScriptInfo
@@ -388,18 +389,29 @@ class ActivityWorkflowDetail : BaseFragmentActivity() {
     }
 
     private fun showShareOrExportChooser() {
-        val items = arrayOf(
-            getString(com.hive.i8n.R.string.workflow_detail_share),
-            getString(com.hive.i8n.R.string.workflow_detail_export_local)
-        )
-        android.app.AlertDialog.Builder(this)
-            .setTitle(getString(com.hive.i8n.R.string.workflow_detail_share_export))
-            .setItems(items) { _, which ->
-                when (which) {
-                    0 -> shareWorkflow()
-                    1 -> exportWorkflowToLocal()
+        DialogCommonSelector(this)
+            .setTitle(com.hive.i8n.R.string.workflow_detail_share_export)
+            .setDataSet(
+                mutableListOf(
+                    0 to getString(com.hive.i8n.R.string.workflow_detail_share),
+                    1 to getString(com.hive.i8n.R.string.workflow_detail_export_local)
+                )
+            )
+            .setSelectListener(object : DialogCommonSelector.OnSelectListener {
+                override fun onSelected(
+                    dialog: DialogCommonSelector,
+                    pos: Int,
+                    pair: Pair<Int, String>
+                ) {
+                    dialog.dismiss()
+                    when (pair.first) {
+                        0 -> shareWorkflow()
+                        1 -> exportWorkflowToLocal()
+                    }
                 }
-            }
+
+                override fun onCancel() {}
+            })
             .show()
     }
 

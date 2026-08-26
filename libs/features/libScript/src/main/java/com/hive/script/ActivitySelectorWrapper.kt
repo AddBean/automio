@@ -213,55 +213,58 @@ class ActivitySelectorWrapper : FragmentActivity() {
     }
 
     private fun openSelector() {
-        if (Build.VERSION.SDK_INT >= 33) {
-            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
-            intent.addCategory(Intent.CATEGORY_OPENABLE)
-            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-            intent.type = "application/zip"
-            startActivityForResult(intent, REQUSST_CODE_OPEN_FILE)
-        } else {
-            IntentUtils.getIntExtra(intent, "selector_type", 0).run {
-                when (this) {
-                    0 -> {
-                        XFileSelectorFolderDialog1.show(
-                            supportFragmentManager,
-                            IntentUtils.getStringExtra(intent, "btn_confirm"),
-                            object : XFileSelectorFolderDialog1.OnFileSelectedListener {
-                                override fun onFileSelected(file: List<File>) {
-                                    onFileSelectedListener?.onFileSelected(file)
-                                    finish()
-                                }
+        when (IntentUtils.getIntExtra(intent, "selector_type", 0)) {
+            // 选目录：始终用应用内文件夹浏览器（确认后导出到当前目录）。
+            // Android 13+ 不能再用 ACTION_OPEN_DOCUMENT（那是选文件），否则无法选目录。
+            0 -> {
+                XFileSelectorFolderDialog1.show(
+                    supportFragmentManager,
+                    IntentUtils.getStringExtra(intent, "btn_confirm"),
+                    object : XFileSelectorFolderDialog1.OnFileSelectedListener {
+                        override fun onFileSelected(file: List<File>) {
+                            onFileSelectedListener?.onFileSelected(file)
+                            finish()
+                        }
 
-                                override fun onDismiss() {
-                                    super.onDismiss()
-                                    finish()
-                                }
+                        override fun onDismiss() {
+                            super.onDismiss()
+                            finish()
+                        }
+                    }
+                )
+            }
+
+            // 选文件：Android 13+ 走 SAF 选 zip；低版本走应用内文件选择器
+            1 -> {
+                if (Build.VERSION.SDK_INT >= 33) {
+                    val openDoc = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+                        addCategory(Intent.CATEGORY_OPENABLE)
+                        putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+                        type = "application/zip"
+                    }
+                    startActivityForResult(openDoc, REQUSST_CODE_OPEN_FILE)
+                } else {
+                    XFileSelectorFileDialog.show(
+                        supportFragmentManager,
+                        IntentUtils.getStringExtra(intent, "btn_confirm"),
+                        arrayListOf(MediaFileUtil.FILE_TYPE_ZIP),
+                        object : XFileSelectorFileDialog.OnFileSelectedListener {
+                            override fun onFileSelected(file: List<File>) {
+                                onFileSelectedListener?.onFileSelected(file)
+                                finish()
                             }
-                        )
-                    }
 
-                    1 -> {
-                        XFileSelectorFileDialog.show(
-                            supportFragmentManager,
-                            IntentUtils.getStringExtra(intent, "btn_confirm"),
-                            arrayListOf<Int>(MediaFileUtil.FILE_TYPE_ZIP),
-                            object :
-                                XFileSelectorFileDialog.OnFileSelectedListener {
-                                override fun onFileSelected(file: List<File>) {
-                                    onFileSelectedListener?.onFileSelected(file)
-                                    finish()
-                                }
-
-                                override fun onDismiss() {
-                                    super.onDismiss()
-                                    finish()
-                                }
-                            })
-                    }
+                            override fun onDismiss() {
+                                super.onDismiss()
+                                finish()
+                            }
+                        }
+                    )
                 }
             }
-        }
 
+            else -> finish()
+        }
     }
 
     override fun onDestroy() {
