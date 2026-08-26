@@ -139,9 +139,17 @@ open class OpenAIProvider : AbstractChatProvider() {
         list.add(JsonObject().apply {
             addProperty("role", message.role.name.lowercase())
             add("content", buildMessageContent(message, false))
-            message.toolCalls?.let { add("tool_calls", buildToolCalls(it)) }
-            message.toolCallId?.let { addProperty("tool_call_id", it) }
-            message.toolCallResult?.let { addProperty("tool_result", it) }
+            when (message.role) {
+                MessageRole.ASSISTANT -> message.toolCalls
+                    ?.takeIf { it.isNotEmpty() }
+                    ?.let { add("tool_calls", buildToolCalls(it)) }
+
+                MessageRole.TOOL -> message.toolCallId
+                    ?.takeIf { it.isNotEmpty() }
+                    ?.let { addProperty("tool_call_id", it) }
+
+                else -> Unit
+            }
         })
         if (message.role == MessageRole.TOOL && message.attachments.isNotEmpty()) {
             message.content = "Tool output image:"
