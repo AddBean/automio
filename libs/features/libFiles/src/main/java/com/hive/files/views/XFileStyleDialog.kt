@@ -10,6 +10,10 @@ import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.*
+import androidx.core.graphics.Insets
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.DialogFragment
 import com.hive.libfiles.R
 
@@ -51,15 +55,43 @@ abstract class XFileStyleDialog : DialogFragment() {
                 WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
                     or WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
             )
-//            window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-//                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-//                or View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             window.statusBarColor = Color.TRANSPARENT
             window.navigationBarColor = Color.TRANSPARENT
         }
+        // 内容延伸到系统栏下方，由 applyNavigationBarInsets 自行避让底部导航/手势条
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         //再次设置出现动画
         window.attributes.windowAnimations = com.hive.base.R.style.BottomDialogAnimation
+    }
+
+    /**
+     * 底部操作栏避让系统导航栏/手势条，避免「取消 / 导出到此」被遮住。
+     */
+    private fun applyNavigationBarInsets(root: View) {
+        ViewCompat.setOnApplyWindowInsetsListener(root) { v, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.navigationBars())
+            val pasteBar = v.findViewById<View>(R.id.layout_paste)
+            if (pasteBar != null) {
+                val baseHeight = resources.getDimensionPixelSize(R.dimen.x_file_menu_height)
+                pasteBar.layoutParams = pasteBar.layoutParams.apply {
+                    height = baseHeight + insets.bottom
+                }
+                pasteBar.setPadding(
+                    pasteBar.paddingLeft,
+                    pasteBar.paddingTop,
+                    pasteBar.paddingRight,
+                    insets.bottom
+                )
+                v.setPadding(0, 0, 0, 0)
+            } else {
+                v.setPadding(v.paddingLeft, v.paddingTop, v.paddingRight, insets.bottom)
+            }
+            WindowInsetsCompat.Builder(windowInsets)
+                .setInsets(WindowInsetsCompat.Type.navigationBars(), Insets.NONE)
+                .build()
+        }
+        ViewCompat.requestApplyInsets(root)
     }
 
 
@@ -77,10 +109,8 @@ abstract class XFileStyleDialog : DialogFragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        if (checkDeviceHasNavigationBar(requireContext())) {
-//            view.setPadding(0, 0, 0, StatusBarCompat.getNavigationBarHeight(context))
-//        }
         initThemeStyle()
+        applyNavigationBarInsets(view)
         super.onViewCreated(view, savedInstanceState)
         dialog?.setOnKeyListener { dialog, keyCode, event ->
             if (event?.action == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
