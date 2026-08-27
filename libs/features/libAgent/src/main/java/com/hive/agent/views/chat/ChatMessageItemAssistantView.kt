@@ -8,14 +8,12 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.hive.agent.R
-import com.hive.agent.utils.MessageStatusHelper
 import com.hive.plugin.ComponentManager
 import com.hive.plugin.provider.IEditorProvider
 import com.hive.extension.visibleOrGone
 import com.hive.net.image.ImageLoader
 import com.hive.plugin.agent.model.AttachmentType
 import com.hive.plugin.agent.model.ChatMessage
-import com.hive.plugin.agent.model.MessageStatus
 import com.hive.utils.GlobalApp
 import com.hive.utils.system.ClipboardUtil
 import com.hive.views.list_view.ListRecyclerItemView
@@ -23,9 +21,8 @@ import com.hive.views.widgets.CommonToast
 import com.wang.avi.AVLoadingIndicatorView
 
 /**
- * 增强版AI助手消息ItemView
- * 支持在消息底部显示使用的工具信息
- * 支持不同MessageStatus状态的样式展示
+ * AI 助手消息 ItemView。
+ * 思考态 loading 由列表尾占位统一展示，气泡本身不再高亮 / 挂 statusIndicator。
  */
 class ChatMessageItemAssistantView(context: Context) : ListRecyclerItemView(context) {
 
@@ -53,7 +50,6 @@ class ChatMessageItemAssistantView(context: Context) : ListRecyclerItemView(cont
         statusIndicator = findViewById(R.id.statusIndicator)
         setOnLongClickListener {
             (itemData as? ChatMessage)?.let { msg ->
-                // 复制 md 原文本，而非渲染后的 TextView 内容
                 val parts = mutableListOf<String>()
                 msg.content?.trim()?.takeIf { it.isNotEmpty() }?.let { parts.add(it) }
                 msg.reasoningContent?.trim()?.takeIf { it.isNotEmpty() }?.let { parts.add(it) }
@@ -80,12 +76,10 @@ class ChatMessageItemAssistantView(context: Context) : ListRecyclerItemView(cont
             tvMessage.visibleOrGone(hasContent)
             reasoningLayout.visibleOrGone(hasThinking)
             messageImageView.visibleOrGone(hasImage)
-            // 显示思考过程（如有）
             if (hasThinking) {
                 reasoningTextView.text = message.reasoningContent
             }
             if (hasContent) {
-                // 内容不变时跳过重渲染，减少流式输出闪烁
                 if (lastRenderedMarkdown != raw) {
                     lastRenderedMarkdown = raw
                     val editorProvider = ComponentManager.getInstance()
@@ -104,15 +98,9 @@ class ChatMessageItemAssistantView(context: Context) : ListRecyclerItemView(cont
             if (imageAttachment != null) {
                 ImageLoader.getInstance().loadImage(context, messageImageView, imageAttachment.url)
             }
-            setupMessageStatus(message.status)
+            // 统一 finish 样式；思考反馈交给列表尾 loading
+            messageInfoLayout.setBackgroundResource(R.drawable.chat_message_finish_bg)
+            statusIndicator.visibleOrGone(false)
         }
     }
-
-
-    private fun setupMessageStatus(status: MessageStatus) {
-        messageInfoLayout.setBackgroundResource(MessageStatusHelper.getBackgroundResource(status))
-        // 设置状态指示器
-        statusIndicator.visibleOrGone(MessageStatusHelper.shouldShowStatusIndicator(status))
-    }
-
 }

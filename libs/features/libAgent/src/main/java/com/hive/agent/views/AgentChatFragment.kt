@@ -26,6 +26,7 @@ import com.hive.agent.storage.AgentSessionStorage
 import com.hive.agent.storage.LoadedSession
 import com.hive.agent.views.chat.AgentChatEmptyStateView
 import com.hive.agent.views.chat.AgentChatView
+import com.hive.agent.views.chat.AgentToolDetailBottomSheet
 import com.hive.agent.views.chat.ChatInputAsrProviderImpl
 import com.hive.agent.views.provider.ActivityAgentSelector
 import com.hive.agent.views.provider.ActivityAgentSetting
@@ -190,6 +191,9 @@ class AgentChatFragment : PagerFragment() {
         emptyStateView?.render(chatUiConfig.emptyState)
         emptyStateView?.onExampleClick = ::handleEmptyStateExampleClick
         agentChatView?.setOnVisibleMessageStateChangedListener(::updateEmptyStateVisibility)
+        agentChatView?.setOnToolMessageClickListener { message ->
+            AgentToolDetailBottomSheet.show(childFragmentManager, message)
+        }
         notifyToolbarActionsVisibility()
     }
 
