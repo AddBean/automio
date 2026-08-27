@@ -300,6 +300,7 @@
     <string name="agent_tool_parameters">参数：</string>
     <string name="agent_tool_parameters_colon">参数：</string>
     <string name="agent_tool_execution_result">结果：</string>
+    <string name="agent_tool_images">图片</string>
 
 
     <!-- 智能体界面 -->

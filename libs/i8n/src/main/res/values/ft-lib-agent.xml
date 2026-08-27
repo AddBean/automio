@@ -156,6 +156,7 @@
     <string name="agent_tool_parameters">Parameters:</string>
     <string name="agent_tool_parameters_colon">Parameters:</string>
     <string name="agent_tool_execution_result">Result:</string>
+    <string name="agent_tool_images">Images</string>
     <string name="agent_tool_unknown">Unknown</string>
     <string name="agent_tool_none">None</string>
     <string name="agent_tool_execute_success">Successful</string>

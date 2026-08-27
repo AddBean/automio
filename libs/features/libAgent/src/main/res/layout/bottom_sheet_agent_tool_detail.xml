@@ -15,7 +15,7 @@
         android:background="@drawable/bg_agent_session_sheet"
         android:orientation="vertical"
         android:paddingTop="10dp"
-        android:paddingBottom="20dp">
+        android:paddingBottom="24dp">
 
         <View
             android:layout_width="40dp"
@@ -23,41 +23,85 @@
             android:layout_gravity="center_horizontal"
             android:background="@drawable/bg_agent_bottom_sheet_handle" />
 
+        <!-- Header -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingStart="20dp"
-            android:paddingTop="16dp"
+            android:paddingTop="18dp"
             android:paddingEnd="20dp"
-            android:paddingBottom="12dp">
+            android:paddingBottom="8dp">
 
-            <TextView
-                android:id="@+id/tvToolTitle"
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:textColor="@android:color/white"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                tools:text="Read File" />
+                android:minWidth="0dp"
+                android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/ivToolStatus"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_marginStart="8dp"
-                android:contentDescription="@string/agent_tool_executing" />
+                <TextView
+                    android:id="@+id/tvToolTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:letterSpacing="0.01"
+                    android:maxLines="2"
+                    android:textColor="@android:color/white"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    tools:text="Take Screenshot" />
+
+                <TextView
+                    android:id="@+id/tvToolMethod"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:ellipsize="end"
+                    android:fontFamily="monospace"
+                    android:maxLines="1"
+                    android:textColor="@color/text_white_60"
+                    android:textSize="12sp"
+                    tools:text="capture_screen" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutStatusBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:background="@drawable/bg_agent_tool_status_badge"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="6dp">
+
+                <ImageView
+                    android:id="@+id/ivToolStatus"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:contentDescription="@string/agent_tool_executing" />
+
+                <TextView
+                    android:id="@+id/tvToolStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    tools:text="成功" />
+            </LinearLayout>
         </LinearLayout>
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fillViewport="true"
-            android:paddingHorizontal="20dp">
+            android:overScrollMode="never"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -65,70 +109,98 @@
                 android:orientation="vertical"
                 android:paddingBottom="8dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/agent_tool_method"
-                    android:textColor="@color/design_text_slate_400"
-                    android:textSize="11sp" />
-
-                <TextView
-                    android:id="@+id/tvToolMethod"
+                <!-- Parameters -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
                     android:layout_marginBottom="12dp"
-                    android:textColor="@color/design_text_slate_300"
-                    android:textSize="13sp"
-                    tools:text="read_file" />
+                    android:background="@drawable/bg_agent_tool_section"
+                    android:orientation="vertical"
+                    android:padding="14dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/agent_tool_parameters"
-                    android:textColor="@color/design_text_slate_400"
-                    android:textSize="11sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="0.04"
+                        android:text="@string/agent_tool_parameters"
+                        android:textAllCaps="true"
+                        android:textColor="@color/design_text_slate_400"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/tvToolArguments"
+                    <TextView
+                        android:id="@+id/tvToolArguments"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:lineSpacingExtra="3dp"
+                        android:textColor="@color/design_text_slate_300"
+                        android:textSize="13sp"
+                        tools:text="path=/tmp/a.txt" />
+                </LinearLayout>
+
+                <!-- Images -->
+                <LinearLayout
+                    android:id="@+id/layoutImagesSection"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
                     android:layout_marginBottom="12dp"
-                    android:textColor="@color/design_text_slate_300"
-                    android:textSize="12sp"
-                    tools:text="path=/tmp/a.txt" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/agent_tool_execution_result"
-                    android:textColor="@color/design_text_slate_400"
-                    android:textSize="11sp" />
-
-                <com.hive.views.widgets.UIRoundCornerImageView
-                    android:id="@+id/ivToolImage"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:adjustViewBounds="true"
+                    android:background="@drawable/bg_agent_tool_section"
+                    android:orientation="vertical"
+                    android:padding="14dp"
                     android:visibility="gone"
-                    app:rcv_borderColor="@color/colorSplitLine"
-                    app:rcv_borderWidth="1dp"
-                    app:rcv_radius="8dp"
-                    tools:visibility="visible" />
+                    tools:visibility="visible">
 
-                <TextView
-                    android:id="@+id/tvToolResult"
+                    <TextView
+                        android:id="@+id/tvImagesLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="0.04"
+                        android:text="@string/agent_tool_images"
+                        android:textAllCaps="true"
+                        android:textColor="@color/design_text_slate_400"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/layoutToolImages"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical" />
+                </LinearLayout>
+
+                <!-- Result -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/tool_result_bg"
-                    android:fontFamily="monospace"
-                    android:padding="10dp"
-                    android:textColor="@color/design_text_slate_300"
-                    android:textSize="11sp"
-                    tools:text="ok" />
+                    android:background="@drawable/bg_agent_tool_section"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="0.04"
+                        android:text="@string/agent_tool_execution_result"
+                        android:textAllCaps="true"
+                        android:textColor="@color/design_text_slate_400"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvToolResult"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/tool_result_bg"
+                        android:fontFamily="monospace"
+                        android:lineSpacingExtra="2dp"
+                        android:padding="12dp"
+                        android:textColor="@color/design_text_slate_300"
+                        android:textSize="12sp"
+                        tools:text="ok" />
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
