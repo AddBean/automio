@@ -5,6 +5,8 @@ package com.hive.agent.ai.providers
 
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import com.hive.plugin.agent.model.AttachmentType
+import com.hive.plugin.agent.model.ChatAttachment
 import com.hive.plugin.agent.model.ChatMessage
 import com.hive.plugin.agent.model.FunctionCall
 import com.hive.plugin.agent.model.MessageRole
@@ -61,6 +63,54 @@ class OpenAIProviderTest {
         assertEquals(toolCall.id, tool["tool_call_id"].asString)
         assertFalse(tool.has("tool_calls"))
         assertFalse(tool.has("tool_result"))
+    }
+
+    @Test
+    fun `tool image attachments are deferred after all tool responses`() = runBlocking {
+        val call1 = ToolCall(id = "call_1", function = FunctionCall("t1", JsonObject()))
+        val call2 = ToolCall(id = "call_2", function = FunctionCall("t2", JsonObject()))
+        val request = provider.buildRequest(
+            model = "custom-model",
+            messages = listOf(
+                ChatMessage(
+                    role = MessageRole.ASSISTANT,
+                    content = null,
+                    toolCalls = listOf(call1, call2)
+                ),
+                ChatMessage(
+                    role = MessageRole.TOOL,
+                    content = "out1",
+                    toolCallId = call1.id,
+                    toolCallResult = "out1",
+                    attachments = mutableListOf(
+                        ChatAttachment(
+                            type = AttachmentType.IMAGE,
+                            url = "data:image/png;base64,abc"
+                        )
+                    )
+                ),
+                ChatMessage(
+                    role = MessageRole.TOOL,
+                    content = "out2",
+                    toolCallId = call2.id,
+                    toolCallResult = "out2"
+                )
+            ),
+            temperature = 0.7f,
+            maxTokens = 100,
+            stream = false,
+            tools = null
+        )
+
+        val messages = JsonParser().parse(request)
+            .asJsonObject["messages"]
+            .asJsonArray
+            .map { it.asJsonObject["role"].asString }
+
+        assertEquals(
+            listOf("assistant", "tool", "tool", "user"),
+            messages
+        )
     }
 
     @Test

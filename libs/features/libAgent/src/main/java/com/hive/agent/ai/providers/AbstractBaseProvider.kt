@@ -25,12 +25,20 @@ import com.hive.plugin.agent.model.ModelErrorReason
 import com.hive.utils.debug.DLog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.io.IOException
 import java.io.OutputStreamWriter
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.TimeUnit
 import com.hive.utils.GlobalApp
 import java.util.concurrent.atomic.AtomicBoolean
+import okhttp3.Call
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
+import okio.BufferedSource
 
 /**
  * AI服务提供者基础抽象类
@@ -47,6 +55,9 @@ abstract class AbstractBaseProvider : AIServiceProvider {
 
     // 跟踪正在进行的HTTP连接
     protected val activeConnections = ConcurrentHashMap<String, HttpURLConnection>()
+
+    // 跟踪正在进行的流式 OkHttp 请求（避免 Android 内置 HttpURLConnection SSE 断流问题）
+    protected val activeStreamCalls = ConcurrentHashMap<String, Call>()
 
     // 子类需要实现此方法来提供Provider信息
     abstract override fun getProviderInfo(): ProviderInfo
@@ -280,6 +291,15 @@ abstract class AbstractBaseProvider : AIServiceProvider {
      */
     protected open fun getReadTimeout(): Int = 120_000
 
+    protected open fun buildStreamHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder()
+            .connectTimeout(getConnectTimeout().toLong(), TimeUnit.MILLISECONDS)
+            .readTimeout(getReadTimeout().toLong(), TimeUnit.MILLISECONDS)
+            .writeTimeout(60, TimeUnit.SECONDS)
+            .retryOnConnectionFailure(false)
+            .build()
+    }
+
     /**
      * 发送流式HTTP请求的通用方法
      * 子类可以使用此方法来实现真正的流式推理
@@ -293,93 +313,84 @@ abstract class AbstractBaseProvider : AIServiceProvider {
         onChunk: (String) -> Boolean
     ) {
         withContext(Dispatchers.IO) {
-            val connection = URL(url).openConnection() as HttpURLConnection
             val actualRequestId = requestId ?: generateRequestId(null)
+            val client = buildStreamHttpClient()
+            val mediaType = "application/json; charset=utf-8".toMediaType()
+            val requestBuilder = Request.Builder()
+                .url(url)
+                .post(requestBody.toByteArray(Charsets.UTF_8).toRequestBody(mediaType))
+                .header("Accept", "text/event-stream")
+                .header("Cache-Control", "no-cache")
+
+            getRequestHeaders().forEach { (key, value) ->
+                if (key.equals("Accept", ignoreCase = true)) return@forEach
+                requestBuilder.header(key, value)
+            }
+            customHeaders.forEach { (key, value) ->
+                requestBuilder.header(key, value)
+            }
+
+            val call = client.newCall(requestBuilder.build())
+            activeStreamCalls[actualRequestId] = call
 
             try {
-                // 注册连接
-                activeConnections[actualRequestId] = connection
+                if (shouldStop.get()) {
+                    throw InterruptedException(GlobalApp.getString(com.hive.i8n.R.string.agent_request_stopped))
+                }
 
-                connection.apply {
-                    requestMethod = "POST"
-                    // 设置默认请求头
-                    getRequestHeaders().forEach { (key, value) ->
-                        setRequestProperty(key, value)
+                val response = try {
+                    call.execute()
+                } catch (e: IOException) {
+                    if (shouldStop.get() || call.isCanceled()) {
+                        throw InterruptedException(GlobalApp.getString(com.hive.i8n.R.string.agent_request_stopped))
                     }
-                    // 设置自定义请求头
-                    customHeaders.forEach { (key, value) ->
-                        setRequestProperty(key, value)
+                    throw e
+                }
+
+                response.use { httpResponse ->
+                    if (!httpResponse.isSuccessful) {
+                        val errorText = httpResponse.body?.string()
+                            ?: GlobalApp.getString(com.hive.i8n.R.string.agent_unknown_error)
+                        val aiErrorDetail = classifyHttpError(
+                            httpResponse.code,
+                            errorText,
+                            getProviderInfo().name
+                        )
+                        throw AIHttpException(httpResponse.code, errorText, aiErrorDetail)
                     }
-                    // 设置流式传输相关的请求头
-                    setRequestProperty("Accept", "text/event-stream")
-                    setRequestProperty("Cache-Control", "no-cache")
-                    doOutput = true
-                    connectTimeout = getConnectTimeout()
-                    readTimeout = getReadTimeout()
-                }
 
-                // 检查是否应该停止
-                if (shouldStop.get()) {
-                    throw InterruptedException(GlobalApp.getString(com.hive.i8n.R.string.agent_request_stopped))
-                }
-
-                // 发送请求体
-                OutputStreamWriter(connection.outputStream).use { writer ->
-                    writer.write(requestBody)
-                    writer.flush()
-                }
-
-                // 检查是否应该停止
-                if (shouldStop.get()) {
-                    throw InterruptedException(GlobalApp.getString(com.hive.i8n.R.string.agent_request_stopped))
-                }
-
-                // 检查响应状态
-                val responseCode = connection.responseCode
-                if (responseCode !in 200..299) {
-                    val errorStream = connection.errorStream
-                    val errorText = errorStream?.bufferedReader()?.readText()
-                        ?: GlobalApp.getString(com.hive.i8n.R.string.agent_unknown_error)
-
-                    // NEW: Create detailed error based on HTTP code
-                    val aiErrorDetail = classifyHttpError(
-                        responseCode,
-                        errorText,
-                        getProviderInfo().name
-                    )
-
-                    throw AIHttpException(
-                        responseCode,
-                        errorText,
-                        aiErrorDetail
-                    )
-                }
-
-                // 检查是否应该停止
-                if (shouldStop.get()) {
-                    throw InterruptedException(GlobalApp.getString(com.hive.i8n.R.string.agent_request_stopped))
-                }
-
-                // 读取流式响应
-                val reader = connection.inputStream.bufferedReader()
-                var line: String?
-
-                while (reader.readLine().also { line = it } != null) {
-                    // 检查是否应该停止
                     if (shouldStop.get()) {
                         throw InterruptedException(GlobalApp.getString(com.hive.i8n.R.string.agent_request_stopped))
                     }
 
-                    line?.let { chunk ->
-                        if (chunk.isNotEmpty()) {
-                            if (!onChunk(chunk)) break
-                        }
-                    }
+                    val source = httpResponse.body?.source()
+                        ?: throw IOException(GlobalApp.getString(com.hive.i8n.R.string.agent_unknown_error))
+                    readStreamLines(source, shouldStop, onChunk)
                 }
             } finally {
-                connection.disconnect()
-                activeConnections.remove(actualRequestId)
+                activeStreamCalls.remove(actualRequestId)
+                call.cancel()
             }
+        }
+    }
+
+    private fun readStreamLines(
+        source: BufferedSource,
+        shouldStop: AtomicBoolean,
+        onChunk: (String) -> Boolean
+    ) {
+        while (!shouldStop.get()) {
+            val line = try {
+                source.readUtf8Line()
+            } catch (e: IOException) {
+                if (isBenignStreamTermination(e)) {
+                    DLog.w("BaseAIProvider", "流式连接提前结束: ${e.message}")
+                    break
+                }
+                throw e
+            }
+            if (line == null) break
+            if (line.isNotEmpty() && !onChunk(line)) break
         }
     }
 
@@ -405,10 +416,20 @@ abstract class AbstractBaseProvider : AIServiceProvider {
                 }
             }
             activeConnections.clear()
+            activeStreamCalls.values.forEach { call ->
+                try {
+                    call.cancel()
+                } catch (e: Exception) {
+                    DLog.w("BaseAIProvider", "取消流式请求失败: ${e.message}")
+                }
+            }
+            activeStreamCalls.clear()
         } else {
             // 停止特定请求
             val requestId = generateRequestId(request)
             activeRequests[requestId]?.set(true)
+            activeStreamCalls[requestId]?.cancel()
+            activeStreamCalls.remove(requestId)
             activeConnections[requestId]?.let { connection ->
                 try {
                     connection.disconnect()
@@ -538,6 +559,17 @@ abstract class AbstractBaseProvider : AIServiceProvider {
     }
 
     /**
+     * 流式读取时连接被服务端提前关闭（常见于自定义 OpenAI 兼容网关 / 反向代理）
+     */
+    protected fun isBenignStreamTermination(e: Throwable): Boolean {
+        if (e is java.io.EOFException) return true
+        val msg = e.message ?: return false
+        return msg.contains("unexpected end of stream", ignoreCase = true) ||
+            msg.contains("connection reset", ignoreCase = true) ||
+            msg.contains("stream was reset", ignoreCase = true)
+    }
+
+    /**
      * 生成请求ID
      */
     protected open fun generateRequestId(request: AIRequest?): String {
@@ -558,6 +590,7 @@ abstract class AbstractBaseProvider : AIServiceProvider {
         stopInference(null)
         activeRequests.clear()
         activeConnections.clear()
+        activeStreamCalls.clear()
     }
 
 /**

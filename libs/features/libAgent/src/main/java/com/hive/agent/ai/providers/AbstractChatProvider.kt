@@ -211,12 +211,13 @@ abstract class AbstractChatProvider : AbstractBaseProvider() {
         var finalCost: Double? = null
         var finalResponse: ChatCompletionResponse? = null
 
-        sendStreamHttpRequest(
-            url = "${getChatUrl()}",
-            requestBody = chatRequest,
-            shouldStop = shouldStop,
-            requestId = requestId
-        ) { chunk ->
+        try {
+            sendStreamHttpRequest(
+                url = "${getChatUrl()}",
+                requestBody = chatRequest,
+                shouldStop = shouldStop,
+                requestId = requestId
+            ) { chunk ->
             try {
                 var data = chunk
                 if (data.startsWith("event:") || data.startsWith(":")) {
@@ -228,6 +229,21 @@ abstract class AbstractChatProvider : AbstractBaseProvider() {
                     return@sendStreamHttpRequest true
                 }
                 if (data.isNotEmpty()) {
+                    // 部分兼容接口在 stream=true 时仍返回完整 JSON（非 SSE）
+                    // 必须同时含 choices+message，避免把 {"error":{"message":...}} 误当成完整响应
+                    if (data.startsWith("{") &&
+                        data.contains("\"choices\"") &&
+                        data.contains("\"message\"") &&
+                        !data.contains("\"delta\"")
+                    ) {
+                        val parsed = parseChatResponse(data)
+                        accumulatedContent = parsed.content ?: ""
+                        accumulatedReasoningContent = parsed.reasoningContent ?: ""
+                        finalModel = parsed.model
+                        finalUsage = parsed.usage
+                        finalResponse = parsed
+                        return@sendStreamHttpRequest false
+                    }
                     if (data == "[DONE]" || data.getJsonKey<Boolean>("done") == true) {
                         finalResponse = buildStreamResponse(
                             accumulatedContent, accumulatedReasoningContent, finalModel, finalUsage,
@@ -299,6 +315,40 @@ abstract class AbstractChatProvider : AbstractBaseProvider() {
                     usage = finalUsage, toolCalls = null, cost = null
                 )
                 return@sendStreamHttpRequest false
+            }
+        }
+        } catch (e: Exception) {
+            if (e is InterruptedException || shouldStop.get()) {
+                throw e
+            }
+            val hasPartialContent = accumulatedContent.isNotEmpty() ||
+                accumulatedReasoningContent.isNotEmpty() ||
+                toolCallAccumulator.toToolCalls().isNotEmpty()
+            if (!hasPartialContent || !isBenignStreamTermination(e)) {
+                throw e
+            }
+            DLog.w(
+                getProviderName(),
+                "流式连接异常结束，使用已接收内容: ${e.message}"
+            )
+        }
+
+        if (finalResponse == null) {
+            val toolCalls = toolCallAccumulator.toToolCalls()
+                .filter { it.id.isNotEmpty() && it.function.name.isNotEmpty() }
+                .ifEmpty { null }
+            if (accumulatedContent.isNotEmpty() ||
+                accumulatedReasoningContent.isNotEmpty() ||
+                toolCalls != null
+            ) {
+                finalResponse = buildStreamResponse(
+                    accumulatedContent,
+                    accumulatedReasoningContent.takeIf { it.isNotEmpty() },
+                    finalModel,
+                    finalUsage,
+                    toolCalls,
+                    finalCost
+                )
             }
         }
 

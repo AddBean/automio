@@ -305,7 +305,7 @@ class AgentSessionStorage(context: Context) {
      * 这里在恢复时统一清理，避免聊天页默认显示一个假 loading。
      */
     private fun sanitizeLoadedMessages(messages: List<ChatMessage>): List<ChatMessage> {
-        return messages.mapNotNull { message ->
+        val cleaned = messages.mapNotNull { message ->
             val isEmptyAssistantPlaceholder =
                 message.role == MessageRole.ASSISTANT &&
                     message.status == MessageStatus.WAITING &&
@@ -326,6 +326,45 @@ class AgentSessionStorage(context: Context) {
                 )
             }
         }
+        // 进程被杀时可能留下「有 tool_calls 但缺紧邻 tool 响应」的尾巴，恢复时剥离以免下次推理 400
+        return sanitizeIncompleteToolCallPairs(cleaned)
+    }
+
+    private fun sanitizeIncompleteToolCallPairs(messages: List<ChatMessage>): List<ChatMessage> {
+        if (messages.isEmpty()) return messages
+        val result = mutableListOf<ChatMessage>()
+        var index = 0
+        while (index < messages.size) {
+            val message = messages[index]
+            if (message.role == MessageRole.ASSISTANT && !message.toolCalls.isNullOrEmpty()) {
+                val expectedIds = message.toolCalls!!
+                    .map { it.id }
+                    .filter { it.isNotEmpty() }
+                    .toSet()
+                val toolResponses = mutableListOf<ChatMessage>()
+                var cursor = index + 1
+                while (cursor < messages.size && messages[cursor].role == MessageRole.TOOL) {
+                    toolResponses.add(messages[cursor])
+                    cursor++
+                }
+                val responseIds = toolResponses.mapNotNull { it.toolCallId?.takeIf { id -> id.isNotEmpty() } }.toSet()
+                if (expectedIds.isNotEmpty() && expectedIds == responseIds) {
+                    result.add(message)
+                    result.addAll(toolResponses)
+                } else {
+                    result.add(message.copy(toolCalls = null))
+                }
+                index = cursor
+                continue
+            }
+            if (message.role == MessageRole.TOOL) {
+                index++
+                continue
+            }
+            result.add(message)
+            index++
+        }
+        return result
     }
 
     /**

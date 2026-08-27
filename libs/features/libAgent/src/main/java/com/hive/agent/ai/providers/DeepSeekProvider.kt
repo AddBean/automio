@@ -25,7 +25,7 @@ import java.net.URL
 /**
  * DeepSeek AI Provider实现
  */
-class DeepSeekProvider : AbstractChatProvider() {
+open class DeepSeekProvider : AbstractChatProvider() {
 
     companion object {
         private const val CACHE_DURATION = 24 * 60 * 60 * 1000L // 24小时缓存
@@ -197,23 +197,31 @@ class DeepSeekProvider : AbstractChatProvider() {
             messages = messages.map { message ->
                 DeepSeekMessage(
                     role = message.role.name.lowercase(),
-                    content = message.content,
+                    content = when (message.role) {
+                        MessageRole.TOOL -> message.toolCallResult ?: message.content
+                        else -> message.content
+                    },
                     reasoning_content = if (message.role == MessageRole.ASSISTANT) {
                         // DeepSeek thinking 模式下，assistant 消息（尤其含 tool_calls 时）必须包含 reasoning_content
                         message.reasoningContent?.takeIf { it.isNotEmpty() } ?: ""
                     } else null,
-                    tool_calls = message.toolCalls?.map { toolCall ->
-                        DeepSeekToolCall(
-                            id = toolCall.id,
-                            type = toolCall.type,
-                            function = DeepSeekFunctionCall(
-                                name = toolCall.function.name,
-                                arguments = GsonHelper.getInstance().toJson(toolCall.function.arguments)
-                            )
-                        )
-                    },
-                    tool_call_id = message.toolCallId,
-                    tool_result = message.toolCallResult
+                    tool_calls = if (message.role == MessageRole.ASSISTANT) {
+                        message.toolCalls
+                            ?.takeIf { it.isNotEmpty() }
+                            ?.map { toolCall ->
+                                DeepSeekToolCall(
+                                    id = toolCall.id,
+                                    type = toolCall.type,
+                                    function = DeepSeekFunctionCall(
+                                        name = toolCall.function.name,
+                                        arguments = GsonHelper.getInstance().toJson(toolCall.function.arguments)
+                                    )
+                                )
+                            }
+                    } else null,
+                    tool_call_id = if (message.role == MessageRole.TOOL) {
+                        message.toolCallId?.takeIf { it.isNotEmpty() }
+                    } else null
                 )
             },
             temperature = temperature,
@@ -413,8 +421,7 @@ private data class DeepSeekMessage(
     val content: String? = null,
     val reasoning_content: String? = null,
     val tool_calls: List<DeepSeekToolCall>? = null,
-    val tool_call_id: String? = null,
-    val tool_result: String? = null
+    val tool_call_id: String? = null
 )
 
 private data class DeepSeekToolDefinition(

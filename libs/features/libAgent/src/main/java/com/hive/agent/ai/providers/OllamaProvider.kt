@@ -10,6 +10,7 @@ import com.hive.plugin.agent.ModelCapabilities
 import com.hive.plugin.agent.ModelInfo
 import com.hive.plugin.agent.ModelType
 import com.hive.plugin.agent.model.ChatCompletionResponse
+import com.hive.plugin.agent.model.MessageRole
 import com.hive.utils.debug.DLog
 import com.hive.utils.extends.string
 import com.google.gson.JsonObject
@@ -163,19 +164,27 @@ class OllamaProvider : AbstractChatProvider() {
             messages = messages.map { message ->
                 OllamaMessage(
                     role = message.role.name.lowercase(),
-                    content = message.content,
-                    tool_calls = message.toolCalls?.map { toolCall ->
-                        OllamaToolCall(
-                            id = toolCall.id,
-                            type = toolCall.type,
-                            function = OllamaFunctionCall(
-                                name = toolCall.function.name,
-                                arguments = GsonHelper.getInstance().toJson(toolCall.function.arguments)
-                            )
-                        )
+                    content = when (message.role) {
+                        MessageRole.TOOL -> message.toolCallResult ?: message.content
+                        else -> message.content
                     },
-                    tool_call_id = message.toolCallId,
-                    tool_result = message.toolCallResult
+                    tool_calls = if (message.role == MessageRole.ASSISTANT) {
+                        message.toolCalls
+                            ?.takeIf { it.isNotEmpty() }
+                            ?.map { toolCall ->
+                                OllamaToolCall(
+                                    id = toolCall.id,
+                                    type = toolCall.type,
+                                    function = OllamaFunctionCall(
+                                        name = toolCall.function.name,
+                                        arguments = GsonHelper.getInstance().toJson(toolCall.function.arguments)
+                                    )
+                                )
+                            }
+                    } else null,
+                    tool_call_id = if (message.role == MessageRole.TOOL) {
+                        message.toolCallId?.takeIf { it.isNotEmpty() }
+                    } else null
                 )
             },
             options = OllamaOptions(
@@ -464,8 +473,7 @@ private data class OllamaMessage(
     val role: String? = null,
     val content: String? = null,
     val tool_calls: List<OllamaToolCall>? = null,
-    val tool_call_id: String? = null,
-    val tool_result: String? = null
+    val tool_call_id: String? = null
 )
 
 private data class OllamaOptions(

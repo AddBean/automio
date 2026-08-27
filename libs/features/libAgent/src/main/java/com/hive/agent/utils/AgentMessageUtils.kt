@@ -142,44 +142,50 @@ object AgentMessageUtils {
 
 
     /**
-     * 简单清理：assistant 的 tool_calls 与 tool 必须成对出现。
-     * 使用紧邻规则：每个 tool 消息只属于紧接其前的 assistant，避免相同 tool_call_id 时 map 覆盖导致误删。
+     * 清理非法 tool 序列，满足 OpenAI 兼容接口约束：
+     * assistant.tool_calls 后面必须紧邻等量 tool 消息，且每个 tool_call_id 都有对应响应。
+     * 中间插入 user/其它 role、缺响应、或 id 对不上时，剥离 tool_calls 并丢弃孤儿 tool。
      */
     private fun ensureMessagesLegality(messages: List<ChatMessage>): MutableList<ChatMessage> {
         if (messages.isEmpty()) return messages.toMutableList()
 
-        return messages.mapIndexed { index, message ->
-                when (message.role) {
-                    MessageRole.ASSISTANT -> {
-                        val toolCalls = message.toolCalls ?: emptyList()
-                        if (toolCalls.isEmpty()) return@mapIndexed message
-
-                        val nextAssistantIndex = (index + 1 until messages.size).firstOrNull { messages[it].role == MessageRole.ASSISTANT } ?: messages.size
-                        val toolCountInRange = (index + 1 until nextAssistantIndex).count { messages[it].role == MessageRole.TOOL }
-                        val hasCompleteToolCalls = toolCountInRange >= toolCalls.size
-
-                        if (hasCompleteToolCalls) message else message.copy(toolCalls = null)
-                    }
-
-                    MessageRole.TOOL -> {
-                        val prevAssistantIndex = (index - 1 downTo 0).firstOrNull { messages[it].role == MessageRole.ASSISTANT } ?: -1
-                        if (prevAssistantIndex < 0) return@mapIndexed null
-                        val prevAssistant = messages[prevAssistantIndex]
-                        val toolCalls = prevAssistant.toolCalls ?: emptyList()
-                        if (toolCalls.isEmpty()) return@mapIndexed null
-
-                        val nextAssistantIndex = (prevAssistantIndex + 1 until messages.size).firstOrNull { messages[it].role == MessageRole.ASSISTANT } ?: messages.size
-                        val toolIndicesInRange = (prevAssistantIndex + 1 until nextAssistantIndex).filter { messages[it].role == MessageRole.TOOL }
-                        val positionInBatch = toolIndicesInRange.indexOf(index)
-                        val idMatches = message.toolCallId.isNullOrEmpty() ||
-                            toolCalls.getOrNull(positionInBatch)?.id == message.toolCallId ||
-                            toolCalls.any { it.id == message.toolCallId }
-                        if (positionInBatch >= 0 && positionInBatch < toolCalls.size && idMatches) message else null
-                    }
-
-                    else -> message
+        val result = mutableListOf<ChatMessage>()
+        var index = 0
+        while (index < messages.size) {
+            val message = messages[index]
+            if (message.role == MessageRole.ASSISTANT && !message.toolCalls.isNullOrEmpty()) {
+                val expectedIds = message.toolCalls!!
+                    .map { it.id }
+                    .filter { it.isNotEmpty() }
+                    .toSet()
+                val toolResponses = mutableListOf<ChatMessage>()
+                var cursor = index + 1
+                while (cursor < messages.size && messages[cursor].role == MessageRole.TOOL) {
+                    toolResponses.add(messages[cursor])
+                    cursor++
                 }
-            }.filterNotNull().toMutableList()
+                val responseIds = toolResponses.mapNotNull { it.toolCallId?.takeIf { id -> id.isNotEmpty() } }.toSet()
+                val isComplete = expectedIds.isNotEmpty() && expectedIds == responseIds
+                if (isComplete) {
+                    result.add(message)
+                    result.addAll(toolResponses)
+                } else {
+                    result.add(message.copy(toolCalls = null))
+                }
+                index = cursor
+                continue
+            }
+
+            if (message.role == MessageRole.TOOL) {
+                // 无前置完整 assistant.tool_calls 的孤儿 tool
+                index++
+                continue
+            }
+
+            result.add(message)
+            index++
+        }
+        return result
     }
 
 

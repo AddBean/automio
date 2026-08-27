@@ -335,21 +335,60 @@ class OpenRouterProvider : AbstractChatProvider() {
      */
     private suspend fun buildOpenRouterMessage(message: ChatMessage): List<JsonObject> {
         val list = mutableListOf<JsonObject>()
+        val contentMessage = if (message.role == MessageRole.TOOL) {
+            message.copy(content = message.toolCallResult ?: message.content)
+        } else {
+            message
+        }
         list.add(JsonObject().apply {
-            addProperty("role", message.role.name.lowercase())
-            add("content", buildMessageContent(message, false))
-            message.toolCalls?.let { add("tool_calls", buildToolCalls(it)) }
-            message.toolCallId?.let { addProperty("tool_call_id", it) }
-            message.toolCallResult?.let { addProperty("tool_result", it) }
+            addProperty("role", contentMessage.role.name.lowercase())
+            add("content", buildMessageContent(contentMessage, false))
+            when (contentMessage.role) {
+                MessageRole.ASSISTANT -> contentMessage.toolCalls
+                    ?.takeIf { it.isNotEmpty() }
+                    ?.let { add("tool_calls", buildToolCalls(it)) }
+                MessageRole.TOOL -> contentMessage.toolCallId
+                    ?.takeIf { it.isNotEmpty() }
+                    ?.let { addProperty("tool_call_id", it) }
+                else -> Unit
+            }
         })
         if (message.role == MessageRole.TOOL && message.attachments.isNotEmpty()) {
-            message.content = "工具执行的图片信息如下："
+            val imageMessage = message.copy(content = "工具执行的图片信息如下：")
             list.add(JsonObject().apply {
                 addProperty("role", MessageRole.USER.name.lowercase())
-                add("content", buildMessageContent(message, true))
+                add("content", buildMessageContent(imageMessage, true))
             })
         }
         return list
+    }
+
+    private suspend fun buildOpenRouterMessages(messages: List<ChatMessage>): List<JsonObject> {
+        val result = mutableListOf<JsonObject>()
+        var index = 0
+        while (index < messages.size) {
+            val message = messages[index]
+            if (message.role == MessageRole.ASSISTANT && !message.toolCalls.isNullOrEmpty()) {
+                result.addAll(buildOpenRouterMessage(message))
+                index++
+                val deferredImageMessages = mutableListOf<JsonObject>()
+                while (index < messages.size && messages[index].role == MessageRole.TOOL) {
+                    val built = buildOpenRouterMessage(messages[index])
+                    if (built.isNotEmpty()) {
+                        result.add(built.first())
+                        if (built.size > 1) {
+                            deferredImageMessages.addAll(built.drop(1))
+                        }
+                    }
+                    index++
+                }
+                result.addAll(deferredImageMessages)
+                continue
+            }
+            result.addAll(buildOpenRouterMessage(message))
+            index++
+        }
+        return result
     }
 
     override fun getDefaultTemperature(): Float = 0.7f
@@ -366,7 +405,7 @@ class OpenRouterProvider : AbstractChatProvider() {
     ): String {
         val openRouterRequest = OpenRouterChatRequest(
             model = model,
-            messages = messages.flatMap { buildOpenRouterMessage(it) },
+            messages = buildOpenRouterMessages(messages),
             temperature = temperature,
             max_tokens = maxTokens,
             stream = stream,

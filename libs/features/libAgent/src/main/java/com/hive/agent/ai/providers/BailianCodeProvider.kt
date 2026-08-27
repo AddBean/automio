@@ -267,6 +267,7 @@ class BailianCodeProvider : AbstractChatProvider() {
                         toolMessages.add(messages[i])
                         i++
                     }
+                    val deferredImageMessages = mutableListOf<JsonObject>()
                     toolMessages.forEach { toolMsg ->
                         result.add(JsonObject().apply {
                             addProperty("role", "tool")
@@ -276,12 +277,13 @@ class BailianCodeProvider : AbstractChatProvider() {
                         if (toolMsg.attachments.isNotEmpty()) {
                             val msgForImage = toolMsg.copy(content = "工具执行的图片信息如下：")
                             val contentWithImage = buildMessageContent(msgForImage, true)
-                            result.add(JsonObject().apply {
+                            deferredImageMessages.add(JsonObject().apply {
                                 addProperty("role", "user")
                                 add("content", contentWithImage)
                             })
                         }
                     }
+                    result.addAll(deferredImageMessages)
                     continue
                 }
                 else -> {
@@ -290,7 +292,9 @@ class BailianCodeProvider : AbstractChatProvider() {
                     result.add(JsonObject().apply {
                         addProperty("role", msg.role.name.lowercase())
                         add("content", contentElement)
-                        msg.toolCalls?.let { add("tool_calls", buildToolCalls(it)) }
+                        if (msg.role == MessageRole.ASSISTANT) {
+                            msg.toolCalls?.takeIf { it.isNotEmpty() }?.let { add("tool_calls", buildToolCalls(it)) }
+                        }
                     })
                 }
             }
@@ -350,21 +354,44 @@ class BailianCodeProvider : AbstractChatProvider() {
             !path.contains("://")
 
     /**
-     * 使用紧邻规则校验：assistant 的 tool_calls 必须有紧接其后的 tool 响应，避免相同 tool_call_id 时 map 覆盖导致误判。
+     * 使用紧邻规则校验：assistant 的 tool_calls 必须有紧接其后的 tool 响应，且 tool_call_id 集合完全匹配。
      */
     private fun validateAndFixMessageSequence(messages: List<ChatMessage>): List<ChatMessage> {
         if (messages.isEmpty()) return messages
 
-        return messages.mapIndexed { index, message ->
+        val result = mutableListOf<ChatMessage>()
+        var index = 0
+        while (index < messages.size) {
+            val message = messages[index]
             if (message.role == MessageRole.ASSISTANT && !message.toolCalls.isNullOrEmpty()) {
-                val toolCalls = message.toolCalls!!
-                val nextAssistantIndex = (index + 1 until messages.size).firstOrNull { messages[it].role == MessageRole.ASSISTANT } ?: messages.size
-                val toolCountInRange = (index + 1 until nextAssistantIndex).count { messages[it].role == MessageRole.TOOL }
-                val hasCompleteToolCalls = toolCountInRange >= toolCalls.size
-
-                if (hasCompleteToolCalls) message else message.copy(toolCalls = null)
-            } else message
+                val expectedIds = message.toolCalls!!
+                    .map { it.id }
+                    .filter { it.isNotEmpty() }
+                    .toSet()
+                val toolResponses = mutableListOf<ChatMessage>()
+                var cursor = index + 1
+                while (cursor < messages.size && messages[cursor].role == MessageRole.TOOL) {
+                    toolResponses.add(messages[cursor])
+                    cursor++
+                }
+                val responseIds = toolResponses.mapNotNull { it.toolCallId?.takeIf { id -> id.isNotEmpty() } }.toSet()
+                if (expectedIds.isNotEmpty() && expectedIds == responseIds) {
+                    result.add(message)
+                    result.addAll(toolResponses)
+                } else {
+                    result.add(message.copy(toolCalls = null))
+                }
+                index = cursor
+                continue
+            }
+            if (message.role == MessageRole.TOOL) {
+                index++
+                continue
+            }
+            result.add(message)
+            index++
         }
+        return result
     }
 
     override fun parseChatResponse(responseText: String): ChatCompletionResponse {

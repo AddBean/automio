@@ -136,15 +136,20 @@ open class OpenAIProvider : AbstractChatProvider() {
 
     protected open suspend fun buildOpenAIMessage(message: ChatMessage): List<JsonObject> {
         val list = mutableListOf<JsonObject>()
+        val contentMessage = if (message.role == MessageRole.TOOL) {
+            message.copy(content = message.toolCallResult ?: message.content)
+        } else {
+            message
+        }
         list.add(JsonObject().apply {
-            addProperty("role", message.role.name.lowercase())
-            add("content", buildMessageContent(message, false))
-            when (message.role) {
-                MessageRole.ASSISTANT -> message.toolCalls
+            addProperty("role", contentMessage.role.name.lowercase())
+            add("content", buildMessageContent(contentMessage, false))
+            when (contentMessage.role) {
+                MessageRole.ASSISTANT -> contentMessage.toolCalls
                     ?.takeIf { it.isNotEmpty() }
                     ?.let { add("tool_calls", buildToolCalls(it)) }
 
-                MessageRole.TOOL -> message.toolCallId
+                MessageRole.TOOL -> contentMessage.toolCallId
                     ?.takeIf { it.isNotEmpty() }
                     ?.let { addProperty("tool_call_id", it) }
 
@@ -152,13 +157,45 @@ open class OpenAIProvider : AbstractChatProvider() {
             }
         })
         if (message.role == MessageRole.TOOL && message.attachments.isNotEmpty()) {
-            message.content = "Tool output image:"
+            val imageMessage = message.copy(content = "Tool output image:")
             list.add(JsonObject().apply {
                 addProperty("role", MessageRole.USER.name.lowercase())
-                add("content", buildMessageContent(message, true))
+                add("content", buildMessageContent(imageMessage, true))
             })
         }
         return list
+    }
+
+    /**
+     * 将 ChatMessage 转为 API messages，保证同一批 tool_calls 的 tool 响应连续，
+     * 工具附件对应的 user 图片消息延后到整批 tool 之后，避免打断 tool_call_id 配对。
+     */
+    protected open suspend fun buildOpenAIMessages(messages: List<ChatMessage>): List<JsonObject> {
+        val result = mutableListOf<JsonObject>()
+        var index = 0
+        while (index < messages.size) {
+            val message = messages[index]
+            if (message.role == MessageRole.ASSISTANT && !message.toolCalls.isNullOrEmpty()) {
+                result.addAll(buildOpenAIMessage(message))
+                index++
+                val deferredImageMessages = mutableListOf<JsonObject>()
+                while (index < messages.size && messages[index].role == MessageRole.TOOL) {
+                    val built = buildOpenAIMessage(messages[index])
+                    if (built.isNotEmpty()) {
+                        result.add(built.first())
+                        if (built.size > 1) {
+                            deferredImageMessages.addAll(built.drop(1))
+                        }
+                    }
+                    index++
+                }
+                result.addAll(deferredImageMessages)
+                continue
+            }
+            result.addAll(buildOpenAIMessage(message))
+            index++
+        }
+        return result
     }
 
     override suspend fun buildChatRequest(
@@ -171,7 +208,7 @@ open class OpenAIProvider : AbstractChatProvider() {
     ): String {
         val request = OpenAIChatRequest(
             model = model,
-            messages = messages.flatMap { buildOpenAIMessage(it) },
+            messages = buildOpenAIMessages(messages),
             temperature = temperature,
             max_tokens = maxTokens,
             stream = stream,
