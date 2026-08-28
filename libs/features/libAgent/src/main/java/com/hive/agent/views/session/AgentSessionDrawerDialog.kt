@@ -14,6 +14,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.graphics.drawable.toDrawable
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
 import com.hive.agent.R
@@ -49,8 +52,7 @@ class AgentSessionDrawerDialog : DialogFragment() {
     private var tvEmptyTitle: TextView? = null
     private var tvEmptyDesc: TextView? = null
     private var tvSubtitle: TextView? = null
-    private var layoutRunningHint: View? = null
-    private var tvRunningHint: TextView? = null
+    private var layoutRunningHint: TextView? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.drawer_agent_sessions, container, false)
@@ -60,11 +62,12 @@ class AgentSessionDrawerDialog : DialogFragment() {
         super.onStart()
         val window = dialog?.window ?: return
         val metrics = resources.displayMetrics
-        val maxWidth = (384 * metrics.density).toInt()
-        val drawerWidth = (metrics.widthPixels * 0.88f).toInt().coerceAtMost(maxWidth)
+        val maxWidth = (360 * metrics.density).toInt()
+        val drawerWidth = (metrics.widthPixels * 0.84f).toInt().coerceAtMost(maxWidth)
         window.apply {
+            WindowCompat.setDecorFitsSystemWindows(this, false)
             setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
-            setDimAmount(0.52f)
+            setDimAmount(0.56f)
             addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
             setGravity(Gravity.START)
             setLayout(drawerWidth, WindowManager.LayoutParams.MATCH_PARENT)
@@ -82,13 +85,28 @@ class AgentSessionDrawerDialog : DialogFragment() {
         storage = context?.applicationContext?.let { AgentSessionStorage(it) }
         val ctx = context ?: return
 
+        val drawerRoot = view.findViewById<View>(R.id.layoutSessionDrawer)
+        val baseTop = drawerRoot.paddingTop
+        val baseBottom = drawerRoot.paddingBottom
+        ViewCompat.setOnApplyWindowInsetsListener(drawerRoot) { drawer, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            drawer.setPadding(
+                drawer.paddingLeft,
+                baseTop + systemBars.top,
+                drawer.paddingRight,
+                baseBottom + systemBars.bottom
+            )
+            insets
+        }
+        ViewCompat.requestApplyInsets(drawerRoot)
+
         view.findViewById<TextView>(R.id.tvSessionListTitle)?.text = getString(com.hive.i8n.R.string.agent_session_history)
         tvSubtitle = view.findViewById(R.id.tvSessionListSubtitle)
         tvSubtitle?.text = ""
 
         view.findViewById<View>(R.id.btnCloseDrawer)?.setOnClickListener { dismiss() }
 
-        view.findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btnNewSession)?.apply {
+        view.findViewById<TextView>(R.id.btnNewSession)?.apply {
             text = getString(com.hive.i8n.R.string.agent_session_new)
             setOnClickListener {
                 onSessionSelected?.invoke(null)
@@ -104,10 +122,9 @@ class AgentSessionDrawerDialog : DialogFragment() {
         tvEmptyDesc?.text = getString(com.hive.i8n.R.string.agent_session_empty_desc)
 
         layoutRunningHint = view.findViewById(R.id.layoutRunningHint)
-        tvRunningHint = view.findViewById(R.id.tvRunningHint)
         if (isAgentRunning) {
             layoutRunningHint?.visibility = View.VISIBLE
-            tvRunningHint?.text = getString(com.hive.i8n.R.string.agent_session_switch_disabled)
+            layoutRunningHint?.text = getString(com.hive.i8n.R.string.agent_session_switch_disabled)
         } else {
             layoutRunningHint?.visibility = View.GONE
         }

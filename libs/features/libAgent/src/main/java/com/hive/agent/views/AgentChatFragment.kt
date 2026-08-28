@@ -84,8 +84,10 @@ class AgentChatFragment : PagerFragment() {
                 if (model != null) {
                     val manager = xAgent.getAIServiceManager()
                     val provider = manager?.getProvider(model.providerId)
-                    if (provider?.hasValidApiKey() == true) {
+                    if (provider?.isProviderReady() == true) {
                         manager.setInferenceModel(InferenceType.TEXT, model)
+                        updateModelSelectorState(model)
+                        return@registerForActivityResult
                     } else {
                         showElegantToast(
                             getString(com.hive.i8n.R.string.ai_set_api_key_first, model.providerId)
@@ -198,8 +200,10 @@ class AgentChatFragment : PagerFragment() {
     }
 
     /** 根据当前对话模型更新入口文案；未设置时显示「去设置」 */
-    private fun updateModelSelectorState() {
-        val model = xAgent.getAIServiceManager()?.getInferenceModel(InferenceType.TEXT)
+    private fun updateModelSelectorState(
+        selectedModel: ModelInfo? = xAgent.getAIServiceManager()?.getInferenceModel(InferenceType.TEXT)
+    ) {
+        val model = selectedModel
         val name = model?.displayName?.takeIf { it.isNotBlank() }
         if (name == null) {
             chatInputContainer?.setModelSelectorText(

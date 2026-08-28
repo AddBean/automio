@@ -68,6 +68,7 @@ class ActivityTab : BaseFragmentActivity(), TabButtonLayout.OnTabSelectedListene
     private var layout_tabs: LinearLayout? = null
 
     private var tvMainToolbarTitle: TextView? = null
+    private var tvAgentToolbarTitle: TextView? = null
     private var layoutA11yBanner: View? = null
 
     private var statusBarView: View? = null
@@ -178,6 +179,7 @@ class ActivityTab : BaseFragmentActivity(), TabButtonLayout.OnTabSelectedListene
 
     private fun initMainToolbar() {
         tvMainToolbarTitle = findViewById(R.id.tv_toolbar_title)
+        tvAgentToolbarTitle = findViewById(R.id.tv_toolbar_agent_title)
         layoutA11yBanner = findViewById(R.id.layout_a11y_banner)
         statusBarView = findViewById(R.id.status_bar_view)
         layoutTitle = findViewById(R.id.layout_title)
@@ -216,6 +218,7 @@ class ActivityTab : BaseFragmentActivity(), TabButtonLayout.OnTabSelectedListene
             else -> i8nR.string.design_nav_agent
         }
         tvMainToolbarTitle?.setText(res)
+        tvAgentToolbarTitle?.setText(i8nR.string.design_nav_agent)
     }
 
     private fun refreshToolbarAccessibility() {
@@ -243,6 +246,8 @@ class ActivityTab : BaseFragmentActivity(), TabButtonLayout.OnTabSelectedListene
     private fun refreshToolbarAgentActions() {
         val isAgentTab = mCurrentTag == "f2"
         layoutToolbarAgentActions?.visibleOrGone(isAgentTab && showAgentToolbarActions)
+        tvMainToolbarTitle?.visibleOrGone(!isAgentTab)
+        tvAgentToolbarTitle?.visibleOrGone(isAgentTab)
         if (isAgentTab) {
             (getCurrentTabFragment() as? com.hive.ui.agent.AgentMainFragment)?.refreshToolbarActions()
         }

@@ -5,23 +5,23 @@
     android:id="@+id/itemSessionRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="4dp"
-    android:layout_marginBottom="4dp"
+    android:layout_marginTop="1dp"
+    android:layout_marginBottom="1dp"
     android:background="@drawable/selector_agent_session_row"
     android:clickable="true"
     android:focusable="true"
     android:foreground="@drawable/ai_ripple_rounded_16"
-    android:minHeight="88dp">
+    android:minHeight="84dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingStart="14dp"
-        android:paddingTop="12dp"
-        android:paddingEnd="6dp"
-        android:paddingBottom="12dp">
+        android:paddingStart="12dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="4dp"
+        android:paddingBottom="10dp">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -43,7 +43,7 @@
                     android:layout_weight="1"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:textColor="@color/textColorPrimary"
+                    android:textColor="@color/design_text_secondary"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     tools:text="Create a daily check-in workflow" />
@@ -72,17 +72,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:ellipsize="end"
-                android:maxLines="2"
-                android:textColor="@color/colorTextSecondary"
-                android:textSize="12sp"
+                android:maxLines="1"
+                android:textColor="@color/design_text_muted"
+                android:textSize="13sp"
                 tools:text="Open the target app and complete the next steps automatically…" />
 
             <TextView
                 android:id="@+id/tvSessionTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
-                android:textColor="@color/text_white_60"
+                android:layout_marginTop="6dp"
+                android:textColor="@color/design_text_muted_secondary"
                 android:textSize="11sp"
                 android:visibility="gone"
                 tools:text="5 min ago"
@@ -93,12 +93,12 @@
             android:id="@+id/btnSessionMore"
             android:layout_width="44dp"
             android:layout_height="44dp"
-            android:layout_marginStart="4dp"
-            android:background="@drawable/agent_menu_btn_bg"
+            android:layout_marginStart="2dp"
+            android:background="@drawable/bg_agent_drawer_icon_button"
             android:contentDescription="@string/agent_more_actions"
             android:padding="12dp"
             android:src="@drawable/ic_more_vertical"
-            app:tint="@color/colorTextSecondary" />
+            app:tint="@color/design_text_muted" />
     </LinearLayout>
 
 </FrameLayout>

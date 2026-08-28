@@ -79,11 +79,6 @@
                 android:textStyle="bold"
                 tools:text="发现" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
             <LinearLayout
                 android:id="@+id/layout_toolbar_agent_actions"
                 android:layout_width="wrap_content"
@@ -120,6 +115,11 @@
                     app:tint="@color/design_text_tertiary" />
             </LinearLayout>
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
             <LinearLayout
                 android:id="@+id/layout_toolbar_a11y"
                 android:layout_width="wrap_content"
@@ -150,6 +150,18 @@
                     android:textSize="@dimen/design_font_sm"
                     android:textStyle="bold" />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_toolbar_agent_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/design_spacing_3"
+                android:text="@string/design_nav_agent"
+                android:textColor="@color/design_text_primary"
+                android:textSize="@dimen/design_toolbar_title_text"
+                android:textStyle="bold"
+                android:visibility="gone"
+                tools:visibility="visible" />
         </LinearLayout>
 
         <View

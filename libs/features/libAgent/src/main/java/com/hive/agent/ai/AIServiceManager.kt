@@ -338,7 +338,7 @@ class DefaultAIServiceManager(
     }
 
     override fun setInferenceModel(type: InferenceType, model: ModelInfo?) {
-        spTools.putString("ai_normal_model_${type.type}", model?.toJson())
+        spTools.putStringImmediately("ai_normal_model_${type.type}", model?.toJson())
     }
 
     override fun getInferenceModel(type: InferenceType): ModelInfo? {
