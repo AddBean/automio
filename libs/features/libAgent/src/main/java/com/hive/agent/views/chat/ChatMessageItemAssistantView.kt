@@ -98,8 +98,6 @@ class ChatMessageItemAssistantView(context: Context) : ListRecyclerItemView(cont
             if (imageAttachment != null) {
                 ImageLoader.getInstance().loadImage(context, messageImageView, imageAttachment.url)
             }
-            // 统一 finish 样式；思考反馈交给列表尾 loading
-            messageInfoLayout.setBackgroundResource(R.drawable.chat_message_finish_bg)
             statusIndicator.visibleOrGone(false)
         }
     }

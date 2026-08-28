@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingHorizontal="8dp"
+    android:paddingHorizontal="16dp"
     android:paddingVertical="4dp"
     tools:background="@color/colorPrimary">
 
@@ -13,7 +13,7 @@
         android:id="@+id/messageImageView"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="6dp"
+        android:layout_marginBottom="8dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:visibility="gone"
@@ -25,51 +25,54 @@
 
     <LinearLayout
         android:id="@+id/messageInfoLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/chat_message_assistant_bg"
         android:orientation="vertical">
 
-        <!-- 思考过程区域（可选） -->
+        <!-- 思考过程：无背景，左侧细线区分 -->
         <LinearLayout
             android:id="@+id/reasoningLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp"
             android:orientation="horizontal"
-            android:padding="12dp"
             android:visibility="gone"
             tools:visibility="visible">
 
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/bg_agent_chat_reasoning_bar" />
+
             <TextView
                 android:id="@+id/reasoningTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:lineSpacingExtra="2dp"
-                android:textColor="@color/design_text_slate_400"
-                android:textSize="13sp"
-                tools:text="------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" />
+                android:layout_weight="1"
+                android:lineSpacingExtra="3dp"
+                android:textColor="@color/text_white_60"
+                android:textSize="12sp"
+                tools:text="Thinking process..." />
         </LinearLayout>
 
         <TextView
             android:id="@+id/tvMessage"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lineSpacingExtra="2dp"
-            android:padding="12dp"
-            android:textColor="@color/design_text_slate_300"
+            android:lineSpacingExtra="4dp"
+            android:textColor="@color/design_text_slate_200"
             android:textIsSelectable="true"
-            android:textSize="13sp"
-            tools:text="------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" />
+            android:textSize="15sp"
+            tools:text="Assistant reply without bubble background." />
     </LinearLayout>
-
 
     <com.wang.avi.AVLoadingIndicatorView
         android:id="@+id/statusIndicator"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
         android:visibility="gone"
         app:indicatorColor="@color/colorAccent"
         app:indicatorName="BallBeatIndicator" />
-</LinearLayout> 
+</LinearLayout>

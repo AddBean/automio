@@ -4,11 +4,12 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="horizontal"
-    android:padding="12dp">
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="6dp">
 
     <ImageView
-        android:layout_width="16dp"
-        android:layout_height="16dp"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
         android:layout_marginEnd="6dp"
         android:src="@drawable/ic_tool"
         android:tint="@color/colorAccent" />
@@ -17,7 +18,7 @@
         android:id="@+id/tvCompressing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/text_white_60"
         android:textSize="12sp" />
 
 </LinearLayout>
