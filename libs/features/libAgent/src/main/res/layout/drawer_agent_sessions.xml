@@ -98,7 +98,7 @@
             android:id="@+id/tvRunningHint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:compoundDrawablePadding="8dp"
+            android:drawablePadding="8dp"
             android:drawableStart="@drawable/ic_tool"
             android:drawableTint="@color/color_white"
             android:gravity="center_vertical"
