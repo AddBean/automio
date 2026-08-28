@@ -42,6 +42,9 @@
     <string name="agent_session_delete_confirm_title">Delete this chat?</string>
     <string name="agent_session_delete_confirm_message">This will remove the chat from this device. This action can’t be undone.</string>
     <string name="agent_session_count_format">%d chats</string>
+    <string name="agent_session_current">Current</string>
+    <string name="agent_session_close_history">Close chat history</string>
+    <string name="agent_more_actions">More actions</string>
     <string name="agent_session_convert">Convert to workflow</string>
     <string name="agent_session_convert_confirm_title">Convert to workflow?</string>
     <string name="agent_session_convert_confirm_message">This history item will be converted into a workflow automatically. After the conversion, the app will jump to the Workflow tab on the Resource page.</string>

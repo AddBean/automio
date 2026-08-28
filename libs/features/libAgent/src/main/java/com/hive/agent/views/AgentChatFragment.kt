@@ -30,7 +30,7 @@ import com.hive.agent.views.chat.AgentToolDetailBottomSheet
 import com.hive.agent.views.chat.ChatInputAsrProviderImpl
 import com.hive.agent.views.provider.ActivityAgentSelector
 import com.hive.agent.views.provider.ActivityAgentSetting
-import com.hive.agent.views.session.AgentSessionListBottomSheet
+import com.hive.agent.views.session.AgentSessionDrawerDialog
 import com.hive.event.AgentEvent
 import com.hive.event.AgentEventType
 import com.hive.plugin.ComponentManager
@@ -668,15 +668,15 @@ class AgentChatFragment : PagerFragment() {
 
     fun showSessionHistory() {
         flushSessionSave()
-        val sheet = AgentSessionListBottomSheet()
-        sheet.apply {
+        val drawer = AgentSessionDrawerDialog()
+        drawer.apply {
             isAgentRunning = taskBridge.currentTaskId != null
             currentSessionKey = this@AgentChatFragment.sessionController.currentSessionKey
             onSessionSelected = { sessionKey ->
                 if (sessionKey == null) {
                     startNewConversation()
                 } else {
-                    // 先关闭 BottomSheet，再在协程中 loading → 加载 → 主线程刷新
+                    // 先关闭抽屉，再在协程中 loading → 加载 → 主线程刷新
                     switchToSessionAsync(sessionKey)
                 }
             }
@@ -711,7 +711,7 @@ class AgentChatFragment : PagerFragment() {
                                     getString(com.hive.i8n.R.string.agent_session_convert_success),
                                     Toast.LENGTH_SHORT
                                 ).show()
-                                sheet.dismiss()
+                                drawer.dismiss()
                                 navigateToWorkflowTab()
                             }
                         }
@@ -731,7 +731,7 @@ class AgentChatFragment : PagerFragment() {
                 }
             }
         }
-        sheet.show(parentFragmentManager, AgentSessionListBottomSheet::class.java.simpleName)
+        drawer.show(parentFragmentManager, AgentSessionDrawerDialog::class.java.simpleName)
     }
 
     /**

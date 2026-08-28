@@ -95,28 +95,28 @@
                 tools:visibility="visible">
 
                 <ImageView
-                    android:id="@+id/btn_toolbar_agent_new_task"
-                    android:layout_width="@dimen/design_toolbar_icon_btn_size"
-                    android:layout_height="@dimen/design_toolbar_icon_btn_size"
-                    android:background="@drawable/floating_chat_btn_bg"
-                    android:clickable="true"
-                    android:contentDescription="@string/agent_menu_new_task"
-                    android:focusable="true"
-                    android:padding="10dp"
-                    android:src="@drawable/ic_menu_add"
-                    app:tint="@color/design_text_tertiary" />
-
-                <ImageView
                     android:id="@+id/btn_toolbar_agent_history"
                     android:layout_width="@dimen/design_toolbar_icon_btn_size"
                     android:layout_height="@dimen/design_toolbar_icon_btn_size"
-                    android:layout_marginStart="8dp"
                     android:background="@drawable/floating_chat_btn_bg"
                     android:clickable="true"
                     android:contentDescription="@string/agent_menu_history"
                     android:focusable="true"
                     android:padding="10dp"
                     android:src="@drawable/ic_menu_history"
+                    app:tint="@color/design_text_tertiary" />
+
+                <ImageView
+                    android:id="@+id/btn_toolbar_agent_new_task"
+                    android:layout_width="@dimen/design_toolbar_icon_btn_size"
+                    android:layout_height="@dimen/design_toolbar_icon_btn_size"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/floating_chat_btn_bg"
+                    android:clickable="true"
+                    android:contentDescription="@string/agent_menu_new_task"
+                    android:focusable="true"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_menu_add"
                     app:tint="@color/design_text_tertiary" />
             </LinearLayout>
 

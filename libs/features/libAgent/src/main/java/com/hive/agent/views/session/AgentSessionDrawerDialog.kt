@@ -4,16 +4,18 @@
 package com.hive.agent.views.session
 
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.graphics.drawable.toDrawable
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.hive.agent.R
 import com.hive.agent.storage.AgentSessionStorage
 import com.hive.agent.storage.SessionMeta
@@ -26,10 +28,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 /**
- * 会话列表 BottomSheet：展示历史会话，支持「新建对话」与点击切换会话。
+ * 从左侧弹出的会话历史抽屉，支持「新建对话」与点击切换会话。
  * 选中会话或新建时通过 onSessionSelected 回调通知 Fragment。
  */
-class AgentSessionListBottomSheet : BottomSheetDialogFragment() {
+class AgentSessionDrawerDialog : DialogFragment() {
 
     var onSessionSelected: ((sessionKey: String?) -> Unit)? = null
     /** 当在历史列表中删除某条会话时回调，便于外部在删除的是当前会话时清空界面 */
@@ -51,14 +53,28 @@ class AgentSessionListBottomSheet : BottomSheetDialogFragment() {
     private var tvRunningHint: TextView? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.bottom_sheet_agent_sessions, container, false)
+        return inflater.inflate(R.layout.drawer_agent_sessions, container, false)
     }
 
     override fun onStart() {
         super.onStart()
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
-            ?.setBackgroundColor(Color.TRANSPARENT)
+        val window = dialog?.window ?: return
+        val metrics = resources.displayMetrics
+        val maxWidth = (384 * metrics.density).toInt()
+        val drawerWidth = (metrics.widthPixels * 0.88f).toInt().coerceAtMost(maxWidth)
+        window.apply {
+            setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
+            setDimAmount(0.52f)
+            addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+            setGravity(Gravity.START)
+            setLayout(drawerWidth, WindowManager.LayoutParams.MATCH_PARENT)
+            attributes = attributes.apply {
+                width = drawerWidth
+                height = WindowManager.LayoutParams.MATCH_PARENT
+                gravity = Gravity.START
+                windowAnimations = R.style.AgentSessionDrawerAnimation
+            }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -69,6 +85,8 @@ class AgentSessionListBottomSheet : BottomSheetDialogFragment() {
         view.findViewById<TextView>(R.id.tvSessionListTitle)?.text = getString(com.hive.i8n.R.string.agent_session_history)
         tvSubtitle = view.findViewById(R.id.tvSessionListSubtitle)
         tvSubtitle?.text = ""
+
+        view.findViewById<View>(R.id.btnCloseDrawer)?.setOnClickListener { dismiss() }
 
         view.findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btnNewSession)?.apply {
             text = getString(com.hive.i8n.R.string.agent_session_new)

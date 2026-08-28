@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutSessionDrawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_agent_session_drawer"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:paddingTop="12dp"
+    android:paddingBottom="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="12dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minWidth="0dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvSessionListTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:letterSpacing="0.01"
+                android:maxLines="1"
+                android:textColor="@android:color/white"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                tools:text="History" />
+
+            <TextView
+                android:id="@+id/tvSessionListSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/text_white_60"
+                android:textSize="12sp"
+                tools:text="12 chats" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnCloseDrawer"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@drawable/agent_menu_btn_bg"
+            android:contentDescription="@string/agent_session_close_history"
+            android:padding="13dp"
+            android:src="@drawable/ic_status_close" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnNewSession"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bg_agent_primary_pill"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        tools:text="New chat" />
+
+    <com.hive.views.widgets.UIRoundCornerFrameLayout
+        android:id="@+id/layoutRunningHint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/colorAccentAf"
+        android:paddingStart="12dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="10dp"
+        android:visibility="gone"
+        app:rcv_borderColor="@color/colorAccent"
+        app:rcv_borderWidth="1dp"
+        app:rcv_radius="12dp">
+
+        <TextView
+            android:id="@+id/tvRunningHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:compoundDrawablePadding="8dp"
+            android:drawableStart="@drawable/ic_tool"
+            android:drawableTint="@color/color_white"
+            android:gravity="center_vertical"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="12sp" />
+    </com.hive.views.widgets.UIRoundCornerFrameLayout>
+
+    <com.hive.views.list_view.ListRecyclerView
+        android:id="@+id/listSessions"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingStart="12dp"
+        android:paddingTop="2dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="16dp" />
+
+    <LinearLayout
+        android:id="@+id/layoutEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="64dp"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <com.hive.views.widgets.UIRoundCornerFrameLayout
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@color/colorPrimaryLight02"
+            app:rcv_borderColor="@color/colorAccent"
+            app:rcv_borderWidth="1dp"
+            app:rcv_radius="28dp">
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_empty"
+                app:tint="@color/colorAccent" />
+        </com.hive.views.widgets.UIRoundCornerFrameLayout>
+
+        <TextView
+            android:id="@+id/tvEmptyTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvEmptyDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:lineSpacingExtra="3dp"
+            android:textColor="@color/text_white_60"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+</LinearLayout>

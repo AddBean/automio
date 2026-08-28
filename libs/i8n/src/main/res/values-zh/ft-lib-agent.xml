@@ -120,6 +120,9 @@
     <string name="agent_session_delete_confirm_title">删除这条对话？</string>
     <string name="agent_session_delete_confirm_message">该对话将从本机移除，且无法恢复。</string>
     <string name="agent_session_count_format">共 %d 条</string>
+    <string name="agent_session_current">当前</string>
+    <string name="agent_session_close_history">关闭历史记录</string>
+    <string name="agent_more_actions">更多操作</string>
     <string name="agent_session_convert">转为工作流</string>
     <string name="agent_session_convert_confirm_title">转为工作流？</string>
     <string name="agent_session_convert_confirm_message">该历史记录会自动转换为工作流。转换完成后，将自动跳转到资源页的工作流标签。</string>

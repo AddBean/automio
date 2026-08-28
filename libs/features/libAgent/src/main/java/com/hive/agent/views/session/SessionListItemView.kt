@@ -7,6 +7,7 @@ import android.content.Context
 import android.text.format.DateUtils
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.widget.PopupMenu
 import com.hive.agent.R
 import com.hive.views.list_view.ListRecyclerItemView
 import java.text.SimpleDateFormat
@@ -32,8 +33,7 @@ class SessionListItemView(
     private lateinit var tvSessionTime: TextView
     private lateinit var viewCurrentIndicator: View
     private lateinit var itemRoot: View
-    private lateinit var btnConvertWrapper: View
-    private lateinit var btnDeleteWrapper: View
+    private lateinit var btnMore: View
 
     init {
         inflate(context, R.layout.item_agent_session, this)
@@ -42,12 +42,10 @@ class SessionListItemView(
         tvSessionPreview = findViewById(R.id.tvSessionPreview)
         tvSessionTime = findViewById(R.id.tvSessionTime)
         viewCurrentIndicator = findViewById(R.id.viewCurrentIndicator)
-        btnConvertWrapper = findViewById(R.id.btnConvertWrapper)
-        btnDeleteWrapper = findViewById(R.id.btnDeleteWrapper)
+        btnMore = findViewById(R.id.btnSessionMore)
 
         itemRoot.setOnClickListener { postEvent("select") }
-        btnConvertWrapper.setOnClickListener { postEvent("convert") }
-        btnDeleteWrapper.setOnClickListener { postEvent("delete") }
+        btnMore.setOnClickListener { anchor -> showActions(anchor) }
     }
 
     override fun bindData(data: Any?) {
@@ -60,14 +58,27 @@ class SessionListItemView(
 
         val isCurrent = currentSessionKey != null && currentSessionKey == meta.sessionKey
         viewCurrentIndicator.visibility = if (isCurrent) View.VISIBLE else View.GONE
+        itemRoot.isSelected = isCurrent
 
         val enabled = !isAgentRunning
         itemRoot.isEnabled = enabled
         itemRoot.alpha = if (enabled) 1f else 0.55f
-        btnConvertWrapper.isEnabled = enabled
-        btnConvertWrapper.alpha = if (enabled) 1f else 0.55f
-        btnDeleteWrapper.isEnabled = enabled
-        btnDeleteWrapper.alpha = if (enabled) 1f else 0.55f
+        btnMore.isEnabled = enabled
+        btnMore.alpha = if (enabled) 1f else 0.45f
+    }
+
+    private fun showActions(anchor: View) {
+        PopupMenu(context, anchor).apply {
+            menu.add(com.hive.i8n.R.string.agent_session_convert).setOnMenuItemClickListener {
+                postEvent("convert")
+                true
+            }
+            menu.add(com.hive.i8n.R.string.agent_session_delete).setOnMenuItemClickListener {
+                postEvent("delete")
+                true
+            }
+            show()
+        }
     }
 
     /**

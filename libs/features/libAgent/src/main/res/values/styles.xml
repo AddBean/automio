@@ -13,4 +13,9 @@
         <item name="android:windowEnterAnimation">@anim/popup_menu_enter</item>
         <item name="android:windowExitAnimation">@anim/popup_menu_exit</item>
     </style>
+
+    <style name="AgentSessionDrawerAnimation">
+        <item name="android:windowEnterAnimation">@anim/agent_drawer_enter</item>
+        <item name="android:windowExitAnimation">@anim/agent_drawer_exit</item>
+    </style>
 </resources>
