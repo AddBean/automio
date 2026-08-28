@@ -45,12 +45,6 @@ android {
     }
 }
 
-repositories {
-    flatDir {
-        dirs 'libs'
-    }
-}
-
 dependencies {
     compileOnly(fileTree(dir: 'src/main/libs', include: ['*.jar']))
     implementation rootProject.ext.publicDependencies.kotlin

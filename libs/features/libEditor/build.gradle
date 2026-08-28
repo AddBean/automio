@@ -45,12 +45,6 @@ android {
     }
 }
 
-repositories {
-    flatDir {
-        dirs 'libs'
-    }
-}
-
 dependencies {
     implementation rootProject.ext.publicDependencies.markwonCore
     implementation rootProject.ext.publicDependencies.markwonHtml

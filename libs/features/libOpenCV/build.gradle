@@ -91,12 +91,6 @@ android {
     }
 }
 
-repositories {
-    flatDir {
-        dirs './libs'
-    }
-}
-
 dependencies {
     // OpenCV 4.12.0 - 支持 Android 16+ 的 16KB 页面大小
     // 从 Maven Central 获取，Native 库已支持 16KB 页面对齐
