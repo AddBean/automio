@@ -277,9 +277,19 @@ class AgentChatFragment : PagerFragment() {
         maybePromptAgentEnv()
     }
 
+    /** Agent 服务异步初始化完成后，恢复冷启动前已保存的模型状态。 */
+    fun onAgentServiceReady() {
+        if (chatInputContainer == null) return
+        updateModelSelectorState()
+        maybePromptAgentEnv()
+    }
+
     /** 进入对话页时，若未配置可用大模型（或无障碍），主动弹出设置提醒 */
     private fun maybePromptAgentEnv() {
         if (hasPromptedAgentEnv || view == null) return
+        val manager = xAgent.getAIServiceManager() ?: return
+        // 冷启动阶段 Provider 尚未注册不等于用户未配置，等待服务启动事件后再检查。
+        if (manager.getProviderList().isEmpty()) return
         view?.post {
             if (!isAdded || view == null || hasPromptedAgentEnv) return@post
             try {

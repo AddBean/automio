@@ -4,6 +4,7 @@
 package com.hive.agent.views.session
 
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -54,10 +55,16 @@ class AgentSessionDrawerDialog : DialogFragment() {
     private var tvSubtitle: TextView? = null
     private var layoutRunningHint: TextView? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(STYLE_NO_FRAME, R.style.AgentSessionDrawerDialog)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.drawer_agent_sessions, container, false)
     }
 
+    @Suppress("DEPRECATION")
     override fun onStart() {
         super.onStart()
         val window = dialog?.window ?: return
@@ -66,8 +73,19 @@ class AgentSessionDrawerDialog : DialogFragment() {
         val drawerWidth = (metrics.widthPixels * 0.84f).toInt().coerceAtMost(maxWidth)
         window.apply {
             WindowCompat.setDecorFitsSystemWindows(this, false)
+            clearFlags(
+                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS or
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
+            )
+            addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            statusBarColor = Color.TRANSPARENT
+            navigationBarColor = Color.TRANSPARENT
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                isStatusBarContrastEnforced = false
+                isNavigationBarContrastEnforced = false
+            }
             setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
-            setDimAmount(0.56f)
+            setDimAmount(0.48f)
             addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
             setGravity(Gravity.START)
             setLayout(drawerWidth, WindowManager.LayoutParams.MATCH_PARENT)

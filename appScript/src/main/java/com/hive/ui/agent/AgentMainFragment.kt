@@ -67,11 +67,16 @@ class AgentMainFragment : BaseFragment(), IAgentStateObserver {
     @Subscribe(threadMode = org.greenrobot.eventbus.ThreadMode.MAIN)
     fun onAgentEvent(event: AgentEvent) {
         when (event.type) {
+            AgentEventType.AGENT_SERVICE_START -> {
+                chatFragment?.onAgentServiceReady()
+            }
+
             AgentEventType.AGENT_SERVICE_MCP_REGISTERED -> {
                 val agentProvider = ComponentManager.getInstance()
                     .getProvider(IAgentProvider::class.java) as? IAgentProvider
                 agentProvider?.registerAgentStateObserver(this)
                 chatFragment?.setupAgentObservers()
+                chatFragment?.onAgentServiceReady()
             }
 
             AgentEventType.AGENT_CHAT_FRAGMENT_READY -> {
