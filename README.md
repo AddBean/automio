@@ -1,17 +1,25 @@
 # Automio
 
+<p align="center">
+  <a href="https://github.com/AddBean/automio"><img src="https://img.shields.io/github/stars/AddBean/automio?style=flat" alt="GitHub stars"></a>
+  <a href="https://github.com/AddBean/automio/network/members"><img src="https://img.shields.io/github/forks/AddBean/automio?style=flat" alt="GitHub forks"></a>
+  <a href="https://github.com/AddBean/automio/issues"><img src="https://img.shields.io/github/issues/AddBean/automio?style=flat" alt="Issues"></a>
+  <a href="https://github.com/AddBean/automio"><img src="https://img.shields.io/github/license/AddBean/automio?style=flat" alt="License"></a>
+  <a href="https://github.com/AddBean/automio/commits"><img src="https://img.shields.io/github/last-commit/AddBean/automio?style=flat" alt="Last commit"></a>
+</p>
+
 [中文](README.md) | [English](README_EN.md)
 
 **Automio：让 AI 真正在你的 Android 手机上动手干活**
 
-Automio 是跑在 Android 上的 **全功能手机 Agent**：一边用大模型理解你的意图，一边用真实设备能力（点屏幕、识字、找图、开应用、跑脚本）把事情做完。  
+Automio 是跑在 Android 上的 **全功能手机 Agent**：一边用大模型理解你的意图，一边用真实设备能力（点屏幕、识字、找图、开应用、跑脚本）把事情做�[...]
 它不只是聊天框，也不是一次性脚本录制——**能力边界可以自己往外扩**：
 
 - 用 **Skill** 扩展「会什么」
 - 用 **固定工作流** 扩展「怎么稳定干」
 - 用 **可视化 / DSL 编辑器** 把复杂流程固化下来，下次人或 AI 直接调用
 
-**不需要 Root，不需要 Xposed / LSPosed。** 权限按功能收敛、用到再动态申请，任意品牌手机都能装、都能跑。AI 配好 Key 就能上线；不配 AI 时，固定工作流照样离线执行。
+**不需要 Root，不需要 Xposed / LSPosed。** 权限按功能收敛、用到再动态申请，任意品牌手机都能装、都能跑。AI 配好 Key 就能上线；不配 AI 时，固定工�[...] 
 
 ---
 
@@ -34,23 +42,23 @@ Automio 是跑在 Android 上的 **全功能手机 Agent**：一边用大模型�
 你要持续维护一套步骤很多、但逻辑高度固定的任务（比如：打开某 App → 翻到指定页 → 找按钮 → 填表 → 确认 → 截图存档）。  
 → 用工作流编辑器搭好 **固定工作流**，本地一键跑或闹钟定时跑，**不联网、不烧 Token**。
 
-**2. 固化完，再「教给」AI**  
+**2. 固化完，再「教给」AI**
 同上那个工作流跑稳了，不想每次还在对话里从头指挥。  
 → 发布成 **AI Skill / Tool**。下次你说「跑一下上周那个归档流程」，Agent **直接调用**，不用再逐步点。
 
-**3. 偶发、难固定的事，交给 Agent 临场发挥**  
+**3. 偶发、难固定的事，交给 Agent 临场发挥**
 「看看通知里有没有快递，打开对应 App 把取件码读出来」。  
 → 走 **对话 Agent**：看屏、识字、点控件，多步试到做完。固定不了的用智能；固定得了的用工作流。
 
-**4. 团队 / 自己多机复用**  
+**4. 团队 / 自己多机复用**
 流程在 A 手机调通。  
 → 导出 `.zip` **资源包**（工作流 + 依赖 Skill / Tool + 权限声明），B 手机导入就能用。没有商场，也能分发。
 
-**5. 流程里夹计算、夹脚本**  
+**5. 流程里夹计算、夹脚本**
 采集完一堆数据要算、要写文件。  
 → 工作流步骤里嵌 **Python**，算完再回到点击 / 上传步骤。
 
-**6. 电脑 Agent 调用手机**  
+**6. 电脑 Agent 调用手机**
 电脑上的 Coding Agent 需要「帮我在手机上打开某某并截一张图」。  
 → 打开 **本机 MCP**，手机侧工具对外暴露，远程按协议调用。
 
@@ -111,7 +119,7 @@ Automio 是跑在 Android 上的 **全功能手机 Agent**：一边用大模型�
 
 ## 和常见方案比，强在哪
 
-市面上几类产品各占一头，很少能同时做到：**真能干活、能固化复用、能给 AI 调用、能离线跑、还能免 Root 装任意手机**。Automio 的差异不在「多一个聊天框」，而在把这几件事接成同一条能力链。
+市面上几类产品各占一头，很少能同时做到：**真能干活、能固化复用、能给 AI 调用、能离线跑、还能免 Root 装任意手机**。Automio 的差异不在「多��[...] 
 
 ### 总表对照
 
@@ -139,9 +147,9 @@ Automio 是跑在 Android 上的 **全功能手机 Agent**：一边用大模型�
 - **改版就炸**：纯坐标录制，UI 一挪就挂；找图能力弱或编辑成本高  
 - **难维护**：长流程是一坨脚本，缺少可视化编排、子流程、Skill 化封装  
 - **和 AI 断开**：跑通了也无法「教给」大模型，下次对话还要从头指挥  
-- **分发粗糙**：拷文件容易丢图包、丢依赖，对方环境对不齐  
+- **分发粗糙**：拷文件容易丢图包、丢依赖，对方环境对不齐
 
-**Automio：** 用找图 / OCR / 控件降低改版成本；用编辑器把复杂任务拆成可维护工作流；跑稳后 **一键发布成 Skill**，Agent 下次直接调用；用 bundle 打包依赖，导入即可用。  
+**Automio：** 用找图 / OCR / 控件降低改版成本；用编辑器把复杂任务拆成可维护工作流；跑稳后 **一键发布成 Skill**，Agent 下次直接调用；用 bundle 打��[...] 
 **适合你的信号：** 任务高度重复、步骤多、要长期维护——先固化，再按需接 AI。
 
 #### 2. 相对「只会聊天的 App Agent（沙盒里的龙虾）」
@@ -150,9 +158,9 @@ Automio 是跑在 Android 上的 **全功能手机 Agent**：一边用大模型�
 
 - **伸不出手**：进不了第三方 App 真实界面，或只能给建议不能代点  
 - **每件事都烧 Token**：没有「固定流程离线跑」这条路，简单重复也要问模型  
-- **能力边界封死**：用户很难自己加一种「稳定可复用的干活方式」  
+- **能力边界封死**：用户很难自己加一种「稳定可复用的干活方式」
 
-**Automio：** Agent 能看屏、点控件、读文字；更重要的是——**重复的事不必每次问 AI**，做成工作流离线跑；偶发、难固定的再交给对话。智能用在刀刃上。  
+**Automio：** Agent 能看屏、点控件、读文字；更重要的是——**重复的事不必每次问 AI**，做成工作流离线跑；偶发、难固定的再交给对话。智能用在��[...] 
 **适合你的信号：** 既要能聊着把事办了，又要有一批「不用每次解释」的固定本事。
 
 #### 3. 相对「厂商手机助手」
@@ -161,7 +169,7 @@ Automio 是跑在 Android 上的 **全功能手机 Agent**：一边用大模型�
 
 - **生态绑死**：模型、数据、可操作范围由厂商定，难 BYOK、难自定义工具链  
 - **跨 App / 跨场景受限**：商业关系与合规会卡住「替你乱点」的边界  
-- **你无法把私活沉淀成可分享资产**：流程属于系统，不属于你的可导出资源  
+- **你无法把私活沉淀成可分享资产**：流程属于系统，不属于你的可导出资源
 
 **Automio：** 第三方路线——**你选模型、你建工作流、你导出 bundle**；不预装、不绑账号商场，能力跟你的资源走。  
 **适合你的信号：** 要可控、可迁移、可自建工具，而不是「用厂商给你的那一版助手」。
@@ -172,9 +180,9 @@ Automio 是跑在 Android 上的 **全功能手机 Agent**：一边用大模型�
 
 - **门槛高**：Root、框架、作用域、ROM 适配，普通用户和多数机器直接劝退  
 - **脆**：系统或目标 App 大版本一更，Hook 可能整片失效  
-- **风险与审核观感重**：企业机、支付环境、银行类场景往往不能开 Root  
+- **风险与审核观感重**：企业机、支付环境、银行类场景往往不能开 Root
 
-**Automio：** 主动选择 **正规权限路径**——无障碍 + 截屏 + 动态授权，换来的是 **任意手机可装、可过日常使用环境、可长期维护**。不和 Root 方案比「谁更能掏微信数据库」，比的是「谁能让大多数人把复杂自动化真正用起来，还能越用越扩」。  
+**Automio：** 主动选择 **正规权限路径**——无障碍 + 截屏 + 动态授权，换来的是 **任意手机可装、可过日常使用环境、可长期维护**。不和 Root 方案��[...] 
 **适合你的信号：** 要覆盖同事 / 用户的多种机型，不能要求每人 Root。
 
 #### 5. 相对「电脑 RPA / 把 Coding Agent 塞进手机」
@@ -183,9 +191,9 @@ Automio 是跑在 Android 上的 **全功能手机 Agent**：一边用大模型�
 
 - **环境不对**：没有完整桌面、没有稳定的第三方 App API，最后仍要回归点屏幕  
 - **工程重**：连接器、中控、账号体系，个人和小团队养不起  
-- **手机侧缺「可发布的本地资产」**：流程难变成口袋里的 Skill / bundle  
+- **手机侧缺「可发布的本地资产」**：流程难变成口袋里的 Skill / bundle
 
-**Automio：** 专为手机 UI 自动化设计（找图、OCR、无障碍节点），再叠 Agent、MCP、本地资源包；电脑端若需要，还可通过 **本机 MCP** 把手机当成工具节点调用。  
+**Automio：** 专为手机 UI 自动化设计（找图、OCR、无障碍节点），再叠 Agent、MCP、本地资源包；电脑端若需要，还可通过 **本机 MCP** 把手机当成工具�[...] 
 **适合你的信号：** 战场在手机 App 界面，而不是在服务器或 IDE 里。
 
 ### 一张图看选择逻辑
@@ -208,7 +216,7 @@ Automio 是跑在 Android 上的 **全功能手机 Agent**：一边用大模型�
 ## 环境与构建
 
 - JDK 17、Android SDK 36  
-- 包名：`com.agent.automio`
+- 包名：`com.agent.automio`  
 - **预编译 APK**：到 [GitHub Releases](https://github.com/AddBean/automio/releases) 下载（推送 `v*` tag 会自动构建并上传）
 
 ```bash
@@ -233,7 +241,7 @@ git tag v1.0.0 && git push origin v1.0.0
 
 1. 安装 APK，在权限中心按提示授予无障碍等权限  
 2. （可选）「设置 → 更多设置 → 模型管理」配置 AI；需要语音时再配「语音服务」  
-3. 新建工作流，或导入 `.zip`；要对话就开 Agent，要稳定就跑固定流程  
+3. 新建工作流，或导入 `.zip`；要对话就开 Agent，要稳定就跑固定流程
 
 ### 配置说明（AI / 语音 / MCP）
 
@@ -275,7 +283,7 @@ automio.msSpeechRegion=eastasia
 
 - 依赖无障碍与截屏质量；部分加固应用 / 游戏引擎界面可能不好认  
 - 无账号体系、无官方商场与云同步；分发靠本地 bundle  
-- Python / OpenCV 等会使 APK 更大、编译更慢  
+- Python / OpenCV 等会使 APK 更大、编译更慢
 
 ---
 
@@ -283,4 +291,4 @@ automio.msSpeechRegion=eastasia
 
 MIT License，见 [LICENSE](LICENSE)。第三方说明见 [NOTICE](NOTICE)。
 
-个人学习、研究与非商业使用可直接按 MIT 条款使用。若计划将 Automio 用于**商业产品或商业服务**，欢迎先联系作者 **jiadou**（可通过本仓库 [Issues](https://github.com/AddBean/automio/issues)）沟通合作或授权事宜。
+个人学习、研究与非商业使用可直接按 MIT 条款使用。若计划将 Automio 用于**商业产品或商业服务**，欢迎先联系作者 **jiadou**（可通过本仓库 [Issues]([...]
