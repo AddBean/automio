@@ -194,7 +194,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:background="@drawable/tool_result_bg"
-                        android:fontFamily="monospace"
                         android:lineSpacingExtra="2dp"
                         android:padding="12dp"
                         android:textColor="@color/design_text_slate_300"

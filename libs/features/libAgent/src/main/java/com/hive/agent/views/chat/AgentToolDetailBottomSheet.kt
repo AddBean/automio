@@ -15,7 +15,9 @@ import android.widget.TextView
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.hive.agent.R
+import com.hive.plugin.ComponentManager
 import com.hive.plugin.agent.model.ChatMessage
+import com.hive.plugin.provider.IEditorProvider
 import com.hive.utils.GlobalApp
 import com.hive.utils.extends.gone
 import com.hive.utils.extends.jsonToListView
@@ -95,13 +97,24 @@ class AgentToolDetailBottomSheet : BottomSheetDialogFragment() {
         }
 
         val result = msg.toolCallResult
-        tvResult.text = if (result.isNullOrEmpty()) {
+        val resultText = if (result.isNullOrEmpty()) {
             GlobalApp.getString(com.hive.i8n.R.string.agent_tool_executing)
         } else {
             result.jsonToListView()
         }
+        renderResultMarkdown(tvResult, resultText)
 
         bindImages(layoutImagesSection, layoutToolImages, msg)
+    }
+
+    private fun renderResultMarkdown(textView: TextView, markdown: String) {
+        val editorProvider = ComponentManager.getInstance()
+            .getProvider(IEditorProvider::class.java) as? IEditorProvider
+        if (editorProvider != null) {
+            editorProvider.renderMarkdown(textView, markdown)
+        } else {
+            textView.text = markdown
+        }
     }
 
     private fun bindImages(
