@@ -15,7 +15,6 @@ import com.hive.script.R
 import com.hive.script.views.widgets.BaseScriptTips
 import com.hive.utils.GlobalApp
 import com.hive.utils.extends.dp
-import com.hive.utils.system.SystemProperty
 import com.hive.views.widgets.VoiceWaveformView
 import kotlin.math.abs
 import kotlin.math.sin
@@ -89,7 +88,8 @@ class ScriptVoiceInteractTipView(context: Context) : BaseScriptTips(context) {
     override fun getHeightByOrientation(): Int = FrameLayout.LayoutParams.WRAP_CONTENT
 
     override fun getMarginParams(): Array<Int> {
-        return arrayOf(20.dp, 8.dp, 20.dp, 0)
+        val base = super.getMarginParams()
+        return arrayOf(20.dp, base[1], 20.dp, base[3])
     }
 
     fun setDialogTitle(title: String): ScriptVoiceInteractTipView {

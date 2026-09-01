@@ -90,6 +90,10 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
                 instance?.setTouchPassthrough(false)
             }
         }
+
+        /** 与 TopView 浮窗一致的屏幕顶边 Y，供顶部 Tips 弹窗对齐并遮住 TopView。 */
+        fun getWindowTopY(): Int =
+            if (GlobalApp.isLandscape()) 8.dp else SystemProperty.getStatusBarHeight(GlobalApp.getContext())
     }
 
     // UI组件

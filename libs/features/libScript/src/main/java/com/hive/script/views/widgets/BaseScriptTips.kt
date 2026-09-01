@@ -27,12 +27,12 @@ import com.hive.extension.visibleOrGone
 import com.hive.plugin.ComponentManager
 import com.hive.plugin.provider.IEditorProvider
 import com.hive.script.R
+import com.hive.script.views.agent.ScriptAgentTopView
 import com.hive.utils.GlobalApp
 import com.hive.utils.extends.isLandscape
 import com.hive.utils.system.ClipboardUtil
-import com.hive.utils.system.SystemProperty
 import com.hive.views.widgets.CommonToast
-import com.hive.views.view_manager.HiveViewManagerOfAccessibility
+import android.view.ViewGroup
 
 
 open class BaseScriptTips(context: Context) : BaseScriptDialog(context) {
@@ -69,7 +69,15 @@ open class BaseScriptTips(context: Context) : BaseScriptDialog(context) {
         lp.flags =
             WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN or WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR or WindowManager.LayoutParams.FLAG_FULLSCREEN or WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         lp.format = PixelFormat.RGBA_8888
-        lp.gravity = Gravity.TOP or Gravity.START
+        lp.gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
+    }
+
+    private fun applyTopWindowOffset() {
+        layoutParamsNotFull.y = ScriptAgentTopView.getWindowTopY()
+        findViewById<FrameLayout>(R.id.layoutRoot)?.fitsSystemWindows = false
+        llCollapsedStatus?.let { bar ->
+            (bar.layoutParams as? ViewGroup.MarginLayoutParams)?.topMargin = 0
+        }
     }
 
     override fun initWindow() {
@@ -99,9 +107,17 @@ open class BaseScriptTips(context: Context) : BaseScriptDialog(context) {
         // 默认隐藏操作按钮
         btnAction?.visibility = View.GONE
 
+        applyTopWindowOffset()
         post {
+            applyTopWindowOffset()
             getViewManager()?.updateLayoutParams(layoutParamsNotFull)
         }
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration?) {
+        super.onConfigurationChanged(newConfig)
+        applyTopWindowOffset()
+        getViewManager()?.updateLayoutParams(layoutParamsNotFull)
     }
 
     private fun setupCollapseListeners() {
@@ -247,15 +263,7 @@ open class BaseScriptTips(context: Context) : BaseScriptDialog(context) {
         return this
     }
 
-    override fun getMarginParams() =
-        arrayOf(
-            0,
-            if (getViewManager() !is HiveViewManagerOfAccessibility) SystemProperty.getStatusBarHeight(
-                GlobalApp.getContext()
-            ) else 0,
-            0,
-            0
-        )
+    override fun getMarginParams() = arrayOf(0, 0, 0, 0)
 
     override fun getHeightByOrientation(): Int {
         return FrameLayout.LayoutParams.WRAP_CONTENT
