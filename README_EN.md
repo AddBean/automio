@@ -209,7 +209,7 @@ record → edit → run offline reliably → teach the AI → package & distribu
 
 - JDK 17, Android SDK 36  
 - Application id: `com.agent.automio`
-- **Prebuilt APK**: download from [GitHub Releases](https://github.com/AddBean/automio/releases) (pushing a `v*` tag builds and uploads automatically)
+- **Prebuilt APK**: download from [GitHub Releases](https://github.com/AddBean/automio/releases)
 
 ```bash
 ./gradlew :publish:zpublishScript:assembleDebug
@@ -221,12 +221,6 @@ APK output: `publish/zpublishScript/build/outputs/apk/`
 ./gradlew test
 ./gradlew :publish:zpublishScript:lintDebug
 ./gradlew scanI18n
-```
-
-Ship a release (CI signs with GitHub Secrets):
-
-```bash
-git tag v1.0.0 && git push origin v1.0.0
 ```
 
 ### Get started in three steps
