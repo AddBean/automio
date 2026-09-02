@@ -30,6 +30,11 @@ class AgentToolDetailBottomSheet : BottomSheetDialogFragment() {
 
     var message: ChatMessage? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(STYLE_NORMAL, R.style.AgentBottomSheetDialog)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -41,6 +46,8 @@ class AgentToolDetailBottomSheet : BottomSheetDialogFragment() {
     override fun onStart() {
         super.onStart()
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog?.window?.navigationBarColor =
+            requireContext().getColor(com.hive.i8n.R.color.design_bg_overlay)
         dialog?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
             ?.setBackgroundColor(Color.TRANSPARENT)
     }

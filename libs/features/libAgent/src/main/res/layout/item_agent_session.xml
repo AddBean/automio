@@ -43,10 +43,10 @@
                     android:layout_weight="1"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:textColor="@color/design_text_primary"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    tools:text="Create a daily check-in workflow" />
+            android:textColor="@color/design_text_primary"
+            android:textSize="@dimen/design_font_md"
+            android:textStyle="bold"
+            tools:text="Create a daily check-in workflow" />
 
                 <TextView
                     android:id="@+id/viewCurrentIndicator"
@@ -81,7 +81,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:textColor="@color/design_text_muted"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/design_font_sm"
                     tools:text="Open the target app and complete the next steps automatically…" />
 
                 <TextView
@@ -90,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:textColor="@color/design_text_muted_secondary"
-                    android:textSize="11sp"
+                    android:textSize="@dimen/design_font_xs"
                     android:visibility="gone"
                     tools:text="5 min ago"
                     tools:visibility="visible" />

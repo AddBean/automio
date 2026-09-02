@@ -5,18 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:background="#0E1014">
+    tools:background="@color/design_bg_overlay">
 
     <!-- Models -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:letterSpacing="0.04"
+        android:layout_marginBottom="@dimen/design_spacing_3"
+        android:letterSpacing="0.12"
         android:text="@string/agent_model_section_models"
         android:textAllCaps="true"
-        android:textColor="@color/design_text_slate_400"
-        android:textSize="10sp"
+        android:textColor="@color/design_text_muted"
+        android:textSize="@dimen/design_font_xs"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -54,8 +54,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/agent_normal_model"
-                    android:textColor="@android:color/white"
-                    android:textSize="15sp"
+                    android:textColor="@color/design_text_primary"
+                    android:textSize="@dimen/design_font_lg"
                     android:textStyle="bold" />
 
                 <TextView
@@ -67,7 +67,7 @@
                     android:maxLines="1"
                     android:text="@string/agent_settings_not_set"
                     android:textColor="@color/design_accent_rose"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/design_font_sm"
                     tools:text="GPT-4o" />
             </LinearLayout>
 
@@ -84,7 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/public_line_width"
             android:layout_marginHorizontal="14dp"
-            android:background="#1FFFFFFF" />
+            android:background="@color/design_profile_divider" />
 
         <LinearLayout
             android:id="@+id/rowMultimodalInference"
@@ -114,8 +114,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/agent_multimodal_model"
-                    android:textColor="@android:color/white"
-                    android:textSize="15sp"
+                    android:textColor="@color/design_text_primary"
+                    android:textSize="@dimen/design_font_lg"
                     android:textStyle="bold" />
 
                 <TextView
@@ -127,7 +127,7 @@
                     android:maxLines="1"
                     android:text="@string/agent_settings_not_set"
                     android:textColor="@color/design_accent_rose"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/design_font_sm" />
             </LinearLayout>
 
             <ImageView
@@ -144,13 +144,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
-        android:letterSpacing="0.04"
+        android:layout_marginTop="@dimen/design_spacing_8"
+        android:layout_marginBottom="@dimen/design_spacing_3"
+        android:letterSpacing="0.12"
         android:text="@string/agent_model_section_capabilities"
         android:textAllCaps="true"
-        android:textColor="@color/design_text_slate_400"
-        android:textSize="10sp"
+        android:textColor="@color/design_text_muted"
+        android:textSize="@dimen/design_font_xs"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -189,8 +189,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/agent_vision_recognition_title"
-                    android:textColor="@android:color/white"
-                    android:textSize="15sp"
+                    android:textColor="@color/design_text_primary"
+                    android:textSize="@dimen/design_font_lg"
                     android:textStyle="bold" />
 
                 <TextView
@@ -201,7 +201,7 @@
                     android:maxLines="2"
                     android:text="@string/agent_vision_recognition_desc"
                     android:textColor="@color/design_text_tertiary"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/design_font_sm" />
             </LinearLayout>
 
             <androidx.appcompat.widget.SwitchCompat
@@ -215,7 +215,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/public_line_width"
             android:layout_marginHorizontal="14dp"
-            android:background="#1FFFFFFF" />
+            android:background="@color/design_profile_divider" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -245,8 +245,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/agent_task_memory_switch_title"
-                    android:textColor="@android:color/white"
-                    android:textSize="15sp"
+                    android:textColor="@color/design_text_primary"
+                    android:textSize="@dimen/design_font_lg"
                     android:textStyle="bold" />
 
                 <TextView
@@ -257,7 +257,7 @@
                     android:maxLines="2"
                     android:text="@string/agent_task_memory_switch_desc"
                     android:textColor="@color/design_text_tertiary"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/design_font_sm" />
             </LinearLayout>
 
             <androidx.appcompat.widget.SwitchCompat
@@ -273,7 +273,7 @@
         android:id="@+id/rowServiceSettings"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/design_spacing_8"
         android:background="@drawable/bg_agent_tool_section"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -294,8 +294,8 @@
             android:layout_marginStart="12dp"
             android:layout_weight="1"
             android:text="@string/agent_model_service_settings_entry"
-            android:textColor="@android:color/white"
-            android:textSize="15sp"
+            android:textColor="@color/design_text_primary"
+            android:textSize="@dimen/design_font_lg"
             android:textStyle="bold" />
 
         <ImageView

@@ -32,7 +32,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/design_text_primary"
-                android:textSize="16sp"
+                android:textSize="@dimen/design_font_lg"
                 android:textStyle="bold"
                 tools:text="History" />
 
@@ -44,7 +44,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/design_text_muted"
-                android:textSize="11sp"
+                android:textSize="@dimen/design_font_xs"
                 tools:text="12 chats" />
         </LinearLayout>
 
@@ -61,8 +61,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/design_border_subtle" />
+        android:layout_height="@dimen/public_line_width"
+        android:background="@color/design_profile_divider" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/btnNewSession"
@@ -80,7 +80,7 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:textColor="@color/design_text_primary"
-        android:textSize="14sp"
+        android:textSize="@dimen/design_font_md"
         android:textStyle="bold"
         app:drawableStartCompat="@drawable/ic_agent_add"
         app:drawableTint="@color/colorAccent"
@@ -91,12 +91,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="16dp"
-        android:paddingTop="8dp"
+        android:paddingTop="@dimen/design_spacing_3"
         android:paddingEnd="16dp"
-        android:paddingBottom="6dp"
+        android:paddingBottom="@dimen/design_spacing_3"
+        android:letterSpacing="0.12"
         android:text="@string/agent_session_history"
+        android:textAllCaps="true"
         android:textColor="@color/design_text_muted"
-        android:textSize="12sp"
+        android:textSize="@dimen/design_font_xs"
         android:textStyle="bold" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -115,7 +117,7 @@
         android:paddingEnd="12dp"
         android:paddingBottom="8dp"
         android:textColor="@color/design_text_secondary"
-        android:textSize="12sp"
+        android:textSize="@dimen/design_font_sm"
         android:visibility="gone"
         app:drawableStartCompat="@drawable/ic_tool"
         app:drawableTint="@color/colorAccent" />

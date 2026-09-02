@@ -31,7 +31,7 @@
             android:paddingBottom="12dp"
             android:letterSpacing="0.01"
             android:text="@string/agent_model_settings_sheet_title"
-            android:textColor="@android:color/white"
+            android:textColor="@color/design_text_primary"
             android:textSize="22sp"
             android:textStyle="bold" />
 
