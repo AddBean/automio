@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
-    android:minHeight="64dp"
+    android:minHeight="76dp"
     android:orientation="horizontal"
     android:paddingVertical="8dp">
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="@dimen/design_spacing_2"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -23,7 +23,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textColor="@color/design_text_primary"
-            android:textSize="@dimen/design_font_xl"
+            android:textSize="@dimen/design_font_lg"
             android:textStyle="bold"
             tools:text="GPT-4.1 Mini" />
 
@@ -35,76 +35,22 @@
             android:ellipsize="middle"
             android:maxLines="1"
             android:textColor="@color/design_text_muted"
-            android:textSize="@dimen/design_font_base"
+            android:textSize="@dimen/design_font_sm"
             tools:text="gpt-4.1-mini" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tvModelMeta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tvModelTags"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ai_badge_vision"
-                android:paddingHorizontal="6dp"
-                android:paddingVertical="1dp"
-                android:textColor="@color/colorAccent"
-                android:textSize="@dimen/design_font_sm"
-                tools:text="Tools" />
-
-            <TextView
-                android:id="@+id/tvVisionBadge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:background="@drawable/ai_badge_vision"
-                android:paddingHorizontal="6dp"
-                android:paddingVertical="1dp"
-                android:text="@string/ai_vision"
-                android:textColor="@color/colorAccent"
-                android:textSize="@dimen/design_font_sm"
-                android:visibility="gone"
-                tools:visibility="visible" />
-
-            <TextView
-                android:id="@+id/tvContextBadge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:background="@drawable/ai_badge_vision"
-                android:paddingHorizontal="6dp"
-                android:paddingVertical="1dp"
-                android:textColor="@color/design_text_secondary"
-                android:textSize="@dimen/design_font_sm"
-                android:visibility="gone"
-                tools:text="128K"
-                tools:visibility="visible" />
-
-            <TextView
-                android:id="@+id/tvSourceBadge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:textColor="@color/design_text_muted"
-                android:textSize="@dimen/design_font_sm"
-                tools:text="自动发现" />
-        </LinearLayout>
+            android:layout_marginTop="@dimen/design_spacing_1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/design_text_tertiary"
+            android:textSize="@dimen/design_font_sm"
+            app:drawableStartCompat="@drawable/ai_status_indicator_enabled"
+            android:drawablePadding="@dimen/design_spacing_2"
+            tools:text="可用 · 函数调用 · 视觉 · 128K · 自动发现" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvModelStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawablePadding="5dp"
-        android:gravity="center_vertical"
-        android:textColor="@color/design_text_tertiary"
-        android:textSize="@dimen/design_font_base"
-        app:drawableStartCompat="@drawable/ai_status_indicator_enabled"
-        tools:text="可用" />
 
     <ImageView
         android:id="@+id/ivModelMore"

@@ -10,36 +10,43 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/design_spacing_1"
-        android:letterSpacing="0.04"
-        android:text="@string/ai_inference_settings"
+        android:layout_marginBottom="@dimen/design_spacing_3"
+        android:letterSpacing="0.12"
+        android:text="@string/agent_model_current_usage"
         android:textAllCaps="true"
         android:textColor="@color/design_text_muted"
-        android:textSize="@dimen/design_font_base"
+        android:textSize="@dimen/design_font_xs"
         android:textStyle="bold" />
 
     <com.hive.views.widgets.UIRoundCornerLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/design_spacing_3"
         android:background="@color/design_permission_card_surface"
         android:orientation="vertical"
         app:rcv_borderColor="@color/design_permission_card_border"
         app:rcv_borderWidth="1dp"
         app:rcv_radius="@dimen/design_radius_profile_group">
 
-        <!-- 对话模型 -->
         <LinearLayout
+            android:id="@+id/rowNormalInference"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="64dp"
             android:background="@drawable/ai_ripple_rect"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="@dimen/design_spacing_4">
+            android:paddingHorizontal="@dimen/design_spacing_4">
+
+            <ImageView
+                android:layout_width="@dimen/design_profile_row_icon_size"
+                android:layout_height="@dimen/design_profile_row_icon_size"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_brain"
+                app:tint="@color/design_text_tertiary" />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/design_spacing_3"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -49,27 +56,31 @@
                     android:layout_height="wrap_content"
                     android:text="@string/agent_normal_model"
                     android:textColor="@color/design_text_primary"
-                    android:textSize="@dimen/design_font_xl"
+                    android:textSize="@dimen/design_font_lg"
                     android:textStyle="bold" />
 
-                <com.hive.views.widgets.TextDrawableView
+                <TextView
                     android:id="@+id/tvNormalDes"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:drawablePadding="4dp"
                     android:drawableTint="@color/design_text_muted"
                     android:ellipsize="middle"
-                    android:maxWidth="220dp"
                     android:maxLines="1"
                     android:text="@string/agent_settings_not_set"
                     android:textColor="@color/design_accent_rose"
-                    android:textSize="@dimen/design_font_lg"
-                    app:drawableHeight="14dp"
-                    app:drawableRight="@drawable/setting_arrow"
-                    app:drawableWidth="14dp"
+                    android:textSize="@dimen/design_font_sm"
                     tools:text="GPT-4o" />
             </LinearLayout>
+
+            <ImageView
+                android:layout_width="@dimen/design_profile_chevron_size"
+                android:layout_height="@dimen/design_profile_chevron_size"
+                android:layout_marginStart="@dimen/design_spacing_2"
+                android:contentDescription="@null"
+                android:src="@drawable/setting_arrow"
+                app:tint="@color/design_text_muted" />
         </LinearLayout>
 
         <View
@@ -78,18 +89,26 @@
             android:layout_marginHorizontal="@dimen/design_spacing_4"
             android:background="@color/design_profile_divider" />
 
-        <!-- 视觉模型 -->
         <LinearLayout
+            android:id="@+id/rowMultimodalInference"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="64dp"
             android:background="@drawable/ai_ripple_rect"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="@dimen/design_spacing_4">
+            android:paddingHorizontal="@dimen/design_spacing_4">
+
+            <ImageView
+                android:layout_width="@dimen/design_profile_row_icon_size"
+                android:layout_height="@dimen/design_profile_row_icon_size"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_image"
+                app:tint="@color/design_text_tertiary" />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/design_spacing_3"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -99,26 +118,30 @@
                     android:layout_height="wrap_content"
                     android:text="@string/agent_multimodal_model"
                     android:textColor="@color/design_text_primary"
-                    android:textSize="@dimen/design_font_xl"
+                    android:textSize="@dimen/design_font_lg"
                     android:textStyle="bold" />
 
-                <com.hive.views.widgets.TextDrawableView
+                <TextView
                     android:id="@+id/tvMultimodalDes"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:drawablePadding="4dp"
                     android:drawableTint="@color/design_text_muted"
                     android:ellipsize="middle"
-                    android:maxWidth="220dp"
                     android:maxLines="1"
                     android:text="@string/agent_settings_not_set"
                     android:textColor="@color/design_accent_rose"
-                    android:textSize="@dimen/design_font_lg"
-                    app:drawableHeight="14dp"
-                    app:drawableRight="@drawable/setting_arrow"
-                    app:drawableWidth="14dp" />
+                    android:textSize="@dimen/design_font_sm" />
             </LinearLayout>
+
+            <ImageView
+                android:layout_width="@dimen/design_profile_chevron_size"
+                android:layout_height="@dimen/design_profile_chevron_size"
+                android:layout_marginStart="@dimen/design_spacing_2"
+                android:contentDescription="@null"
+                android:src="@drawable/setting_arrow"
+                app:tint="@color/design_text_muted" />
         </LinearLayout>
 
         <View
@@ -127,18 +150,25 @@
             android:layout_marginHorizontal="@dimen/design_spacing_4"
             android:background="@color/design_profile_divider" />
 
-        <!-- 任务记忆摘要 -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="72dp"
             android:background="@drawable/ai_ripple_rect"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="@dimen/design_spacing_4">
+            android:paddingHorizontal="@dimen/design_spacing_4">
+
+            <ImageView
+                android:layout_width="@dimen/design_profile_row_icon_size"
+                android:layout_height="@dimen/design_profile_row_icon_size"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_model_default"
+                app:tint="@color/design_text_tertiary" />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/design_spacing_3"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -148,7 +178,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/agent_task_memory_switch_title"
                     android:textColor="@color/design_text_primary"
-                    android:textSize="@dimen/design_font_xl" />
+                    android:textSize="@dimen/design_font_lg"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvTaskMemoryDesc"
@@ -157,7 +188,8 @@
                     android:layout_marginTop="2dp"
                     android:text="@string/agent_task_memory_switch_desc"
                     android:textColor="@color/design_text_tertiary"
-                    android:textSize="@dimen/design_font_lg" />
+                    android:maxLines="2"
+                    android:textSize="@dimen/design_font_sm" />
             </LinearLayout>
 
             <androidx.appcompat.widget.SwitchCompat

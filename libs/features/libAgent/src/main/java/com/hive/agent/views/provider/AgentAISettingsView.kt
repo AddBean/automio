@@ -42,6 +42,8 @@ class AgentAISettingsView @JvmOverloads constructor(
     private lateinit var tvMultimodalInference: TextView
     private lateinit var tvNormalDes: TextView
     private lateinit var tvMultimodalDes: TextView
+    private lateinit var rowNormalInference: LinearLayout
+    private lateinit var rowMultimodalInference: LinearLayout
     private var switchTaskMemory: SwitchCompat? = null
 
     init {
@@ -55,19 +57,14 @@ class AgentAISettingsView @JvmOverloads constructor(
         tvMultimodalInference = findViewById(R.id.tvMultimodalInference)
         tvNormalDes = findViewById(R.id.tvNormalDes)
         tvMultimodalDes = findViewById(R.id.tvMultimodalDes)
+        rowNormalInference = findViewById(R.id.rowNormalInference)
+        rowMultimodalInference = findViewById(R.id.rowMultimodalInference)
 
         // 设置点击事件
-        tvNormalInference.setOnClickListener {
+        rowNormalInference.setOnClickListener {
             ActivityAgentSelector.start(context, InferenceType.TEXT)
         }
-        tvNormalDes.setOnClickListener {
-            ActivityAgentSelector.start(context, InferenceType.TEXT)
-        }
-
-        tvMultimodalInference.setOnClickListener {
-            ActivityAgentSelector.start(context, InferenceType.IMAGE)
-        }
-        tvMultimodalDes.setOnClickListener {
+        rowMultimodalInference.setOnClickListener {
             ActivityAgentSelector.start(context, InferenceType.IMAGE)
         }
 

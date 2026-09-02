@@ -21,11 +21,7 @@ class AIModelItemView(context: Context) : ListRecyclerItemView(context) {
     private var parentView: ListRecyclerItemView? = null
     private lateinit var tvModelName: TextView
     private lateinit var tvModelId: TextView
-    private lateinit var tvModelTags: TextView
-    private lateinit var tvVisionBadge: TextView
-    private lateinit var tvContextBadge: TextView
-    private lateinit var tvSourceBadge: TextView
-    private lateinit var tvModelStatus: TextView
+    private lateinit var tvModelMeta: TextView
     private lateinit var ivModelMore: ImageView
 
     init {
@@ -37,11 +33,7 @@ class AIModelItemView(context: Context) : ListRecyclerItemView(context) {
 
         tvModelName = findViewById(R.id.tvModelName)
         tvModelId = findViewById(R.id.tvModelId)
-        tvModelTags = findViewById(R.id.tvModelTags)
-        tvVisionBadge = findViewById(R.id.tvVisionBadge)
-        tvContextBadge = findViewById(R.id.tvContextBadge)
-        tvSourceBadge = findViewById(R.id.tvSourceBadge)
-        tvModelStatus = findViewById(R.id.tvModelStatus)
+        tvModelMeta = findViewById(R.id.tvModelMeta)
         ivModelMore = findViewById(R.id.ivModelMore)
         ivModelMore.setOnClickListener { showActions() }
     }
@@ -58,36 +50,34 @@ class AIModelItemView(context: Context) : ListRecyclerItemView(context) {
         tvModelName.text = data.displayName
         tvModelId.text = data.modelId
 
-        // 设置模型标签（仅功能调用）
-        val tags = mutableListOf<String>()
-        if (data.capabilities.supportsFunctionCall) {
-            tags.add(context.getString(com.hive.i8n.R.string.ai_function_call))
-        }
-        tvModelTags.text = tags.joinToString(" • ")
-        tvModelTags.visibility = if (tags.isEmpty()) View.GONE else View.VISIBLE
-
-        // 设置视觉能力标签
-        tvVisionBadge.visibility = if (data.capabilities.supportsVision) View.VISIBLE else View.GONE
-
-        val contextWindow = data.capabilities.contextWindow
-        tvContextBadge.visibility = if (contextWindow > 0) View.VISIBLE else View.GONE
-        tvContextBadge.text = when {
-            contextWindow >= 1_000_000 -> "${contextWindow / 1_000_000}M"
-            contextWindow >= 1_000 -> "${contextWindow / 1_000}K"
-            else -> contextWindow.toString()
-        }
-        tvSourceBadge.setText(
-            if (data.buildIn) com.hive.i8n.R.string.agent_model_source_discovered
-            else com.hive.i8n.R.string.agent_model_source_custom
-        )
-
-        // 设置状态指示器
+        val meta = mutableListOf<String>()
         val isEnabled = providerData?.provider?.isModelReady(data.modelId) == true
-        tvModelStatus.setText(
+        meta += context.getString(
             if (isEnabled) com.hive.i8n.R.string.agent_model_available_status
             else com.hive.i8n.R.string.agent_model_unavailable_status
         )
-        tvModelStatus.setCompoundDrawablesRelativeWithIntrinsicBounds(
+        if (data.capabilities.supportsFunctionCall) {
+            meta += context.getString(com.hive.i8n.R.string.ai_function_call)
+        }
+        if (data.capabilities.supportsVision) {
+            meta += context.getString(com.hive.i8n.R.string.ai_vision)
+        }
+
+        val contextWindow = data.capabilities.contextWindow
+        if (contextWindow > 0) {
+            meta += when {
+                contextWindow >= 1_000_000 -> "${contextWindow / 1_000_000}M"
+                contextWindow >= 1_000 -> "${contextWindow / 1_000}K"
+                else -> contextWindow.toString()
+            }
+        }
+        meta += context.getString(
+            if (data.buildIn) com.hive.i8n.R.string.agent_model_source_discovered
+            else com.hive.i8n.R.string.agent_model_source_custom
+        )
+        tvModelMeta.text = meta.joinToString(" · ")
+
+        tvModelMeta.setCompoundDrawablesRelativeWithIntrinsicBounds(
             if (isEnabled) R.drawable.ai_status_indicator_enabled
             else R.drawable.ai_status_indicator_disabled,
             0,

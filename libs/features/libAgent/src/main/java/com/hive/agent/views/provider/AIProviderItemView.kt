@@ -19,6 +19,8 @@ import com.hive.views.widgets.TextDrawableView
 class AIProviderItemView(context: Context) : ListRecyclerItemView(context) {
 
     private lateinit var tvProviderName: TextView
+    private lateinit var ivProviderIcon: ImageView
+    private lateinit var llProviderHeader: LinearLayout
     private lateinit var tvProviderDes: TextView
     private lateinit var tvSettings: TextView
     private lateinit var tvModelCount: TextView
@@ -36,6 +38,8 @@ class AIProviderItemView(context: Context) : ListRecyclerItemView(context) {
         inflate(context, R.layout.ai_provider_item_new, this)
 
         tvProviderName = findViewById(R.id.tvProviderName)
+        ivProviderIcon = findViewById(R.id.ivProviderIcon)
+        llProviderHeader = findViewById(R.id.llProviderHeader)
         tvProviderDes = findViewById(R.id.tvProviderDes)
         tvSettings = findViewById(R.id.tvSettings)
         tvModelCount = findViewById(R.id.tvModelCount)
@@ -48,6 +52,9 @@ class AIProviderItemView(context: Context) : ListRecyclerItemView(context) {
         // 设置点击事件
         tvSettings.setOnClickListener {
             handleSettingsClick()
+        }
+        llProviderHeader.setOnClickListener {
+            if (tvSettings.isEnabled) handleSettingsClick()
         }
 
         tvShowModels.setOnClickListener {
@@ -70,6 +77,7 @@ class AIProviderItemView(context: Context) : ListRecyclerItemView(context) {
 
         // 设置Provider名称
         tvProviderName.text = providerData.provider?.getProviderInfo()?.displayName
+        ivProviderIcon.setImageResource(providerIcon(providerData.providerId))
 
         // 设置Provider标签
         tvProviderDes.text = providerData.providerTags.joinToString(" • ")
@@ -77,12 +85,10 @@ class AIProviderItemView(context: Context) : ListRecyclerItemView(context) {
         // 设置API Key状态
         if (!providerData.hasValidApiKey) {
             tvSettings.text = getString(com.hive.i8n.R.string.agent_settings_not_set)
-            tvSettings.setBackgroundResource(R.drawable.ai_button_unset)
             tvSettings.setTextColor(GlobalApp.getColor(com.hive.i8n.R.color.design_accent_amber))
         } else {
             tvSettings.text = getString(com.hive.i8n.R.string.agent_settings_modify)
-            tvSettings.setBackgroundResource(R.drawable.ai_button_configured)
-            tvSettings.setTextColor(GlobalApp.getColor(com.hive.i8n.R.color.design_text_secondary))
+            tvSettings.setTextColor(GlobalApp.getColor(com.hive.i8n.R.color.design_text_tertiary))
         }
         tvSettings.alpha = if (providerData.providerInfo.apikeyEnabled) 1.0f else 0.4f
         tvSettings.isEnabled = providerData.providerInfo.apikeyEnabled
@@ -111,6 +117,16 @@ class AIProviderItemView(context: Context) : ListRecyclerItemView(context) {
 
         // 设置模型列表
         setupModelsList(providerData, providerData.isExpanded)
+    }
+
+    private fun providerIcon(providerId: String): Int = when {
+        providerId.contains("openrouter", ignoreCase = true) -> R.drawable.ic_openrouter
+        providerId.contains("openai", ignoreCase = true) -> R.drawable.ic_openai
+        providerId.contains("claude", ignoreCase = true) -> R.drawable.ic_claude
+        providerId.contains("gemini", ignoreCase = true) -> R.drawable.ic_gemini
+        providerId.contains("deepseek", ignoreCase = true) -> R.drawable.ic_deepseek
+        providerId.contains("ollama", ignoreCase = true) -> R.drawable.ic_ollama
+        else -> R.drawable.ic_model_default
     }
 
     private fun setupModelsList(itemData: AIProviderItemData, isExpanded: Boolean) {

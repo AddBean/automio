@@ -4,24 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/design_spacing_3"
+    android:layout_marginBottom="@dimen/design_spacing_4"
     android:background="@color/design_permission_card_surface"
     android:orientation="vertical"
-    android:padding="@dimen/design_spacing_4"
     app:rcv_borderColor="@color/design_permission_card_border"
     app:rcv_borderWidth="1dp"
     app:rcv_radius="@dimen/design_radius_profile_group">
 
     <LinearLayout
+        android:id="@+id/llProviderHeader"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="72dp"
+        android:background="@drawable/ai_ripple_rect"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/design_spacing_4">
+
+        <ImageView
+            android:id="@+id/ivProviderIcon"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_model_default"
+            tools:src="@drawable/ic_openai" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="@dimen/design_spacing_3"
+            android:layout_marginEnd="@dimen/design_spacing_2"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -32,7 +43,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/design_text_primary"
-                android:textSize="@dimen/design_font_2xl"
+                android:textSize="@dimen/design_font_xl"
                 android:textStyle="bold"
                 tools:text="OpenAI" />
 
@@ -44,32 +55,41 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/design_text_muted"
-                android:textSize="@dimen/design_font_lg"
+                android:textSize="@dimen/design_font_sm"
                 tools:text="OpenAI-Compatible" />
         </LinearLayout>
 
-        <TextView
+        <com.hive.views.widgets.TextDrawableView
             android:id="@+id/tvSettings"
             android:layout_width="wrap_content"
             android:layout_height="44dp"
-            android:background="@drawable/ai_button_configured"
-            android:gravity="center"
-            android:minWidth="64dp"
-            android:paddingHorizontal="12dp"
+            android:drawablePadding="@dimen/design_spacing_1"
+            android:drawableTint="@color/design_text_muted"
+            android:gravity="center_vertical|end"
+            android:minWidth="72dp"
             android:text="@string/ai_settings"
-            android:textColor="@color/design_text_secondary"
-            android:textSize="@dimen/design_font_lg"
-            android:textStyle="bold" />
+            android:textColor="@color/design_text_tertiary"
+            android:textSize="@dimen/design_font_sm"
+            app:drawableHeight="@dimen/design_profile_chevron_size"
+            app:drawableRight="@drawable/setting_arrow"
+            app:drawableWidth="@dimen/design_profile_chevron_size" />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/public_line_width"
+        android:layout_marginHorizontal="@dimen/design_spacing_4"
+        android:background="@color/design_profile_divider" />
 
     <LinearLayout
         android:id="@+id/llModelSummary"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="12dp"
+        android:layout_height="56dp"
         android:background="@drawable/ai_ripple_rect"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/design_spacing_4"
+        android:paddingEnd="@dimen/design_spacing_1">
 
         <TextView
             android:id="@+id/tvConnectionStatus"
@@ -85,7 +105,7 @@
             android:id="@+id/tvModelCount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/design_spacing_2"
             android:layout_weight="1"
             android:textColor="@color/design_text_tertiary"
             android:textSize="@dimen/design_font_lg"
@@ -97,7 +117,7 @@
             android:layout_height="44dp"
             android:background="@drawable/ai_ripple_rect"
             android:contentDescription="@string/ai_add_model"
-            android:padding="11dp"
+            android:padding="13dp"
             android:src="@drawable/add"
             app:tint="@color/design_text_tertiary" />
 
@@ -106,7 +126,7 @@
             android:layout_width="44dp"
             android:layout_height="44dp"
             android:contentDescription="@string/ai_show_models"
-            android:drawableTint="@color/colorAccent"
+            android:drawableTint="@color/design_text_muted"
             android:gravity="center"
             app:drawableHeight="16dp"
             app:drawableRight="@drawable/icon_arr_down"
@@ -117,6 +137,9 @@
         android:id="@+id/llModelsContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" />
+        android:divider="@drawable/design_linearlayout_divider"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/design_spacing_4"
+        android:showDividers="beginning|middle" />
 
 </com.hive.views.widgets.UIRoundCornerLinearLayout>
