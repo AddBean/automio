@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Volcengine / Ark flame -->
+    <path
+        android:fillColor="#1664FF"
+        android:pathData="M12,2c2.8,3.2 6.5,5.6 6.5,10.2A6.5,6.5 0,0 1,5.5 12.2C5.5,7.6 9.2,5.2 12,2z" />
+    <path
+        android:fillColor="#69A1FF"
+        android:pathData="M12,8.5c1.5,1.7 3.4,3 3.4,5.4A3.4,3.4 0,0 1,8.6 13.9c0,-2.4 1.9,-3.7 3.4,-5.4z" />
+</vector>

@@ -11,7 +11,6 @@ import com.hive.agent.R
 import com.hive.utils.GlobalApp
 import com.hive.utils.GlobalApp.getString
 import com.hive.views.list_view.ListRecyclerItemView
-import com.hive.views.widgets.TextDrawableView
 
 /**
  * AI Provider列表项视图
@@ -25,7 +24,7 @@ class AIProviderItemView(context: Context) : ListRecyclerItemView(context) {
     private lateinit var tvSettings: TextView
     private lateinit var tvModelCount: TextView
     private lateinit var tvConnectionStatus: TextView
-    private lateinit var tvShowModels: TextDrawableView
+    private lateinit var tvShowModels: ImageView
     private lateinit var ivAddModel: ImageView
     private lateinit var llModelsContainer: LinearLayout
     private lateinit var llModelSummary: LinearLayout
@@ -109,24 +108,30 @@ class AIProviderItemView(context: Context) : ListRecyclerItemView(context) {
         tvModelCount.text = context.getString(com.hive.i8n.R.string.ai_model_count, modelCount)
 
         tvShowModels.isSelected = providerData.isExpanded
-        tvShowModels.setDrawableRight(
-            GlobalApp.getDrawable(
-                if (providerData.isExpanded) R.drawable.icon_arr_up else R.drawable.icon_arr_down
-            )
-        )
+        tvShowModels.animate().cancel()
+        tvShowModels.rotation = if (providerData.isExpanded) 180f else 0f
 
         // 设置模型列表
         setupModelsList(providerData, providerData.isExpanded)
     }
 
-    private fun providerIcon(providerId: String): Int = when {
-        providerId.contains("openrouter", ignoreCase = true) -> R.drawable.ic_openrouter
-        providerId.contains("openai", ignoreCase = true) -> R.drawable.ic_openai
-        providerId.contains("claude", ignoreCase = true) -> R.drawable.ic_claude
-        providerId.contains("gemini", ignoreCase = true) -> R.drawable.ic_gemini
-        providerId.contains("deepseek", ignoreCase = true) -> R.drawable.ic_deepseek
-        providerId.contains("ollama", ignoreCase = true) -> R.drawable.ic_ollama
-        else -> R.drawable.ic_model_default
+    private fun providerIcon(providerId: String): Int {
+        val id = providerId.lowercase()
+        return when {
+            id.contains("openrouter") -> R.drawable.ic_openrouter
+            id.contains("claude") || id.contains("anthropic") -> R.drawable.ic_claude
+            id.contains("gemini") || id.contains("google") -> R.drawable.ic_gemini
+            id.contains("deepseek") -> R.drawable.ic_deepseek
+            id.contains("ollama") -> R.drawable.ic_ollama
+            id.contains("kimi") || id.contains("moonshot") -> R.drawable.ic_kimi
+            id.contains("bailian") || id.contains("qwen") || id.contains("dashscope") ->
+                R.drawable.ic_bailian
+            id.contains("ark") || id.contains("volc") || id.contains("doubao") ->
+                R.drawable.ic_ark
+            id.contains("silicon") -> R.drawable.ic_siliconflow
+            id.contains("openai") -> R.drawable.ic_openai
+            else -> R.drawable.ic_model_default
+        }
     }
 
     private fun setupModelsList(itemData: AIProviderItemData, isExpanded: Boolean) {

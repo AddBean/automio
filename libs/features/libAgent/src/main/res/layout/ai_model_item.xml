@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
-    android:minHeight="76dp"
+    android:minHeight="72dp"
     android:orientation="horizontal"
-    android:paddingVertical="8dp">
+    android:paddingVertical="@dimen/design_spacing_3">
 
     <LinearLayout
         android:layout_width="0dp"

@@ -4,8 +4,8 @@
     android:height="24dp"
     android:viewportWidth="24"
     android:viewportHeight="24">
-    <!-- Anthropic lettermark -->
+    <!-- Kimi / Moonshot crescent -->
     <path
-        android:fillColor="#D97757"
-        android:pathData="M13.827,3.52h-3.654L6.635,20.48h3.654l0.927,-4.032h3.568l0.927,4.032h3.654L13.827,3.52zM14.264,14.016h-2.528l1.264,-5.504 1.264,5.504z" />
+        android:fillColor="#F5A623"
+        android:pathData="M15,3A9,9 0,1 0,15 21A7,7 0,1 1,15 3z" />
 </vector>

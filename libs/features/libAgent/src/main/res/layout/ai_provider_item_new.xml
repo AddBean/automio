@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/design_spacing_4"
+    android:layout_marginBottom="@dimen/design_spacing_3"
     android:background="@color/design_permission_card_surface"
     android:orientation="vertical"
     app:rcv_borderColor="@color/design_permission_card_border"
@@ -14,19 +14,26 @@
     <LinearLayout
         android:id="@+id/llProviderHeader"
         android:layout_width="match_parent"
-        android:layout_height="72dp"
+        android:layout_height="76dp"
         android:background="@drawable/ai_ripple_rect"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingHorizontal="@dimen/design_spacing_4">
 
-        <ImageView
-            android:id="@+id/ivProviderIcon"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:contentDescription="@null"
-            android:src="@drawable/ic_model_default"
-            tools:src="@drawable/ic_openai" />
+        <FrameLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ai_provider_icon_bg">
+
+            <ImageView
+                android:id="@+id/ivProviderIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_model_default"
+                tools:src="@drawable/ic_openai" />
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -84,12 +91,12 @@
     <LinearLayout
         android:id="@+id/llModelSummary"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="52dp"
         android:background="@drawable/ai_ripple_rect"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingStart="@dimen/design_spacing_4"
-        android:paddingEnd="@dimen/design_spacing_1">
+        android:paddingEnd="@dimen/design_spacing_2">
 
         <TextView
             android:id="@+id/tvConnectionStatus"
@@ -105,7 +112,7 @@
             android:id="@+id/tvModelCount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/design_spacing_2"
+            android:layout_marginStart="@dimen/design_spacing_3"
             android:layout_weight="1"
             android:textColor="@color/design_text_tertiary"
             android:textSize="@dimen/design_font_lg"
@@ -117,20 +124,20 @@
             android:layout_height="44dp"
             android:background="@drawable/ai_ripple_rect"
             android:contentDescription="@string/ai_add_model"
-            android:padding="13dp"
-            android:src="@drawable/add"
+            android:padding="12dp"
+            android:src="@drawable/ic_provider_add"
             app:tint="@color/design_text_tertiary" />
 
-        <com.hive.views.widgets.TextDrawableView
+        <ImageView
             android:id="@+id/tvShowModels"
             android:layout_width="44dp"
             android:layout_height="44dp"
+            android:layout_marginStart="@dimen/design_spacing_1"
+            android:background="@drawable/ai_ripple_rect"
             android:contentDescription="@string/ai_show_models"
-            android:drawableTint="@color/design_text_muted"
-            android:gravity="center"
-            app:drawableHeight="16dp"
-            app:drawableRight="@drawable/icon_arr_down"
-            app:drawableWidth="16dp" />
+            android:padding="12dp"
+            android:src="@drawable/ic_provider_expand"
+            app:tint="@color/design_text_muted" />
     </LinearLayout>
 
     <LinearLayout
