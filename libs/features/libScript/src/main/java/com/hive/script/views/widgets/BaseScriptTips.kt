@@ -58,22 +58,28 @@ open class BaseScriptTips(context: Context) : BaseScriptDialog(context) {
     private var isCollapseEnabled = false
     private val collapseManager = CollapseManager()
 
-    private var layoutParamsNotFull = WindowManager.LayoutParams().also { lp ->
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT
-        lp.height = WindowManager.LayoutParams.WRAP_CONTENT
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
-            lp.type = WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY
-        } else {
-            lp.type = WindowManager.LayoutParams.TYPE_TOAST
+    private var layoutParamsNotFull: WindowManager.LayoutParams? = null
+
+    private fun layoutParamsOrCreate(): WindowManager.LayoutParams {
+        return layoutParamsNotFull ?: WindowManager.LayoutParams().also { lp ->
+            lp.width = WindowManager.LayoutParams.MATCH_PARENT
+            lp.height = WindowManager.LayoutParams.WRAP_CONTENT
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+                lp.type = WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY
+            } else {
+                lp.type = WindowManager.LayoutParams.TYPE_TOAST
+            }
+            lp.flags =
+                WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN or WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR or WindowManager.LayoutParams.FLAG_FULLSCREEN or WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+            lp.format = PixelFormat.RGBA_8888
+            lp.gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
+            layoutParamsNotFull = lp
         }
-        lp.flags =
-            WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN or WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR or WindowManager.LayoutParams.FLAG_FULLSCREEN or WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-        lp.format = PixelFormat.RGBA_8888
-        lp.gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
     }
 
     private fun applyTopWindowOffset() {
-        layoutParamsNotFull.y = ScriptAgentTopView.getWindowTopY()
+        val lp = layoutParamsOrCreate()
+        lp.y = ScriptAgentTopView.getWindowTopY()
         findViewById<FrameLayout>(R.id.layoutRoot)?.fitsSystemWindows = false
         llCollapsedStatus?.let { bar ->
             (bar.layoutParams as? ViewGroup.MarginLayoutParams)?.topMargin = 0
@@ -107,17 +113,16 @@ open class BaseScriptTips(context: Context) : BaseScriptDialog(context) {
         // 默认隐藏操作按钮
         btnAction?.visibility = View.GONE
 
-        applyTopWindowOffset()
         post {
             applyTopWindowOffset()
-            getViewManager()?.updateLayoutParams(layoutParamsNotFull)
+            getViewManager()?.updateLayoutParams(layoutParamsOrCreate())
         }
     }
 
     override fun onConfigurationChanged(newConfig: Configuration?) {
         super.onConfigurationChanged(newConfig)
         applyTopWindowOffset()
-        getViewManager()?.updateLayoutParams(layoutParamsNotFull)
+        getViewManager()?.updateLayoutParams(layoutParamsOrCreate())
     }
 
     private fun setupCollapseListeners() {
