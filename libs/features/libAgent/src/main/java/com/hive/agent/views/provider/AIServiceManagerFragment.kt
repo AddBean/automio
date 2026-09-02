@@ -11,26 +11,33 @@ import android.view.View
 import android.util.Pair
 import android.widget.EditText
 import android.widget.TextView
-import androidx.appcompat.widget.SwitchCompat
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import com.carlos.ui.header.CommonHeader
 import com.hive.agent.R
 import com.hive.agent.XAgent
 import com.hive.agent.ai.DefaultAIServiceManager
+import com.hive.agent.ai.ModelCapabilityDetector
 import com.hive.agent.ai.providers.AbstractBaseProvider
+import com.hive.agent.ai.providers.ArkAgentPlanProvider
+import com.hive.agent.ai.providers.ArkCodingPlanProvider
+import com.hive.agent.ai.providers.BailianCodeProvider
+import com.hive.agent.ai.providers.CustomOpenAIProvider
+import com.hive.agent.ai.providers.DeepSeekProvider
 import com.hive.agent.ai.providers.OllamaProvider
+import com.hive.agent.ai.providers.OpenRouterProvider
 import com.hive.base.BaseFragment
-import com.hive.plugin.agent.ModelCapabilities
 import com.hive.plugin.agent.ModelInfo
-import com.hive.plugin.agent.ModelType
 import com.hive.views.StatefulLayout
 import com.hive.views.list_view.ListRecyclerItemView
 import com.hive.views.list_view.ListRecyclerView
 import com.hive.views.widgets.CommonToast
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.supervisorScope
 import kotlinx.coroutines.withContext
 
 class AIServiceManagerFragment : BaseFragment() {
@@ -40,7 +47,8 @@ class AIServiceManagerFragment : BaseFragment() {
     private var aiSettingsHeader: AgentAISettingsView? = null
     private var statefulLayout: StatefulLayout? = null
     private var commonHeader: CommonHeader? = null
-    private val scope = CoroutineScope(Dispatchers.Main)
+    private var loadJob: Job? = null
+    private var hasLoadedContent = false
 
     // 跟踪展开状态的Provider
     private val expandedProviders = mutableSetOf<String>()
@@ -53,8 +61,9 @@ class AIServiceManagerFragment : BaseFragment() {
         // 获取AI服务管理器
         aiServiceManager = XAgent.getInstance().getAIServiceManager() as? DefaultAIServiceManager
 
-        commonHeader?.getRightImageView()?.setOnClickListener {
-            refreshData()
+        commonHeader?.getRightImageView()?.apply {
+            contentDescription = getString(com.hive.i8n.R.string.agent_model_sync)
+            setOnClickListener { refreshData() }
         }
         // 初始化列表
         setupListView()
@@ -64,8 +73,17 @@ class AIServiceManagerFragment : BaseFragment() {
     }
 
     private fun refreshData() {
-        OllamaProvider.cacheTimestamp = 0
-        OllamaProvider.cachedModels = null
+        aiServiceManager?.getProviderList()?.forEach { provider ->
+            when (provider) {
+                is OllamaProvider -> provider.clearModelCache()
+                is DeepSeekProvider -> provider.clearModelCache()
+                is OpenRouterProvider -> provider.clearModelCache()
+                is BailianCodeProvider -> provider.clearModelCache()
+                is ArkAgentPlanProvider -> provider.clearModelCache()
+                is ArkCodingPlanProvider -> provider.clearModelCache()
+                is CustomOpenAIProvider -> provider.clearModelCache()
+            }
+        }
         loadProviderData()
     }
 
@@ -85,8 +103,9 @@ class AIServiceManagerFragment : BaseFragment() {
     }
 
     private fun loadProviderData() {
-        lifecycleScope.launch(Dispatchers.Main) {
-            statefulLayout?.showProgress()
+        if (loadJob?.isActive == true) return
+        loadJob = lifecycleScope.launch(Dispatchers.Main) {
+            if (!hasLoadedContent) statefulLayout?.showProgress()
             // 确保获取最新的AI服务管理器（若 Agent 未初始化则可能为 null）
             aiServiceManager =
                 XAgent.getInstance().getAIServiceManager() as? DefaultAIServiceManager
@@ -98,8 +117,9 @@ class AIServiceManagerFragment : BaseFragment() {
             }
             // 从AI服务管理器获取所有Provider信息
             val providers = aiServiceManager?.getProviderList() ?: return@launch
-            val providerDataList =
+            val providerDataList = supervisorScope {
                 providers.sortedByDescending { it.getProviderInfo().sortIndex }.map { p ->
+                    async(Dispatchers.IO) {
                     val pid = p.getProviderInfo().name
                     AIProviderItemData(
                         provider = p,
@@ -110,10 +130,12 @@ class AIServiceManagerFragment : BaseFragment() {
                         providerName = p.getProviderInfo().displayName,
                         providerDescription = p.getProviderInfo().description,
                         providerTags = p.getTags(),
-                        models = withContext(Dispatchers.IO) { p.getModels() },
+                        models = runCatching { p.getModels() }.getOrDefault(emptyList()),
                         isExpanded = expandedProviders.contains(pid)
                     )
-                } ?: return@launch
+                    }
+                }.awaitAll()
+            }
 
             // 构建完整的数据列表（包括Provider和模型）
             val dataWithType = mutableListOf<Pair<Int, Any?>>()
@@ -128,7 +150,9 @@ class AIServiceManagerFragment : BaseFragment() {
             listRecyclerView?.submitDataSetsWithType(androidPairList)
             listRecyclerView?.notifyDataSetChanged()
             statefulLayout?.showContent()
+            hasLoadedContent = true
         }
+        loadJob?.invokeOnCompletion { loadJob = null }
     }
 
     private fun handleItemEvent(eventData: Any?) {
@@ -183,6 +207,15 @@ class AIServiceManagerFragment : BaseFragment() {
                             toggleModelEnabled(providerId, modelId, enabled)
                         }
                     }
+
+                    "delete_custom_model" -> {
+                        val providerId = eventData["providerId"] as? String
+                        val modelId = eventData["modelId"] as? String
+                        val modelName = eventData["modelName"] as? String
+                        if (providerId != null && modelId != null && modelName != null) {
+                            confirmDeleteCustomModel(providerId, modelId, modelName)
+                        }
+                    }
                 }
             }
         }
@@ -211,21 +244,20 @@ class AIServiceManagerFragment : BaseFragment() {
         val functionCallContainer = view.findViewById<View>(R.id.functionCallContainer)
         val etModelName = view.findViewById<EditText>(R.id.etModelName)
         val etModelId = view.findViewById<EditText>(R.id.etModelId)
-        val switchVision = view.findViewById<SwitchCompat>(R.id.switchVision)
-        val switchFunctionCall = view.findViewById<SwitchCompat>(R.id.switchFunctionCall)
         val btnCancel = view.findViewById<TextView>(R.id.btnCancel)
         val btnConfirm = view.findViewById<TextView>(R.id.btnConfirm)
         val btnClear = view.findViewById<TextView>(R.id.btnClear)
 
         tvTitle.text = getString(com.hive.i8n.R.string.ai_add_model_to_provider, providerName)
-        tvSubtitle.visibility = View.GONE
+        tvSubtitle.visibility = View.VISIBLE
+        tvSubtitle.setText(com.hive.i8n.R.string.agent_model_capability_auto_detect_hint)
 
         // 隐藏 API Key 输入，显示模型输入
         inputContainer.visibility = View.GONE
         modelNameWrapper.visibility = View.VISIBLE
         modelIdWrapper.visibility = View.VISIBLE
-        capabilitiesContainer.visibility = View.VISIBLE
-        functionCallContainer.visibility = View.VISIBLE
+        capabilitiesContainer.visibility = View.GONE
+        functionCallContainer.visibility = View.GONE
         btnClear.visibility = View.GONE
         btnConfirm.text = getString(com.hive.i8n.R.string.ai_add)
 
@@ -241,18 +273,11 @@ class AIServiceManagerFragment : BaseFragment() {
                 return@setOnClickListener
             }
 
-            val capabilities = ModelCapabilities(
-                supportsFunctionCall = switchFunctionCall.isChecked,
-                supportsVision = switchVision.isChecked,
-                contextWindow = 128000,
-                modelType = ModelType.CHAT
-            )
-
             val modelInfo = ModelInfo(
                 modelId = modelId,
                 displayName = modelName,
                 providerId = providerId,
-                capabilities = capabilities,
+                capabilities = ModelCapabilityDetector.detect(modelId),
                 buildIn = false
             )
 
@@ -283,9 +308,24 @@ class AIServiceManagerFragment : BaseFragment() {
         }
 
         // 刷新列表
-        scope.launch {
-            loadProviderData()
-        }
+        loadProviderData()
+    }
+
+    private fun confirmDeleteCustomModel(providerId: String, modelId: String, modelName: String) {
+        AlertDialog.Builder(requireContext())
+            .setTitle(com.hive.i8n.R.string.agent_model_delete_title)
+            .setMessage(getString(com.hive.i8n.R.string.agent_model_delete_message, modelName))
+            .setNegativeButton(com.hive.i8n.R.string.ai_cancel, null)
+            .setPositiveButton(com.hive.i8n.R.string.agent_model_delete_action) { _, _ ->
+                val manager = XAgent.getInstance().getAIServiceManager() as? DefaultAIServiceManager
+                manager?.removeProviderCustomModel(providerId, modelId)
+                aiSettingsHeader?.updateStatus()
+                loadProviderData()
+                CommonToast.getInstance().showToast(
+                    getString(com.hive.i8n.R.string.agent_model_deleted)
+                )
+            }
+            .show()
     }
 
     private fun showApiKeyInputDialog(providerId: String, providerName: String) {
@@ -393,10 +433,11 @@ class AIServiceManagerFragment : BaseFragment() {
             }
 
             manager.enableProvider(providerId)
+            (provider as? CustomOpenAIProvider)?.clearModelCache()
 
             aiServiceManager =
                 XAgent.getInstance().getAIServiceManager() as? DefaultAIServiceManager
-            GlobalScope.launch(Dispatchers.IO) {
+            lifecycleScope.launch(Dispatchers.IO) {
                 aiServiceManager?.loadDefaultInferenceModelIfNeeded(providerId)
                 withContext(Dispatchers.Main) {
                     aiSettingsHeader?.updateStatus()
@@ -452,9 +493,7 @@ class AIServiceManagerFragment : BaseFragment() {
             }
 
             // 刷新列表数据
-            scope.launch {
-                loadProviderData()
-            }
+            loadProviderData()
         }
     }
 

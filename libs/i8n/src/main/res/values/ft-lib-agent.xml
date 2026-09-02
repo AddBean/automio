@@ -188,7 +188,22 @@
 
     <!-- Model Management -->
     <string name="agent_select_model">Please Select Model</string>
-    <string name="agent_ai_model_management">Model Management</string>
+    <string name="agent_ai_model_management">Models &amp; Services</string>
+    <string name="agent_model_current_usage">Current Use</string>
+    <string name="agent_model_provider_services">Model Services</string>
+    <string name="agent_provider_connected">Configured</string>
+    <string name="agent_provider_not_connected">Needs Setup</string>
+    <string name="agent_model_source_discovered">Discovered</string>
+    <string name="agent_model_source_custom">Custom</string>
+    <string name="agent_model_available_status">Available</string>
+    <string name="agent_model_unavailable_status">Unavailable</string>
+    <string name="agent_model_more_actions">Model actions</string>
+    <string name="agent_model_delete_title">Delete model?</string>
+    <string name="agent_model_delete_message">“%1$s” will be removed from this device. This action cannot be undone.</string>
+    <string name="agent_model_delete_action">Delete</string>
+    <string name="agent_model_deleted">Model deleted</string>
+    <string name="agent_model_capability_auto_detect_hint">Enter a name and model ID. Vision, tools, and context capabilities are detected automatically.</string>
+    <string name="agent_model_sync">Sync models</string>
     <string name="agent_normal_model">Chat Model</string>
     <string name="agent_multimodal_model">Vision Model</string>
     <string name="agent_multimodal_required">Please select a model that supports vision</string>

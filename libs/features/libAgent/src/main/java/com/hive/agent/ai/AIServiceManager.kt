@@ -51,7 +51,7 @@ class DefaultAIServiceManager(
     override fun registerProvider(provider: AIServiceProvider) {
         val providerId = provider.getProviderInfo().name
         providers[providerId] = provider
-        enabledProviders[providerId] = true
+        enabledProviders[providerId] = spTools.getBoolean(providerEnabledKey(providerId), true)
         if (!providerOrder.contains(providerId)) {
             providerOrder.add(providerId)
         }
@@ -71,10 +71,12 @@ class DefaultAIServiceManager(
 
     override fun enableProvider(providerId: String) {
         enabledProviders[providerId] = true
+        spTools.putBooleanImmediately(providerEnabledKey(providerId), true)
     }
 
     override fun disableProvider(providerId: String) {
         enabledProviders[providerId] = false
+        spTools.putBooleanImmediately(providerEnabledKey(providerId), false)
     }
 
     override fun getProviderList(): List<AIServiceProvider> {
@@ -205,53 +207,39 @@ class DefaultAIServiceManager(
         return !apiKey.isNullOrEmpty() && apiKey.startsWith(apiKeyPrefix?:"")
     }
 
-    /**
-     * 获取Provider启用的模型列表
-     */
-    private fun getProviderEnabledModels(providerId: String): List<String> {
-        val key = "${providerId}_enabled_models"
-        val modelsJson = spTools.getString(key, "")
-        return try {
-            modelsJson.split(",").filter { it.isNotEmpty() }
-        } catch (e: Exception) {
-            emptyList()
-        }
-    }
+    private fun getProviderDisabledModels(providerId: String): List<String> =
+        spTools.getString("${providerId}_disabled_models", "")
+            .orEmpty()
+            .split(",")
+            .filter { it.isNotEmpty() }
 
-    /**
-     * 设置Provider启用的模型列表
-     */
-    private fun setProviderEnabledModels(providerId: String, models: List<String>) {
-        val key = "${providerId}_enabled_models"
-        val modelsJson = models.joinToString(",")
-        spTools.putStringImmediately(key, modelsJson)
+    private fun setProviderDisabledModels(providerId: String, models: List<String>) {
+        spTools.putStringImmediately("${providerId}_disabled_models", models.distinct().joinToString(","))
     }
 
     /**
      * 启用Provider的模型
      */
     override fun enableProviderModel(providerId: String, modelId: String) {
-        val currentModels = getProviderEnabledModels(providerId).toMutableList()
-        if (!currentModels.contains(modelId)) {
-            currentModels.add(modelId)
-            setProviderEnabledModels(providerId, currentModels)
-        }
+        val disabledModels = getProviderDisabledModels(providerId).toMutableList()
+        disabledModels.remove(modelId)
+        setProviderDisabledModels(providerId, disabledModels)
     }
 
     /**
      * 禁用Provider的模型
      */
     override fun disableProviderModel(providerId: String, modelId: String) {
-        val currentModels = getProviderEnabledModels(providerId).toMutableList()
-        currentModels.remove(modelId)
-        setProviderEnabledModels(providerId, currentModels)
+        val disabledModels = getProviderDisabledModels(providerId).toMutableList()
+        if (modelId !in disabledModels) disabledModels.add(modelId)
+        setProviderDisabledModels(providerId, disabledModels)
     }
 
     /**
      * 检查Provider的模型是否启用
      */
     override fun isProviderModelEnabled(providerId: String, modelId: String): Boolean {
-        return true
+        return modelId !in getProviderDisabledModels(providerId)
     }
 
     /**
@@ -297,8 +285,17 @@ class DefaultAIServiceManager(
             // 保存到SharedPreferences
             saveProviderCustomModels(providerId, currentModels)
             getProvider(providerId)?.updateCustomModels(currentModels)
+            enableProviderModel(providerId, modelId)
+            InferenceType.values().forEach { type ->
+                val selected = getInferenceModel(type)
+                if (selected?.providerId == providerId && selected.modelId == modelId) {
+                    setInferenceModel(type, null)
+                }
+            }
         }
     }
+
+    private fun providerEnabledKey(providerId: String) = "${providerId}_provider_enabled"
 
     /**
      * 保存Provider的自定义模型列表到SharedPreferences
@@ -335,6 +332,7 @@ class DefaultAIServiceManager(
      */
     override fun clearProviderCustomModels(providerId: String) {
         saveProviderCustomModels(providerId, emptyList())
+        getProvider(providerId)?.updateCustomModels(mutableListOf())
     }
 
     override fun setInferenceModel(type: InferenceType, model: ModelInfo?) {

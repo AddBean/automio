@@ -22,9 +22,11 @@ class AIProviderItemView(context: Context) : ListRecyclerItemView(context) {
     private lateinit var tvProviderDes: TextView
     private lateinit var tvSettings: TextView
     private lateinit var tvModelCount: TextView
+    private lateinit var tvConnectionStatus: TextView
     private lateinit var tvShowModels: TextDrawableView
     private lateinit var ivAddModel: ImageView
     private lateinit var llModelsContainer: LinearLayout
+    private lateinit var llModelSummary: LinearLayout
 
     init {
         initView()
@@ -37,9 +39,11 @@ class AIProviderItemView(context: Context) : ListRecyclerItemView(context) {
         tvProviderDes = findViewById(R.id.tvProviderDes)
         tvSettings = findViewById(R.id.tvSettings)
         tvModelCount = findViewById(R.id.tvModelCount)
+        tvConnectionStatus = findViewById(R.id.tvConnectionStatus)
         tvShowModels = findViewById(R.id.tvShowModels)
         ivAddModel = findViewById(R.id.ivAddModel)
         llModelsContainer = findViewById(R.id.llModelsContainer)
+        llModelSummary = findViewById(R.id.llModelSummary)
 
         // 设置点击事件
         tvSettings.setOnClickListener {
@@ -47,6 +51,10 @@ class AIProviderItemView(context: Context) : ListRecyclerItemView(context) {
         }
 
         tvShowModels.setOnClickListener {
+            handleShowModelsClick()
+        }
+
+        llModelSummary.setOnClickListener {
             handleShowModelsClick()
         }
 
@@ -78,9 +86,28 @@ class AIProviderItemView(context: Context) : ListRecyclerItemView(context) {
         }
         tvSettings.alpha = if (providerData.providerInfo.apikeyEnabled) 1.0f else 0.4f
         tvSettings.isEnabled = providerData.providerInfo.apikeyEnabled
+        val isConnected = providerData.isEnabled && providerData.provider?.isProviderReady() == true
+        tvConnectionStatus.setText(
+            if (isConnected) com.hive.i8n.R.string.agent_provider_connected
+            else com.hive.i8n.R.string.agent_provider_not_connected
+        )
+        tvConnectionStatus.setCompoundDrawablesRelativeWithIntrinsicBounds(
+            if (isConnected) R.drawable.ai_status_indicator_enabled
+            else R.drawable.ai_status_indicator_disabled,
+            0,
+            0,
+            0
+        )
         // 设置模型数量
         val modelCount = providerData.models.size
         tvModelCount.text = context.getString(com.hive.i8n.R.string.ai_model_count, modelCount)
+
+        tvShowModels.isSelected = providerData.isExpanded
+        tvShowModels.setDrawableRight(
+            GlobalApp.getDrawable(
+                if (providerData.isExpanded) R.drawable.icon_arr_up else R.drawable.icon_arr_down
+            )
+        )
 
         // 设置模型列表
         setupModelsList(providerData, providerData.isExpanded)
@@ -113,7 +140,6 @@ class AIProviderItemView(context: Context) : ListRecyclerItemView(context) {
 
     private fun handleShowModelsClick() {
         val providerData = itemData as? AIProviderItemData
-        tvShowModels.isSelected = tvShowModels.isSelected == false
         if (providerData != null) {
             postEvent(
                 mapOf(
@@ -121,7 +147,6 @@ class AIProviderItemView(context: Context) : ListRecyclerItemView(context) {
                 )
             )
         }
-        tvShowModels.setDrawableRight(GlobalApp.getDrawable(if (tvShowModels.isSelected) R.drawable.icon_arr_up else R.drawable.icon_arr_down))
     }
 
     private fun handleAddModelClick() {
@@ -136,4 +161,4 @@ class AIProviderItemView(context: Context) : ListRecyclerItemView(context) {
             )
         }
     }
-} 
+}

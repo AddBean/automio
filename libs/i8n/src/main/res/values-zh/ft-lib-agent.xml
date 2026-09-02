@@ -262,7 +262,22 @@
 
     <!-- Model Management -->
     <string name="agent_select_model">请选择模型</string>
-    <string name="agent_ai_model_management">AI模型管理</string>
+    <string name="agent_ai_model_management">模型与服务</string>
+    <string name="agent_model_current_usage">当前使用</string>
+    <string name="agent_model_provider_services">模型服务</string>
+    <string name="agent_provider_connected">已配置</string>
+    <string name="agent_provider_not_connected">未配置</string>
+    <string name="agent_model_source_discovered">自动发现</string>
+    <string name="agent_model_source_custom">自定义</string>
+    <string name="agent_model_available_status">可用</string>
+    <string name="agent_model_unavailable_status">不可用</string>
+    <string name="agent_model_more_actions">模型操作</string>
+    <string name="agent_model_delete_title">删除模型？</string>
+    <string name="agent_model_delete_message">将从此设备删除“%1$s”。此操作不可撤销。</string>
+    <string name="agent_model_delete_action">删除</string>
+    <string name="agent_model_deleted">模型已删除</string>
+    <string name="agent_model_capability_auto_detect_hint">只需填写模型名称和 ID，视觉、工具调用和上下文能力将自动识别。</string>
+    <string name="agent_model_sync">同步模型</string>
     <string name="agent_normal_model">对话模型</string>
     <string name="agent_multimodal_model">视觉模型</string>
     <string name="agent_multimodal_required">请选择一个支持视觉的模型</string>

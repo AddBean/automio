@@ -40,10 +40,22 @@
                 android:paddingTop="@dimen/design_spacing_3"
                 android:paddingBottom="@dimen/design_spacing_8">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/design_spacing_1"
+                    android:letterSpacing="0.04"
+                    android:text="@string/agent_model_current_usage"
+                    android:textAllCaps="true"
+                    android:textColor="@color/design_text_muted"
+                    android:textSize="@dimen/design_font_base"
+                    android:textStyle="bold" />
+
                 <com.hive.agent.views.provider.AgentAISettingsView
                     android:id="@+id/aiSettingsHeader"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/design_spacing_3" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -51,7 +63,7 @@
                     android:layout_marginTop="@dimen/design_spacing_6"
                     android:layout_marginStart="@dimen/design_spacing_1"
                     android:letterSpacing="0.04"
-                    android:text="@string/agent_model_list"
+                    android:text="@string/agent_model_provider_services"
                     android:textAllCaps="true"
                     android:textColor="@color/design_text_muted"
                     android:textSize="@dimen/design_font_base"

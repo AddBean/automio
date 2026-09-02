@@ -79,6 +79,11 @@ class ArkAgentPlanProvider : OpenAiCompatibleProvider(OpenAiCompatiblePresets.AR
         cacheTimestamp = System.currentTimeMillis()
     }
 
+    fun clearModelCache() {
+        cachedModels = null
+        cacheTimestamp = 0L
+    }
+
     private fun fetchModelsFromApi(): List<ModelInfo> {
         if (getApiKey().isEmpty()) return emptyList()
         val url = OpenAiUrlHelper.modelsUrl(resolveEffectiveBaseUrl())
