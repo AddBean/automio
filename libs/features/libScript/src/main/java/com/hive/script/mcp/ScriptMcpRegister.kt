@@ -240,9 +240,8 @@ object ScriptMcpRegister {
     }
 
     /**
-     * 隐藏 Agent 浮窗后执行 block，避免截屏/OCR 时拍到浮窗。
-     * 使用 hideForCapture/showForCapture 仅切换可见性，不销毁实例，
-     * 避免 pending Handler 回调触发 NPE。
+     * 让 Agent 浮窗 NOT_TOUCHABLE 后执行 block，避免自动化操作点到浮窗。
+     * 使用 hideForCapture/showForCapture 不销毁实例，避免 pending Handler 回调 NPE。
      */
     private inline fun withOverlayHidden(block: () -> Unit) {
         ScriptAgentTopView.hideForCapture()

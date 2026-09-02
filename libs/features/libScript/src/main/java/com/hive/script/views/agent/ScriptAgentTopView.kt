@@ -9,6 +9,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Configuration
 import android.graphics.PixelFormat
+import android.graphics.RectF
 import android.os.Handler
 import android.os.Looper
 import android.text.TextUtils
@@ -38,6 +39,7 @@ import com.hive.script.R
 import com.hive.script.ScriptProvider
 import com.hive.script.base.ScriptCommand
 import com.hive.script.base.core.ScriptInterpreterObserver
+import com.hive.script.utils.ScriptCommonUtils
 import com.hive.script.utils.ScriptHelper
 import com.hive.script.views.widgets.BaseScriptDialog
 import com.hive.utils.GlobalApp
@@ -74,19 +76,16 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
         }
 
         /**
-         * 仅隐藏 View（不销毁实例），用于截屏前隐藏浮窗。
-         * 与 dismiss() 不同，不会置空 instance，避免 pending Handler 回调 NPE。
+         * 自动化操作前让 TopView 不拦截触摸/手势（FLAG_NOT_TOUCHABLE）。
+         * 不销毁实例，避免 pending Handler 回调 NPE。
          */
         fun hideForCapture() {
             instance?.post {
                 instance?.hideMotionForCapture()
-                instance?.setTouchPassthrough(true)
             }
         }
 
-        /**
-         * 恢复 View 可见（与 hideForCapture 配对使用）。
-         */
+        /** 恢复 TopView 默认可交互状态（与 hideForCapture 配对使用）。 */
         fun showForCapture() {
             instance?.post {
                 instance?.showMotionAfterCapture()
@@ -135,6 +134,9 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
     // 当前任务信息的完整原文本，用于长按复制
     private var currentTaskInfoRawText: String = ""
 
+    /** 命令执行期间是否已设为 NOT_TOUCHABLE */
+    private var hiddenForInteraction = false
+
     private val collapseManager = CollapseManager()
 
     private val statusManager = StatusManager()
@@ -158,6 +160,20 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
         } else {
             layoutParamsNotFull.flags and WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL.inv()
         }
+        updateWindowFlags(newFlags)
+    }
+
+    /** 是否允许 TopView 接收触摸（FLAG_NOT_TOUCHABLE 取反） */
+    private fun setWindowTouchable(touchable: Boolean) {
+        val newFlags = if (touchable) {
+            layoutParamsNotFull.flags and WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE.inv()
+        } else {
+            layoutParamsNotFull.flags or WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+        }
+        updateWindowFlags(newFlags)
+    }
+
+    private fun updateWindowFlags(newFlags: Int) {
         if (newFlags != layoutParamsNotFull.flags) {
             layoutParamsNotFull.flags = newFlags
             getViewManager()?.updateLayoutParams(layoutParamsNotFull)
@@ -208,21 +224,31 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
 
         override fun onCommandExecuteBefore(cmd: ScriptCommand) {
             super.onCommandExecuteBefore(cmd)
-            // 命令执行前：关闭透传
+            if (!overlapsTopView(cmd)) {
+                ScriptHelper.blockUntilViewReady(this@ScriptAgentTopView) {
+                    setTouchPassthrough(false)
+                    this@ScriptAgentTopView.visibleOrGone(true)
+                }
+                return
+            }
+            hiddenForInteraction = true
             ScriptHelper.blockUntilViewReady(this@ScriptAgentTopView) {
-                setTouchPassthrough(false)
-                this@ScriptAgentTopView.visibleOrGone(true)
+                hideMotionForCapture()
             }
         }
 
         override fun onCommandExecuteAfter(cmd: ScriptCommand) {
             super.onCommandExecuteAfter(cmd)
-            // 命令执行后：开启透传，让空白区域触摸传到底部按钮
             ScriptHelper.blockUntilViewReady(this@ScriptAgentTopView) {
-                if (instance != null) {
+                if (instance == null) return@blockUntilViewReady
+                if (hiddenForInteraction) {
+                    hiddenForInteraction = false
+                    showMotionAfterCapture()
+                    setTouchPassthrough(false)
+                } else {
                     setTouchPassthrough(true)
-                    this@ScriptAgentTopView.visibleOrGone(true)
                 }
+                this@ScriptAgentTopView.visibleOrGone(true)
             }
         }
     }
@@ -373,12 +399,31 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
     override fun canInterruptDismissWithShow(): Boolean = true
 
     private fun hideMotionForCapture() {
-        motionController?.snapHiddenForCapture()
-        isCollapsed = motionController?.isTargetCollapsed ?: isCollapsed
+        setWindowTouchable(false)
     }
 
     private fun showMotionAfterCapture() {
-        motionController?.snapVisibleAfterCapture()
+        setWindowTouchable(true)
+    }
+
+    private fun overlapsTopView(cmd: ScriptCommand): Boolean {
+        if (visibility != View.VISIBLE) return false
+        val cmdArea = cmd.getNormalizedActiveArea() ?: return false
+        val topViewArea = getNormalizedScreenBounds() ?: return false
+        return cmdArea.intersect(topViewArea)
+    }
+
+    private fun getNormalizedScreenBounds(): RectF? {
+        if (measuredWidth <= 0 || measuredHeight <= 0) return null
+        val locs = intArrayOf(0, 0)
+        getLocationOnScreen(locs)
+        val rect = RectF(
+            locs[0].toFloat(),
+            locs[1].toFloat(),
+            (locs[0] + measuredWidth).toFloat(),
+            (locs[1] + measuredHeight).toFloat()
+        )
+        return ScriptCommonUtils.convertToNormalization(rect)
     }
 
     private fun initMotionController() {
