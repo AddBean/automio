@@ -53,18 +53,21 @@ class SkillRunner(
     private val agentContext: AgentContext,
     private val skillRegistry: SkillRegistry,
     private val messageProcessor: suspend (String, List<ChatMessage>, ModelInfo) -> List<ChatMessage> =
-        { taskId, messages, model ->
-            val processedMessages = AgentMessageUtils.processAndCopyMessages(
+        { taskId, messages, _ ->
+            val hasVisionModel =
+                agentContext.aiServiceProvider.getInferenceModel(InferenceType.IMAGE) != null
+            val visionActive =
+                AIAgentConfig.VisionConfig.isVisionPipelineActive(hasVisionModel)
+            AgentMessageUtils.processAndCopyMessages(
                 taskId,
                 messages,
                 onMemoryCompressing = { isCompressing ->
                     UIHandlerUtils.getInstance().executeInMainThread {
                         agentContext.notifyMemoryCompressing(taskId, isCompressing)
                     }
-                }
+                },
+                allowImageAttachments = visionActive
             )
-            // Skill 子循环的 system message 必须保留 skill.md + spec.systemPrompt，不允许被 agent.md 覆盖
-            processedMessages
         }
 ) {
     companion object {
@@ -169,7 +172,11 @@ class SkillRunner(
                 SkillToolLogger.d("skip startTask taskKey=$taskKey state=$stateBeforeStart")
             }
             agentContext.notifySkillExecuteStart(skillTaskKey)
-            val skillBasePrompt = AIAgentConfig.PromptDefaults.getSkillBaseSystemPrompt(supportsVision = null)
+            val hasVisionModel =
+                agentContext.aiServiceProvider.getInferenceModel(InferenceType.IMAGE) != null
+            val skillBasePrompt = AIAgentConfig.PromptDefaults.getSkillBaseSystemPrompt(
+                supportsVision = AIAgentConfig.VisionConfig.isVisionPipelineActive(hasVisionModel)
+            )
             val combinedSystemPrompt = listOf(skillBasePrompt, spec.systemPrompt)
                 .filter { it.isNotBlank() }
                 .joinToString("\n\n")
@@ -528,8 +535,10 @@ class SkillRunner(
     private fun selectAIProviderAndModel(agentInput: AgentInput): Pair<com.hive.plugin.agent.AIServiceProvider, ModelInfo>? {
         val aiServiceManager = agentContext.aiServiceProvider
         val hasImages = agentInput.messages.any { it.attachments.isNotEmpty() }
-        val visionEnabled = AIAgentConfig.VisionConfig.isVisionRecognitionEnabled()
-        val selectedModel = if (hasImages && visionEnabled) {
+        val hasVisionModel = aiServiceManager.getInferenceModel(InferenceType.IMAGE) != null
+        val visionPipelineActive =
+            AIAgentConfig.VisionConfig.isVisionPipelineActive(hasVisionModel)
+        val selectedModel = if (hasImages && visionPipelineActive) {
             aiServiceManager.getInferenceModel(InferenceType.IMAGE)
                 ?: aiServiceManager.getInferenceModel(InferenceType.TEXT)
         } else {

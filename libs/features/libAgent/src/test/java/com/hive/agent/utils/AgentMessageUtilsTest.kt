@@ -104,4 +104,30 @@ class AgentMessageUtilsTest {
             result.filter { it.role == MessageRole.TOOL }.map { it.toolCallId }
         )
     }
+
+    @Test
+    fun `strips all image attachments when allowImageAttachments is false`() = runBlocking {
+        val withImage = ChatMessage(
+            role = MessageRole.USER,
+            content = "see",
+            attachments = mutableListOf(
+                com.hive.plugin.agent.model.ChatAttachment(
+                    type = com.hive.plugin.agent.model.AttachmentType.IMAGE,
+                    url = "https://example.com/a.png"
+                )
+            )
+        )
+        val messages = listOf(
+            ChatMessage(MessageRole.SYSTEM, "sys"),
+            withImage
+        )
+
+        val result = AgentMessageUtils.processAndCopyMessages(
+            "task",
+            messages,
+            allowImageAttachments = false
+        )
+
+        assertTrue(result.all { it.attachments.isEmpty() })
+    }
 }

@@ -82,6 +82,15 @@ object AIAgentConfig {
         fun effectiveSupportsVision(modelSupportsVision: Boolean): Boolean {
             return isVisionRecognitionEnabled() && modelSupportsVision
         }
+
+        /**
+         * 视觉链路是否真正可用：开关开启且已配置视觉模型。
+         * 用于选模、system prompt、以及是否向 API 发送图片附件。
+         */
+        @JvmStatic
+        fun isVisionPipelineActive(hasConfiguredVisionModel: Boolean): Boolean {
+            return isVisionRecognitionEnabled() && hasConfiguredVisionModel
+        }
     }
 
     object PromptDefaults {

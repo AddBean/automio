@@ -32,12 +32,18 @@ object AgentMessageUtils {
             .build()
     }
 
-    fun processSystemMessage(messages: List<ChatMessage>, selectedModel: ModelInfo? = null): List<ChatMessage> {
+    fun processSystemMessage(
+        messages: List<ChatMessage>,
+        selectedModel: ModelInfo? = null,
+        visionActive: Boolean? = null
+    ): List<ChatMessage> {
         messages.firstOrNull { it.role == MessageRole.SYSTEM }?.run {
-            this.content = AIAgentConfig.PromptDefaults.getAutoSystemPrompt(
-                supportsVision = AIAgentConfig.VisionConfig.effectiveSupportsVision(
+            val supportsVision = visionActive
+                ?: AIAgentConfig.VisionConfig.effectiveSupportsVision(
                     selectedModel?.capabilities?.supportsVision == true
                 )
+            this.content = AIAgentConfig.PromptDefaults.getAutoSystemPrompt(
+                supportsVision = supportsVision
             )
         }
         return messages
@@ -48,13 +54,14 @@ object AgentMessageUtils {
     suspend fun processAndCopyMessages(
         taskId: String,
         messages: List<ChatMessage>,
-        onMemoryCompressing: ((Boolean) -> Unit)? = null
+        onMemoryCompressing: ((Boolean) -> Unit)? = null,
+        allowImageAttachments: Boolean = true
     ): List<ChatMessage> {
         var chatMessages = trimMessages(taskId, messages, onMemoryCompressing)
         chatMessages = ensureMessagesLegality(chatMessages)
         chatMessages = simplifyTextMessages(chatMessages)
         chatMessages = simplifyToolMessages(chatMessages)
-        chatMessages = simplifyImageMessages(chatMessages)
+        chatMessages = simplifyImageMessages(chatMessages, allowImageAttachments)
         return chatMessages
     }
 
@@ -214,8 +221,20 @@ object AgentMessageUtils {
         return chatMessages
     }
 
-    /** 简化多模态消息：仅保留最近 MAX_ATTACHMENT_KEEP_REQUEST 条带附件的消息，其余清空 attachments 以节省 token */
-    private fun simplifyImageMessages(chatMessages: MutableList<ChatMessage>): MutableList<ChatMessage> {
+    /** 简化多模态消息：视觉关闭时清空全部附件；开启时仅保留最近 MAX_ATTACHMENT_KEEP_REQUEST 条 */
+    private fun simplifyImageMessages(
+        chatMessages: MutableList<ChatMessage>,
+        allowImageAttachments: Boolean
+    ): MutableList<ChatMessage> {
+        if (!allowImageAttachments) {
+            for (idx in chatMessages.indices) {
+                val msg = chatMessages[idx]
+                if (msg.attachments.isNotEmpty()) {
+                    chatMessages[idx] = msg.copy(attachments = mutableListOf())
+                }
+            }
+            return chatMessages
+        }
         val imageMessages = chatMessages.filter { it.attachments.isNotEmpty() }
         for (idx in imageMessages.indices) {
             if (idx >= imageMessages.size - MAX_ATTACHMENT_KEEP_REQUEST) continue

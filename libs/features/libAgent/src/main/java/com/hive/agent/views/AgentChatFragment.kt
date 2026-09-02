@@ -443,15 +443,15 @@ class AgentChatFragment : PagerFragment() {
 
         if (selectedImageContentUri != null) {
             val visionModel = xAgent.getAIServiceManager()?.getInferenceModel(InferenceType.IMAGE)
-            val visionEnabled = AIAgentConfig.VisionConfig.isVisionRecognitionEnabled()
-            if (visionModel == null || !visionEnabled) {
+            val visionActive = AIAgentConfig.VisionConfig.isVisionPipelineActive(visionModel != null)
+            if (!visionActive) {
                 clearAttachmentSelection()
                 showElegantToast(
                     getString(
-                        if (!visionEnabled) {
-                            com.hive.i8n.R.string.agent_vision_recognition_disabled
-                        } else {
+                        if (visionModel == null) {
                             com.hive.i8n.R.string.agent_multimodal_required
+                        } else {
+                            com.hive.i8n.R.string.agent_vision_recognition_disabled
                         }
                     )
                 )

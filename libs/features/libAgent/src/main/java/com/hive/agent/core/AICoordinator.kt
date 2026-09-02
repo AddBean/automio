@@ -181,59 +181,34 @@ class AICoordinator(
                             startTime = startTime
                         )
 
-                    agentInput.messages =
-                        AgentMessageUtils.processSystemMessage(agentInput.messages, selectedModel)
+                    val visionPipelineActive = isVisionPipelineActive()
+                    agentInput.messages = AgentMessageUtils.processSystemMessage(
+                        agentInput.messages,
+                        selectedModel,
+                        visionActive = visionPipelineActive
+                    )
 
-                    // 检查是否是多模态请求
-                    val hasImages = checkIfHasImages(agentInput)
-
-                    val aiRequest = if (hasImages) {
-                        // 多模态请求：需要添加图片数据
-                        // 这里需要根据实际需求获取图片数据
-                        // 暂时使用空的图片列表，实际应用中需要从消息中提取图片
-                        AIRequest(
-                            model = selectedModel.modelId,
-                            requestType = AIRequestType.FUNCTION_CALL,
-                            input = AgentInput(
-                                AgentMessageUtils.processAndCopyMessages(
-                                    agentGoal.id,
-                                    agentInput.messages,
-                                    onMemoryCompressing = { isCompressing ->
-                                        UIHandlerUtils.getInstance().executeInMainThread {
-                                            agentContext.notifyMemoryCompressing(
-                                                agentGoal.id,
-                                                isCompressing
-                                            )
-                                        }
+                    val aiRequest = AIRequest(
+                        model = selectedModel.modelId,
+                        requestType = AIRequestType.FUNCTION_CALL,
+                        input = AgentInput(
+                            AgentMessageUtils.processAndCopyMessages(
+                                agentGoal.id,
+                                agentInput.messages,
+                                onMemoryCompressing = { isCompressing ->
+                                    UIHandlerUtils.getInstance().executeInMainThread {
+                                        agentContext.notifyMemoryCompressing(
+                                            agentGoal.id,
+                                            isCompressing
+                                        )
                                     }
-                                )
-                            ),
-                            inputOrigin = agentInput,
-                            tools = toolDefinitions,
-                        )
-                    } else {
-                        // 普通请求
-                        AIRequest(
-                            model = selectedModel.modelId,
-                            requestType = AIRequestType.FUNCTION_CALL,
-                            input = AgentInput(
-                                AgentMessageUtils.processAndCopyMessages(
-                                    agentGoal.id,
-                                    agentInput.messages,
-                                    onMemoryCompressing = { isCompressing ->
-                                        UIHandlerUtils.getInstance().executeInMainThread {
-                                            agentContext.notifyMemoryCompressing(
-                                                agentGoal.id,
-                                                isCompressing
-                                            )
-                                        }
-                                    }
-                                )
-                            ),
-                            inputOrigin = agentInput,
-                            tools = toolDefinitions
-                        )
-                    }
+                                },
+                                allowImageAttachments = visionPipelineActive
+                            )
+                        ),
+                        inputOrigin = agentInput,
+                        tools = toolDefinitions,
+                    )
                     agentGoal.updateNormal(agentContext, agentInput)
                     val streaming = StreamingAssistantSession.start(
                         messages = mainMessages,
@@ -472,16 +447,16 @@ class AICoordinator(
         // 获取 AI Service Manager
         val aiServiceManager = agentContext.aiServiceProvider
 
-        // 检查是否包含图片（多模态请求）；视觉开关关闭时强制走对话模型
+        // 检查是否包含图片（多模态请求）；视觉链路未激活时强制走对话模型
         val hasImages = checkIfHasImages(agentInput)
-        val visionEnabled = AIAgentConfig.VisionConfig.isVisionRecognitionEnabled()
+        val visionPipelineActive = isVisionPipelineActive()
 
         val normalModel = aiServiceManager.getInferenceModel(InferenceType.TEXT)
 
         val multimodalModel = aiServiceManager.getInferenceModel(InferenceType.IMAGE)
 
         var selectedModel =
-            if (hasImages && visionEnabled) multimodalModel else normalModel
+            if (hasImages && visionPipelineActive) multimodalModel else normalModel
         //兜底normalModel
         if (selectedModel == null) {
             selectedModel = normalModel
@@ -493,10 +468,16 @@ class AICoordinator(
 
         DLog.d(
             TAG,
-            "选择 AI Provider: ${selectedProvider.javaClass.simpleName}, 模型: ${selectedProvider.getProviderInfo()}, 多模态: ${hasImages && visionEnabled}"
+            "选择 AI Provider: ${selectedProvider.javaClass.simpleName}, 模型: ${selectedProvider.getProviderInfo()}, 多模态: ${hasImages && visionPipelineActive}"
         )
 
         return Pair(selectedProvider, selectedModel)
+    }
+
+    private fun isVisionPipelineActive(): Boolean {
+        val hasVisionModel =
+            agentContext.aiServiceProvider.getInferenceModel(InferenceType.IMAGE) != null
+        return AIAgentConfig.VisionConfig.isVisionPipelineActive(hasVisionModel)
     }
 
     /**

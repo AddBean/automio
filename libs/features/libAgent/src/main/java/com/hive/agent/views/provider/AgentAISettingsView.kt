@@ -59,6 +59,7 @@ class AgentAISettingsView @JvmOverloads constructor(
 
     private var hasVisionModel: Boolean = false
     private var suppressVisionSwitchCallback: Boolean = false
+    private var suppressMemorySwitchCallback: Boolean = false
 
     init {
         initView()
@@ -88,6 +89,7 @@ class AgentAISettingsView @JvmOverloads constructor(
         switchTaskMemory = findViewById(R.id.switchTaskMemory)
         switchTaskMemory?.isChecked = AIAgentConfig.MemoryConfig.isTaskMemoryEnabled()
         switchTaskMemory?.setOnCheckedChangeListener { _, isChecked ->
+            if (suppressMemorySwitchCallback) return@setOnCheckedChangeListener
             AIAgentConfig.MemoryConfig.setTaskMemoryEnabled(isChecked)
             onSettingsChanged?.invoke()
         }
@@ -192,7 +194,9 @@ class AgentAISettingsView @JvmOverloads constructor(
         setNormalInferenceModel(normalModel?.displayName)
         setMultimodalInferenceModel(multimodalModel?.displayName)
         hasVisionModel = multimodalModel != null
+        suppressMemorySwitchCallback = true
         switchTaskMemory?.isChecked = AIAgentConfig.MemoryConfig.isTaskMemoryEnabled()
+        suppressMemorySwitchCallback = false
         updateVisionSwitchUi()
     }
 

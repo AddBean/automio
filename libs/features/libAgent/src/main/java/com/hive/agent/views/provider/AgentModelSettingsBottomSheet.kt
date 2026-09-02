@@ -15,8 +15,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.hive.agent.R
+import com.hive.agent.XAgent
+import com.hive.agent.ai.DefaultAIServiceManager
 import com.hive.plugin.agent.InferenceType
 import com.hive.plugin.agent.ModelInfo
+import com.hive.views.widgets.CommonToast
 
 /**
  * 对话页模型入口 BottomSheet：复用 [AgentAISettingsView]，风格对齐工具详情 sheet。
@@ -26,16 +29,15 @@ class AgentModelSettingsBottomSheet : BottomSheetDialogFragment() {
     var onSettingsChanged: (() -> Unit)? = null
 
     private var settingsView: AgentAISettingsView? = null
-    private var pendingSelectType: InferenceType = InferenceType.TEXT
 
-    private val selectModelLauncher =
+    private val selectTextModelLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val model = result.data?.getSerializableExtra("data") as? ModelInfo
-                settingsView?.applySelectedModel(pendingSelectType, model)
-            }
-            settingsView?.updateStatus()
-            onSettingsChanged?.invoke()
+            handleModelResult(InferenceType.TEXT, result.resultCode, result.data)
+        }
+
+    private val selectImageModelLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            handleModelResult(InferenceType.IMAGE, result.resultCode, result.data)
         }
 
     override fun onCreateView(
@@ -55,16 +57,20 @@ class AgentModelSettingsBottomSheet : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val settings = view.findViewById<AgentAISettingsView>(R.id.aiSettingsView)
+        bindSettingsView(view.findViewById(R.id.aiSettingsView))
+    }
+
+    private fun bindSettingsView(settings: AgentAISettingsView) {
         settingsView = settings
         settings.setShowServiceSettingsEntry(true)
         settings.onSelectModelClick = { type ->
-            pendingSelectType = type
-            selectModelLauncher.launch(
-                Intent(requireContext(), ActivityAgentSelector::class.java).apply {
-                    putExtra("type", type.type)
-                }
-            )
+            val intent = Intent(requireContext(), ActivityAgentSelector::class.java).apply {
+                putExtra("type", type.type)
+            }
+            when (type) {
+                InferenceType.IMAGE -> selectImageModelLauncher.launch(intent)
+                else -> selectTextModelLauncher.launch(intent)
+            }
         }
         settings.onOpenServiceSettingsClick = {
             dismissAllowingStateLoss()
@@ -76,11 +82,41 @@ class AgentModelSettingsBottomSheet : BottomSheetDialogFragment() {
         settings.updateStatus()
     }
 
+    private fun handleModelResult(type: InferenceType, resultCode: Int, data: Intent?) {
+        if (resultCode == Activity.RESULT_OK) {
+            val model = data?.getSerializableExtra("data") as? ModelInfo
+            val applied = settingsView?.applySelectedModel(type, model) == true
+            if (!applied && model != null) {
+                // View 可能已销毁，直接落盘到 Manager，避免选模结果丢失
+                commitModelToManager(type, model)
+            }
+        }
+        settingsView?.updateStatus()
+        onSettingsChanged?.invoke()
+    }
+
+    private fun commitModelToManager(type: InferenceType, model: ModelInfo) {
+        val manager = XAgent.getInstance().getAIServiceManager() as? DefaultAIServiceManager
+        val provider = manager?.getProvider(model.providerId)
+        if (provider?.isProviderReady() == true) {
+            manager.setInferenceModel(type, model)
+        } else {
+            CommonToast.getInstance().showToast(
+                getString(com.hive.i8n.R.string.ai_set_api_key_first, model.providerId)
+            )
+        }
+    }
+
     companion object {
         private const val TAG = "AgentModelSettingsBottomSheet"
 
         fun show(fragmentManager: FragmentManager, onSettingsChanged: (() -> Unit)? = null) {
-            (fragmentManager.findFragmentByTag(TAG) as? AgentModelSettingsBottomSheet)?.dismissAllowingStateLoss()
+            val existing = fragmentManager.findFragmentByTag(TAG) as? AgentModelSettingsBottomSheet
+            if (existing != null) {
+                existing.onSettingsChanged = onSettingsChanged
+                existing.settingsView?.updateStatus()
+                return
+            }
             AgentModelSettingsBottomSheet().apply {
                 this.onSettingsChanged = onSettingsChanged
             }.show(fragmentManager, TAG)
