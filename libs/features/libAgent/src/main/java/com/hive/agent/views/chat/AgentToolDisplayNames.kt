@@ -50,7 +50,7 @@ object AgentToolDisplayNames {
     }
 
     private fun resolveFromScriptMcpCache(functionName: String): String? {
-        val action = ScriptMcpRegister.findToolByActionPublic(functionName)?.getAction() ?: return null
+        val action = ScriptMcpRegister.findToolByActionPublic(functionName)?.getToolAction() ?: return null
         return action.extraName?.takeIf { it.isNotBlank() }
             ?: action.description?.takeIf { it.isNotBlank() }
     }
