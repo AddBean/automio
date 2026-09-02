@@ -38,7 +38,7 @@ class CustomOpenAIProvider : OpenAIProvider() {
             apiKeyPrefix = "",
             apiKeyValidateMsg = com.hive.i8n.R.string.api_key_validation_openai_custom.string(),
             apiUrl = "",
-            sortIndex = 600,
+            sortIndex = 10_000,
         )
     }
 

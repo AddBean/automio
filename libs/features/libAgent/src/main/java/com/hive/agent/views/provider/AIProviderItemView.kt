@@ -126,9 +126,13 @@ class AIProviderItemView(context: Context) : ListRecyclerItemView(context) {
             id.contains("kimi") || id.contains("moonshot") -> R.drawable.ic_kimi
             id.contains("bailian") || id.contains("qwen") || id.contains("dashscope") ->
                 R.drawable.ic_bailian
-            id.contains("ark") || id.contains("volc") || id.contains("doubao") ->
-                R.drawable.ic_ark
-            id.contains("silicon") -> R.drawable.ic_siliconflow
+            id.contains("ark") || id.contains("volc") -> R.drawable.ic_volcengine
+            id.contains("doubao") -> R.drawable.ic_doubao
+            id.contains("silicon") -> R.drawable.ic_siliconcloud
+            id.contains("minimax") -> R.drawable.ic_minimax
+            id.contains("step") -> R.drawable.ic_stepfun
+            id.contains("mimo") || id.contains("xiaomi") -> R.drawable.ic_xiaomimimo
+            id.contains("azure") -> R.drawable.ic_azureai
             id.contains("openai") -> R.drawable.ic_openai
             else -> R.drawable.ic_model_default
         }

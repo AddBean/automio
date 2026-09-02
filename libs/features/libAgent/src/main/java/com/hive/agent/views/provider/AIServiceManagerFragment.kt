@@ -118,7 +118,7 @@ class AIServiceManagerFragment : BaseFragment() {
             // 从AI服务管理器获取所有Provider信息
             val providers = aiServiceManager?.getProviderList() ?: return@launch
             val providerDataList = supervisorScope {
-                providers.sortedByDescending { it.getProviderInfo().sortIndex }.map { p ->
+                providers.map { p ->
                     async(Dispatchers.IO) {
                     val pid = p.getProviderInfo().name
                     AIProviderItemData(
@@ -135,7 +135,11 @@ class AIServiceManagerFragment : BaseFragment() {
                     )
                     }
                 }.awaitAll()
-            }
+            }.sortedWith(
+                compareByDescending<AIProviderItemData> { it.hasValidApiKey }
+                    .thenByDescending { it.providerId == CustomOpenAIProvider.PROVIDER_ID }
+                    .thenByDescending { it.providerInfo.sortIndex }
+            )
 
             // 构建完整的数据列表（包括Provider和模型）
             val dataWithType = mutableListOf<Pair<Int, Any?>>()
