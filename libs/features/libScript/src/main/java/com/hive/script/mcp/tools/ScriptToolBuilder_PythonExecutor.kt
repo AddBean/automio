@@ -83,16 +83,23 @@ class ScriptToolBuilder_PythonExecutor : McpToolBuilder() {
     override fun onCreateCommand(params: Map<String, String>): ScriptCommand? {
         val actionType = params[PARAM_ACTION]?.trim()?.lowercase().orEmpty()
         return when (actionType) {
-            ACTION_HELP -> {
-                // help 模式不创建命令，返回 null
-                null
-            }
+            ACTION_HELP -> null
             ACTION_RUN -> {
                 val code = params["code"]?.trim().orEmpty()
                 cmd = CmdPythonExecutor.createCodeCommand(code, outputParam = null)
                 cmd
             }
             else -> null
+        }
+    }
+
+    override suspend fun executeAction(params: Map<String, String>): ActionResult {
+        return when (params[PARAM_ACTION]?.trim()?.lowercase().orEmpty()) {
+            ACTION_HELP -> ActionResult.success(
+                message = GlobalApp.getString(com.hive.i8n.R.string.tool_python_executor_help_title),
+                data = helpBody,
+            )
+            else -> super.executeAction(params)
         }
     }
 
