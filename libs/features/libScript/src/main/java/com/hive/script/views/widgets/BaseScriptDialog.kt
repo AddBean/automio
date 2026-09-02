@@ -58,6 +58,13 @@ abstract class BaseScriptDialog(context: Context?) : BaseLayout(context) {
 
     private var animation: ValueAnimator? = null
 
+    private var dismissCleanupDone = false
+
+    private var dismissInProgress = false
+
+    /** Invalidates callbacks belonging to an interrupted show/dismiss transition. */
+    private var transitionGeneration = 0L
+
     private var currentContext: Context? = null
 
     open val Anim_Duration = ScriptConst.Anim_Duration
@@ -309,6 +316,21 @@ abstract class BaseScriptDialog(context: Context?) : BaseLayout(context) {
      */
     open fun enableUpDownAnimation() = false
 
+    /**
+     * Optional transition hooks for dialogs that need to coordinate their animation with
+     * WindowManager sizing. Returning true means the subclass owns the transition and must
+     * invoke the supplied callbacks.
+     */
+    protected open fun runCustomShowAnimation(
+        onStart: () -> Unit,
+        onEnd: () -> Unit
+    ): Boolean = false
+
+    protected open fun runCustomDismissAnimation(onEnd: () -> Unit): Boolean = false
+
+    /** Only custom transitions that can resume from their current visual values opt in. */
+    protected open fun canInterruptDismissWithShow(): Boolean = false
+
     open fun getBgView(): View? = findViewById(R.id.view_bg)
 
     open fun onDismiss() {
@@ -365,8 +387,13 @@ abstract class BaseScriptDialog(context: Context?) : BaseLayout(context) {
 
     open fun show(): BaseScriptDialog {
         isHidden = false
-        if (visibility == View.VISIBLE && this.parent != null) return this
+        if (visibility == View.VISIBLE && this.parent != null &&
+            !(dismissInProgress && canInterruptDismissWithShow())
+        ) return this
         if (currentContext == null) return this
+        dismissCleanupDone = false
+        dismissInProgress = false
+        val showGeneration = ++transitionGeneration
 
         if (parent == null) {
             visibility = View.INVISIBLE
@@ -374,7 +401,19 @@ abstract class BaseScriptDialog(context: Context?) : BaseLayout(context) {
         }
         stackPush(this)
         post {
+            if (showGeneration != transitionGeneration) return@post
             clearAllAnimation()
+            if (runCustomShowAnimation(
+                    onStart = { visibility = View.VISIBLE },
+                    onEnd = {
+                        this@BaseScriptDialog.post {
+                            if (showGeneration == transitionGeneration) onShow()
+                        }
+                    }
+                )
+            ) {
+                return@post
+            }
             if (enableFadeAnimation()) {
                 startFadeAnimation(true, object : AnimUtils.AnimListener() {
                     override fun onBegin(v: View?) {
@@ -384,7 +423,7 @@ abstract class BaseScriptDialog(context: Context?) : BaseLayout(context) {
                     override fun onOver(v: View?) {
                         super.onOver(v)
                         this@BaseScriptDialog.post {
-                            onShow()
+                            if (showGeneration == transitionGeneration) onShow()
                         }
                     }
                 })
@@ -397,7 +436,7 @@ abstract class BaseScriptDialog(context: Context?) : BaseLayout(context) {
                     override fun onOver(v: View?) {
                         super.onOver(v)
                         this@BaseScriptDialog.post {
-                            onShow()
+                            if (showGeneration == transitionGeneration) onShow()
                         }
                     }
                 })
@@ -418,19 +457,32 @@ abstract class BaseScriptDialog(context: Context?) : BaseLayout(context) {
     ): BaseScriptDialog {
         CommonUtils.closeKeyboard(this)
         stackRemove(this)
+        dismissInProgress = true
+        val dismissGeneration = ++transitionGeneration
         post {
+            if (dismissGeneration != transitionGeneration) return@post
             clearAllAnimation()
             if (notifyListener) {
                 onDismissListener?.onDismiss()
             }
+            val finishDismiss = {
+                if (!dismissCleanupDone && dismissGeneration == transitionGeneration) {
+                    dismissCleanupDone = true
+                    dismissInProgress = false
+                    isHidden = true
+                    visibility = View.GONE
+                    removeSelf()
+                    onDismiss()
+                    onDismissFun?.invoke()
+                }
+            }
+            if (runCustomDismissAnimation(finishDismiss)) {
+                return@post
+            }
             if (enableFadeAnimation()) {
                 startFadeAnimation(false, object : AnimUtils.AnimListener() {
                     override fun onOver(v: View?) {
-                        isHidden = true
-                        visibility = View.GONE
-                        removeSelf()
-                        onDismiss()
-                        onDismissFun?.invoke()
+                        finishDismiss()
                     }
                 })
             } else {
@@ -439,11 +491,7 @@ abstract class BaseScriptDialog(context: Context?) : BaseLayout(context) {
                     height.toFloat(),
                     object : AnimUtils.AnimListener() {
                         override fun onOver(v: View?) {
-                            isHidden = true
-                            visibility = View.GONE
-                            removeSelf()
-                            onDismiss()
-                            onDismissFun?.invoke()
+                            finishDismiss()
                         }
                     })
             }

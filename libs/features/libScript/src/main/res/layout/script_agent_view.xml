@@ -4,56 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="20dp"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <!-- 收起状态的小条 -->
-    <LinearLayout
-        android:id="@+id/ll_collapsed_status"
+    <FrameLayout
+        android:id="@+id/agent_motion_surface"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:background="@drawable/xml_script_agent_mini_round_bg"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="10dp"
-        android:visibility="gone"
-        tools:visibility="visible">
+        android:clipChildren="true"
+        android:clipToPadding="true">
 
-        <com.wang.avi.AVLoadingIndicatorView
-            android:id="@+id/iv_anim"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_gravity="center"
-            android:layout_marginEnd="2dp"
-            app:indicatorColor="@color/colorGreen"
-            app:indicatorName="PacmanIndicator" />
-
-        <TextView
-            android:id="@+id/tv_collapsed_status"
+        <!-- 收起状态的小条 -->
+        <LinearLayout
+            android:id="@+id/ll_collapsed_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="start"
-            android:maxEms="10"
-            android:singleLine="true"
-            android:textColor="@color/textColorPrimary"
-            android:textSize="12sp"
-            tools:text="正在思考正在思考正在思考正在思考正在思考1" />
-    </LinearLayout>
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
+            android:visibility="invisible"
+            tools:visibility="visible">
 
-    <!-- 展开状态的内容 -->
-    <LinearLayout
-        android:id="@+id/ll_expanded_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/xml_script_agent_mini_round_bg"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:orientation="vertical"
-        android:padding="18dp">
+            <com.wang.avi.AVLoadingIndicatorView
+                android:id="@+id/iv_anim"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="2dp"
+                app:indicatorColor="@color/colorGreen"
+                app:indicatorName="PacmanIndicator" />
+
+            <TextView
+                android:id="@+id/tv_collapsed_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="start"
+                android:maxEms="10"
+                android:singleLine="true"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="12sp"
+                tools:text="正在思考正在思考正在思考正在思考正在思考1" />
+        </LinearLayout>
+
+        <!-- 展开状态的内容：宽度由 MotionController 按屏幕可用空间显式测量。 -->
+        <LinearLayout
+            android:id="@+id/ll_expanded_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:padding="18dp">
 
 
         <!-- 任务信息区 -->
@@ -189,6 +195,7 @@
                 android:src="@drawable/ic_collapse_arrow"
                 app:tint="@color/colorTextSecondary" />
         </LinearLayout>
-    </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
 
 </RelativeLayout>

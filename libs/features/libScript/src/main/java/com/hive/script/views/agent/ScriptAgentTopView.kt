@@ -7,6 +7,7 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.Configuration
 import android.graphics.PixelFormat
 import android.os.Handler
 import android.os.Looper
@@ -66,8 +67,10 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
         }
 
         fun dismiss() {
-            instance?.dismiss()
-            instance = null
+            val dismissing = instance ?: return
+            dismissing.dismiss {
+                if (instance === dismissing) instance = null
+            }
         }
 
         /**
@@ -76,7 +79,7 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
          */
         fun hideForCapture() {
             instance?.post {
-                instance?.visibleOrGone(false)
+                instance?.hideMotionForCapture()
                 instance?.setTouchPassthrough(true)
             }
         }
@@ -86,7 +89,7 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
          */
         fun showForCapture() {
             instance?.post {
-                instance?.visibleOrGone(true)
+                instance?.showMotionAfterCapture()
                 instance?.setTouchPassthrough(false)
             }
         }
@@ -114,6 +117,9 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
     //    private lateinit var ivCollapsedIcon: ImageView
     private lateinit var tvCollapsedStatus: TextView
     private lateinit var llExpandedContent: View
+    private var motionController: AgentTopViewMotionController? = null
+    private var viewsInitialized = false
+    private var wasDetached = false
 
     enum class AgentStatus {
         THINKING, TOOL_CALLING, COMPLETED, FAILED, PAUSED, EXECUTING, COMPRESSING_MEMORY
@@ -292,7 +298,6 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
                 tvCollapsedStatus = it.findViewById(R.id.tv_collapsed_status)
                 llExpandedContent = it.findViewById(R.id.ll_expanded_content)
 
-
                 setupTimeline()
                 setupListeners()
                 setupCollapseListeners()
@@ -300,13 +305,14 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
                 updateStatus(AgentStatus.THINKING)
                 setupAgentProvider()
 
+                viewsInitialized = true
+                initMotionController()
+
                 // 启动自动收起定时器
                 collapseManager.startAutoCollapseTimer()
 
                 // 初始化收起按钮图标
                 btnCollapse.setImageResource(R.drawable.ic_collapse_arrow)
-
-                getViewManager()?.updateLayoutParams(layoutParamsNotFull)
 
                 // 关闭 BaseScriptDialog 设置的 isClickable，让透明区域自然透传事件
                 findViewById<FrameLayout>(R.id.layoutRoot)?.getChildAt(0)?.isClickable = false
@@ -344,7 +350,59 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
 
     override fun enableFadeAnimation() = false
 
-    override fun enableUpDownAnimation() = true
+    override fun enableUpDownAnimation() = false
+
+    override fun runCustomShowAnimation(onStart: () -> Unit, onEnd: () -> Unit): Boolean {
+        val controller = motionController
+        if (controller != null) {
+            controller.enter(onStart, onEnd)
+        } else {
+            // Never fall back to BaseScriptDialog's opposite-direction legacy translation.
+            onStart()
+            onEnd()
+        }
+        return true
+    }
+
+    override fun runCustomDismissAnimation(onEnd: () -> Unit): Boolean {
+        val controller = motionController
+        if (controller != null) controller.exit(onEnd) else onEnd()
+        return true
+    }
+
+    override fun canInterruptDismissWithShow(): Boolean = true
+
+    private fun hideMotionForCapture() {
+        motionController?.snapHiddenForCapture()
+        isCollapsed = motionController?.isTargetCollapsed ?: isCollapsed
+    }
+
+    private fun showMotionAfterCapture() {
+        motionController?.snapVisibleAfterCapture()
+    }
+
+    private fun initMotionController() {
+        if (!viewsInitialized || motionController != null) return
+        val motionSurface = findViewById<View>(R.id.agent_motion_surface)
+        motionController = AgentTopViewMotionController(
+            host = this,
+            surface = motionSurface,
+            collapsed = llCollapsedStatus,
+            expanded = llExpandedContent
+        ) { width, height ->
+            if (layoutParamsNotFull.width != width || layoutParamsNotFull.height != height) {
+                layoutParamsNotFull.width = width
+                layoutParamsNotFull.height = height
+                getViewManager()?.updateLayoutParams(layoutParamsNotFull)
+            }
+        }.also { controller ->
+            controller.initialize(isCollapsed)
+        }
+    }
+
+    private fun refreshMotionSize() {
+        post { motionController?.refreshCurrentSize() }
+    }
 
     private fun setupTimeline() {
         // 设置横向布局管理器
@@ -478,10 +536,23 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         ScriptInterpreterObserver.registerCommandObserver(commandTaskObserver)
+        if (wasDetached) {
+            wasDetached = false
+            uiHandler = Handler(Looper.getMainLooper())
+            post {
+                if (!isAttachedToWindow) return@post
+                initMotionController()
+                setupAgentProvider()
+                collapseManager.startAutoCollapseTimer()
+            }
+        }
     }
 
     override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
+        isCollapsed = motionController?.isTargetCollapsed ?: isCollapsed
+        motionController?.dispose()
+        motionController = null
+        wasDetached = true
         ScriptInterpreterObserver.unRegisterCommandObserver(commandTaskObserver)
         try {
             // 清理Handler
@@ -497,9 +568,19 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
                 provider.unregisterSkillStateObserver(skillStateObserver)
                 provider.unregisterSkillTaskObserver(agentTaskObserver)
             }
+            isAgentProviderInitialized = false
 
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+        super.onDetachedFromWindow()
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration?) {
+        super.onConfigurationChanged(newConfig)
+        post {
+            motionController?.cancelAndSnapToCurrentTarget()
+            isCollapsed = motionController?.isTargetCollapsed ?: isCollapsed
         }
     }
 
@@ -517,6 +598,7 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
 
         currentStatus = status
         statusManager.updateStatus(status)
+        refreshMotionSize()
 
         // 重置自动收起定时器
         collapseManager.resetAutoCollapseTimer()
@@ -555,6 +637,7 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
         tvTaskInfo.text = GlobalApp.getString(com.hive.i8n.R.string.script_agent_thinking)
         tvCollapsedStatus.text = GlobalApp.getString(com.hive.i8n.R.string.script_agent_thinking)
         setPaused(false)
+        refreshMotionSize()
     }
 
     // Agent执行开始处理
@@ -639,6 +722,7 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
                     rvTimeline.submitDataSets(timelineData)
                     rvTimeline.postDelayed({
                         rvTimeline.scrollToPosition(messages.size - 1)
+                        motionController?.refreshCurrentSize()
                     }, 100)
                 }
             updateCurrentTaskInfo()
@@ -654,6 +738,7 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
                 GlobalApp.getString(com.hive.i8n.R.string.script_top_status_compressing_memory)
             tvTaskInfo.text = compressingText
             tvCollapsedStatus.text = compressingText
+            refreshMotionSize()
             return
         }
         val chatInput = currentTaskGoal?.input ?: return
@@ -666,6 +751,7 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
             )
         tvTaskInfo.text = displayText
         tvCollapsedStatus.text = displayText
+        refreshMotionSize()
     }
 
     // 状态管理器
@@ -760,14 +846,17 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
         fun resetAutoCollapseTimer() {
             autoCollapseTimer?.removeCallbacksAndMessages(null)
             autoCollapseTimer?.postDelayed({
-                if (!isCollapsed) {
+                if (motionController?.isDismissing == false &&
+                    motionController?.isTargetCollapsed == false
+                ) {
                     collapse()
                 }
             }, AUTO_COLLAPSE_DELAY)
         }
 
         fun toggleCollapse() {
-            if (isCollapsed) {
+            if (motionController?.isDismissing != false) return
+            if (motionController?.isTargetCollapsed == true) {
                 expand()
             } else {
                 collapse()
@@ -775,88 +864,18 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
         }
 
         fun expand() {
-            if (!isCollapsed) return
-
-            isCollapsed = false
-
-            // 创建展开动画
-            val expandAnimator = AnimatorSet()
-
-            // 收起状态淡出
-            val fadeOutCollapsed = ObjectAnimator.ofFloat(llCollapsedStatus, "alpha", 1f, 0f)
-            fadeOutCollapsed.duration = 200
-
-            // 展开内容淡入
-            val fadeInExpanded = ObjectAnimator.ofFloat(llExpandedContent, "alpha", 0f, 1f)
-            fadeInExpanded.duration = 200
-
-            // 收起按钮旋转动画和图标更新
-            val rotateButton = ObjectAnimator.ofFloat(btnCollapse, "rotation", 180f, 0f)
-            rotateButton.duration = 200
-            rotateButton.interpolator = AccelerateDecelerateInterpolator()
-
-            // 更新按钮图标
+            val controller = motionController ?: return
+            if (controller.isDismissing || !controller.isTargetCollapsed) return
             btnCollapse.setImageResource(R.drawable.ic_collapse_arrow)
-
-            expandAnimator.play(fadeOutCollapsed).with(rotateButton)
-            expandAnimator.play(fadeInExpanded).after(fadeOutCollapsed)
-
-            expandAnimator.addListener(object : android.animation.AnimatorListenerAdapter() {
-                override fun onAnimationStart(animation: android.animation.Animator) {
-                    llExpandedContent.visibility = View.VISIBLE
-                    llExpandedContent.alpha = 0f
-                }
-
-                override fun onAnimationEnd(animation: android.animation.Animator) {
-                    llCollapsedStatus.visibility = View.GONE
-                    llCollapsedStatus.alpha = 1f
-                }
-            })
-
-            expandAnimator.start()
+            controller.expand { isCollapsed = false }
             resetAutoCollapseTimer()
         }
 
         private fun collapse() {
-            if (isCollapsed) return
-
-            isCollapsed = true
-
-            // 创建收起动画
-            val collapseAnimator = AnimatorSet()
-
-            // 展开内容淡出
-            val fadeOutExpanded = ObjectAnimator.ofFloat(llExpandedContent, "alpha", 1f, 0f)
-            fadeOutExpanded.duration = 200
-
-            // 收起状态淡入
-            val fadeInCollapsed = ObjectAnimator.ofFloat(llCollapsedStatus, "alpha", 0f, 1f)
-            fadeInCollapsed.duration = 200
-
-            // 收起按钮旋转动画和图标更新
-            val rotateButton = ObjectAnimator.ofFloat(btnCollapse, "rotation", 0f, 180f)
-            rotateButton.duration = 200
-            rotateButton.interpolator = AccelerateDecelerateInterpolator()
-
-            // 更新按钮图标
+            val controller = motionController ?: return
+            if (controller.isDismissing || controller.isTargetCollapsed) return
             btnCollapse.setImageResource(R.drawable.ic_expand_arrow)
-
-            collapseAnimator.play(fadeOutExpanded).with(rotateButton)
-            collapseAnimator.play(fadeInCollapsed).after(fadeOutExpanded)
-
-            collapseAnimator.addListener(object : android.animation.AnimatorListenerAdapter() {
-                override fun onAnimationStart(animation: android.animation.Animator) {
-                    llCollapsedStatus.visibility = View.VISIBLE
-                    llCollapsedStatus.alpha = 0f
-                }
-
-                override fun onAnimationEnd(animation: android.animation.Animator) {
-                    llExpandedContent.visibility = View.GONE
-                    llExpandedContent.alpha = 1f
-                }
-            })
-
-            collapseAnimator.start()
+            controller.collapse { isCollapsed = true }
         }
 
         fun cleanup() {
