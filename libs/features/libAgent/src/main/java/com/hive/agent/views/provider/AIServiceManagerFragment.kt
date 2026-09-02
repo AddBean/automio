@@ -136,7 +136,10 @@ class AIServiceManagerFragment : BaseFragment() {
                     }
                 }.awaitAll()
             }.sortedWith(
-                compareByDescending<AIProviderItemData> { it.hasValidApiKey }
+                // 已配置 API Key 的优先；同组内自定义 OpenAI 靠前，其余按 sortIndex
+                compareByDescending<AIProviderItemData> {
+                    it.hasValidApiKey && it.providerInfo.apikeyEnabled
+                }
                     .thenByDescending { it.providerId == CustomOpenAIProvider.PROVIDER_ID }
                     .thenByDescending { it.providerInfo.sortIndex }
             )
