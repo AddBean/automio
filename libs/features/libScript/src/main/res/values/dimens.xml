@@ -3,4 +3,6 @@
     <dimen name="sc_logger_max_height">380dp</dimen>
     <dimen name="sc_logger_width">86dp</dimen>
     <dimen name="script_agent_top_view_max_width">400dp</dimen>
+    <!-- 时间线单项约 52dp + 容器 padding 16dp，固定高度避免测量抖动 -->
+    <dimen name="script_agent_timeline_height">72dp</dimen>
 </resources>

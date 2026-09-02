@@ -139,19 +139,19 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- 时间线容器 -->
+        <!-- 时间线容器：固定高度，展开态 surface 可稳定测量、无需异步撑高 -->
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/script_agent_timeline_height"
             android:layout_marginBottom="12dp"
             android:background="@drawable/xml_timeline_container_bg"
             android:padding="8dp">
 
-            <!-- 事件列表 -->
             <com.hive.views.list_view.ListRecyclerView
                 android:id="@+id/rv_timeline"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical" />
 
         </FrameLayout>
 

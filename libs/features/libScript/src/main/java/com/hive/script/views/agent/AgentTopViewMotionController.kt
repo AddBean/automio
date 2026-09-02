@@ -8,6 +8,7 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.graphics.drawable.GradientDrawable
 import android.view.View
+import android.view.ViewGroup
 import android.view.animation.PathInterpolator
 import com.hive.script.R
 import kotlin.math.abs
@@ -15,8 +16,8 @@ import kotlin.math.max
 import kotlin.math.min
 
 /**
- * Owns all structural motion for [ScriptAgentTopView]. WindowManager is resized only at
- * transition boundaries; animation frames resize the in-window surface instead.
+ * Owns all structural motion for [ScriptAgentTopView]. Surface and WindowManager share the
+ * same dimensions on every frame so content never sits in a larger window's top-left corner.
  */
 internal class AgentTopViewMotionController(
     private val host: View,
@@ -37,6 +38,7 @@ internal class AgentTopViewMotionController(
     private var captureWasVisible = false
     private var transition = Transition.IDLE
     private var pendingSizeRefresh = false
+    private var cachedExpandedSize: Size? = null
 
     var isTargetCollapsed: Boolean = false
         private set
@@ -49,21 +51,18 @@ internal class AgentTopViewMotionController(
         isTargetCollapsed = collapsedState
         transition = Transition.IDLE
         pendingSizeRefresh = false
+        cachedExpandedSize = null
         val sizes = measureTargets()
-        val size = if (collapsedState) {
+        if (collapsedState) {
             normalizeCollapsed()
-            sizes.first
+            applyStableSize(sizes.first)
         } else {
             normalizeExpanded()
-            sizes.second
-        }
-        size.let {
-            setSurfaceSize(size)
-            updateWindowSize(size.width, size.height)
+            applyStableSize(sizes.second)
         }
     }
 
-    /** Re-measures dynamic timeline content while keeping the current stable state. */
+    /** Re-measures when width may change (orientation); expanded height stays fixed in layout. */
     fun refreshCurrentSize() {
         if (disposed || transition == Transition.EXIT) return
         if (activeAnimator != null || transition == Transition.MORPH || transition == Transition.ENTER) {
@@ -72,9 +71,7 @@ internal class AgentTopViewMotionController(
         }
         pendingSizeRefresh = false
         val sizes = measureTargets()
-        val size = if (isTargetCollapsed) sizes.first else sizes.second
-        setSurfaceSize(size)
-        updateWindowSize(size.width, size.height)
+        applyStableSize(if (isTargetCollapsed) sizes.first else sizes.second)
     }
 
     fun enter(onStart: () -> Unit, onEnd: () -> Unit) {
@@ -131,8 +128,7 @@ internal class AgentTopViewMotionController(
     fun expand(onEnd: () -> Unit = {}) {
         if (disposed || transition == Transition.EXIT) return
         isTargetCollapsed = false
-        val (collapsedSize, expandedSize) = measureTargets()
-        updateWindowSize(expandedSize.width, expandedSize.height)
+        val expandedSize = measureTargets().second
         morph(
             target = expandedSize,
             duration = 280L,
@@ -144,7 +140,7 @@ internal class AgentTopViewMotionController(
         ) {
             transition = Transition.IDLE
             normalizeExpanded()
-            setSurfaceSize(expandedSize)
+            applyStableSize(expandedSize)
             runPendingSizeRefresh()
             onEnd()
         }
@@ -153,9 +149,7 @@ internal class AgentTopViewMotionController(
     fun collapse(onEnd: () -> Unit = {}) {
         if (disposed || transition == Transition.EXIT) return
         isTargetCollapsed = true
-        val (collapsedSize, expandedSize) = measureTargets()
-        // A reverse from an expanding animation may have started in a smaller window.
-        updateWindowSize(expandedSize.width, expandedSize.height)
+        val collapsedSize = measureTargets().first
         morph(
             target = collapsedSize,
             duration = 220L,
@@ -167,8 +161,7 @@ internal class AgentTopViewMotionController(
         ) {
             transition = Transition.IDLE
             normalizeCollapsed()
-            setSurfaceSize(collapsedSize)
-            updateWindowSize(collapsedSize.width, collapsedSize.height)
+            applyStableSize(collapsedSize)
             runPendingSizeRefresh()
             onEnd()
         }
@@ -200,12 +193,10 @@ internal class AgentTopViewMotionController(
         val sizes = measureTargets()
         if (isTargetCollapsed) {
             normalizeCollapsed()
-            setSurfaceSize(sizes.first)
-            updateWindowSize(sizes.first.width, sizes.first.height)
+            applyStableSize(sizes.first)
         } else {
             normalizeExpanded()
-            setSurfaceSize(sizes.second)
-            updateWindowSize(sizes.second.width, sizes.second.height)
+            applyStableSize(sizes.second)
         }
     }
 
@@ -215,6 +206,7 @@ internal class AgentTopViewMotionController(
         transition = Transition.DISPOSED
         pendingSizeRefresh = false
         captureWasVisible = false
+        cachedExpandedSize = null
         cancelActive()
     }
 
@@ -255,7 +247,7 @@ internal class AgentTopViewMotionController(
 
         val startSize = Size(startWidth, startHeight)
         animate((duration * remaining).toLong(), onEnd) { fraction ->
-            setSurfaceSize(
+            applyFrameSize(
                 Size(
                     lerp(startSize.width, target.width, fraction),
                     lerp(startSize.height, target.height, fraction)
@@ -318,13 +310,52 @@ internal class AgentTopViewMotionController(
         collapsed.measure(unspecified, unspecified)
         val collapsedSize = Size(collapsed.measuredWidth, collapsed.measuredHeight)
 
+        val expandedSize = cachedExpandedSize?.takeIf { cached ->
+            val screenWidth = host.resources.displayMetrics.widthPixels
+            val maxWidth = host.resources.getDimensionPixelSize(R.dimen.script_agent_top_view_max_width)
+            val expandedWidth = min(maxWidth, screenWidth - (40f * density).toInt())
+                .coerceAtLeast(collapsedSize.width)
+            cached.width == expandedWidth
+        } ?: measureExpandedSize(collapsedSize.width).also { cachedExpandedSize = it }
+
+        return collapsedSize to expandedSize
+    }
+
+    private fun measureExpandedSize(minWidth: Int): Size {
         val screenWidth = host.resources.displayMetrics.widthPixels
         val maxWidth = host.resources.getDimensionPixelSize(R.dimen.script_agent_top_view_max_width)
         val expandedWidth = min(maxWidth, screenWidth - (40f * density).toInt())
-            .coerceAtLeast(collapsedSize.width)
-        expanded.layoutParams = expanded.layoutParams.apply { width = expandedWidth }
-        expanded.measure(View.MeasureSpec.makeMeasureSpec(expandedWidth, View.MeasureSpec.EXACTLY), unspecified)
-        return collapsedSize to Size(expandedWidth, expanded.measuredHeight)
+            .coerceAtLeast(minWidth)
+
+        val savedExpandedVisibility = expanded.visibility
+        val savedCollapsedVisibility = collapsed.visibility
+        expanded.visibility = View.VISIBLE
+        collapsed.visibility = View.INVISIBLE
+        expanded.layoutParams = expanded.layoutParams.apply {
+            width = expandedWidth
+            height = ViewGroup.LayoutParams.WRAP_CONTENT
+        }
+        val widthSpec = View.MeasureSpec.makeMeasureSpec(expandedWidth, View.MeasureSpec.EXACTLY)
+        val heightSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        expanded.measure(widthSpec, heightSpec)
+        expanded.visibility = savedExpandedVisibility
+        collapsed.visibility = savedCollapsedVisibility
+
+        return Size(expandedWidth, expanded.measuredHeight.coerceAtLeast(collapsed.measuredHeight))
+    }
+
+    private fun applyStableSize(size: Size) {
+        applyFrameSize(size)
+    }
+
+    /** Surface and WM window always share the same bounds (including morph frames). */
+    private fun applyFrameSize(size: Size) {
+        surface.layoutParams = surface.layoutParams.apply {
+            width = size.width
+            height = size.height
+        }
+        surface.requestLayout()
+        updateWindowSize(size.width, size.height)
     }
 
     private fun normalizeExpanded() {
@@ -353,13 +384,6 @@ internal class AgentTopViewMotionController(
         expanded.translationY = 0f
         expanded.visibility = View.INVISIBLE
         surfaceBackground?.cornerRadius = 24f * density
-    }
-
-    private fun setSurfaceSize(size: Size) {
-        surface.layoutParams = surface.layoutParams.apply {
-            width = size.width
-            height = size.height
-        }
     }
 
     private fun lerp(start: Float, end: Float, fraction: Float): Float =

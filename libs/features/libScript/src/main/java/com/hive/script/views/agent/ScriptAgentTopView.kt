@@ -400,10 +400,6 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
         }
     }
 
-    private fun refreshMotionSize() {
-        post { motionController?.refreshCurrentSize() }
-    }
-
     private fun setupTimeline() {
         // 设置横向布局管理器
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -598,7 +594,6 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
 
         currentStatus = status
         statusManager.updateStatus(status)
-        refreshMotionSize()
 
         // 重置自动收起定时器
         collapseManager.resetAutoCollapseTimer()
@@ -637,7 +632,6 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
         tvTaskInfo.text = GlobalApp.getString(com.hive.i8n.R.string.script_agent_thinking)
         tvCollapsedStatus.text = GlobalApp.getString(com.hive.i8n.R.string.script_agent_thinking)
         setPaused(false)
-        refreshMotionSize()
     }
 
     // Agent执行开始处理
@@ -722,7 +716,6 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
                     rvTimeline.submitDataSets(timelineData)
                     rvTimeline.postDelayed({
                         rvTimeline.scrollToPosition(messages.size - 1)
-                        motionController?.refreshCurrentSize()
                     }, 100)
                 }
             updateCurrentTaskInfo()
@@ -738,7 +731,6 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
                 GlobalApp.getString(com.hive.i8n.R.string.script_top_status_compressing_memory)
             tvTaskInfo.text = compressingText
             tvCollapsedStatus.text = compressingText
-            refreshMotionSize()
             return
         }
         val chatInput = currentTaskGoal?.input ?: return
@@ -751,7 +743,6 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
             )
         tvTaskInfo.text = displayText
         tvCollapsedStatus.text = displayText
-        refreshMotionSize()
     }
 
     // 状态管理器
