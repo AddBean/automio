@@ -58,10 +58,12 @@ open class BaseScriptTips(context: Context) : BaseScriptDialog(context) {
     private var isCollapseEnabled = false
     private val collapseManager = CollapseManager()
 
+    // 不可在字段初始化器中创建：initWindow() 会在父类构造期间被调用，此时尚未执行子类字段初始化。
     private var layoutParamsNotFull: WindowManager.LayoutParams? = null
 
     private fun layoutParamsOrCreate(): WindowManager.LayoutParams {
-        return layoutParamsNotFull ?: WindowManager.LayoutParams().also { lp ->
+        layoutParamsNotFull?.let { return it }
+        return WindowManager.LayoutParams().also { lp ->
             lp.width = WindowManager.LayoutParams.MATCH_PARENT
             lp.height = WindowManager.LayoutParams.WRAP_CONTENT
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
@@ -84,6 +86,11 @@ open class BaseScriptTips(context: Context) : BaseScriptDialog(context) {
         llCollapsedStatus?.let { bar ->
             (bar.layoutParams as? ViewGroup.MarginLayoutParams)?.topMargin = 0
         }
+    }
+
+    private fun updateTopWindowLayoutParams() {
+        applyTopWindowOffset()
+        getViewManager()?.updateLayoutParams(layoutParamsOrCreate())
     }
 
     override fun initWindow() {
@@ -113,16 +120,18 @@ open class BaseScriptTips(context: Context) : BaseScriptDialog(context) {
         // 默认隐藏操作按钮
         btnAction?.visibility = View.GONE
 
-        post {
-            applyTopWindowOffset()
-            getViewManager()?.updateLayoutParams(layoutParamsOrCreate())
-        }
+        post { updateTopWindowLayoutParams() }
+    }
+
+    override fun show(): BaseScriptDialog {
+        val dialog = super.show()
+        post { updateTopWindowLayoutParams() }
+        return dialog
     }
 
     override fun onConfigurationChanged(newConfig: Configuration?) {
         super.onConfigurationChanged(newConfig)
-        applyTopWindowOffset()
-        getViewManager()?.updateLayoutParams(layoutParamsOrCreate())
+        post { updateTopWindowLayoutParams() }
     }
 
     private fun setupCollapseListeners() {
