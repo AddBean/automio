@@ -281,6 +281,14 @@
     <string name="agent_normal_model">对话模型</string>
     <string name="agent_multimodal_model">视觉模型</string>
     <string name="agent_multimodal_required">请选择一个支持视觉的模型</string>
+    <string name="agent_model_settings_sheet_title">模型与推理</string>
+    <string name="agent_model_section_models">模型</string>
+    <string name="agent_model_section_capabilities">能力</string>
+    <string name="agent_vision_recognition_title">启用视觉识别</string>
+    <string name="agent_vision_recognition_desc">分析图片时可能增加 token 消耗</string>
+    <string name="agent_vision_recognition_need_model">请先选择视觉模型</string>
+    <string name="agent_vision_recognition_disabled">视觉识别未开启，请先开启或选择视觉模型</string>
+    <string name="agent_model_service_settings_entry">模型与服务设置</string>
 
 
 

@@ -57,6 +57,33 @@ object AIAgentConfig {
         }
     }
 
+    /**
+     * 视觉识别开关（独立于已选视觉模型；关闭后不走多模态链路，以降低 token 消耗）
+     */
+    object VisionConfig {
+
+        private const val MMKV_KEY_VISION_RECOGNITION_ENABLED = "agent_vision_recognition_enabled"
+
+        private const val DEFAULT_VISION_RECOGNITION_ENABLED = true
+
+        @JvmStatic
+        fun isVisionRecognitionEnabled(): Boolean {
+            return MMKVTools.getInstance()
+                .getBoolean(MMKV_KEY_VISION_RECOGNITION_ENABLED, DEFAULT_VISION_RECOGNITION_ENABLED)
+        }
+
+        @JvmStatic
+        fun setVisionRecognitionEnabled(enabled: Boolean) {
+            MMKVTools.getInstance().putBoolean(MMKV_KEY_VISION_RECOGNITION_ENABLED, enabled)
+        }
+
+        /** 用户开关开启，且当前模型具备视觉能力时，才视为可用视觉。 */
+        @JvmStatic
+        fun effectiveSupportsVision(modelSupportsVision: Boolean): Boolean {
+            return isVisionRecognitionEnabled() && modelSupportsVision
+        }
+    }
+
     object PromptDefaults {
 
         suspend fun getOptimizedUserPrompt(userInput: String): String {

@@ -35,7 +35,9 @@ object AgentMessageUtils {
     fun processSystemMessage(messages: List<ChatMessage>, selectedModel: ModelInfo? = null): List<ChatMessage> {
         messages.firstOrNull { it.role == MessageRole.SYSTEM }?.run {
             this.content = AIAgentConfig.PromptDefaults.getAutoSystemPrompt(
-                supportsVision = selectedModel?.capabilities?.supportsVision
+                supportsVision = AIAgentConfig.VisionConfig.effectiveSupportsVision(
+                    selectedModel?.capabilities?.supportsVision == true
+                )
             )
         }
         return messages

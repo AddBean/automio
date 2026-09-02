@@ -472,15 +472,16 @@ class AICoordinator(
         // 获取 AI Service Manager
         val aiServiceManager = agentContext.aiServiceProvider
 
-        // 检查是否包含图片（多模态请求）
+        // 检查是否包含图片（多模态请求）；视觉开关关闭时强制走对话模型
         val hasImages = checkIfHasImages(agentInput)
-
+        val visionEnabled = AIAgentConfig.VisionConfig.isVisionRecognitionEnabled()
 
         val normalModel = aiServiceManager.getInferenceModel(InferenceType.TEXT)
 
         val multimodalModel = aiServiceManager.getInferenceModel(InferenceType.IMAGE)
 
-        var selectedModel = if (hasImages) multimodalModel else normalModel
+        var selectedModel =
+            if (hasImages && visionEnabled) multimodalModel else normalModel
         //兜底normalModel
         if (selectedModel == null) {
             selectedModel = normalModel
@@ -492,7 +493,7 @@ class AICoordinator(
 
         DLog.d(
             TAG,
-            "选择 AI Provider: ${selectedProvider.javaClass.simpleName}, 模型: ${selectedProvider.getProviderInfo()}, 多模态: $hasImages"
+            "选择 AI Provider: ${selectedProvider.javaClass.simpleName}, 模型: ${selectedProvider.getProviderInfo()}, 多模态: ${hasImages && visionEnabled}"
         )
 
         return Pair(selectedProvider, selectedModel)

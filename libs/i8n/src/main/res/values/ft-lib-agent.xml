@@ -207,6 +207,14 @@
     <string name="agent_normal_model">Chat Model</string>
     <string name="agent_multimodal_model">Vision Model</string>
     <string name="agent_multimodal_required">Please select a model that supports vision</string>
+    <string name="agent_model_settings_sheet_title">Model &amp; Inference</string>
+    <string name="agent_model_section_models">Models</string>
+    <string name="agent_model_section_capabilities">Capabilities</string>
+    <string name="agent_vision_recognition_title">Vision Recognition</string>
+    <string name="agent_vision_recognition_desc">May increase token usage when analyzing images</string>
+    <string name="agent_vision_recognition_need_model">Select a vision model first</string>
+    <string name="agent_vision_recognition_disabled">Vision recognition is off; enable it or pick a vision model</string>
+    <string name="agent_model_service_settings_entry">Models &amp; Services Settings</string>
 
     <string name="agent_workflow_exception">Complex workflow execution exception</string>
 

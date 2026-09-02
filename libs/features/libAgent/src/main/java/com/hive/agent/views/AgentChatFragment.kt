@@ -3,9 +3,7 @@
 
 package com.hive.agent.views
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.graphics.Rect
 import android.net.Uri
 import android.view.animation.OvershootInterpolator
@@ -15,7 +13,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
 import com.hive.agent.R
 import com.hive.agent.XAgent
@@ -28,8 +25,8 @@ import com.hive.agent.views.chat.AgentChatEmptyStateView
 import com.hive.agent.views.chat.AgentChatView
 import com.hive.agent.views.chat.AgentToolDetailBottomSheet
 import com.hive.agent.views.chat.ChatInputAsrProviderImpl
-import com.hive.agent.views.provider.ActivityAgentSelector
 import com.hive.agent.views.provider.ActivityAgentSetting
+import com.hive.agent.views.provider.AgentModelSettingsBottomSheet
 import com.hive.agent.views.session.AgentSessionDrawerDialog
 import com.hive.event.AgentEvent
 import com.hive.event.AgentEventType
@@ -76,27 +73,6 @@ class AgentChatFragment : PagerFragment() {
     // 选择的图片（用于展示和网络发送；选图入口已隐藏，保留附件发送兼容）
     private var selectedImageContentUri: Uri? = null
     private var selectedImageDataUrl: String? = null
-
-    private val selectModelLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val model = result.data?.getSerializableExtra("data") as? ModelInfo
-                if (model != null) {
-                    val manager = xAgent.getAIServiceManager()
-                    val provider = manager?.getProvider(model.providerId)
-                    if (provider?.isProviderReady() == true) {
-                        manager.setInferenceModel(InferenceType.TEXT, model)
-                        updateModelSelectorState(model)
-                        return@registerForActivityResult
-                    } else {
-                        showElegantToast(
-                            getString(com.hive.i8n.R.string.ai_set_api_key_first, model.providerId)
-                        )
-                    }
-                }
-            }
-            updateModelSelectorState()
-        }
 
     private val sessionStorage: AgentSessionStorage by lazy { AgentSessionStorage(GlobalApp.getContext()) }
     private val sessionController: AgentChatSessionController by lazy {
@@ -223,11 +199,9 @@ class AgentChatFragment : PagerFragment() {
             ActivityAgentSetting.start(requireContext())
             return
         }
-        selectModelLauncher.launch(
-            Intent(requireContext(), ActivityAgentSelector::class.java).apply {
-                putExtra("type", InferenceType.TEXT.type)
-            }
-        )
+        AgentModelSettingsBottomSheet.show(childFragmentManager) {
+            updateModelSelectorState()
+        }
     }
 
     private fun syncRunningTaskState() {
@@ -467,12 +441,22 @@ class AgentChatFragment : PagerFragment() {
             return
         }
 
-        if (selectedImageContentUri != null &&
-            xAgent.getAIServiceManager()?.getInferenceModel(InferenceType.IMAGE) == null
-        ) {
-            clearAttachmentSelection()
-            showElegantToast(getString(com.hive.i8n.R.string.agent_multimodal_required))
-            return
+        if (selectedImageContentUri != null) {
+            val visionModel = xAgent.getAIServiceManager()?.getInferenceModel(InferenceType.IMAGE)
+            val visionEnabled = AIAgentConfig.VisionConfig.isVisionRecognitionEnabled()
+            if (visionModel == null || !visionEnabled) {
+                clearAttachmentSelection()
+                showElegantToast(
+                    getString(
+                        if (!visionEnabled) {
+                            com.hive.i8n.R.string.agent_vision_recognition_disabled
+                        } else {
+                            com.hive.i8n.R.string.agent_multimodal_required
+                        }
+                    )
+                )
+                return
+            }
         }
 
         val input = inputText?.trim() ?: chatInputContainer?.getInputEdit()?.text.toString().trim()

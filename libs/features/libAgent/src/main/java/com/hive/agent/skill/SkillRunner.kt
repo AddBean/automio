@@ -528,8 +528,10 @@ class SkillRunner(
     private fun selectAIProviderAndModel(agentInput: AgentInput): Pair<com.hive.plugin.agent.AIServiceProvider, ModelInfo>? {
         val aiServiceManager = agentContext.aiServiceProvider
         val hasImages = agentInput.messages.any { it.attachments.isNotEmpty() }
-        val selectedModel = if (hasImages) {
+        val visionEnabled = AIAgentConfig.VisionConfig.isVisionRecognitionEnabled()
+        val selectedModel = if (hasImages && visionEnabled) {
             aiServiceManager.getInferenceModel(InferenceType.IMAGE)
+                ?: aiServiceManager.getInferenceModel(InferenceType.TEXT)
         } else {
             aiServiceManager.getInferenceModel(InferenceType.TEXT)
         } ?: return null
