@@ -81,6 +81,34 @@ class ReasoningResponseNormalizerTest {
     }
 
     @Test
+    fun `openrouter detail numeric fields are stored without throwing`() {
+        val details = JsonParser().parse(
+            """
+            [
+              {"type":"reasoning.encrypted","id":"e1","index":2,"signature":true,"payload":{"k":1}}
+            ]
+            """.trimIndent()
+        ).asJsonArray
+
+        val normalized = ReasoningResponseNormalizer.normalize(
+            content = "final",
+            reasoningContent = null,
+            reasoningDetailsJson = details,
+            usage = emptyMap(),
+            providerId = "openrouter",
+            modelId = "openai/o3",
+            replayFormat = ReasoningReplayFormat.REASONING_DETAILS
+        )
+
+        val detail = normalized.reasoningTrace!!.details.single()
+        assertEquals("reasoning.encrypted", detail.type)
+        assertEquals("2", detail.data["index"])
+        assertEquals("true", detail.data["signature"])
+        assertEquals("""{"k":1}""", detail.data["payload"])
+        assertNull(normalized.reasoningContent)
+    }
+
+    @Test
     fun `none replay leaves content untouched without trace when empty`() {
         val normalized = ReasoningResponseNormalizer.normalize(
             content = "plain",

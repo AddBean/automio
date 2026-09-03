@@ -195,10 +195,7 @@ object ReasoningResponseNormalizer {
             obj.entrySet().forEach { (key, value) ->
                 if (key == "type" || key == "text" || key == "summary" || key == "id") return@forEach
                 // Store unknown/encrypted fields as-is; never mutate for UI.
-                data[key] = when {
-                    value.isJsonPrimitive -> value.asString
-                    else -> value.toString()
-                }
+                data[key] = value.asStoredString()
             }
             ReasoningDetail(type = type, text = text, id = id, data = data)
         }
@@ -207,6 +204,23 @@ object ReasoningResponseNormalizer {
     private fun JsonElement.asIntOrNull(): Int? =
         takeIf { it.isJsonPrimitive && it.asJsonPrimitive.isNumber }?.asInt
 
-    private fun JsonElement.asStringOrNull(): String? =
-        takeIf { it.isJsonPrimitive }?.asString
+    private fun JsonElement.asStringOrNull(): String? {
+        if (!isJsonPrimitive) return null
+        val primitive = asJsonPrimitive
+        return when {
+            primitive.isString -> primitive.asString
+            else -> null
+        }
+    }
+
+    private fun JsonElement.asStoredString(): String {
+        if (!isJsonPrimitive) return toString()
+        val primitive = asJsonPrimitive
+        return when {
+            primitive.isString -> primitive.asString
+            primitive.isNumber -> primitive.asNumber.toString()
+            primitive.isBoolean -> primitive.asBoolean.toString()
+            else -> toString()
+        }
+    }
 }
