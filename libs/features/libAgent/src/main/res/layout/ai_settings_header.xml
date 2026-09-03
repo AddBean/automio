@@ -218,6 +218,134 @@
             android:background="@color/design_profile_divider" />
 
         <LinearLayout
+            android:id="@+id/rowReasoningSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="72dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="14dp"
+            android:paddingVertical="10dp">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_brain"
+                app:tint="@color/design_text_tertiary" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvReasoningTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/agent_reasoning_switch_title"
+                    android:textColor="@color/design_text_primary"
+                    android:textSize="@dimen/design_font_lg"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvReasoningDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:maxLines="3"
+                    android:text="@string/agent_reasoning_switch_desc"
+                    android:textColor="@color/design_text_tertiary"
+                    android:textSize="@dimen/design_font_sm" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchReasoning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:contentDescription="@string/agent_reasoning_switch_cd" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/dividerReasoningEffort"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/public_line_width"
+            android:layout_marginHorizontal="14dp"
+            android:background="@color/design_profile_divider" />
+
+        <LinearLayout
+            android:id="@+id/rowReasoningEffort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="72dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingHorizontal="14dp"
+            android:paddingVertical="10dp">
+
+            <TextView
+                android:id="@+id/tvReasoningEffortTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/agent_reasoning_effort_title"
+                android:textColor="@color/design_text_primary"
+                android:textSize="@dimen/design_font_lg"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/layoutReasoningEffortOptions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btnReasoningEffortLow"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_reasoning_effort_chip"
+                    android:gravity="center"
+                    android:text="@string/agent_reasoning_effort_low"
+                    android:textColor="@color/design_text_secondary"
+                    android:textSize="@dimen/design_font_sm" />
+
+                <TextView
+                    android:id="@+id/btnReasoningEffortMedium"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_reasoning_effort_chip"
+                    android:gravity="center"
+                    android:text="@string/agent_reasoning_effort_medium"
+                    android:textColor="@color/design_text_secondary"
+                    android:textSize="@dimen/design_font_sm" />
+
+                <TextView
+                    android:id="@+id/btnReasoningEffortHigh"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_reasoning_effort_chip"
+                    android:gravity="center"
+                    android:text="@string/agent_reasoning_effort_high"
+                    android:textColor="@color/design_text_secondary"
+                    android:textSize="@dimen/design_font_sm" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/public_line_width"
+            android:layout_marginHorizontal="14dp"
+            android:background="@color/design_profile_divider" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="72dp"

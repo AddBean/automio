@@ -289,6 +289,18 @@
     <string name="agent_vision_recognition_desc">分析图片时可能增加 token 消耗</string>
     <string name="agent_vision_recognition_need_model">请先选择视觉模型</string>
     <string name="agent_vision_recognition_disabled">视觉识别未开启，请先开启或选择视觉模型</string>
+    <string name="agent_reasoning_switch_title">深度思考</string>
+    <string name="agent_reasoning_switch_desc">回答前让模型分步推理</string>
+    <string name="agent_reasoning_required_hint">该模型始终进行深度思考</string>
+    <string name="agent_reasoning_unsupported_hint">不支持深度思考</string>
+    <string name="agent_reasoning_unknown_hint">由模型或服务决定，未发送控制参数</string>
+    <string name="agent_reasoning_effort_title">思考强度</string>
+    <string name="agent_reasoning_effort_low">低</string>
+    <string name="agent_reasoning_effort_medium">中</string>
+    <string name="agent_reasoning_effort_high">高</string>
+    <string name="agent_reasoning_switch_cd">深度思考开关</string>
+    <string name="agent_reasoning_effort_cd">思考强度：%1$s</string>
+    <string name="agent_reasoning_effort_disabled_cd">当前模型不支持调整思考强度</string>
     <string name="agent_model_service_settings_entry">模型与服务设置</string>
 
 
