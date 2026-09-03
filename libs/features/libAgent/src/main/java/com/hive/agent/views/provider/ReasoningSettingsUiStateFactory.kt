@@ -12,7 +12,9 @@ enum class ReasoningSwitchHint {
     OPTIONAL,
     REQUIRED,
     UNSUPPORTED,
-    UNKNOWN
+    UNKNOWN,
+    /** 尚未选择对话模型：仍允许改全局偏好，选择模型后再生效 */
+    NO_MODEL
 }
 
 /**
@@ -37,11 +39,32 @@ data class ReasoningSettingsUiState(
  */
 object ReasoningSettingsUiStateFactory {
 
+    private val allEfforts = setOf(
+        ReasoningEffort.LOW,
+        ReasoningEffort.MEDIUM,
+        ReasoningEffort.HIGH
+    )
+
     fun create(
         savedEnabled: Boolean,
         savedEffort: ReasoningEffort,
-        capabilities: ReasoningCapabilities?
+        capabilities: ReasoningCapabilities?,
+        modelSelected: Boolean = true
     ): ReasoningSettingsUiState {
+        if (!modelSelected) {
+            return ReasoningSettingsUiState(
+                switchChecked = savedEnabled,
+                switchEnabled = true,
+                switchHint = ReasoningSwitchHint.NO_MODEL,
+                effortRowVisible = true,
+                effortRowEnabled = true,
+                selectedEffort = savedEffort,
+                supportedEfforts = allEfforts,
+                canPersistSwitch = true,
+                canPersistEffort = true
+            )
+        }
+
         val caps = capabilities ?: ReasoningCapabilities()
         val efforts = caps.supportedEfforts
         val displayEffort = resolveDisplayEffort(savedEffort, caps)

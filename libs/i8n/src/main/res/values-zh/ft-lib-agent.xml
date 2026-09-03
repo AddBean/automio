@@ -10,6 +10,9 @@
     <string name="ai_model_selection">选择AI模型</string>
     <string name="ai_model_selection_desc">选择您要使用的AI推理模型</string>
     <string name="ai_model_not_set">未设置</string>
+    <string name="ai_model_needs_config">%1$s · 需配置服务</string>
+    <string name="ai_model_refresh_failed">%1$s · 刷新失败</string>
+    <string name="ai_model_invalid_vision">%1$s · 不支持视觉</string>
     <string name="ai_vision_recognition">视觉识别</string>
     <string name="ai_vision">视觉</string>
     <string name="ai_function_call">函数调用</string>
@@ -294,6 +297,7 @@
     <string name="agent_reasoning_required_hint">该模型始终进行深度思考</string>
     <string name="agent_reasoning_unsupported_hint">不支持深度思考</string>
     <string name="agent_reasoning_unknown_hint">由模型或服务决定，未发送控制参数</string>
+    <string name="agent_reasoning_no_model_hint">选择对话模型后生效</string>
     <string name="agent_reasoning_effort_title">思考强度</string>
     <string name="agent_reasoning_effort_low">低</string>
     <string name="agent_reasoning_effort_medium">中</string>

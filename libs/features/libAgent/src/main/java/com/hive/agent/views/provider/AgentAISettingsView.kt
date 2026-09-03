@@ -137,7 +137,8 @@ class AgentAISettingsView @JvmOverloads constructor(
             ReasoningSettingsUiStateFactory.create(
                 savedEnabled = AIAgentConfig.ReasoningConfig.isEnabled(),
                 savedEffort = AIAgentConfig.ReasoningConfig.effort(),
-                capabilities = null
+                capabilities = null,
+                modelSelected = false
             )
         )
         switchReasoning?.setOnCheckedChangeListener { _, isChecked ->
@@ -155,7 +156,8 @@ class AgentAISettingsView @JvmOverloads constructor(
                 ReasoningSettingsUiStateFactory.create(
                     savedEnabled = AIAgentConfig.ReasoningConfig.isEnabled(),
                     savedEffort = AIAgentConfig.ReasoningConfig.effort(),
-                    capabilities = lastResolvedCapabilities
+                    capabilities = lastResolvedCapabilities,
+                    modelSelected = currentReasoningUiState?.switchHint != ReasoningSwitchHint.NO_MODEL
                 )
             )
             onSettingsChanged?.invoke()
@@ -195,23 +197,38 @@ class AgentAISettingsView @JvmOverloads constructor(
         }
     }
 
-    private fun setNormalInferenceModel(modelName: String?) {
-        if (modelName.isNullOrEmpty()) {
-            tvNormalDes.setTextColor(GlobalApp.getColor(com.hive.i8n.R.color.design_accent_rose))
-            tvNormalDes.text = context.getString(com.hive.i8n.R.string.ai_model_not_set)
-        } else {
-            tvNormalDes.setTextColor(GlobalApp.getColor(com.hive.i8n.R.color.design_text_tertiary))
-            tvNormalDes.text = modelName
-        }
-    }
-
-    private fun setMultimodalInferenceModel(modelName: String?) {
-        if (modelName.isNullOrEmpty()) {
-            tvMultimodalDes.setTextColor(GlobalApp.getColor(com.hive.i8n.R.color.design_accent_rose))
-            tvMultimodalDes.text = context.getString(com.hive.i8n.R.string.ai_model_not_set)
-        } else {
-            tvMultimodalDes.setTextColor(GlobalApp.getColor(com.hive.i8n.R.color.design_text_tertiary))
-            tvMultimodalDes.text = modelName
+    private fun bindModelStatus(target: TextView, status: InferenceModelSelectionStatus) {
+        val name = status.displayName
+        when (status.kind) {
+            InferenceModelSelectionKind.NOT_SET -> {
+                target.setTextColor(GlobalApp.getColor(com.hive.i8n.R.color.design_accent_rose))
+                target.text = context.getString(com.hive.i8n.R.string.ai_model_not_set)
+            }
+            InferenceModelSelectionKind.READY -> {
+                target.setTextColor(GlobalApp.getColor(com.hive.i8n.R.color.design_text_tertiary))
+                target.text = name.orEmpty()
+            }
+            InferenceModelSelectionKind.NEEDS_CONFIG -> {
+                target.setTextColor(GlobalApp.getColor(com.hive.i8n.R.color.design_accent_rose))
+                target.text = context.getString(
+                    com.hive.i8n.R.string.ai_model_needs_config,
+                    name.orEmpty()
+                )
+            }
+            InferenceModelSelectionKind.REFRESH_FAILED -> {
+                target.setTextColor(GlobalApp.getColor(com.hive.i8n.R.color.design_accent_rose))
+                target.text = context.getString(
+                    com.hive.i8n.R.string.ai_model_refresh_failed,
+                    name.orEmpty()
+                )
+            }
+            InferenceModelSelectionKind.INVALID_FOR_TYPE -> {
+                target.setTextColor(GlobalApp.getColor(com.hive.i8n.R.color.design_accent_rose))
+                target.text = context.getString(
+                    com.hive.i8n.R.string.ai_model_invalid_vision,
+                    name.orEmpty()
+                )
+            }
         }
     }
 
@@ -250,17 +267,62 @@ class AgentAISettingsView @JvmOverloads constructor(
     private suspend fun refreshSelectedModels() {
         val aiServiceManager =
             XAgent.getInstance().getAIServiceManager() as? DefaultAIServiceManager
-        val normalModel = validateInferenceModel(aiServiceManager, InferenceType.TEXT)
-        val multimodalModel = validateInferenceModel(aiServiceManager, InferenceType.IMAGE)
 
-        setNormalInferenceModel(normalModel?.displayName)
-        setMultimodalInferenceModel(multimodalModel?.displayName)
-        hasVisionModel = multimodalModel != null
+        // 先用本地已保存选择立刻铺 UI，避免闪「未设置」
+        val savedText = aiServiceManager?.getInferenceModel(InferenceType.TEXT)
+        val savedImage = aiServiceManager?.getInferenceModel(InferenceType.IMAGE)
+        if (savedText != null) {
+            bindModelStatus(
+                tvNormalDes,
+                InferenceModelSelectionStatus(InferenceModelSelectionKind.READY, savedText)
+            )
+        } else {
+            bindModelStatus(
+                tvNormalDes,
+                InferenceModelSelectionStatus(InferenceModelSelectionKind.NOT_SET, null)
+            )
+        }
+        if (savedImage != null) {
+            bindModelStatus(
+                tvMultimodalDes,
+                InferenceModelSelectionStatus(InferenceModelSelectionKind.READY, savedImage)
+            )
+        } else {
+            bindModelStatus(
+                tvMultimodalDes,
+                InferenceModelSelectionStatus(InferenceModelSelectionKind.NOT_SET, null)
+            )
+        }
+
+        val normalStatus = resolveInferenceSelection(
+            aiServiceManager,
+            InferenceType.TEXT,
+            requireVision = false
+        )
+        val multimodalStatus = resolveInferenceSelection(
+            aiServiceManager,
+            InferenceType.IMAGE,
+            requireVision = true
+        )
+
+        // READY 时用目录刷新后的 ModelInfo 回写本地，保持能力字段最新；其它状态绝不清空
+        if (normalStatus.kind == InferenceModelSelectionKind.READY) {
+            normalStatus.model?.let { aiServiceManager?.setInferenceModel(InferenceType.TEXT, it) }
+        }
+        if (multimodalStatus.kind == InferenceModelSelectionKind.READY) {
+            multimodalStatus.model?.let {
+                aiServiceManager?.setInferenceModel(InferenceType.IMAGE, it)
+            }
+        }
+
+        bindModelStatus(tvNormalDes, normalStatus)
+        bindModelStatus(tvMultimodalDes, multimodalStatus)
+        hasVisionModel = multimodalStatus.countsAsConfiguredVisionModel
         suppressMemorySwitchCallback = true
         switchTaskMemory?.isChecked = AIAgentConfig.MemoryConfig.isTaskMemoryEnabled()
         suppressMemorySwitchCallback = false
         updateVisionSwitchUi()
-        updateReasoningUi(normalModel)
+        updateReasoningUi(normalStatus.model, modelSelected = normalStatus.hasSelection)
     }
 
     private fun updateVisionSwitchUi() {
@@ -278,13 +340,14 @@ class AgentAISettingsView @JvmOverloads constructor(
         }
     }
 
-    private fun updateReasoningUi(textModel: ModelInfo?) {
+    private fun updateReasoningUi(textModel: ModelInfo?, modelSelected: Boolean) {
         val capabilities = resolveReasoningCapabilities(textModel)
         lastResolvedCapabilities = capabilities
         val uiState = ReasoningSettingsUiStateFactory.create(
             savedEnabled = AIAgentConfig.ReasoningConfig.isEnabled(),
             savedEffort = AIAgentConfig.ReasoningConfig.effort(),
-            capabilities = capabilities
+            capabilities = capabilities,
+            modelSelected = modelSelected
         )
         applyReasoningUiState(uiState)
     }
@@ -322,7 +385,8 @@ class AgentAISettingsView @JvmOverloads constructor(
     private fun showReasoningUnavailableFeedback(state: ReasoningSettingsUiState?) {
         val hint = state?.switchHint ?: ReasoningSwitchHint.UNKNOWN
         val messageRes = when (hint) {
-            ReasoningSwitchHint.OPTIONAL -> return
+            ReasoningSwitchHint.OPTIONAL,
+            ReasoningSwitchHint.NO_MODEL -> return
             ReasoningSwitchHint.REQUIRED -> com.hive.i8n.R.string.agent_reasoning_required_hint
             ReasoningSwitchHint.UNSUPPORTED -> com.hive.i8n.R.string.agent_reasoning_unsupported_hint
             ReasoningSwitchHint.UNKNOWN -> com.hive.i8n.R.string.agent_reasoning_unknown_hint
@@ -348,6 +412,7 @@ class AgentAISettingsView @JvmOverloads constructor(
                 ReasoningSwitchHint.REQUIRED -> com.hive.i8n.R.string.agent_reasoning_required_hint
                 ReasoningSwitchHint.UNSUPPORTED -> com.hive.i8n.R.string.agent_reasoning_unsupported_hint
                 ReasoningSwitchHint.UNKNOWN -> com.hive.i8n.R.string.agent_reasoning_unknown_hint
+                ReasoningSwitchHint.NO_MODEL -> com.hive.i8n.R.string.agent_reasoning_no_model_hint
             }
         )
 
@@ -414,39 +479,32 @@ class AgentAISettingsView @JvmOverloads constructor(
             ReasoningSettingsUiStateFactory.create(
                 savedEnabled = AIAgentConfig.ReasoningConfig.isEnabled(),
                 savedEffort = AIAgentConfig.ReasoningConfig.effort(),
-                capabilities = lastResolvedCapabilities
+                capabilities = lastResolvedCapabilities,
+                modelSelected = state.switchHint != ReasoningSwitchHint.NO_MODEL
             )
         )
         onSettingsChanged?.invoke()
     }
 
-    private suspend fun validateInferenceModel(
+    private suspend fun resolveInferenceSelection(
         manager: DefaultAIServiceManager?,
-        type: InferenceType
-    ): ModelInfo? {
-        val selectedModel = manager?.getInferenceModel(type) ?: return null
-        val provider = manager.getProvider(selectedModel.providerId) ?: run {
-            manager.setInferenceModel(type, null)
-            return null
-        }
-        if (!manager.isProviderEnabled(selectedModel.providerId) || !provider.isProviderReady()) {
-            manager.setInferenceModel(type, null)
-            return null
-        }
-        val currentModel = withContext(Dispatchers.IO) {
-            provider.getModels().firstOrNull { it.modelId == selectedModel.modelId }
-        } ?: run {
-            manager.setInferenceModel(type, null)
-            return null
-        }
-        if (type == InferenceType.IMAGE && !currentModel.capabilities.supportsVision) {
-            manager.setInferenceModel(type, null)
-            return null
-        }
-        if (currentModel != selectedModel) {
-            manager.setInferenceModel(type, currentModel)
-        }
-        return currentModel
+        type: InferenceType,
+        requireVision: Boolean
+    ): InferenceModelSelectionStatus {
+        val selected = manager?.getInferenceModel(type)
+        return InferenceModelSelectionResolver.resolve(
+            selected = selected,
+            requireVision = requireVision,
+            providerExists = { id -> manager?.getProvider(id) != null },
+            providerEnabled = { id -> manager?.isProviderEnabled(id) == true },
+            providerReady = { id -> manager?.getProvider(id)?.isProviderReady() == true },
+            findInCatalog = find@{ model ->
+                val provider = manager?.getProvider(model.providerId) ?: return@find null
+                withContext(Dispatchers.IO) {
+                    provider.getModels().firstOrNull { it.modelId == model.modelId }
+                }
+            }
+        )
     }
 
     override fun onDetachedFromWindow() {

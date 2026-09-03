@@ -136,6 +136,24 @@ class ReasoningSettingsUiStateFactoryTest {
     }
 
     @Test
+    fun `no model selected still allows editing global preference`() {
+        val state = ReasoningSettingsUiStateFactory.create(
+            savedEnabled = true,
+            savedEffort = ReasoningEffort.LOW,
+            capabilities = null,
+            modelSelected = false
+        )
+
+        assertTrue(state.switchChecked)
+        assertTrue(state.switchEnabled)
+        assertEquals(ReasoningSwitchHint.NO_MODEL, state.switchHint)
+        assertTrue(state.effortRowVisible)
+        assertTrue(state.canPersistSwitch)
+        assertTrue(state.canPersistEffort)
+        assertEquals(ReasoningEffort.LOW, state.selectedEffort)
+    }
+
+    @Test
     fun `empty supportedEfforts hides effort row for OPTIONAL`() {
         val state = ReasoningSettingsUiStateFactory.create(
             savedEnabled = true,

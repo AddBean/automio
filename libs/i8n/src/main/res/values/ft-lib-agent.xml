@@ -220,6 +220,7 @@
     <string name="agent_reasoning_required_hint">This model always uses deep reasoning</string>
     <string name="agent_reasoning_unsupported_hint">Deep reasoning is not supported</string>
     <string name="agent_reasoning_unknown_hint">Decided by the model or service; no control parameters are sent</string>
+    <string name="agent_reasoning_no_model_hint">Takes effect after a chat model is selected</string>
     <string name="agent_reasoning_effort_title">Reasoning Effort</string>
     <string name="agent_reasoning_effort_low">Low</string>
     <string name="agent_reasoning_effort_medium">Medium</string>
@@ -247,6 +248,9 @@
     <string name="ai_model_selection">Select AI Model</string>
     <string name="ai_model_selection_desc">Select the inference model</string>
     <string name="ai_model_not_set">NOT SET</string>
+    <string name="ai_model_needs_config">%1$s · needs setup</string>
+    <string name="ai_model_refresh_failed">%1$s · refresh failed</string>
+    <string name="ai_model_invalid_vision">%1$s · no vision</string>
     <string name="ai_vision_recognition">Vision</string>
     <string name="ai_vision">Vision</string>
     <string name="ai_function_call">Function Call</string>
