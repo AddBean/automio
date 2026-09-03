@@ -67,7 +67,6 @@ class AgentToolDetailBottomSheet : BottomSheetDialogFragment() {
         val ivStatus = view.findViewById<ImageView>(R.id.ivToolStatus)
         val tvStatus = view.findViewById<TextView>(R.id.tvToolStatus)
         val tvArguments = view.findViewById<TextView>(R.id.tvToolArguments)
-        val layoutExecAtSection = view.findViewById<LinearLayout>(R.id.layoutExecAtSection)
         val tvToolExecAt = view.findViewById<TextView>(R.id.tvToolExecAt)
         val tvResult = view.findViewById<TextView>(R.id.tvToolResult)
         val layoutImagesSection = view.findViewById<LinearLayout>(R.id.layoutImagesSection)
@@ -107,9 +106,9 @@ class AgentToolDetailBottomSheet : BottomSheetDialogFragment() {
 
         val execAt = resolveExecAt(msg)
         if (execAt.isNullOrBlank()) {
-            layoutExecAtSection.gone()
+            tvToolExecAt.gone()
         } else {
-            layoutExecAtSection.visible()
+            tvToolExecAt.visible()
             tvToolExecAt.text = execAt
         }
 
