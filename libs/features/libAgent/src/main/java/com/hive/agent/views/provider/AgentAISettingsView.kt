@@ -132,15 +132,12 @@ class AgentAISettingsView @JvmOverloads constructor(
         }
 
         switchReasoning = findViewById(R.id.switchReasoning)
-        // 能力解析完成前先禁用，避免 state=null 时点击被立刻回滚，表现为「无响应」
-        applyReasoningUiState(
-            ReasoningSettingsUiStateFactory.create(
-                savedEnabled = AIAgentConfig.ReasoningConfig.isEnabled(),
-                savedEffort = AIAgentConfig.ReasoningConfig.effort(),
-                capabilities = null,
-                modelSelected = false
-            )
-        )
+        // 用本地已保存对话模型立刻铺思考 UI，避免先闪「选择对话模型后生效」
+        val savedTextModel = runCatching {
+            (XAgent.getInstance().getAIServiceManager() as? DefaultAIServiceManager)
+                ?.getInferenceModel(InferenceType.TEXT)
+        }.getOrNull()
+        updateReasoningUi(savedTextModel, modelSelected = savedTextModel != null)
         switchReasoning?.setOnCheckedChangeListener { _, isChecked ->
             if (suppressReasoningSwitchCallback) return@setOnCheckedChangeListener
             val state = currentReasoningUiState
