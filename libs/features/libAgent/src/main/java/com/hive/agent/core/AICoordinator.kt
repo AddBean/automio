@@ -18,6 +18,10 @@ import com.hive.plugin.agent.ErrorContext
 import com.hive.plugin.agent.IAICoordinator
 import com.hive.plugin.agent.InferenceType
 import com.hive.plugin.agent.ModelInfo
+import com.hive.agent.ai.ReasoningPrivacy
+import com.hive.agent.ai.ReasoningRequestFactory
+import com.hive.agent.ai.ReasoningRunContext
+import com.hive.agent.ai.ReasoningRunContexts
 import com.hive.agent.ai.StreamingAssistantSession
 import com.hive.plugin.agent.model.AIRequest
 import com.hive.plugin.agent.model.AIRequestType
@@ -72,10 +76,12 @@ class AICoordinator(
             rootTaskId = goal.id
         )
         ExecutionContexts.stack.push(frame)
+        val reasoningRunContext = ReasoningRunContext.snapshotNow()
+        ReasoningRunContexts.bind(goal.id, reasoningRunContext)
         var result: TaskResult? = null
         try {
             agentContext.taskStateManager.notifyAgentExecuteStart(goal.id)
-            result = coordinateTaskInternal(goal, useStream)
+            result = coordinateTaskInternal(goal, useStream, reasoningRunContext)
             agentContext.taskStateManager.notifyAgentExecuteEnd(goal.id, result)
             return result
         } catch (e: Exception) {
@@ -105,6 +111,7 @@ class AICoordinator(
                 } catch (_: Throwable) {
                 }
             }
+            ReasoningRunContexts.unbind(goal.id)
             ExecutionContexts.stack.pop(expectedId = goal.id)
         }
     }
@@ -114,7 +121,9 @@ class AICoordinator(
      * 内部协调任务实现，统一处理流式和非流式逻辑
      */
     private suspend fun coordinateTaskInternal(
-        agentGoal: AgentTaskGoal, useStream: Boolean
+        agentGoal: AgentTaskGoal,
+        useStream: Boolean,
+        reasoningRunContext: ReasoningRunContext
     ): TaskResult {
         val streamType =
             if (useStream) context.getString(com.hive.i8n.R.string.ai_coordinator_streaming) else ""
@@ -188,6 +197,19 @@ class AICoordinator(
                         visionActive = visionPipelineActive
                     )
 
+                    val resolvedReasoning = reasoningRunContext.resolve(
+                        selectedModel.providerId,
+                        selectedModel.modelId,
+                        ReasoningRequestFactory.dynamicMetadataFrom(selectedModel)
+                    )
+                    DLog.d(
+                        TAG,
+                        ReasoningPrivacy.safeMetaLog(
+                            selectedModel.providerId,
+                            selectedModel.modelId,
+                            resolvedReasoning
+                        )
+                    )
                     val aiRequest = AIRequest(
                         model = selectedModel.modelId,
                         requestType = AIRequestType.FUNCTION_CALL,
@@ -208,6 +230,7 @@ class AICoordinator(
                         ),
                         inputOrigin = agentInput,
                         tools = toolDefinitions,
+                        reasoning = resolvedReasoning.effectiveOptions,
                     )
                     agentGoal.updateNormal(agentContext, agentInput)
                     val streaming = StreamingAssistantSession.start(
@@ -295,11 +318,15 @@ class AICoordinator(
                         )
                     }
 
-                    var messageContent = ""
-                    if (hasMessage) {
-                        messageContent = listOfNotNull(
-                            aiResponse.reasoningContent, aiResponse.content
-                        ).filter { it.isNotEmpty() }.joinToString(" ")
+                    // 状态摘要 / 工具 reason 仅用最终 content，不含 reasoning 正文
+                    val messageContent = if (hasMessage) {
+                        ReasoningPrivacy.publicAssistantText(
+                            content = aiResponse.content,
+                            reasoningContent = aiResponse.reasoningContent,
+                            emptyFallback = ""
+                        )
+                    } else {
+                        ""
                     }
 
                     // 设置回复消息内容
@@ -321,7 +348,9 @@ class AICoordinator(
                         for (toolCall in aiResponse.toolCalls!!) {
                             checkTaskState(agentGoal.id)
                             val toolName = toolCall.function.name
-                            SkillToolLogger.d("toolCall toolName=$toolName reason=$messageContent")
+                            SkillToolLogger.d(
+                                "toolCall toolName=$toolName reason=${ReasoningPrivacy.toolReasonLog(messageContent)}"
+                            )
                             val toolMessage = ChatMessage(
                                 role = MessageRole.TOOL,
                                 content = "",

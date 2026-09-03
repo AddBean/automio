@@ -60,6 +60,7 @@ object SkillAiDraftGenerator {
 
         val toolOptions = loadToolOptions(scopeScriptPath)
         val prompt = buildPrompt(requirement.trim(), toolOptions)
+        // Skill 草稿生成属轻量调用，不注入思考选项
         val request = AIRequest(
             model = model,
             requestType = AIRequestType.CHAT_COMPLETION,
@@ -78,7 +79,8 @@ object SkillAiDraftGenerator {
                         content = prompt
                     )
                 )
-            )
+            ),
+            reasoning = null
         )
 
         return try {

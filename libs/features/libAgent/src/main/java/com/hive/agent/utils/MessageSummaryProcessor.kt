@@ -5,6 +5,7 @@ package com.hive.agent.utils
 
 import android.text.TextUtils
 import com.hive.agent.XAgent
+import com.hive.agent.ai.ReasoningRequestFactory
 import com.hive.agent.config.AIAgentConfig
 import com.hive.plugin.agent.InferenceType
 import com.hive.plugin.agent.model.AIRequest
@@ -155,11 +156,13 @@ object MessageSummaryProcessor {
 
             val requestMessages = listOf(ChatMessage(MessageRole.USER, content = summaryPrompt))
             val input = AgentInput(requestMessages)
+            // 轻量摘要请求：显式不注入思考选项
             val request = AIRequest(
                 model = model,
                 requestType = AIRequestType.CHAT_COMPLETION,
                 input = input,
-                inputOrigin = input
+                inputOrigin = input,
+                reasoning = ReasoningRequestFactory.lightweightOptions()
             )
 
             when (val result = provider.inference<ChatCompletionResponse>(request)) {

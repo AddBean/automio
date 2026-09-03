@@ -11,6 +11,10 @@ import com.hive.plugin.provider.IAgentProvider
 import com.hive.agent.core.AgentContext
 import com.hive.agent.mcp.McpToolClient
 import com.hive.agent.config.AIAgentConfig
+import com.hive.agent.ai.ReasoningPrivacy
+import com.hive.agent.ai.ReasoningRequestFactory
+import com.hive.agent.ai.ReasoningRunContext
+import com.hive.agent.ai.ReasoningRunContexts
 import com.hive.agent.ai.StreamingAssistantSession
 import com.hive.plugin.agent.model.RunSkillRequest
 import com.hive.plugin.agent.model.SkillError
@@ -154,6 +158,10 @@ class SkillRunner(
             taskKeyForEnd = taskKey
             skillTaskKeyForEnd = skillTaskKey
             val effectiveMemoryGroup = options?.memoryGroup ?: spec.memoryGroup ?: "skill-${spec.id}"
+            val reasoningRunContext = ReasoningRunContexts.resolveForSkill(
+                rootTaskId = taskKey,
+                isStandalone = isStandalone
+            )
             SkillToolLogger.d("runSkill skillId=${spec.id} taskKey=$taskKey memoryGroup=$effectiveMemoryGroup maxRounds=$effectiveMaxRounds")
             ExecutionContexts.stack.push(
                 ExecutionContextFrame(
@@ -221,6 +229,7 @@ class SkillRunner(
                     skillTaskKey,
                     requestMessagesSnapshot,
                     scopedTools.definitions,
+                    reasoningRunContext = reasoningRunContext,
                     onChunk = { chunk ->
                         streaming.onChunk(chunk)
                     }
@@ -240,13 +249,14 @@ class SkillRunner(
                 streaming.finalizeWith(chatResponse)
                 notifySkillProgress(skillGoal, messages)
 
-                latestAssistantMessage = listOfNotNull(chatResponse.reasoningContent, chatResponse.content)
-                    .joinToString(" ")
-                    .trim()
+                latestAssistantMessage = ReasoningPrivacy.publicAssistantText(
+                    content = chatResponse.content,
+                    reasoningContent = chatResponse.reasoningContent
+                )
 
                 val toolCalls = chatResponse.toolCalls.orEmpty()
                 if (toolCalls.isEmpty()) {
-                    val summary = latestAssistantMessage.ifEmpty { "Skill 执行完成" }
+                    val summary = latestAssistantMessage
                     skillResult = SkillResult(
                         status = SkillResult.STATUS_SUCCESS,
                         summary = summary,
@@ -262,8 +272,9 @@ class SkillRunner(
 
                     val toolName = toolCall.function.name
                     val argsStr = toolCall.function.arguments?.toString() ?: "{}"
-                    SkillToolLogger.d("toolCall toolName=$toolName args=$argsStr reason=$latestAssistantMessage")
-
+                    SkillToolLogger.d(
+                        "toolCall toolName=$toolName args=$argsStr reason=${ReasoningPrivacy.toolReasonLog(latestAssistantMessage)}"
+                    )
                     if (!spec.allowedToolNames.contains(toolName)) {
                         CommonToast.getInstance().showToast("Skill 调用未授权工具: ${spec.id} → $toolName")
                         skillResult = failure(
@@ -361,6 +372,9 @@ class SkillRunner(
             AgentCommandRecorder.popSkillContext()
             ExecutionContexts.stack.pop(expectedId = skillTaskKeyForEnd)
             skillTaskKeyForEnd?.let { MessageSummaryProcessor.clearTaskSummary(it) }
+            if (isStandalone) {
+                taskKeyForEnd?.let { ReasoningRunContexts.unbind(it) }
+            }
             if (isStandalone && taskKeyForEnd != null) {
                 val result = skillResult ?: failure(
                     code = SKILL_INFERENCE_FAILED,
@@ -389,18 +403,25 @@ class SkillRunner(
         taskId: String,
         messages: List<ChatMessage>,
         scopedToolDefinitions: List<ToolDefinition>,
+        reasoningRunContext: ReasoningRunContext,
         onChunk: ((ChatCompletionResponse) -> Unit)? = null
     ): ChatCompletionResponse? {
         val (provider, model) = selectAIProviderAndModel(AgentInput(messages))
             ?: return null
 
         val input = AgentInput(messageProcessor(taskId, messages, model))
+        val reasoningOptions = ReasoningRequestFactory.optionsFor(
+            reasoningRunContext,
+            model.providerId,
+            model
+        )
         val request = AIRequest(
             model = model.modelId,
             requestType = AIRequestType.FUNCTION_CALL,
             input = input,
             inputOrigin = AgentInput(messages),
-            tools = scopedToolDefinitions
+            tools = scopedToolDefinitions,
+            reasoning = reasoningOptions
         )
         val aiResult = if (onChunk != null) {
             provider.streamInference<ChatCompletionResponse>(request, onChunkResponse = onChunk)

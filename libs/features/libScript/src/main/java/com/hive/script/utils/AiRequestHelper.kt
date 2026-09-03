@@ -74,11 +74,13 @@ object AiRequestHelper {
 
         val messages = listOf(ChatMessage(MessageRole.USER, content = prompt))
         val input = AgentInput(messages)
+        // 脚本命名等轻量请求：不注入思考选项（保持 reasoning = null）
         val request = AIRequest(
             model = model,
             requestType = AIRequestType.CHAT_COMPLETION,
             input = input,
-            inputOrigin = input
+            inputOrigin = input,
+            reasoning = null
         )
 
         return runBlocking(Dispatchers.IO) {
