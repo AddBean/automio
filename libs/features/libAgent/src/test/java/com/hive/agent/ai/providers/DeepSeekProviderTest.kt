@@ -62,6 +62,43 @@ class DeepSeekProviderTest {
         assertEquals("tool output", tool["content"].asString)
         assertFalse(tool.has("tool_calls"))
         assertFalse(tool.has("tool_result"))
+        // DeepSeek thinking 续轮要求 assistant+tool_calls 始终带 reasoning_content 字段
+        assertTrue(assistant.has("reasoning_content"))
+        assertEquals("", assistant["reasoning_content"].asString)
+    }
+
+    @Test
+    fun `matching tool_call assistant replays full reasoning_content`() = runBlocking {
+        val request = provider.buildRequest(
+            model = "deepseek-reasoner",
+            messages = listOf(
+                ChatMessage(
+                    role = MessageRole.ASSISTANT,
+                    content = null,
+                    toolCalls = listOf(toolCall),
+                    reasoningContent = "why-call",
+                    reasoningTrace = com.hive.plugin.agent.model.ReasoningTrace(
+                        rawText = "why-call",
+                        sourceProviderId = "deepseek",
+                        sourceModelId = "deepseek-reasoner",
+                        replayFormat = com.hive.plugin.agent.model.ReasoningReplayFormat.REASONING_CONTENT
+                    )
+                ),
+                ChatMessage(
+                    role = MessageRole.TOOL,
+                    content = "ok",
+                    toolCallId = toolCall.id,
+                    toolCallResult = "ok"
+                )
+            ),
+            temperature = 0.7f,
+            maxTokens = 100,
+            stream = false,
+            tools = null
+        )
+        val assistant = JsonParser().parse(request)
+            .asJsonObject["messages"].asJsonArray[0].asJsonObject
+        assertEquals("why-call", assistant["reasoning_content"].asString)
     }
 
     private class TestDeepSeekProvider : DeepSeekProvider() {

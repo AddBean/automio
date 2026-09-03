@@ -209,12 +209,14 @@ open class DeepSeekProvider : AbstractChatProvider() {
                         else -> message.content
                     },
                     reasoning_content = if (message.role == MessageRole.ASSISTANT) {
-                        if (ReasoningReplayHelper.shouldReplay(message, providerId, model)) {
-                            // DeepSeek thinking 模式下，匹配的 assistant（尤其含 tool_calls）需带回 reasoning_content
-                            ReasoningReplayHelper.reasoningContentForWire(message, providerId, model)
-                                ?: ""
-                        } else {
-                            null
+                        when {
+                            ReasoningReplayHelper.shouldReplay(message, providerId, model) ->
+                                // 匹配时完整回放；无正文时仍发 ""，满足 thinking 续轮字段要求
+                                ReasoningReplayHelper.reasoningContentForWire(message, providerId, model)
+                                    ?: ""
+                            // 仍在请求中的 tool_calls assistant：字段必须存在，即便无法回放原文
+                            !message.toolCalls.isNullOrEmpty() -> ""
+                            else -> null
                         }
                     } else null,
                     tool_calls = if (message.role == MessageRole.ASSISTANT) {

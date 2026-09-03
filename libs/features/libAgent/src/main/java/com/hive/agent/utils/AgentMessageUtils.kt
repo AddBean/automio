@@ -253,19 +253,25 @@ object AgentMessageUtils {
     }
 
     /**
-     * 裁剪过旧 assistant 的思考字段：保留最近 [MAX_NOT_SIMPLIFY_COUNT] 条 assistant
-     * （供同轮 tool loop 回放），更早的 reasoningContent / reasoningTrace 置 null。
-     * 绝不伪造 "-" 占位。
+     * 裁剪过旧 assistant 的思考字段：
+     * - 带 tool_calls 的 assistant 一律保留（多轮 tool loop 必须完整回放）
+     * - 其余保留最近 [MAX_NOT_SIMPLIFY_COUNT] 条，更早的 reasoning 置 null
+     * - 绝不伪造 "-" 占位
      */
     private fun simplifyTextMessages(chatMessages: MutableList<ChatMessage>): MutableList<ChatMessage> {
         val assistantIndices = chatMessages.indices.filter {
             chatMessages[it].role == MessageRole.ASSISTANT
         }
-        val keepFrom = (assistantIndices.size - MAX_NOT_SIMPLIFY_COUNT).coerceAtLeast(0)
+        val plainAssistantPositions = assistantIndices.mapIndexedNotNull { pos, idx ->
+            if (chatMessages[idx].toolCalls.isNullOrEmpty()) pos else null
+        }
+        val keepPlainFrom = (plainAssistantPositions.size - MAX_NOT_SIMPLIFY_COUNT).coerceAtLeast(0)
+        val plainKeepPositions = plainAssistantPositions.drop(keepPlainFrom).toSet()
         for (pos in assistantIndices.indices) {
-            if (pos >= keepFrom) continue
             val idx = assistantIndices[pos]
             val msg = chatMessages[idx]
+            if (!msg.toolCalls.isNullOrEmpty()) continue
+            if (pos in plainKeepPositions) continue
             if (msg.reasoningContent != null || msg.reasoningTrace != null) {
                 chatMessages[idx] = msg.copy(
                     reasoningContent = null,

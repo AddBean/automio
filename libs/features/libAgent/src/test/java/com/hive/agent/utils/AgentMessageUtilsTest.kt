@@ -197,6 +197,57 @@ class AgentMessageUtilsTest {
         }
 
     @Test
+    fun `simplify keeps reasoning on older tool_call assistants outside plain window`() =
+        runBlocking {
+            val call = ToolCall(id = "call_old", function = FunctionCall("tool_x", JsonObject()))
+            val toolAssistant = ChatMessage(
+                role = MessageRole.ASSISTANT,
+                content = null,
+                toolCalls = listOf(call),
+                reasoningContent = "need-replay",
+                reasoningTrace = ReasoningTrace(
+                    rawText = "need-replay",
+                    sourceProviderId = "deepseek",
+                    sourceModelId = "deepseek-reasoner",
+                    replayFormat = ReasoningReplayFormat.REASONING_CONTENT
+                ),
+                timestamp = 100L
+            )
+            val toolResult = ChatMessage(
+                role = MessageRole.TOOL,
+                content = "ok",
+                toolCallId = call.id,
+                toolCallResult = "ok",
+                timestamp = 101L
+            )
+            val plainPadding = (1..5).map { i ->
+                ChatMessage(
+                    role = MessageRole.ASSISTANT,
+                    content = "plain-$i",
+                    reasoningContent = "plain-thought-$i",
+                    reasoningTrace = ReasoningTrace(
+                        rawText = "plain-thought-$i",
+                        sourceProviderId = "deepseek",
+                        sourceModelId = "deepseek-reasoner",
+                        replayFormat = ReasoningReplayFormat.REASONING_CONTENT
+                    ),
+                    timestamp = 200L + i
+                )
+            }
+            val messages = listOf(
+                ChatMessage(MessageRole.SYSTEM, "sys", timestamp = 0L),
+                ChatMessage(MessageRole.USER, "hi", timestamp = 1L),
+                toolAssistant,
+                toolResult
+            ) + plainPadding
+
+            val result = AgentMessageUtils.processAndCopyMessages("task", messages)
+            val kept = result.first { it.toolCalls?.any { tc -> tc.id == call.id } == true }
+            assertEquals("need-replay", kept.reasoningContent)
+            assertNotNull(kept.reasoningTrace)
+        }
+
+    @Test
     fun `history trim keeps assistant tool_calls with their tool results together`() {
         // Window would start on a TOOL if we naively takeLast(3); helper must snap back to assistant.
         val callA = ToolCall(id = "call_a", function = FunctionCall("tool_a", JsonObject()))
