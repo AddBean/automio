@@ -525,6 +525,7 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
                             agentProvider?.resumeTask(taskId)
                             controlListener?.onResume()
                             setPaused(false)
+                            updateStatus(AgentStatus.THINKING)
                         } else {
                             agentProvider?.pauseTask(taskId)
                             controlListener?.onPause()
@@ -692,7 +693,10 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
             if (paused) R.drawable.ic_agent_play else R.drawable.ic_agent_pause
         )
 
-        updateStatus(if (paused) AgentStatus.PAUSED else currentStatus)
+        // 仅进入暂停时切状态；恢复由 RUNNING / 其它状态回调更新，避免 currentStatus==PAUSED 时 early-return
+        if (paused) {
+            updateStatus(AgentStatus.PAUSED)
+        }
     }
 
     private fun setButtonEnabled(enabled: Boolean) {
@@ -760,16 +764,30 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
     private fun onAgentStateChangedInternal(taskId: String, status: ExecutionStatus) {
         if (taskId == currentTaskGoal?.id) {
             when (status) {
-                ExecutionStatus.RUNNING -> updateStatus(AgentStatus.THINKING)
-                ExecutionStatus.PAUSED -> {
-                    setPaused(true)
-                    updateStatus(AgentStatus.PAUSED)
+                ExecutionStatus.RUNNING -> {
+                    setPaused(false)
+                    updateStatus(AgentStatus.THINKING)
                 }
 
-                ExecutionStatus.SUCCESS -> updateStatus(AgentStatus.COMPLETED)
-                ExecutionStatus.FAILED -> updateStatus(AgentStatus.FAILED)
-                ExecutionStatus.TIMEOUT -> updateStatus(AgentStatus.FAILED)
+                ExecutionStatus.PAUSED -> setPaused(true)
+
+                ExecutionStatus.SUCCESS -> {
+                    setPaused(false)
+                    updateStatus(AgentStatus.COMPLETED)
+                }
+
+                ExecutionStatus.FAILED -> {
+                    setPaused(false)
+                    updateStatus(AgentStatus.FAILED)
+                }
+
+                ExecutionStatus.TIMEOUT -> {
+                    setPaused(false)
+                    updateStatus(AgentStatus.FAILED)
+                }
+
                 ExecutionStatus.STOPPED -> {
+                    setPaused(false)
                     updateStatus(AgentStatus.FAILED)
                     setButtonEnabled(false)
                 }
@@ -818,6 +836,23 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
             tvCollapsedStatus.text = compressingText
             return
         }
+        // 暂停时缩小态锁定「暂停中」，不被消息刷新覆盖
+        if (currentStatus == AgentStatus.PAUSED || isPaused) {
+            tvCollapsedStatus.text =
+                GlobalApp.getString(com.hive.i8n.R.string.script_top_status_paused)
+            val chatInput = currentTaskGoal?.input ?: return
+            val lastMsgBean = chatInput.messages.lastOrNull { it.role == MessageRole.ASSISTANT }
+            val lastMsgStr = (lastMsgBean?.reasoningContent ?: "") + (lastMsgBean?.content ?: "")
+            currentTaskInfoRawText = lastMsgStr.trim()
+            val displayText =
+                if (TextUtils.isEmpty(lastMsgStr)) {
+                    GlobalApp.getString(com.hive.i8n.R.string.script_agent_thinking)
+                } else {
+                    lastMsgStr.takeLastWords(100)
+                }
+            tvTaskInfo.text = displayText
+            return
+        }
         val chatInput = currentTaskGoal?.input ?: return
         val lastMsgBean = chatInput.messages.lastOrNull { it.role == MessageRole.ASSISTANT }
         val lastMsgStr = (lastMsgBean?.reasoningContent ?: "") + (lastMsgBean?.content ?: "")
@@ -836,6 +871,7 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
             updateStatusColor(status)
             updateStatusText(status)
             updateCollapsedStatus(status)
+            updateSurfaceBackground(status)
             if (status == AgentStatus.COMPRESSING_MEMORY) {
                 updateCurrentTaskInfo()
             }
@@ -848,7 +884,7 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
                 AgentStatus.EXECUTING -> com.hive.i8n.R.color.colorPurple
                 AgentStatus.COMPLETED -> com.hive.i8n.R.color.colorTextGreen
                 AgentStatus.FAILED -> com.hive.i8n.R.color.colorRed
-                AgentStatus.PAUSED -> com.hive.i8n.R.color.colorTextSecondary
+                AgentStatus.PAUSED -> com.hive.i8n.R.color.ai_status_warning
                 AgentStatus.COMPRESSING_MEMORY -> com.hive.i8n.R.color.colorAccent
             }
             vStatusIndicator.setBackgroundColor(getColor(colorRes))
@@ -863,7 +899,8 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
 
         private fun updateCollapsedStatus(status: AgentStatus) {
             tvCollapsedStatus.text = getStatusInfo(status)
-            if (status == AgentStatus.COMPRESSING_MEMORY) return
+            // 暂停/压缩记忆：缩小态固定展示状态文案，不被工具名覆盖
+            if (status == AgentStatus.COMPRESSING_MEMORY || status == AgentStatus.PAUSED) return
             val input = currentTaskGoal?.input
             if (input is AgentInput) {
                 val msg = input.messages.last()
@@ -874,13 +911,21 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
                         toolName?.uppercase() ?: getStatusInfo(status)
                 }
             }
-//            // 设置图标
-//            ivCollapsedIcon.setImageResource(
-//                when (status) {
-//                    AgentStatus.PAUSED -> R.drawable.ic_agent_play
-//                    else -> R.drawable.ic_agent_pause
-//                }
-//            )
+        }
+
+        private fun updateSurfaceBackground(status: AgentStatus) {
+            val color = when (status) {
+                AgentStatus.PAUSED -> getColor(com.hive.i8n.R.color.ai_status_warning)
+                else -> null
+            }
+            motionController?.setSurfaceFillColor(color)
+                ?: findViewById<View>(R.id.agent_motion_surface)?.background?.mutate()?.let { bg ->
+                    if (bg is android.graphics.drawable.GradientDrawable) {
+                        bg.setColor(
+                            color ?: getColor(com.hive.i8n.R.color.black)
+                        )
+                    }
+                }
         }
 
         private fun getStatusInfo(currentStatus: AgentStatus): String {
@@ -903,7 +948,7 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
                 AgentStatus.EXECUTING -> com.hive.i8n.R.color.colorPurple
                 AgentStatus.COMPLETED -> com.hive.i8n.R.color.colorTextGreen
                 AgentStatus.FAILED -> com.hive.i8n.R.color.colorRed
-                AgentStatus.PAUSED -> com.hive.i8n.R.color.colorTextSecondary
+                AgentStatus.PAUSED -> com.hive.i8n.R.color.ai_status_warning
                 AgentStatus.COMPRESSING_MEMORY -> com.hive.i8n.R.color.colorAccent
             }
         }

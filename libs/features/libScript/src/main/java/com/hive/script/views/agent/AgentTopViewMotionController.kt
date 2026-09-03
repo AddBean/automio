@@ -10,6 +10,7 @@ import android.graphics.drawable.GradientDrawable
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.PathInterpolator
+import androidx.annotation.ColorInt
 import com.hive.script.R
 import kotlin.math.abs
 import kotlin.math.max
@@ -32,6 +33,9 @@ internal class AgentTopViewMotionController(
     private val interpolator = PathInterpolator(0.2f, 0f, 0f, 1f)
     private val density = host.resources.displayMetrics.density
     private val surfaceBackground = surface.background.mutate() as? GradientDrawable
+    @ColorInt
+    private val defaultSurfaceColor: Int =
+        host.resources.getColor(com.hive.i8n.R.color.black, host.context.theme)
 
     private var activeAnimator: ValueAnimator? = null
     private var disposed = false
@@ -45,6 +49,12 @@ internal class AgentTopViewMotionController(
 
     val isDismissing: Boolean
         get() = transition == Transition.EXIT
+
+    /** 更新浮层填充色（暂停提示色等）；传 null 恢复默认黑底。 */
+    fun setSurfaceFillColor(@ColorInt color: Int?) {
+        if (disposed) return
+        surfaceBackground?.setColor(color ?: defaultSurfaceColor)
+    }
 
     fun initialize(collapsedState: Boolean) {
         if (disposed) return

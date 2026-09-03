@@ -104,7 +104,8 @@ class TaskStateManager : ITaskStateManager {
     }
 
     override fun checkPaused(taskId: String): Boolean {
-        val state = taskStates[taskId] ?: return true
+        // 无状态时不应视为暂停（否则会误进 PAUSE 等待）；未知任务由 checkStopped 兜底
+        val state = taskStates[taskId] ?: return false
         return state == ExecutionStatus.PAUSED
     }
 
