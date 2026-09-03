@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingHorizontal="16dp"
-    android:paddingVertical="6dp"
+    android:paddingHorizontal="12dp"
+    android:paddingVertical="4dp"
     tools:background="@color/colorPrimary">
 
     <LinearLayout
@@ -17,10 +17,10 @@
         android:focusable="true"
         android:foreground="?attr/selectableItemBackgroundBorderless"
         android:gravity="center_vertical"
-        android:minHeight="32dp"
+        android:minHeight="30dp"
         android:orientation="horizontal"
-        android:paddingHorizontal="12dp"
-        android:paddingVertical="7dp">
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="6dp">
 
         <ImageView
             android:layout_width="12dp"

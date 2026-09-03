@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingHorizontal="16dp"
-    android:paddingVertical="4dp"
+    android:paddingHorizontal="12dp"
+    android:paddingVertical="5dp"
     tools:background="@color/colorPrimary">
 
     <TextView
@@ -26,8 +26,8 @@
         android:lineSpacingExtra="3dp"
         android:maxWidth="320dp"
         android:minWidth="48dp"
-        android:paddingHorizontal="14dp"
-        android:paddingVertical="10dp"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="9dp"
         android:textColor="@color/textColorPrimary"
         android:textSize="15sp"
         tools:text="User message" />

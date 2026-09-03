@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingHorizontal="16dp"
-    android:paddingVertical="4dp"
+    android:paddingHorizontal="12dp"
+    android:paddingVertical="6dp"
     tools:background="@color/colorPrimary">
 
     <com.hive.views.widgets.CustomRoundImageView
@@ -34,7 +34,7 @@
             android:id="@+id/reasoningLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="6dp"
             android:orientation="vertical"
             android:visibility="gone"
             tools:visibility="visible">
@@ -58,11 +58,11 @@
 
                 <ImageView
                     android:id="@+id/reasoningExpandIcon"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_marginStart="2dp"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginStart="1dp"
                     android:contentDescription="@string/agent_chat_thinking"
-                    android:src="@drawable/ic_expand_more"
+                    android:src="@drawable/ic_reasoning_chevron"
                     android:tint="@color/text_white_60" />
             </LinearLayout>
 
@@ -70,7 +70,7 @@
                 android:id="@+id/reasoningBody"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="4dp"
                 android:orientation="horizontal"
                 android:visibility="gone"
                 tools:visibility="visible">
@@ -78,7 +78,7 @@
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="8dp"
                     android:background="@drawable/bg_agent_chat_reasoning_bar" />
 
                 <TextView
@@ -86,7 +86,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:lineSpacingExtra="3dp"
+                    android:lineSpacingExtra="2dp"
                     android:textColor="@color/text_white_60"
                     android:textSize="12sp"
                     tools:text="Thinking process..." />
@@ -97,7 +97,7 @@
             android:id="@+id/tvMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lineSpacingExtra="4dp"
+            android:lineSpacingExtra="3dp"
             android:textColor="@color/design_text_slate_200"
             android:textIsSelectable="true"
             android:textSize="15sp"

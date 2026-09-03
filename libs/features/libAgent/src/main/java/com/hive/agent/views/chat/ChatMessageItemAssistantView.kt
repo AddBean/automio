@@ -4,9 +4,12 @@
 package com.hive.agent.views.chat
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.widget.ImageViewCompat
 import com.hive.agent.R
 import com.hive.plugin.ComponentManager
 import com.hive.plugin.provider.IEditorProvider
@@ -57,6 +60,9 @@ class ChatMessageItemAssistantView(context: Context) : ListRecyclerItemView(cont
         reasoningTextView = findViewById(R.id.reasoningTextView)
         reasoningExpandIcon = findViewById(R.id.reasoningExpandIcon)
         statusIndicator = findViewById(R.id.statusIndicator)
+
+        val thinkingColor = ContextCompat.getColor(context, com.hive.i8n.R.color.text_white_60)
+        ImageViewCompat.setImageTintList(reasoningExpandIcon, ColorStateList.valueOf(thinkingColor))
 
         reasoningHeader.setOnClickListener {
             isReasoningExpanded = !isReasoningExpanded

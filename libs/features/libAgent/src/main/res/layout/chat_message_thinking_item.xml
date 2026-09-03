@@ -5,13 +5,13 @@
     android:layout_height="wrap_content"
     android:gravity="start"
     android:orientation="horizontal"
-    android:paddingHorizontal="16dp"
-    android:paddingVertical="6dp">
+    android:paddingHorizontal="12dp"
+    android:paddingVertical="4dp">
 
     <com.wang.avi.AVLoadingIndicatorView
         android:id="@+id/thinkingIndicator"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
         app:indicatorColor="@color/colorAccent"
         app:indicatorName="BallBeatIndicator" />
 
