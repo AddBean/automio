@@ -38,7 +38,7 @@ object ReasoningResponseNormalizer {
     ): NormalizedReasoningResponse {
         return when (replayFormat) {
             ReasoningReplayFormat.CONTENT_THINK_TAG -> normalizeThinkTag(
-                content, usage, providerId, modelId
+                content, reasoningContent, usage, providerId, modelId
             )
             ReasoningReplayFormat.REASONING_DETAILS -> normalizeDetails(
                 content, reasoningContent, reasoningDetailsJson, usage, providerId, modelId
@@ -69,15 +69,38 @@ object ReasoningResponseNormalizer {
         return map
     }
 
+    /** Append stream chunk details in arrival order without mutating/reordering elements. */
+    fun appendDetails(target: JsonArray, chunk: JsonArray?) {
+        if (chunk == null) return
+        chunk.forEach { target.add(it) }
+    }
+
     fun replayFormatFor(providerId: String): ReasoningReplayFormat =
         ReasoningModelCatalog.replayFormatFor(providerId)
 
     private fun normalizeThinkTag(
         content: String?,
+        reasoningContent: String?,
         usage: Map<String, Int>,
         providerId: String,
         modelId: String?
     ): NormalizedReasoningResponse {
+        // Prefer API-provided reasoning_content (e.g. SiliconFlow) over content think-tag split.
+        val explicit = reasoningContent?.takeIf { it.isNotEmpty() }
+        if (explicit != null) {
+            return NormalizedReasoningResponse(
+                content = content,
+                reasoningContent = explicit,
+                usage = usage,
+                reasoningTrace = ReasoningTrace(
+                    rawText = explicit,
+                    sourceProviderId = providerId,
+                    sourceModelId = modelId,
+                    replayFormat = ReasoningReplayFormat.CONTENT_THINK_TAG
+                )
+            )
+        }
+
         val raw = content ?: return NormalizedReasoningResponse(null, null, usage, null)
         val match = thinkTagRegex.find(raw)
         if (match == null) {
@@ -134,22 +157,13 @@ object ReasoningResponseNormalizer {
         providerId: String,
         modelId: String?
     ): NormalizedReasoningResponse {
-        val details = reasoningDetailsJson?.mapNotNull { element ->
-            val obj = element.takeIf { it.isJsonObject }?.asJsonObject ?: return@mapNotNull null
-            val type = obj.get("type")?.asStringOrNull()
-            val text = obj.get("text")?.asStringOrNull()
-                ?: obj.get("summary")?.asStringOrNull()
-            val id = obj.get("id")?.asStringOrNull()
-            val data = mutableMapOf<String, String>()
-            obj.entrySet().forEach { (key, value) ->
-                if (key == "type" || key == "text" || key == "summary" || key == "id") return@forEach
-                if (value.isJsonPrimitive) data[key] = value.asString
-            }
-            ReasoningDetail(type = type, text = text, id = id, data = data)
-        }.orEmpty()
+        val details = parseDetailsPreservingOrder(reasoningDetailsJson)
 
         val display = reasoningContent?.takeIf { it.isNotEmpty() }
-            ?: details.firstOrNull { !it.text.isNullOrEmpty() }?.text
+            ?: details.firstOrNull { detail ->
+                val type = detail.type.orEmpty()
+                !type.contains("encrypted", ignoreCase = true) && !detail.text.isNullOrEmpty()
+            }?.text
 
         val trace = if (details.isNotEmpty() || !display.isNullOrEmpty()) {
             ReasoningTrace(
@@ -167,6 +181,27 @@ object ReasoningResponseNormalizer {
             usage = usage,
             reasoningTrace = trace
         )
+    }
+
+    private fun parseDetailsPreservingOrder(reasoningDetailsJson: JsonArray?): List<ReasoningDetail> {
+        if (reasoningDetailsJson == null) return emptyList()
+        return reasoningDetailsJson.mapNotNull { element ->
+            val obj = element.takeIf { it.isJsonObject }?.asJsonObject ?: return@mapNotNull null
+            val type = obj.get("type")?.asStringOrNull()
+            val text = obj.get("text")?.asStringOrNull()
+                ?: obj.get("summary")?.asStringOrNull()
+            val id = obj.get("id")?.asStringOrNull()
+            val data = mutableMapOf<String, String>()
+            obj.entrySet().forEach { (key, value) ->
+                if (key == "type" || key == "text" || key == "summary" || key == "id") return@forEach
+                // Store unknown/encrypted fields as-is; never mutate for UI.
+                data[key] = when {
+                    value.isJsonPrimitive -> value.asString
+                    else -> value.toString()
+                }
+            }
+            ReasoningDetail(type = type, text = text, id = id, data = data)
+        }
     }
 
     private fun JsonElement.asIntOrNull(): Int? =

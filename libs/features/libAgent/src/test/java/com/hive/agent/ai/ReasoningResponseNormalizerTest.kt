@@ -97,6 +97,107 @@ class ReasoningResponseNormalizerTest {
     }
 
     @Test
+    fun `content think tag prefers explicit reasoning_content over think tag split`() {
+        val normalized = ReasoningResponseNormalizer.normalize(
+            content = "<think>ignored-tag</think>answer",
+            reasoningContent = "api-reasoning",
+            reasoningDetailsJson = null,
+            usage = emptyMap(),
+            providerId = "siliconflow",
+            modelId = "Qwen/Qwen3-8B",
+            replayFormat = ReasoningReplayFormat.CONTENT_THINK_TAG
+        )
+
+        assertEquals("<think>ignored-tag</think>answer", normalized.content)
+        assertEquals("api-reasoning", normalized.reasoningContent)
+        assertEquals("api-reasoning", normalized.reasoningTrace?.rawText)
+        assertEquals(ReasoningReplayFormat.CONTENT_THINK_TAG, normalized.reasoningTrace?.replayFormat)
+    }
+
+    @Test
+    fun `content think tag falls back to split when reasoning_content absent`() {
+        val raw = "<think>from-tag</think>body"
+        val normalized = ReasoningResponseNormalizer.normalize(
+            content = raw,
+            reasoningContent = null,
+            usage = emptyMap(),
+            providerId = "siliconflow",
+            modelId = "Qwen/Qwen3-8B",
+            replayFormat = ReasoningReplayFormat.CONTENT_THINK_TAG
+        )
+        assertEquals("body", normalized.content)
+        assertEquals("from-tag", normalized.reasoningContent)
+        assertEquals(raw, normalized.reasoningTrace?.rawText)
+    }
+
+    @Test
+    fun `openrouter details preserve arrival order and store encrypted without using for UI`() {
+        val details = JsonParser().parse(
+            """
+            [
+              {"type":"reasoning.text","text":"first","id":"1"},
+              {"type":"reasoning.encrypted","data":"enc-payload","id":"2","format":"anthropic-claude-v1"},
+              {"type":"reasoning.text","text":"second","id":"3"}
+            ]
+            """.trimIndent()
+        ).asJsonArray
+
+        val normalized = ReasoningResponseNormalizer.normalize(
+            content = "final",
+            reasoningContent = null,
+            reasoningDetailsJson = details,
+            usage = emptyMap(),
+            providerId = "openrouter",
+            modelId = "openai/o3",
+            replayFormat = ReasoningReplayFormat.REASONING_DETAILS
+        )
+
+        val traceDetails = normalized.reasoningTrace!!.details
+        assertEquals(3, traceDetails.size)
+        assertEquals("reasoning.text", traceDetails[0].type)
+        assertEquals("first", traceDetails[0].text)
+        assertEquals("reasoning.encrypted", traceDetails[1].type)
+        assertNull(traceDetails[1].text)
+        assertEquals("enc-payload", traceDetails[1].data["data"])
+        assertEquals("anthropic-claude-v1", traceDetails[1].data["format"])
+        assertEquals("reasoning.text", traceDetails[2].type)
+        assertEquals("second", traceDetails[2].text)
+        // UI text must not come from encrypted payload
+        assertEquals("first", normalized.reasoningContent)
+        assertTrue(normalized.reasoningContent?.contains("enc-payload") != true)
+    }
+
+    @Test
+    fun `stream details accumulator keeps chunk order including encrypted`() {
+        val acc = JsonArray()
+        val chunk1 = JsonParser().parse(
+            """[{"type":"reasoning.text","text":"a","id":"1"}]"""
+        ).asJsonArray
+        val chunk2 = JsonParser().parse(
+            """[{"type":"reasoning.encrypted","data":"SECRET","id":"2"}]"""
+        ).asJsonArray
+        val chunk3 = JsonParser().parse(
+            """[{"type":"reasoning.text","text":"b","id":"3"}]"""
+        ).asJsonArray
+        ReasoningResponseNormalizer.appendDetails(acc, chunk1)
+        ReasoningResponseNormalizer.appendDetails(acc, chunk2)
+        ReasoningResponseNormalizer.appendDetails(acc, chunk3)
+
+        val normalized = ReasoningResponseNormalizer.normalize(
+            content = "ok",
+            reasoningContent = "ab",
+            reasoningDetailsJson = acc,
+            usage = emptyMap(),
+            providerId = "openrouter",
+            modelId = "x",
+            replayFormat = ReasoningReplayFormat.REASONING_DETAILS
+        )
+        assertEquals(listOf("1", "2", "3"), normalized.reasoningTrace!!.details.map { it.id })
+        assertEquals("SECRET", normalized.reasoningTrace!!.details[1].data["data"])
+        assertEquals("ab", normalized.reasoningContent)
+    }
+
+    @Test
     fun `usage merges completion_tokens_details reasoning_tokens`() {
         val usageObj = JsonObject().apply {
             addProperty("prompt_tokens", 3)
@@ -111,6 +212,25 @@ class ReasoningResponseNormalizerTest {
         assertEquals(5, usage["completion_tokens"])
         assertEquals(8, usage["total_tokens"])
         assertEquals(4, usage["reasoning_tokens"])
+    }
+
+    @Test
+    fun `provider parse usage includes nested reasoning_tokens`() {
+        val responseJson = """
+            {
+              "model": "gpt-5",
+              "choices": [{"message": {"role":"assistant","content":"hi"}, "finish_reason":"stop"}],
+              "usage": {
+                "prompt_tokens": 1,
+                "completion_tokens": 2,
+                "total_tokens": 3,
+                "completion_tokens_details": { "reasoning_tokens": 9 }
+              }
+            }
+        """.trimIndent()
+        val root = JsonParser().parse(responseJson).asJsonObject
+        val usage = ReasoningResponseNormalizer.extractUsage(root.getAsJsonObject("usage"))
+        assertEquals(9, usage["reasoning_tokens"])
     }
 }
 

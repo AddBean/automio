@@ -18,6 +18,7 @@ import com.hive.plugin.agent.model.ReasoningOptions
 import com.hive.utils.debug.DLog
 import com.hive.utils.extends.string
 import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import com.google.gson.annotations.SerializedName
 import com.hive.utils.utils.GsonHelper
 import kotlinx.coroutines.Dispatchers
@@ -241,17 +242,12 @@ open class DeepSeekProvider : AbstractChatProvider() {
     }
 
     override fun parseChatResponse(responseText: String): ChatCompletionResponse {
+        val root = JsonParser().parse(responseText).asJsonObject
         val deepSeekResponse = GsonHelper.getInstance().fromJson(responseText, DeepSeekChatResponse::class.java)
         val firstChoice = deepSeekResponse.choices?.firstOrNull()
         val message = firstChoice?.message
         val providerId = getProviderInfo().name
-        val usage = deepSeekResponse.usage?.let { usage ->
-            mapOf(
-                "prompt_tokens" to usage.prompt_tokens,
-                "completion_tokens" to usage.completion_tokens,
-                "total_tokens" to usage.total_tokens
-            )
-        } ?: emptyMap()
+        val usage = ReasoningResponseNormalizer.extractUsage(root.getAsJsonObject("usage"))
         val normalized = ReasoningResponseNormalizer.normalize(
             content = message?.content,
             reasoningContent = message?.reasoning_content,
@@ -280,6 +276,7 @@ open class DeepSeekProvider : AbstractChatProvider() {
     }
 
     override fun parseStreamResponse(data: String): StreamResponseData {
+        val root = runCatching { JsonParser().parse(data).asJsonObject }.getOrNull()
         val streamResponse = GsonHelper.getInstance().fromJson(data, DeepSeekStreamResponse::class.java)
         val choice = streamResponse.choices?.firstOrNull() ?: return StreamResponseData(
             null, null, null, null, null, null, null
@@ -292,13 +289,7 @@ open class DeepSeekProvider : AbstractChatProvider() {
             content = delta.content,
             reasoningContent = delta.reasoning_content,
             model = streamResponse.model,
-            usage = streamResponse.usage?.let { usage ->
-                mapOf(
-                    "prompt_tokens" to usage.prompt_tokens,
-                    "completion_tokens" to usage.completion_tokens,
-                    "total_tokens" to usage.total_tokens
-                )
-            },
+            usage = ReasoningResponseNormalizer.extractUsage(root?.getAsJsonObject("usage")),
             toolCalls = delta.tool_calls?.map { toolCall ->
                 ToolCallData(
                     index = toolCall.index,
@@ -323,12 +314,14 @@ open class DeepSeekProvider : AbstractChatProvider() {
         model: String?,
         usage: Map<String, Int>,
         toolCalls: List<Any>?,
-        cost: Double?
+        cost: Double?,
+        reasoningDetails: com.google.gson.JsonArray?
     ): ChatCompletionResponse {
         val providerId = getProviderInfo().name
         val normalized = ReasoningResponseNormalizer.normalize(
             content = accumulatedContent.ifEmpty { null },
             reasoningContent = accumulatedReasoningContent?.ifEmpty { null },
+            reasoningDetailsJson = reasoningDetails,
             usage = usage,
             providerId = providerId,
             modelId = model,

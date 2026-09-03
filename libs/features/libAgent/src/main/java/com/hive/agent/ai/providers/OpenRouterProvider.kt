@@ -34,7 +34,7 @@ import java.net.URL
 /**
  * OpenRouter AI Provider实现
  */
-class OpenRouterProvider : AbstractChatProvider() {
+open class OpenRouterProvider : AbstractChatProvider() {
 
     override fun getProviderInfo(): ProviderInfo {
         return ConfigAgentModels.findProviderInfo("openrouter") ?: ProviderInfo(
@@ -431,14 +431,7 @@ class OpenRouterProvider : AbstractChatProvider() {
         val firstChoice = openRouterResponse.choices?.firstOrNull()
         val message = firstChoice?.message
         val providerId = getProviderInfo().name
-        val usage = openRouterResponse.usage?.let { usage ->
-            buildMap {
-                put("prompt_tokens", usage.prompt_tokens)
-                put("completion_tokens", usage.completion_tokens)
-                put("total_tokens", usage.total_tokens)
-                usage.reasoning_tokens?.let { put("reasoning_tokens", it) }
-            }
-        } ?: emptyMap()
+        val usage = ReasoningResponseNormalizer.extractUsage(root.getAsJsonObject("usage"))
         val details = root.getAsJsonArray("choices")
             ?.firstOrNull()
             ?.takeIf { it.isJsonObject }
@@ -461,7 +454,8 @@ class OpenRouterProvider : AbstractChatProvider() {
             reasoningContent = normalized.reasoningContent,
             model = openRouterResponse.model,
             usage = normalized.usage,
-            cost = openRouterResponse.usage?.cost,
+            cost = openRouterResponse.usage?.cost
+                ?: root.getAsJsonObject("usage")?.get("cost")?.takeIf { it.isJsonPrimitive }?.asDouble,
             toolCalls = message?.tool_calls?.mapNotNull { openRouterToolCall ->
                 AgentToolCallUtils.buildToolCall(
                     logTag = "OpenRouterProvider",
@@ -484,31 +478,27 @@ class OpenRouterProvider : AbstractChatProvider() {
 
         val delta = choice.delta
         val finishReason = choice.finish_reason
+        val detailsChunk = root?.getAsJsonArray("choices")
+            ?.firstOrNull()
+            ?.takeIf { it.isJsonObject }
+            ?.asJsonObject
+            ?.getAsJsonObject("delta")
+            ?.getAsJsonArray("reasoning_details")
         val reasoningChunk = delta.reasoning ?: delta.reasoning_content
-            ?: root?.getAsJsonArray("choices")
-                ?.firstOrNull()
-                ?.takeIf { it.isJsonObject }
-                ?.asJsonObject
-                ?.getAsJsonObject("delta")
-                ?.getAsJsonArray("reasoning_details")
-                ?.let { details ->
-                    details.mapNotNull { el ->
-                        el.takeIf { it.isJsonObject }?.asJsonObject?.get("text")?.asString
-                    }.joinToString("").ifEmpty { null }
-                }
+            ?: detailsChunk?.let { details ->
+                details.mapNotNull { el ->
+                    val obj = el.takeIf { it.isJsonObject }?.asJsonObject ?: return@mapNotNull null
+                    val type = obj.get("type")?.asString.orEmpty()
+                    if (type.contains("encrypted", ignoreCase = true)) return@mapNotNull null
+                    obj.get("text")?.asString ?: obj.get("summary")?.asString
+                }.joinToString("").ifEmpty { null }
+            }
 
         return StreamResponseData(
             content = delta.content,
             reasoningContent = reasoningChunk,
             model = streamResponse.model,
-            usage = streamResponse.usage?.let { usage ->
-                buildMap {
-                    put("prompt_tokens", usage.prompt_tokens)
-                    put("completion_tokens", usage.completion_tokens)
-                    put("total_tokens", usage.total_tokens)
-                    usage.reasoning_tokens?.let { put("reasoning_tokens", it) }
-                }
-            },
+            usage = ReasoningResponseNormalizer.extractUsage(root?.getAsJsonObject("usage")),
             toolCalls = delta.tool_calls?.map { toolCall ->
                 ToolCallData(
                     index = toolCall.index,
@@ -520,6 +510,8 @@ class OpenRouterProvider : AbstractChatProvider() {
             },
             finishReason = finishReason,
             cost = streamResponse.usage?.cost
+                ?: root?.getAsJsonObject("usage")?.get("cost")?.takeIf { it.isJsonPrimitive }?.asDouble,
+            reasoningDetailsChunk = detailsChunk
         )
     }
 
@@ -533,12 +525,14 @@ class OpenRouterProvider : AbstractChatProvider() {
         model: String?,
         usage: Map<String, Int>,
         toolCalls: List<Any>?,
-        cost: Double?
+        cost: Double?,
+        reasoningDetails: JsonArray?
     ): ChatCompletionResponse {
         val providerId = getProviderInfo().name
         val normalized = ReasoningResponseNormalizer.normalize(
             content = accumulatedContent.ifEmpty { null },
             reasoningContent = accumulatedReasoningContent?.takeIf { it.isNotEmpty() },
+            reasoningDetailsJson = reasoningDetails,
             usage = usage,
             providerId = providerId,
             modelId = model,

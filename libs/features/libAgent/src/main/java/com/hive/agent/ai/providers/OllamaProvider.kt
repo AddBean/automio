@@ -263,7 +263,8 @@ class OllamaProvider : AbstractChatProvider() {
         model: String?,
         usage: Map<String, Int>,
         toolCalls: List<Any>?,
-        cost: Double?
+        cost: Double?,
+        reasoningDetails: com.google.gson.JsonArray?
     ): ChatCompletionResponse {
         val (content, reasoningContent) = separateContentAndReasoning(accumulatedContent)
 

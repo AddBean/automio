@@ -403,17 +403,12 @@ class BailianCodeProvider : AbstractChatProvider() {
     }
 
     override fun parseChatResponse(responseText: String): ChatCompletionResponse {
+        val root = JsonParser().parse(responseText).asJsonObject
         val resp = GsonHelper.getInstance().fromJson(responseText, BailianChatResponse::class.java)
         val firstChoice = resp.choices?.firstOrNull()
         val message = firstChoice?.message
         val providerId = getProviderInfo().name
-        val usage = resp.usage?.let {
-            mapOf(
-                "prompt_tokens" to it.prompt_tokens,
-                "completion_tokens" to it.completion_tokens,
-                "total_tokens" to it.total_tokens
-            )
-        } ?: emptyMap()
+        val usage = ReasoningResponseNormalizer.extractUsage(root.getAsJsonObject("usage"))
         val normalized = ReasoningResponseNormalizer.normalize(
             content = message?.content,
             reasoningContent = message?.reasoning_content,
@@ -435,6 +430,7 @@ class BailianCodeProvider : AbstractChatProvider() {
     }
 
     override fun parseStreamResponse(data: String): StreamResponseData {
+        val root = runCatching { JsonParser().parse(data).asJsonObject }.getOrNull()
         val resp = GsonHelper.getInstance().fromJson(data, BailianStreamResponse::class.java)
         val choice = resp.choices?.firstOrNull() ?: return StreamResponseData(null, null, null, null, null, null, null)
         val delta = choice.delta ?: return StreamResponseData(null, null, null, null, null, null, null)
@@ -442,7 +438,7 @@ class BailianCodeProvider : AbstractChatProvider() {
             content = delta.content,
             reasoningContent = delta.reasoning_content,
             model = resp.model,
-            usage = resp.usage?.let { mapOf("prompt_tokens" to it.prompt_tokens, "completion_tokens" to it.completion_tokens, "total_tokens" to it.total_tokens) },
+            usage = ReasoningResponseNormalizer.extractUsage(root?.getAsJsonObject("usage")),
             toolCalls = delta.tool_calls?.mapNotNull { tc ->
                 val fn = tc.function ?: return@mapNotNull null
                 ToolCallData(tc.index, tc.id, tc.type, fn.name, fn.arguments)
@@ -461,12 +457,14 @@ class BailianCodeProvider : AbstractChatProvider() {
         model: String?,
         usage: Map<String, Int>,
         toolCalls: List<Any>?,
-        cost: Double?
+        cost: Double?,
+        reasoningDetails: com.google.gson.JsonArray?
     ): ChatCompletionResponse {
         val providerId = getProviderInfo().name
         val normalized = ReasoningResponseNormalizer.normalize(
             content = accumulatedContent.ifEmpty { null },
             reasoningContent = accumulatedReasoningContent?.ifEmpty { null },
+            reasoningDetailsJson = reasoningDetails,
             usage = usage,
             providerId = providerId,
             modelId = model,

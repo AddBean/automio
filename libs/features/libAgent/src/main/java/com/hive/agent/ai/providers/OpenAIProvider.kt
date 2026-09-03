@@ -226,19 +226,13 @@ open class OpenAIProvider : AbstractChatProvider() {
     }
 
     override fun parseChatResponse(responseText: String): ChatCompletionResponse {
+        val root = JsonParser().parse(responseText).asJsonObject
         val response =
             GsonHelper.getInstance().fromJson(responseText, OpenAIChatResponse::class.java)
         val firstChoice = response.choices?.firstOrNull()
         val message = firstChoice?.message
         val providerId = getProviderInfo().name
-        val usage = response.usage?.let { usage ->
-            buildMap {
-                put("prompt_tokens", usage.prompt_tokens)
-                put("completion_tokens", usage.completion_tokens)
-                put("total_tokens", usage.total_tokens)
-                usage.reasoning_tokens?.let { put("reasoning_tokens", it) }
-            }
-        } ?: emptyMap()
+        val usage = ReasoningResponseNormalizer.extractUsage(root.getAsJsonObject("usage"))
         val reasoningField = message?.reasoning_content
             ?: message?.reasoning
         val normalized = ReasoningResponseNormalizer.normalize(
@@ -268,6 +262,7 @@ open class OpenAIProvider : AbstractChatProvider() {
     }
 
     override fun parseStreamResponse(data: String): StreamResponseData {
+        val root = runCatching { JsonParser().parse(data).asJsonObject }.getOrNull()
         val response =
             GsonHelper.getInstance().fromJson(data, OpenAIStreamResponse::class.java)
         val choice = response.choices?.firstOrNull() ?: return StreamResponseData(
@@ -278,14 +273,7 @@ open class OpenAIProvider : AbstractChatProvider() {
             content = delta.content,
             reasoningContent = delta.reasoning_content ?: delta.reasoning,
             model = response.model,
-            usage = response.usage?.let { usage ->
-                buildMap {
-                    put("prompt_tokens", usage.prompt_tokens)
-                    put("completion_tokens", usage.completion_tokens)
-                    put("total_tokens", usage.total_tokens)
-                    usage.reasoning_tokens?.let { put("reasoning_tokens", it) }
-                }
-            },
+            usage = ReasoningResponseNormalizer.extractUsage(root?.getAsJsonObject("usage")),
             toolCalls = delta.tool_calls?.map { toolCall ->
                 ToolCallData(
                     index = toolCall.index,
@@ -310,12 +298,14 @@ open class OpenAIProvider : AbstractChatProvider() {
         model: String?,
         usage: Map<String, Int>,
         toolCalls: List<Any>?,
-        cost: Double?
+        cost: Double?,
+        reasoningDetails: JsonArray?
     ): ChatCompletionResponse {
         val providerId = getProviderInfo().name
         val normalized = ReasoningResponseNormalizer.normalize(
             content = accumulatedContent.ifEmpty { null },
             reasoningContent = accumulatedReasoningContent?.takeIf { it.isNotEmpty() },
+            reasoningDetailsJson = reasoningDetails,
             usage = usage,
             providerId = providerId,
             modelId = model,

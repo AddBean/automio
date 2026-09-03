@@ -19,6 +19,7 @@ import com.hive.plugin.agent.model.NetworkErrorType
 import com.hive.plugin.agent.model.ParseErrorType
 import com.hive.plugin.agent.model.ReasoningOptions
 import com.hive.utils.debug.DLog
+import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.hive.agent.utils.AgentMessageUtils
 import com.hive.agent.utils.MessageStatusHelper
@@ -27,6 +28,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.concurrent.atomic.AtomicBoolean
 import com.hive.utils.GlobalApp
+import com.hive.agent.ai.ReasoningResponseNormalizer
 
 abstract class AbstractChatProvider : AbstractBaseProvider() {
 
@@ -60,7 +62,8 @@ abstract class AbstractChatProvider : AbstractBaseProvider() {
         model: String?,
         usage: Map<String, Int>,
         toolCalls: List<Any>?,
-        cost: Double? = null
+        cost: Double? = null,
+        reasoningDetails: com.google.gson.JsonArray? = null
     ): ChatCompletionResponse
 
     override suspend fun <T> onInference(request: AIRequest): AIResult<T> {
@@ -209,6 +212,7 @@ abstract class AbstractChatProvider : AbstractBaseProvider() {
 
         var accumulatedContent = ""
         var accumulatedReasoningContent = ""
+        val accumulatedReasoningDetails = JsonArray()
         val toolCallAccumulator = StreamToolCallAccumulator(getProviderName())
         var finalModel: String? = null
         var finalUsage: Map<String, Int> = emptyMap()
@@ -251,20 +255,26 @@ abstract class AbstractChatProvider : AbstractBaseProvider() {
                     if (data == "[DONE]" || data.getJsonKey<Boolean>("done") == true) {
                         finalResponse = buildStreamResponse(
                             accumulatedContent, accumulatedReasoningContent, finalModel, finalUsage,
-                            toolCallAccumulator.toToolCalls().ifEmpty { null }, finalCost
+                            toolCallAccumulator.toToolCalls().ifEmpty { null }, finalCost,
+                            accumulatedReasoningDetails.takeIf { it.size() > 0 }
                         )
                         return@sendStreamHttpRequest false
                     }
                     val streamData = parseStreamResponse(data)
                     accumulatedContent += streamData.content ?: ""
                     accumulatedReasoningContent += streamData.reasoningContent ?: ""
+                    ReasoningResponseNormalizer.appendDetails(
+                        accumulatedReasoningDetails,
+                        streamData.reasoningDetailsChunk
+                    )
                     finalModel = streamData.model
                     streamData.cost?.let { finalCost = it }
 
                     onChunkResponse?.invoke(
                         buildStreamResponse(
                             accumulatedContent, accumulatedReasoningContent, finalModel, finalUsage,
-                            toolCallAccumulator.toToolCalls().ifEmpty { null }, finalCost
+                            toolCallAccumulator.toToolCalls().ifEmpty { null }, finalCost,
+                            accumulatedReasoningDetails.takeIf { it.size() > 0 }
                         )
                     )
 
@@ -299,7 +309,8 @@ abstract class AbstractChatProvider : AbstractBaseProvider() {
 
                         finalResponse = buildStreamResponse(
                             accumulatedContent, accumulatedReasoningContent, finalModel, finalUsage,
-                            uniqueToolCalls.ifEmpty { null }, finalCost
+                            uniqueToolCalls.ifEmpty { null }, finalCost,
+                            accumulatedReasoningDetails.takeIf { it.size() > 0 }
                         )
                         return@sendStreamHttpRequest false
                     }
@@ -327,6 +338,7 @@ abstract class AbstractChatProvider : AbstractBaseProvider() {
             }
             val hasPartialContent = accumulatedContent.isNotEmpty() ||
                 accumulatedReasoningContent.isNotEmpty() ||
+                accumulatedReasoningDetails.size() > 0 ||
                 toolCallAccumulator.toToolCalls().isNotEmpty()
             if (!hasPartialContent || !isBenignStreamTermination(e)) {
                 throw e
@@ -343,6 +355,7 @@ abstract class AbstractChatProvider : AbstractBaseProvider() {
                 .ifEmpty { null }
             if (accumulatedContent.isNotEmpty() ||
                 accumulatedReasoningContent.isNotEmpty() ||
+                accumulatedReasoningDetails.size() > 0 ||
                 toolCalls != null
             ) {
                 finalResponse = buildStreamResponse(
@@ -351,7 +364,8 @@ abstract class AbstractChatProvider : AbstractBaseProvider() {
                     finalModel,
                     finalUsage,
                     toolCalls,
-                    finalCost
+                    finalCost,
+                    accumulatedReasoningDetails.takeIf { it.size() > 0 }
                 )
             }
         }
@@ -445,7 +459,8 @@ abstract class AbstractChatProvider : AbstractBaseProvider() {
         val usage: Map<String, Int>?,
         val toolCalls: List<ToolCallData>?,
         val finishReason: String?,
-        val cost: Double? = null
+        val cost: Double? = null,
+        val reasoningDetailsChunk: JsonArray? = null
     )
 
     protected data class ToolCallData(
