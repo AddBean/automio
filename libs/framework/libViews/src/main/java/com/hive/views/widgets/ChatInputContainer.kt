@@ -44,6 +44,7 @@ class ChatInputContainer @JvmOverloads constructor(
     private var isVoiceMode: Boolean = false
     private var voiceRecordingOverlay: VoiceRecordingOverlay? = null
     private var onSendClickListener: ((String) -> Unit)? = null
+    private var onStopClickListener: (() -> Unit)? = null
     private var onPickImageClickListener: (() -> Unit)? = null
     private var onModelSelectClickListener: (() -> Unit)? = null
     private var onVoiceInputClickListener: (() -> Unit)? = null
@@ -54,6 +55,8 @@ class ChatInputContainer @JvmOverloads constructor(
     private var pendingFillToEdit: Boolean = false
     private var lastVoiceResult: String = ""
     private var useAgentStyle: Boolean = false
+    private var isAgentExecuting: Boolean = false
+    private var isStopMode: Boolean = false
 
     init {
         LayoutInflater.from(context).inflate(R.layout.layout_chat_input_container, this, true)
@@ -71,9 +74,17 @@ class ChatInputContainer @JvmOverloads constructor(
         removeAttachmentButton = findViewById(R.id.removeAttachmentBtn)
 
         sendButton.setOnClickListener {
+            val stopClicked = isStopMode
+            if (!stopClicked) {
+                dismissKeyboard()
+            }
             animateButtonClick(sendButton) {
-                onSendClickListener?.invoke(inputEdit.text.toString().trim())
-                inputEdit.setText("")
+                if (stopClicked) {
+                    onStopClickListener?.invoke()
+                } else {
+                    onSendClickListener?.invoke(inputEdit.text.toString().trim())
+                    inputEdit.setText("")
+                }
             }
         }
         pickImageButton?.setOnClickListener {
@@ -175,6 +186,15 @@ class ChatInputContainer @JvmOverloads constructor(
     private fun updateVoiceInputVisibility() { voiceInputButton?.visibility = if (showVoiceInput) View.VISIBLE else View.GONE }
 
     fun setOnSendClickListener(listener: (String) -> Unit) { onSendClickListener = listener }
+    fun setOnStopClickListener(listener: (() -> Unit)?) { onStopClickListener = listener }
+
+    /** Agent 执行中：空输入时右侧变为停止；有文字/附件时仍为发送 */
+    fun setAgentExecuting(executing: Boolean) {
+        if (isAgentExecuting == executing) return
+        isAgentExecuting = executing
+        updateSendButtonState()
+    }
+
     fun setOnPickImageClickListener(listener: () -> Unit) { onPickImageClickListener = listener }
     fun setOnModelSelectClickListener(listener: () -> Unit) { onModelSelectClickListener = listener }
     fun setOnVoiceInputClickListener(listener: () -> Unit) { onVoiceInputClickListener = listener }
@@ -231,7 +251,21 @@ class ChatInputContainer @JvmOverloads constructor(
     fun updateSendButtonState() {
         val hasText = inputEdit.text?.toString()?.trim()?.isNotEmpty() == true
         val hasAttachment = attachmentPreviewContainer?.visibility == View.VISIBLE
-        val enabled = hasText || hasAttachment
+        val canSend = hasText || hasAttachment
+        val showStop = isAgentExecuting && !canSend
+
+        if (showStop != isStopMode) {
+            isStopMode = showStop
+            if (showStop) {
+                sendButton.setImageResource(R.drawable.ic_chat_stop)
+                sendButton.contentDescription = context.getString(R.string.chat_stop_generation)
+            } else {
+                sendButton.setImageResource(R.drawable.ic_send)
+                sendButton.contentDescription = context.getString(R.string.chat_send_message)
+            }
+        }
+
+        val enabled = canSend || showStop
         sendButton.isEnabled = enabled
         sendButton.alpha = if (enabled) 1f else 0.5f
         val enabledColor = if (useAgentStyle) {
@@ -245,6 +279,12 @@ class ChatInputContainer @JvmOverloads constructor(
                 if (enabled) enabledColor else com.hive.i8n.R.color.colorTextSecondary
             )
         )
+    }
+
+    private fun dismissKeyboard() {
+        inputEdit.clearFocus()
+        (context.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager)
+            ?.hideSoftInputFromWindow(inputEdit.windowToken, 0)
     }
 
     private fun animateButtonClick(button: View, action: () -> Unit) {

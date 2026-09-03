@@ -118,6 +118,7 @@ class AgentChatFragment : PagerFragment() {
             override fun onTaskStatusChanged(taskId: String, status: ExecutionStatus) {
                 agentChatView?.updateTaskStatus(taskId, status)
                 notifyToolbarActionsVisibility()
+                syncChatInputExecutingState()
             }
 
             override fun onTaskMemoryCompressing(isCompressing: Boolean) {
@@ -155,6 +156,9 @@ class AgentChatFragment : PagerFragment() {
         chatInputContainer?.setInputHint(getString(com.hive.i8n.R.string.agent_chat_input_hint))
         // 语音"发送"通过回调参数传递识别结果
         chatInputContainer?.setOnSendClickListener { text -> sendChatMessage(text) }
+        chatInputContainer?.setOnStopClickListener {
+            taskBridge.currentTaskId?.let { xAgent.stopTask(it) }
+        }
         chatInputContainer?.setOnModelSelectClickListener { onModelSelectClick() }
         updateModelSelectorState()
         chatInputContainer?.onRequestRecordPermission = { activity, onGranted ->
@@ -173,9 +177,8 @@ class AgentChatFragment : PagerFragment() {
             AgentToolDetailBottomSheet.show(childFragmentManager, message)
         }
         notifyToolbarActionsVisibility()
+        syncChatInputExecutingState()
     }
-
-    /** 根据当前对话模型更新入口文案；未设置时显示「去设置」 */
     private fun updateModelSelectorState(
         selectedModel: ModelInfo? = xAgent.getAIServiceManager()?.getInferenceModel(InferenceType.TEXT)
     ) {
@@ -209,9 +212,14 @@ class AgentChatFragment : PagerFragment() {
             listOf(ExecutionStatus.RUNNING, ExecutionStatus.PAUSED)
         )?.firstOrNull())
         notifyToolbarActionsVisibility()
+        syncChatInputExecutingState()
     }
 
     private fun isTaskRunning(): Boolean = taskBridge.currentTaskId != null
+
+    private fun syncChatInputExecutingState() {
+        chatInputContainer?.setAgentExecuting(isTaskRunning())
+    }
 
     private fun notifyToolbarActionsVisibility() {
         EventBus.getDefault().post(
@@ -482,12 +490,14 @@ class AgentChatFragment : PagerFragment() {
         }
 
         chatInputContainer?.getInputEdit()?.setText("")
+        hideKeyboard()
 
         try {
             val taskId = "agent_${System.currentTimeMillis()}"
             taskBridge.markPendingChatLaunch(taskId)
             taskBridge.syncCurrentTaskId(taskId)
             notifyToolbarActionsVisibility()
+            syncChatInputExecutingState()
             val networkMessages = buildNetworkMessages(conversationInput, userMessage)
 
             val taskGoal = AgentTaskGoal(
@@ -503,6 +513,7 @@ class AgentChatFragment : PagerFragment() {
         } catch (e: Exception) {
             taskBridge.syncCurrentTaskId(null)
             notifyToolbarActionsVisibility()
+            syncChatInputExecutingState()
             // 添加错误消息
             agentChatView?.addMessage(
                 ChatMessage(
@@ -651,6 +662,7 @@ class AgentChatFragment : PagerFragment() {
     }
 
     private fun hideKeyboard() {
+        chatInputContainer?.getInputEdit()?.clearFocus()
         val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
         imm?.hideSoftInputFromWindow(chatInputContainer?.getInputEdit()?.windowToken, 0)
     }
