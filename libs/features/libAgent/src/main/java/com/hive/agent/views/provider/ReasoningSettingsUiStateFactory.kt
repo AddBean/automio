@@ -52,64 +52,77 @@ object ReasoningSettingsUiStateFactory {
         modelSelected: Boolean = true
     ): ReasoningSettingsUiState {
         if (!modelSelected) {
-            return ReasoningSettingsUiState(
+            return buildEditable(
                 switchChecked = savedEnabled,
-                switchEnabled = true,
                 switchHint = ReasoningSwitchHint.NO_MODEL,
-                effortRowVisible = true,
-                effortRowEnabled = true,
                 selectedEffort = savedEffort,
                 supportedEfforts = allEfforts,
-                canPersistSwitch = true,
-                canPersistEffort = true
+                effortSupported = true
             )
         }
 
         val caps = capabilities ?: ReasoningCapabilities()
         val efforts = caps.supportedEfforts
         val displayEffort = resolveDisplayEffort(savedEffort, caps)
-        val effortVisible = efforts.isNotEmpty()
+        val effortSupported = efforts.isNotEmpty()
 
         return when (caps.availability) {
-            ReasoningAvailability.OPTIONAL -> ReasoningSettingsUiState(
+            ReasoningAvailability.OPTIONAL -> buildEditable(
                 switchChecked = savedEnabled,
-                switchEnabled = true,
                 switchHint = ReasoningSwitchHint.OPTIONAL,
-                effortRowVisible = effortVisible,
-                effortRowEnabled = effortVisible,
                 selectedEffort = displayEffort,
                 supportedEfforts = efforts,
-                canPersistSwitch = true,
-                canPersistEffort = effortVisible
+                effortSupported = effortSupported
             )
-            ReasoningAvailability.REQUIRED -> ReasoningSettingsUiState(
-                switchChecked = true,
-                switchEnabled = false,
-                switchHint = ReasoningSwitchHint.REQUIRED,
-                effortRowVisible = effortVisible,
-                effortRowEnabled = effortVisible,
-                selectedEffort = displayEffort,
-                supportedEfforts = efforts,
-                canPersistSwitch = false,
-                canPersistEffort = effortVisible
-            )
+            ReasoningAvailability.REQUIRED -> {
+                // 强制开启：开关不可关，强度在有支持集合时展示
+                ReasoningSettingsUiState(
+                    switchChecked = true,
+                    switchEnabled = false,
+                    switchHint = ReasoningSwitchHint.REQUIRED,
+                    effortRowVisible = effortSupported,
+                    effortRowEnabled = effortSupported,
+                    selectedEffort = displayEffort,
+                    supportedEfforts = efforts,
+                    canPersistSwitch = false,
+                    canPersistEffort = effortSupported
+                )
+            }
             ReasoningAvailability.UNSUPPORTED -> disabledOff(
                 hint = ReasoningSwitchHint.UNSUPPORTED,
                 displayEffort = displayEffort
             )
-            // UNKNOWN：仍允许改全局偏好（换支持模型后生效）；请求侧不会发控制参数
-            ReasoningAvailability.UNKNOWN -> ReasoningSettingsUiState(
+            // UNKNOWN：仍允许改全局偏好；关闭时隐藏强度
+            ReasoningAvailability.UNKNOWN -> buildEditable(
                 switchChecked = savedEnabled,
-                switchEnabled = true,
                 switchHint = ReasoningSwitchHint.UNKNOWN,
-                effortRowVisible = true,
-                effortRowEnabled = true,
                 selectedEffort = savedEffort,
                 supportedEfforts = allEfforts,
-                canPersistSwitch = true,
-                canPersistEffort = true
+                effortSupported = true
             )
         }
+    }
+
+    /** 可交互开关：仅在开启时展示强度附属项。 */
+    private fun buildEditable(
+        switchChecked: Boolean,
+        switchHint: ReasoningSwitchHint,
+        selectedEffort: ReasoningEffort,
+        supportedEfforts: Set<ReasoningEffort>,
+        effortSupported: Boolean
+    ): ReasoningSettingsUiState {
+        val showEffort = switchChecked && effortSupported
+        return ReasoningSettingsUiState(
+            switchChecked = switchChecked,
+            switchEnabled = true,
+            switchHint = switchHint,
+            effortRowVisible = showEffort,
+            effortRowEnabled = showEffort,
+            selectedEffort = selectedEffort,
+            supportedEfforts = supportedEfforts,
+            canPersistSwitch = true,
+            canPersistEffort = showEffort
+        )
     }
 
     private fun disabledOff(

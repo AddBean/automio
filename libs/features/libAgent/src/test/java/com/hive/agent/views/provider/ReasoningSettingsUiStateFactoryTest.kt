@@ -57,8 +57,24 @@ class ReasoningSettingsUiStateFactoryTest {
         assertFalse(state.switchChecked)
         assertTrue(state.switchEnabled)
         assertEquals(ReasoningEffort.LOW, state.selectedEffort)
-        assertTrue(state.effortRowEnabled)
+        assertFalse(state.effortRowVisible)
+        assertFalse(state.effortRowEnabled)
         assertTrue(state.canPersistSwitch)
+        assertFalse(state.canPersistEffort)
+    }
+
+    @Test
+    fun `OPTIONAL on shows subordinate effort row`() {
+        val state = ReasoningSettingsUiStateFactory.create(
+            savedEnabled = true,
+            savedEffort = ReasoningEffort.MEDIUM,
+            capabilities = ReasoningCapabilities(
+                availability = ReasoningAvailability.OPTIONAL,
+                supportedEfforts = allEfforts,
+                defaultEffort = ReasoningEffort.MEDIUM
+            )
+        )
+        assertTrue(state.effortRowVisible)
         assertTrue(state.canPersistEffort)
     }
 
@@ -123,6 +139,20 @@ class ReasoningSettingsUiStateFactoryTest {
     }
 
     @Test
+    fun `UNKNOWN off hides effort row`() {
+        val state = ReasoningSettingsUiStateFactory.create(
+            savedEnabled = false,
+            savedEffort = ReasoningEffort.MEDIUM,
+            capabilities = ReasoningCapabilities(
+                availability = ReasoningAvailability.UNKNOWN
+            )
+        )
+        assertFalse(state.switchChecked)
+        assertFalse(state.effortRowVisible)
+        assertFalse(state.canPersistEffort)
+    }
+
+    @Test
     fun `null capabilities treated as UNKNOWN editable preference`() {
         val state = ReasoningSettingsUiStateFactory.create(
             savedEnabled = true,
@@ -153,6 +183,17 @@ class ReasoningSettingsUiStateFactoryTest {
         assertTrue(state.canPersistSwitch)
         assertTrue(state.canPersistEffort)
         assertEquals(ReasoningEffort.LOW, state.selectedEffort)
+    }
+
+    @Test
+    fun `no model with switch off hides effort`() {
+        val state = ReasoningSettingsUiStateFactory.create(
+            savedEnabled = false,
+            savedEffort = ReasoningEffort.MEDIUM,
+            capabilities = null,
+            modelSelected = false
+        )
+        assertFalse(state.effortRowVisible)
     }
 
     @Test

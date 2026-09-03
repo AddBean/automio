@@ -53,7 +53,6 @@ class AgentAISettingsView @JvmOverloads constructor(
     private lateinit var rowMultimodalInference: LinearLayout
     private lateinit var rowServiceSettings: LinearLayout
     private lateinit var rowReasoningEffort: LinearLayout
-    private lateinit var dividerReasoningEffort: View
     private lateinit var btnReasoningEffortLow: TextView
     private lateinit var btnReasoningEffortMedium: TextView
     private lateinit var btnReasoningEffortHigh: TextView
@@ -91,7 +90,6 @@ class AgentAISettingsView @JvmOverloads constructor(
         rowMultimodalInference = findViewById(R.id.rowMultimodalInference)
         rowServiceSettings = findViewById(R.id.rowServiceSettings)
         rowReasoningEffort = findViewById(R.id.rowReasoningEffort)
-        dividerReasoningEffort = findViewById(R.id.dividerReasoningEffort)
         btnReasoningEffortLow = findViewById(R.id.btnReasoningEffortLow)
         btnReasoningEffortMedium = findViewById(R.id.btnReasoningEffortMedium)
         btnReasoningEffortHigh = findViewById(R.id.btnReasoningEffortHigh)
@@ -414,7 +412,6 @@ class AgentAISettingsView @JvmOverloads constructor(
         )
 
         rowReasoningEffort.isVisible = state.effortRowVisible
-        dividerReasoningEffort.isVisible = state.effortRowVisible
         rowReasoningEffort.alpha = if (state.effortRowEnabled) 1f else 0.45f
 
         bindEffortChip(
