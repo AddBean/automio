@@ -132,14 +132,22 @@ class AgentAISettingsView @JvmOverloads constructor(
         }
 
         switchReasoning = findViewById(R.id.switchReasoning)
+        // 能力解析完成前先禁用，避免 state=null 时点击被立刻回滚，表现为「无响应」
+        applyReasoningUiState(
+            ReasoningSettingsUiStateFactory.create(
+                savedEnabled = AIAgentConfig.ReasoningConfig.isEnabled(),
+                savedEffort = AIAgentConfig.ReasoningConfig.effort(),
+                capabilities = null
+            )
+        )
         switchReasoning?.setOnCheckedChangeListener { _, isChecked ->
             if (suppressReasoningSwitchCallback) return@setOnCheckedChangeListener
             val state = currentReasoningUiState
             if (state == null || !state.canPersistSwitch) {
                 suppressReasoningSwitchCallback = true
-                switchReasoning?.isChecked = state?.switchChecked
-                    ?: AIAgentConfig.ReasoningConfig.isEnabled()
+                switchReasoning?.isChecked = state?.switchChecked ?: false
                 suppressReasoningSwitchCallback = false
+                showReasoningUnavailableFeedback(state)
                 return@setOnCheckedChangeListener
             }
             AIAgentConfig.ReasoningConfig.setEnabled(isChecked)
@@ -151,6 +159,17 @@ class AgentAISettingsView @JvmOverloads constructor(
                 )
             )
             onSettingsChanged?.invoke()
+        }
+        // 标题/说明区域可点；开关本体自行处理，避免双重 toggle
+        findViewById<View>(R.id.reasoningSwitchLabels).setOnClickListener {
+            onReasoningRowClicked()
+        }
+        findViewById<View>(R.id.rowReasoningSwitch).setOnClickListener {
+            // 禁用态点到开关空白处时，开关不消费事件，由行承接并提示原因
+            val state = currentReasoningUiState
+            if (state == null || !state.switchEnabled) {
+                showReasoningUnavailableFeedback(state)
+            }
         }
 
         btnReasoningEffortLow.setOnClickListener { onEffortClicked(ReasoningEffort.LOW) }
@@ -282,15 +301,39 @@ class AgentAISettingsView @JvmOverloads constructor(
      */
     private fun resolveReasoningCapabilities(model: ModelInfo?): ReasoningCapabilities? {
         if (model == null) return null
+        // 仅在模型显式声明 reasoning 时传入动态元数据；null 能力不得覆盖 catalog
+        val dynamic = model.capabilities.reasoning?.let { DynamicReasoningMetadata(capabilities = it) }
         return ReasoningCapabilityResolver.resolve(
             providerId = model.providerId,
             modelId = model.modelId,
-            dynamicMetadata = DynamicReasoningMetadata(capabilities = model.capabilities.reasoning),
+            dynamicMetadata = dynamic,
             requestedPolicy = ReasoningRunPolicy(
                 enabled = AIAgentConfig.ReasoningConfig.isEnabled(),
                 effort = AIAgentConfig.ReasoningConfig.effort()
             )
         ).capabilities
+    }
+
+    /** 整行可点：可选模型切换开关；禁用时 Toast 说明原因，避免「点了没反应」。 */
+    private fun onReasoningRowClicked() {
+        val state = currentReasoningUiState
+        val switch = switchReasoning ?: return
+        if (state != null && state.canPersistSwitch && state.switchEnabled) {
+            switch.isChecked = !switch.isChecked
+            return
+        }
+        showReasoningUnavailableFeedback(state)
+    }
+
+    private fun showReasoningUnavailableFeedback(state: ReasoningSettingsUiState?) {
+        val hint = state?.switchHint ?: ReasoningSwitchHint.UNKNOWN
+        val messageRes = when (hint) {
+            ReasoningSwitchHint.OPTIONAL -> return
+            ReasoningSwitchHint.REQUIRED -> com.hive.i8n.R.string.agent_reasoning_required_hint
+            ReasoningSwitchHint.UNSUPPORTED -> com.hive.i8n.R.string.agent_reasoning_unsupported_hint
+            ReasoningSwitchHint.UNKNOWN -> com.hive.i8n.R.string.agent_reasoning_unknown_hint
+        }
+        CommonToast.getInstance().showToast(context.getString(messageRes))
     }
 
     private fun applyReasoningUiState(state: ReasoningSettingsUiState) {

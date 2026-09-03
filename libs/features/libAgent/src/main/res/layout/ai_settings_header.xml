@@ -235,6 +235,7 @@
                 app:tint="@color/design_text_tertiary" />
 
             <LinearLayout
+                android:id="@+id/reasoningSwitchLabels"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
