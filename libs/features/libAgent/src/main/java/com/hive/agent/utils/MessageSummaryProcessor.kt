@@ -79,6 +79,12 @@ object MessageSummaryProcessor {
     }
 
     /**
+     * 记忆摘要 / AI 摘要输入：只用最终 content，绝不回退到 reasoningContent。
+     */
+    internal fun textForMemorySummary(message: ChatMessage): String =
+        message.content?.trim()?.takeIf { it.isNotEmpty() }.orEmpty()
+
+    /**
      * 生成快速工具链摘要（规则提取，不调用AI）
      * 优先使用工具调用时的 description 参数（ScriptMcpModel 强制要求附带），否则回退到工具名
      * 格式：点击确认键→返回主页→搜索联系人
@@ -95,15 +101,9 @@ object MessageSummaryProcessor {
             }
             val toolName = msg.toolCalls?.firstOrNull()?.function?.name ?: ""
             val toolDes = ("-" + msg.toolCalls?.firstOrNull()?.function?.getCallDescription()) ?: ""
-            val msg = if (!TextUtils.isEmpty(msg.content)) {
-                msg.content
-            } else if (!TextUtils.isEmpty(msg.reasoningContent)) {
-                msg.reasoningContent
-            } else {
-                ""
-            }
+            val body = textForMemorySummary(msg)
 
-            "$role: ${msg}\n[$toolName${toolDes}]"
+            "$role: ${body}\n[$toolName${toolDes}]"
         }.take(1000)
 
     }
