@@ -62,10 +62,17 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
         private var instance: ScriptAgentTopView? = null
 
         fun show() {
-            if (instance == null) {
+            val existing = instance
+            if (existing == null) {
                 instance = ScriptAgentTopView(ScriptProvider.getViewContext())
+                instance?.show()
+                return
             }
-            instance?.show()
+            // BaseScriptDialog 在 VISIBLE+attached 时会直接 return；若 alpha/visibility 卡死需先恢复
+            if (existing.visibility != View.VISIBLE || existing.alpha < 0.99f) {
+                existing.ensureVisibleAppearance()
+            }
+            existing.show()
         }
 
         fun dismiss() {
@@ -76,19 +83,21 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
         }
 
         /**
-         * 自动化操作前让 TopView 不拦截触摸/手势（FLAG_NOT_TOUCHABLE）。
-         * 不销毁实例，避免 pending Handler 回调 NPE。
+         * 截屏/OCR 前视觉隐藏 TopView（INVISIBLE）。
+         * 使用引用计数，支持嵌套 withOverlayHidden。
          */
         fun hideForCapture() {
-            instance?.post {
-                instance?.hideMotionForCapture()
+            val view = instance ?: return
+            ScriptHelper.blockUntilViewReady(view) {
+                instance?.beginVisualHideForCapture()
             }
         }
 
-        /** 恢复 TopView 默认可交互状态（与 hideForCapture 配对使用）。 */
+        /** 与 hideForCapture 配对，恢复可见。 */
         fun showForCapture() {
-            instance?.post {
-                instance?.showMotionAfterCapture()
+            val view = instance ?: return
+            ScriptHelper.blockUntilViewReady(view) {
+                instance?.endVisualHideForCapture()
                 instance?.setTouchPassthrough(false)
             }
         }
@@ -134,8 +143,8 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
     // 当前任务信息的完整原文本，用于长按复制
     private var currentTaskInfoRawText: String = ""
 
-    /** 命令执行期间是否已设为 NOT_TOUCHABLE */
-    private var hiddenForInteraction = false
+    /** 命令重叠时的 NOT_TOUCHABLE 引用计数（支持嵌套命令） */
+    private var untouchableCount = 0
 
     private val collapseManager = CollapseManager()
 
@@ -227,13 +236,12 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
             if (!overlapsTopView(cmd)) {
                 ScriptHelper.blockUntilViewReady(this@ScriptAgentTopView) {
                     setTouchPassthrough(false)
-                    this@ScriptAgentTopView.visibleOrGone(true)
+                    ensureVisibleAppearance()
                 }
                 return
             }
-            hiddenForInteraction = true
             ScriptHelper.blockUntilViewReady(this@ScriptAgentTopView) {
-                hideMotionForCapture()
+                beginUntouchableForCommand()
             }
         }
 
@@ -241,14 +249,9 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
             super.onCommandExecuteAfter(cmd)
             ScriptHelper.blockUntilViewReady(this@ScriptAgentTopView) {
                 if (instance == null) return@blockUntilViewReady
-                if (hiddenForInteraction) {
-                    hiddenForInteraction = false
-                    showMotionAfterCapture()
-                    setTouchPassthrough(false)
-                } else {
-                    setTouchPassthrough(true)
-                }
-                this@ScriptAgentTopView.visibleOrGone(true)
+                endUntouchableForCommand()
+                setTouchPassthrough(true)
+                ensureVisibleAppearance()
             }
         }
     }
@@ -398,19 +401,60 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
 
     override fun canInterruptDismissWithShow(): Boolean = true
 
-    private fun hideMotionForCapture() {
-        setWindowTouchable(false)
+    /** 截屏路径：视觉隐藏（引用计数在 motionController 内） */
+    private fun beginVisualHideForCapture() {
+        motionController?.snapHiddenForCapture()
+            ?: run { visibility = View.INVISIBLE }
+        isCollapsed = motionController?.isTargetCollapsed ?: isCollapsed
     }
 
-    private fun showMotionAfterCapture() {
-        setWindowTouchable(true)
+    private fun endVisualHideForCapture() {
+        motionController?.snapVisibleAfterCapture()
+            ?: run { visibility = View.VISIBLE }
+        ensureVisibleAppearance()
+    }
+
+    /** 点击重叠路径：仅 NOT_TOUCHABLE（引用计数），保持可见 */
+    private fun beginUntouchableForCommand() {
+        if (untouchableCount == 0) {
+            setWindowTouchable(false)
+        }
+        untouchableCount++
+    }
+
+    private fun endUntouchableForCommand() {
+        if (untouchableCount <= 0) {
+            setWindowTouchable(true)
+            untouchableCount = 0
+            return
+        }
+        untouchableCount--
+        if (untouchableCount == 0) {
+            setWindowTouchable(true)
+        }
+    }
+
+    private fun ensureVisibleAppearance() {
+        // 截屏隐藏期间不要强行恢复
+        if (visibility == View.INVISIBLE && motionController != null) {
+            // snapVisible 后会变为 VISIBLE；若仍在嵌套 hide 中则保持
+        }
+        motionController?.ensureFullyVisible()
+            ?: run {
+                if (visibility != View.VISIBLE) visibility = View.VISIBLE
+                alpha = 1f
+                translationY = 0f
+                scaleX = 1f
+                scaleY = 1f
+            }
     }
 
     private fun overlapsTopView(cmd: ScriptCommand): Boolean {
         if (visibility != View.VISIBLE) return false
         val cmdArea = cmd.getNormalizedActiveArea() ?: return false
         val topViewArea = getNormalizedScreenBounds() ?: return false
-        return cmdArea.intersect(topViewArea)
+        // RectF.intersect 会改写 receiver，必须用副本
+        return RectF(cmdArea).intersect(topViewArea)
     }
 
     private fun getNormalizedScreenBounds(): RectF? {

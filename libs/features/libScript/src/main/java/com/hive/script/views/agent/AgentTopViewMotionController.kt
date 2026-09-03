@@ -35,7 +35,7 @@ internal class AgentTopViewMotionController(
 
     private var activeAnimator: ValueAnimator? = null
     private var disposed = false
-    private var captureWasVisible = false
+    private var captureHideCount = 0
     private var transition = Transition.IDLE
     private var pendingSizeRefresh = false
     private var cachedExpandedSize: Size? = null
@@ -52,6 +52,7 @@ internal class AgentTopViewMotionController(
         transition = Transition.IDLE
         pendingSizeRefresh = false
         cachedExpandedSize = null
+        captureHideCount = 0
         val sizes = measureTargets()
         if (collapsedState) {
             normalizeCollapsed()
@@ -106,10 +107,10 @@ internal class AgentTopViewMotionController(
 
     fun exit(onEnd: () -> Unit) {
         if (disposed) return
-        cancelActive()
+        cancelActive(recoverEnter = false)
         transition = Transition.EXIT
         pendingSizeRefresh = false
-        captureWasVisible = false
+        captureHideCount = 0
         val startAlpha = host.alpha
         val startTranslation = host.translationY
         val startScaleX = host.scaleX
@@ -170,24 +171,41 @@ internal class AgentTopViewMotionController(
     fun snapHiddenForCapture() {
         if (disposed) return
         if (transition == Transition.EXIT) {
-            captureWasVisible = false
             host.visibility = View.INVISIBLE
             return
         }
-        captureWasVisible = host.visibility == View.VISIBLE
-        cancelAndSnapToCurrentTarget()
-        host.visibility = View.INVISIBLE
+        if (captureHideCount == 0) {
+            cancelAndSnapToCurrentTarget()
+            host.visibility = View.INVISIBLE
+        }
+        captureHideCount++
     }
 
     fun snapVisibleAfterCapture() {
         if (disposed || transition == Transition.EXIT) return
-        if (captureWasVisible) host.visibility = View.VISIBLE
-        captureWasVisible = false
+        if (captureHideCount <= 0) {
+            host.visibility = View.VISIBLE
+            return
+        }
+        captureHideCount--
+        if (captureHideCount == 0) {
+            host.visibility = View.VISIBLE
+            normalizeHostTransform()
+        }
+    }
+
+    /** 强制恢复到完全可见外观（用于 show 兜底 / 动画中断恢复）。 */
+    fun ensureFullyVisible() {
+        if (disposed || transition == Transition.EXIT) return
+        if (captureHideCount > 0) return
+        cancelAndSnapToCurrentTarget()
+        host.visibility = View.VISIBLE
+        normalizeHostTransform()
     }
 
     fun cancelAndSnapToCurrentTarget() {
         if (disposed || transition == Transition.EXIT) return
-        cancelActive()
+        cancelActive(recoverEnter = true)
         transition = Transition.IDLE
         pendingSizeRefresh = false
         val sizes = measureTargets()
@@ -205,9 +223,9 @@ internal class AgentTopViewMotionController(
         disposed = true
         transition = Transition.DISPOSED
         pendingSizeRefresh = false
-        captureWasVisible = false
+        captureHideCount = 0
         cachedExpandedSize = null
-        cancelActive()
+        cancelActive(recoverEnter = false)
     }
 
     private fun morph(
@@ -231,7 +249,7 @@ internal class AgentTopViewMotionController(
 
         collapsed.visibility = View.VISIBLE
         expanded.visibility = View.VISIBLE
-        cancelActive()
+        cancelActive(recoverEnter = true)
         transition = Transition.MORPH
 
         val sizes = measureTargets()
@@ -293,10 +311,25 @@ internal class AgentTopViewMotionController(
         animator.start()
     }
 
-    private fun cancelActive() {
+    private fun cancelActive(recoverEnter: Boolean = true) {
+        val wasEnter = transition == Transition.ENTER
         val animator = activeAnimator ?: return
         activeAnimator = null
         animator.cancel()
+        // enter 被中断时必须回到完全可见，否则 host.alpha 会卡在中间值导致「整场不显示」
+        if (recoverEnter && wasEnter && !disposed) {
+            normalizeHostTransform()
+            if (captureHideCount == 0) {
+                host.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    private fun normalizeHostTransform() {
+        host.alpha = 1f
+        host.translationY = 0f
+        host.scaleX = 1f
+        host.scaleY = 1f
     }
 
     private fun runPendingSizeRefresh() {
@@ -359,10 +392,7 @@ internal class AgentTopViewMotionController(
     }
 
     private fun normalizeExpanded() {
-        host.alpha = 1f
-        host.translationY = 0f
-        host.scaleX = 1f
-        host.scaleY = 1f
+        normalizeHostTransform()
         expanded.visibility = View.VISIBLE
         expanded.alpha = 1f
         expanded.translationY = 0f
@@ -373,10 +403,7 @@ internal class AgentTopViewMotionController(
     }
 
     private fun normalizeCollapsed() {
-        host.alpha = 1f
-        host.translationY = 0f
-        host.scaleX = 1f
-        host.scaleY = 1f
+        normalizeHostTransform()
         collapsed.visibility = View.VISIBLE
         collapsed.alpha = 1f
         collapsed.translationY = 0f
