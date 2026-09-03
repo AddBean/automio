@@ -97,9 +97,17 @@ object ReasoningSettingsUiStateFactory {
                 hint = ReasoningSwitchHint.UNSUPPORTED,
                 displayEffort = displayEffort
             )
-            ReasoningAvailability.UNKNOWN -> disabledOff(
-                hint = ReasoningSwitchHint.UNKNOWN,
-                displayEffort = displayEffort
+            // UNKNOWN：仍允许改全局偏好（换支持模型后生效）；请求侧不会发控制参数
+            ReasoningAvailability.UNKNOWN -> ReasoningSettingsUiState(
+                switchChecked = savedEnabled,
+                switchEnabled = true,
+                switchHint = ReasoningSwitchHint.UNKNOWN,
+                effortRowVisible = true,
+                effortRowEnabled = true,
+                selectedEffort = savedEffort,
+                supportedEfforts = allEfforts,
+                canPersistSwitch = true,
+                canPersistEffort = true
             )
         }
     }

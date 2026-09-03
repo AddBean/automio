@@ -386,10 +386,10 @@ class AgentAISettingsView @JvmOverloads constructor(
         val hint = state?.switchHint ?: ReasoningSwitchHint.UNKNOWN
         val messageRes = when (hint) {
             ReasoningSwitchHint.OPTIONAL,
-            ReasoningSwitchHint.NO_MODEL -> return
+            ReasoningSwitchHint.NO_MODEL,
+            ReasoningSwitchHint.UNKNOWN -> return
             ReasoningSwitchHint.REQUIRED -> com.hive.i8n.R.string.agent_reasoning_required_hint
             ReasoningSwitchHint.UNSUPPORTED -> com.hive.i8n.R.string.agent_reasoning_unsupported_hint
-            ReasoningSwitchHint.UNKNOWN -> com.hive.i8n.R.string.agent_reasoning_unknown_hint
         }
         CommonToast.getInstance().showToast(context.getString(messageRes))
     }

@@ -104,7 +104,7 @@ class ReasoningSettingsUiStateFactoryTest {
     }
 
     @Test
-    fun `UNKNOWN forces switch off disabled with unknown hint`() {
+    fun `UNKNOWN keeps global preference editable with unknown hint`() {
         val state = ReasoningSettingsUiStateFactory.create(
             savedEnabled = true,
             savedEffort = ReasoningEffort.LOW,
@@ -113,26 +113,28 @@ class ReasoningSettingsUiStateFactoryTest {
             )
         )
 
-        assertFalse(state.switchChecked)
-        assertFalse(state.switchEnabled)
+        assertTrue(state.switchChecked)
+        assertTrue(state.switchEnabled)
         assertEquals(ReasoningSwitchHint.UNKNOWN, state.switchHint)
-        assertFalse(state.effortRowVisible)
-        assertFalse(state.canPersistSwitch)
-        assertFalse(state.canPersistEffort)
+        assertTrue(state.effortRowVisible)
+        assertTrue(state.canPersistSwitch)
+        assertTrue(state.canPersistEffort)
+        assertEquals(ReasoningEffort.LOW, state.selectedEffort)
     }
 
     @Test
-    fun `null capabilities treated as UNKNOWN`() {
+    fun `null capabilities treated as UNKNOWN editable preference`() {
         val state = ReasoningSettingsUiStateFactory.create(
             savedEnabled = true,
             savedEffort = ReasoningEffort.MEDIUM,
             capabilities = null
         )
 
-        assertFalse(state.switchChecked)
-        assertFalse(state.switchEnabled)
+        assertTrue(state.switchChecked)
+        assertTrue(state.switchEnabled)
         assertEquals(ReasoningSwitchHint.UNKNOWN, state.switchHint)
-        assertFalse(state.effortRowVisible)
+        assertTrue(state.effortRowVisible)
+        assertTrue(state.canPersistSwitch)
     }
 
     @Test

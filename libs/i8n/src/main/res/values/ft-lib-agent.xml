@@ -219,7 +219,7 @@
     <string name="agent_reasoning_switch_desc">Ask the model to think step by step before answering</string>
     <string name="agent_reasoning_required_hint">This model always uses deep reasoning</string>
     <string name="agent_reasoning_unsupported_hint">Deep reasoning is not supported</string>
-    <string name="agent_reasoning_unknown_hint">Decided by the model or service; no control parameters are sent</string>
+    <string name="agent_reasoning_unknown_hint">This model has no declared reasoning controls: preference is saved, but no control parameters are sent</string>
     <string name="agent_reasoning_no_model_hint">Takes effect after a chat model is selected</string>
     <string name="agent_reasoning_effort_title">Reasoning Effort</string>
     <string name="agent_reasoning_effort_low">Low</string>
