@@ -361,6 +361,7 @@ class AICoordinator(
                             mainMessages.add(toolMessage)
                             agentGoal.updateNormal(agentContext, agentInput)
                             val toolResult = executeToolCall(toolCall)
+                            val execAt = AIAgentConfig.PromptDefaults.formatExecAt()
                             val resultFormatAi = if (toolResult.success) {
                                 val dataStr = when (val d = toolResult.data) {
                                     is String -> d
@@ -368,14 +369,18 @@ class AICoordinator(
                                     else -> GsonHelper.getInstance().toJson(d)
                                 }
                                 AIAgentConfig.PromptDefaults.getToolResult(
-                                    dataStr, toolResult.extra
+                                    dataStr, toolResult.extra, execAt
                                 )
                             } else {
-                                "执行失败: ${toolResult.error?.getInfo()}"
+                                AIAgentConfig.PromptDefaults.withExecAt(
+                                    "执行失败: ${toolResult.error?.getInfo()}",
+                                    execAt
+                                )
                             }
                             toolMessage.content = resultFormatAi
                             toolMessage.toolCallResult = resultFormatAi
                             toolMessage.toolCallResultSuccess = toolResult.success
+                            toolMessage.execAt = execAt
                             toolMessage.status = MessageStatus.FINISH
                             toolMessage.attachments.addAll(toolResult.files ?: mutableListOf())
                             agentContext.notifyTaskInfoUpdated("执行结果: $toolResult")

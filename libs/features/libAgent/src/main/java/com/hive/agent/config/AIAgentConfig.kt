@@ -10,6 +10,9 @@ import com.hive.plugin.agent.model.ReasoningEffort
 import com.hive.plugin.agent.model.ReasoningOptions
 import com.hive.utils.GlobalApp
 import com.hive.utils.global.MMKVTools
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 /**
  * A task-local copy of the user setting. It deliberately has no dependency on MMKV so a
@@ -155,14 +158,29 @@ object AIAgentConfig {
             return GlobalApp.getString(com.hive.i8n.R.string.agent_config_optimized_user_prompt, userInput)
         }
 
-        suspend fun getToolResult(data: String?, extra: String?): String {
+        fun formatExecAt(epochMs: Long = System.currentTimeMillis()): String {
+            return SimpleDateFormat("HH:mm:ss.SSS", Locale.getDefault()).format(Date(epochMs))
+        }
+
+        fun withExecAt(text: String, execAt: String = formatExecAt()): String {
+            val trimmed = text.trimEnd()
+            if (trimmed.contains("exec_at=")) return trimmed
+            return if (trimmed.isEmpty()) "exec_at=$execAt" else "$trimmed\nexec_at=$execAt"
+        }
+
+        suspend fun getToolResult(
+            data: String?,
+            extra: String?,
+            execAt: String = formatExecAt()
+        ): String {
             val dataText = data ?: GlobalApp.getString(com.hive.i8n.R.string.agent_config_tool_result_no_data)
             val extraText = extra?.trim()
-            return if (extraText.isNullOrBlank()) {
+            val base = if (extraText.isNullOrBlank()) {
                 GlobalApp.getString(com.hive.i8n.R.string.agent_config_tool_result_simple, dataText)
             } else {
                 GlobalApp.getString(com.hive.i8n.R.string.agent_config_tool_result_with_extra, dataText, extraText)
             }
+            return withExecAt(base, execAt)
         }
 
         private val agentPromptTemplate: String by lazy {

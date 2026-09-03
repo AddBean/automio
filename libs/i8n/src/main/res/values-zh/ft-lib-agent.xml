@@ -344,6 +344,7 @@
     <string name="agent_tool_parameters_colon">参数：</string>
     <string name="agent_tool_execution_result">结果：</string>
     <string name="agent_tool_images">图片</string>
+    <string name="agent_tool_exec_at">exec_at</string>
 
 
     <!-- 智能体界面 -->

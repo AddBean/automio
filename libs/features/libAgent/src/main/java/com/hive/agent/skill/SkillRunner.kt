@@ -300,12 +300,16 @@ class SkillRunner(
                         memoryGroup = effectiveMemoryGroup
                     )
                     SkillToolLogger.d("toolCall result toolName=$toolName success=${toolResult.success} info=${toolResult.error?.getInfo()}")
+                    val execAt = AIAgentConfig.PromptDefaults.formatExecAt()
                     val resultText = if (toolResult.success) {
                         val dataText = toolResult.data?.toString().orEmpty()
                         val extraText = toolResult.extra
-                        if (!extraText.isNullOrEmpty()) "$dataText\n$extraText" else dataText
+                        AIAgentConfig.PromptDefaults.getToolResult(dataText, extraText, execAt)
                     } else {
-                        "执行失败: ${toolResult.error?.getInfo()}"
+                        AIAgentConfig.PromptDefaults.withExecAt(
+                            "执行失败: ${toolResult.error?.getInfo()}",
+                            execAt
+                        )
                     }
                     val toolAttachments = (toolResult.files ?: emptyList()).toMutableList()
                     messages.add(
@@ -316,6 +320,7 @@ class SkillRunner(
                             toolCalls = listOf(toolCall),
                             toolCallResult = resultText,
                             toolCallResultSuccess = toolResult.success,
+                            execAt = execAt,
                             status = MessageStatus.FINISH,
                             attachments = toolAttachments
                         )

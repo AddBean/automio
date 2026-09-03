@@ -89,6 +89,8 @@ data class ChatMessage(
     @SerializedName("toolCallId") var toolCallId: String? = null,
     @SerializedName("toolCallResult") var toolCallResult: String? = null,
     @SerializedName("toolCallResultSuccess") var toolCallResultSuccess: Boolean = true,
+    /** 工具实际执行完成时刻，格式 HH:mm:ss.SSS，供模型规划与详情展示 */
+    @SerializedName("execAt") var execAt: String? = null,
     @SerializedName("status") var status: MessageStatus = MessageStatus.FINISH,
     @SerializedName("timestamp") val timestamp: Long = System.currentTimeMillis(),
     @SerializedName("attachments") val attachments: MutableList<ChatAttachment> = mutableListOf(),

@@ -67,6 +67,8 @@ class AgentToolDetailBottomSheet : BottomSheetDialogFragment() {
         val ivStatus = view.findViewById<ImageView>(R.id.ivToolStatus)
         val tvStatus = view.findViewById<TextView>(R.id.tvToolStatus)
         val tvArguments = view.findViewById<TextView>(R.id.tvToolArguments)
+        val layoutExecAtSection = view.findViewById<LinearLayout>(R.id.layoutExecAtSection)
+        val tvToolExecAt = view.findViewById<TextView>(R.id.tvToolExecAt)
         val tvResult = view.findViewById<TextView>(R.id.tvToolResult)
         val layoutImagesSection = view.findViewById<LinearLayout>(R.id.layoutImagesSection)
         val layoutToolImages = view.findViewById<LinearLayout>(R.id.layoutToolImages)
@@ -103,15 +105,37 @@ class AgentToolDetailBottomSheet : BottomSheetDialogFragment() {
             }
         }
 
+        val execAt = resolveExecAt(msg)
+        if (execAt.isNullOrBlank()) {
+            layoutExecAtSection.gone()
+        } else {
+            layoutExecAtSection.visible()
+            tvToolExecAt.text = execAt
+        }
+
         val result = msg.toolCallResult
         val resultText = if (result.isNullOrEmpty()) {
             GlobalApp.getString(com.hive.i8n.R.string.agent_tool_executing)
         } else {
-            result.jsonToListView()
+            stripExecAtLine(result.jsonToListView())
         }
         renderResultMarkdown(tvResult, resultText)
 
         bindImages(layoutImagesSection, layoutToolImages, msg)
+    }
+
+    private fun resolveExecAt(msg: ChatMessage): String? {
+        msg.execAt?.trim()?.takeIf { it.isNotEmpty() }?.let { return it }
+        val result = msg.toolCallResult ?: return null
+        val line = result.lineSequence().map { it.trim() }.firstOrNull { it.startsWith("exec_at=") }
+        return line?.substringAfter("exec_at=")?.trim()?.takeIf { it.isNotEmpty() }
+    }
+
+    private fun stripExecAtLine(text: String): String {
+        return text.lineSequence()
+            .filterNot { it.trim().startsWith("exec_at=") }
+            .joinToString("\n")
+            .trim()
     }
 
     private fun renderResultMarkdown(textView: TextView, markdown: String) {

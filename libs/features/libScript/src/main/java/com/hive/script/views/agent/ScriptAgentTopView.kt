@@ -914,8 +914,10 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
         }
 
         private fun updateSurfaceBackground(status: AgentStatus) {
-            val color = when (status) {
-                AgentStatus.PAUSED -> getColor(com.hive.i8n.R.color.ai_status_warning)
+            // 仅暂停 + 缩小态改变背景；展开态保持默认黑底
+            val color = when {
+                status == AgentStatus.PAUSED && isCollapsed ->
+                    getColor(com.hive.i8n.R.color.ai_status_warning)
                 else -> null
             }
             motionController?.setSurfaceFillColor(color)
@@ -926,6 +928,10 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
                         )
                     }
                 }
+        }
+
+        fun refreshSurfaceBackground() {
+            updateSurfaceBackground(currentStatus)
         }
 
         private fun getStatusInfo(currentStatus: AgentStatus): String {
@@ -988,7 +994,13 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
             val controller = motionController ?: return
             if (controller.isDismissing || !controller.isTargetCollapsed) return
             btnCollapse.setImageResource(R.drawable.ic_collapse_arrow)
-            controller.expand { isCollapsed = false }
+            // 展开即恢复默认底色，不等动画结束
+            isCollapsed = false
+            statusManager.refreshSurfaceBackground()
+            controller.expand {
+                isCollapsed = false
+                statusManager.refreshSurfaceBackground()
+            }
             resetAutoCollapseTimer()
         }
 
@@ -996,7 +1008,10 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
             val controller = motionController ?: return
             if (controller.isDismissing || controller.isTargetCollapsed) return
             btnCollapse.setImageResource(R.drawable.ic_expand_arrow)
-            controller.collapse { isCollapsed = true }
+            controller.collapse {
+                isCollapsed = true
+                statusManager.refreshSurfaceBackground()
+            }
         }
 
         fun cleanup() {
