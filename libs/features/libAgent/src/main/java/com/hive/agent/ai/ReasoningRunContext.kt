@@ -56,19 +56,25 @@ object ReasoningRunContexts {
     }
 
     /**
-     * 嵌套 Skill 继承已绑定的父任务快照；独立 Skill（或找不到父快照时）创建新快照并绑定。
+     * 嵌套 Skill 继承已绑定的父任务快照。
+     * 独立 Skill 创建新快照并绑定。
+     * 嵌套但父快照已不存在时：返回临时快照且不 bind，避免泄漏与错误嵌套语义。
+     *
+     * @return Pair(context, ownsBinding) — 调用方仅在 ownsBinding=true 时负责 unbind
      */
     fun resolveForSkill(
         rootTaskId: String,
         isStandalone: Boolean,
         createSnapshot: () -> ReasoningRunContext = { ReasoningRunContext.snapshotNow() }
-    ): ReasoningRunContext {
+    ): Pair<ReasoningRunContext, Boolean> {
         if (!isStandalone) {
-            get(rootTaskId)?.let { return it }
+            get(rootTaskId)?.let { return it to false }
+            // 父任务已结束或未绑定：用临时快照，不写入 map
+            return createSnapshot() to false
         }
         val created = createSnapshot()
         bind(rootTaskId, created)
-        return created
+        return created to true
     }
 }
 

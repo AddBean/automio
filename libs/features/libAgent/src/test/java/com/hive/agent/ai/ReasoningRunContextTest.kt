@@ -54,9 +54,25 @@ class ReasoningRunContextTest {
                 ReasoningRunContext(ReasoningRunPolicy(false, ReasoningEffort.HIGH))
             }
         )
-        assertSame(parent, nested)
-        assertEquals(ReasoningEffort.LOW, nested.policy.effort)
-        assertTrue(nested.policy.enabled)
+        assertSame(parent, nested.first)
+        assertEquals(false, nested.second)
+        assertEquals(ReasoningEffort.LOW, nested.first.policy.effort)
+        assertTrue(nested.first.policy.enabled)
+    }
+
+    @Test
+    fun `nested skill without parent snapshot does not bind`() {
+        ReasoningRunContexts.clear()
+        val nested = ReasoningRunContexts.resolveForSkill(
+            rootTaskId = "orphan-root",
+            isStandalone = false,
+            createSnapshot = {
+                ReasoningRunContext(ReasoningRunPolicy(true, ReasoningEffort.MEDIUM))
+            }
+        )
+        assertTrue(nested.first.policy.enabled)
+        assertEquals(false, nested.second)
+        assertNull(ReasoningRunContexts.get("orphan-root"))
     }
 
     @Test
@@ -71,9 +87,10 @@ class ReasoningRunContextTest {
                 ReasoningRunContext(ReasoningRunPolicy(false, ReasoningEffort.MEDIUM))
             }
         )
-        assertEquals(false, standalone.policy.enabled)
-        assertEquals(ReasoningEffort.MEDIUM, standalone.policy.effort)
-        assertSame(standalone, ReasoningRunContexts.get("skill-alone"))
+        assertEquals(false, standalone.first.policy.enabled)
+        assertEquals(ReasoningEffort.MEDIUM, standalone.first.policy.effort)
+        assertTrue(standalone.second)
+        assertSame(standalone.first, ReasoningRunContexts.get("skill-alone"))
     }
 
     @Test

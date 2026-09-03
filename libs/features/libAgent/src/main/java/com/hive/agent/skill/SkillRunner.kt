@@ -147,6 +147,7 @@ class SkillRunner(
         var skillResult: SkillResult? = null
         var taskKeyForEnd: String? = null
         var skillTaskKeyForEnd: String? = null
+        var ownsReasoningBinding = false
 
         return try {
             val effectiveTimeoutMs = options?.timeoutMs ?: spec.timeoutMs ?: DEFAULT_TIMEOUT_MS
@@ -158,10 +159,12 @@ class SkillRunner(
             taskKeyForEnd = taskKey
             skillTaskKeyForEnd = skillTaskKey
             val effectiveMemoryGroup = options?.memoryGroup ?: spec.memoryGroup ?: "skill-${spec.id}"
-            val reasoningRunContext = ReasoningRunContexts.resolveForSkill(
+            val resolvedReasoning = ReasoningRunContexts.resolveForSkill(
                 rootTaskId = taskKey,
                 isStandalone = isStandalone
             )
+            val reasoningRunContext = resolvedReasoning.first
+            ownsReasoningBinding = resolvedReasoning.second
             SkillToolLogger.d("runSkill skillId=${spec.id} taskKey=$taskKey memoryGroup=$effectiveMemoryGroup maxRounds=$effectiveMaxRounds")
             ExecutionContexts.stack.push(
                 ExecutionContextFrame(
@@ -372,7 +375,7 @@ class SkillRunner(
             AgentCommandRecorder.popSkillContext()
             ExecutionContexts.stack.pop(expectedId = skillTaskKeyForEnd)
             skillTaskKeyForEnd?.let { MessageSummaryProcessor.clearTaskSummary(it) }
-            if (isStandalone) {
+            if (ownsReasoningBinding) {
                 taskKeyForEnd?.let { ReasoningRunContexts.unbind(it) }
             }
             if (isStandalone && taskKeyForEnd != null) {
