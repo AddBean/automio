@@ -12,7 +12,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.FragmentManager
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.hive.agent.R
 import com.hive.plugin.ComponentManager
@@ -48,8 +51,7 @@ class AgentToolDetailBottomSheet : BottomSheetDialogFragment() {
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog?.window?.navigationBarColor =
             requireContext().getColor(com.hive.i8n.R.color.design_bg_overlay)
-        dialog?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
-            ?.setBackgroundColor(Color.TRANSPARENT)
+        setupSheetBehavior()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -59,6 +61,43 @@ class AgentToolDetailBottomSheet : BottomSheetDialogFragment() {
             return
         }
         bindMessage(view, msg)
+        // 等内容（含 markdown）完成布局后再限制高度，避免与 sheet 下滑关闭抢手势
+        scheduleLimitScrollHeight(view)
+    }
+
+    private fun setupSheetBehavior() {
+        val bottomSheet = dialog?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+            ?: return
+        bottomSheet.setBackgroundColor(Color.TRANSPARENT)
+        val behavior = (dialog as? BottomSheetDialog)?.behavior
+            ?: BottomSheetBehavior.from(bottomSheet)
+        behavior.skipCollapsed = true
+        behavior.isFitToContents = true
+        behavior.state = BottomSheetBehavior.STATE_EXPANDED
+    }
+
+    private fun scheduleLimitScrollHeight(root: View) {
+        val scroll = root.findViewById<NestedScrollView>(R.id.scrollToolDetail) ?: return
+        scroll.viewTreeObserver.addOnGlobalLayoutListener(object : android.view.ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                if (!scroll.viewTreeObserver.isAlive) return
+                scroll.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                limitScrollHeight(root)
+            }
+        })
+    }
+
+    private fun limitScrollHeight(root: View) {
+        val scroll = root.findViewById<NestedScrollView>(R.id.scrollToolDetail) ?: return
+        val content = scroll.getChildAt(0) ?: return
+        val maxHeight = (resources.displayMetrics.heightPixels * SCROLL_MAX_HEIGHT_RATIO).toInt()
+        val contentHeight = content.measuredHeight.takeIf { it > 0 } ?: content.height
+        if (contentHeight <= maxHeight) return
+        val lp = scroll.layoutParams
+        if (lp.height != maxHeight) {
+            lp.height = maxHeight
+            scroll.layoutParams = lp
+        }
     }
 
     private fun bindMessage(view: View, msg: ChatMessage) {
@@ -171,6 +210,7 @@ class AgentToolDetailBottomSheet : BottomSheetDialogFragment() {
 
     companion object {
         private const val TAG = "AgentToolDetailBottomSheet"
+        private const val SCROLL_MAX_HEIGHT_RATIO = 0.72f
 
         fun show(fragmentManager: FragmentManager, message: ChatMessage) {
             AgentToolDetailBottomSheet().apply {
