@@ -435,10 +435,6 @@ class ScriptAgentTopView(context: Context) : BaseScriptDialog(context) {
     }
 
     private fun ensureVisibleAppearance() {
-        // 截屏隐藏期间不要强行恢复
-        if (visibility == View.INVISIBLE && motionController != null) {
-            // snapVisible 后会变为 VISIBLE；若仍在嵌套 hide 中则保持
-        }
         motionController?.ensureFullyVisible()
             ?: run {
                 if (visibility != View.VISIBLE) visibility = View.VISIBLE
