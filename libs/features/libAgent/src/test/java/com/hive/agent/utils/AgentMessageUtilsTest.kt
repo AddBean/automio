@@ -7,9 +7,12 @@ import com.google.gson.JsonObject
 import com.hive.plugin.agent.model.ChatMessage
 import com.hive.plugin.agent.model.FunctionCall
 import com.hive.plugin.agent.model.MessageRole
+import com.hive.plugin.agent.model.ReasoningReplayFormat
+import com.hive.plugin.agent.model.ReasoningTrace
 import com.hive.plugin.agent.model.ToolCall
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -129,5 +132,102 @@ class AgentMessageUtilsTest {
         )
 
         assertTrue(result.all { it.attachments.isEmpty() })
+    }
+
+    @Test
+    fun `simplifyTextMessages does not invent dash reasoning and nulls old assistant reasoning`() =
+        runBlocking {
+            val oldTs = 1_000L
+            val recentTs = 2_000L
+            val older = ChatMessage(
+                role = MessageRole.ASSISTANT,
+                content = "old answer",
+                reasoningContent = "old thought",
+                reasoningTrace = ReasoningTrace(
+                    rawText = "old thought",
+                    sourceProviderId = "deepseek",
+                    sourceModelId = "deepseek-reasoner",
+                    replayFormat = ReasoningReplayFormat.REASONING_CONTENT
+                ),
+                timestamp = oldTs
+            )
+            val recent = ChatMessage(
+                role = MessageRole.ASSISTANT,
+                content = "new answer",
+                reasoningContent = "new thought",
+                reasoningTrace = ReasoningTrace(
+                    rawText = "new thought",
+                    sourceProviderId = "deepseek",
+                    sourceModelId = "deepseek-reasoner",
+                    replayFormat = ReasoningReplayFormat.REASONING_CONTENT
+                ),
+                timestamp = recentTs
+            )
+            // Pad with many assistant messages so older falls outside MAX_NOT_SIMPLIFY_COUNT window.
+            val padding = (3..10).map { i ->
+                ChatMessage(
+                    role = MessageRole.ASSISTANT,
+                    content = "pad-$i",
+                    reasoningContent = "pad-thought-$i",
+                    reasoningTrace = ReasoningTrace(
+                        rawText = "pad-thought-$i",
+                        sourceProviderId = "deepseek",
+                        sourceModelId = "deepseek-reasoner",
+                        replayFormat = ReasoningReplayFormat.REASONING_CONTENT
+                    ),
+                    timestamp = oldTs + i
+                )
+            }
+            val messages = listOf(
+                ChatMessage(MessageRole.SYSTEM, "sys", timestamp = 0L),
+                ChatMessage(MessageRole.USER, "hi", timestamp = 1L),
+                older
+            ) + padding + listOf(recent)
+
+            val result = AgentMessageUtils.processAndCopyMessages("task", messages)
+
+            assertTrue(result.none { it.reasoningContent == "-" })
+            val olderOut = result.first { it.content == "old answer" }
+            assertNull(olderOut.reasoningContent)
+            assertNull(olderOut.reasoningTrace)
+
+            val recentOut = result.first { it.content == "new answer" }
+            assertEquals("new thought", recentOut.reasoningContent)
+            assertNotNull(recentOut.reasoningTrace)
+        }
+
+    @Test
+    fun `history trim keeps assistant tool_calls with their tool results together`() {
+        // Window would start on a TOOL if we naively takeLast(3); helper must snap back to assistant.
+        val callA = ToolCall(id = "call_a", function = FunctionCall("tool_a", JsonObject()))
+        val callB = ToolCall(id = "call_b", function = FunctionCall("tool_b", JsonObject()))
+        val callC = ToolCall(id = "call_c", function = FunctionCall("tool_c", JsonObject()))
+        val assistantToolMsgs = listOf(
+            ChatMessage(MessageRole.ASSISTANT, null, toolCalls = listOf(callA), timestamp = 1L),
+            ChatMessage(
+                MessageRole.TOOL, "a", toolCallId = callA.id, toolCallResult = "a", timestamp = 2L
+            ),
+            ChatMessage(MessageRole.ASSISTANT, null, toolCalls = listOf(callB), timestamp = 3L),
+            ChatMessage(
+                MessageRole.TOOL, "b", toolCallId = callB.id, toolCallResult = "b", timestamp = 4L
+            ),
+            ChatMessage(MessageRole.ASSISTANT, null, toolCalls = listOf(callC), timestamp = 5L),
+            ChatMessage(
+                MessageRole.TOOL, "c", toolCallId = callC.id, toolCallResult = "c", timestamp = 6L
+            )
+        )
+
+        val kept = AgentMessageUtils.takeLatestAssistantToolMessages(assistantToolMsgs, maxCount = 3)
+        // takeLast(3) would be [tool_b, assistant_c, tool_c]; snap includes assistant_b.
+        assertEquals(
+            listOf(callB.id, callC.id),
+            kept.filter { it.role == MessageRole.ASSISTANT }.map { it.toolCalls!!.single().id }
+        )
+        assertEquals(
+            listOf(callB.id, callC.id),
+            kept.filter { it.role == MessageRole.TOOL }.map { it.toolCallId }
+        )
+        // No orphan tool at the front
+        assertTrue(kept.first().role == MessageRole.ASSISTANT)
     }
 }

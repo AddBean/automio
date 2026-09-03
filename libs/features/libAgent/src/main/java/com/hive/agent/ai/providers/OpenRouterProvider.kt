@@ -5,6 +5,7 @@ package com.hive.agent.ai.providers
 
 import com.hive.agent.ai.OpenRouterReasoningMetadataParser
 import com.hive.agent.ai.ReasoningRequestMapper
+import com.hive.agent.ai.ReasoningReplayHelper
 import com.hive.agent.ai.ReasoningResponseNormalizer
 import com.hive.agent.config.ConfigAgentModels
 import com.hive.agent.utils.AgentToolCallUtils
@@ -338,20 +339,29 @@ open class OpenRouterProvider : AbstractChatProvider() {
     /**
      * 构建OpenRouter消息
      */
-    private suspend fun buildOpenRouterMessage(message: ChatMessage): List<JsonObject> {
+    private suspend fun buildOpenRouterMessage(
+        message: ChatMessage,
+        modelId: String
+    ): List<JsonObject> {
         val list = mutableListOf<JsonObject>()
-        val contentMessage = if (message.role == MessageRole.TOOL) {
-            message.copy(content = message.toolCallResult ?: message.content)
+        val providerId = getProviderInfo().name
+        val wireContent = if (message.role == MessageRole.TOOL) {
+            message.toolCallResult ?: message.content
         } else {
-            message
+            message.content
         }
+        val contentMessage = message.copy(content = wireContent)
         list.add(JsonObject().apply {
             addProperty("role", contentMessage.role.name.lowercase())
             add("content", buildMessageContent(contentMessage, false))
             when (contentMessage.role) {
-                MessageRole.ASSISTANT -> contentMessage.toolCalls
-                    ?.takeIf { it.isNotEmpty() }
-                    ?.let { add("tool_calls", buildToolCalls(it)) }
+                MessageRole.ASSISTANT -> {
+                    contentMessage.toolCalls
+                        ?.takeIf { it.isNotEmpty() }
+                        ?.let { add("tool_calls", buildToolCalls(it)) }
+                    ReasoningReplayHelper.reasoningDetailsForWire(message, providerId, modelId)
+                        ?.let { add("reasoning_details", it) }
+                }
                 MessageRole.TOOL -> contentMessage.toolCallId
                     ?.takeIf { it.isNotEmpty() }
                     ?.let { addProperty("tool_call_id", it) }
@@ -368,17 +378,20 @@ open class OpenRouterProvider : AbstractChatProvider() {
         return list
     }
 
-    private suspend fun buildOpenRouterMessages(messages: List<ChatMessage>): List<JsonObject> {
+    private suspend fun buildOpenRouterMessages(
+        messages: List<ChatMessage>,
+        modelId: String
+    ): List<JsonObject> {
         val result = mutableListOf<JsonObject>()
         var index = 0
         while (index < messages.size) {
             val message = messages[index]
             if (message.role == MessageRole.ASSISTANT && !message.toolCalls.isNullOrEmpty()) {
-                result.addAll(buildOpenRouterMessage(message))
+                result.addAll(buildOpenRouterMessage(message, modelId))
                 index++
                 val deferredImageMessages = mutableListOf<JsonObject>()
                 while (index < messages.size && messages[index].role == MessageRole.TOOL) {
-                    val built = buildOpenRouterMessage(messages[index])
+                    val built = buildOpenRouterMessage(messages[index], modelId)
                     if (built.isNotEmpty()) {
                         result.add(built.first())
                         if (built.size > 1) {
@@ -390,7 +403,7 @@ open class OpenRouterProvider : AbstractChatProvider() {
                 result.addAll(deferredImageMessages)
                 continue
             }
-            result.addAll(buildOpenRouterMessage(message))
+            result.addAll(buildOpenRouterMessage(message, modelId))
             index++
         }
         return result
@@ -411,7 +424,7 @@ open class OpenRouterProvider : AbstractChatProvider() {
     ): String {
         val openRouterRequest = OpenRouterChatRequest(
             model = model,
-            messages = buildOpenRouterMessages(messages),
+            messages = buildOpenRouterMessages(messages, model),
             temperature = temperature,
             max_tokens = maxTokens,
             stream = stream,

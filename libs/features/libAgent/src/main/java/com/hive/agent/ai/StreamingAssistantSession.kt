@@ -25,6 +25,7 @@ class StreamingAssistantSession private constructor(
     fun onChunk(chunk: ChatCompletionResponse) {
         assistant.content = chunk.content ?: ""
         assistant.reasoningContent = chunk.reasoningContent ?: ""
+        assistant.reasoningTrace = chunk.reasoningTrace
         if (throttleMs <= 0L) {
             streamNotify()
             return
@@ -39,6 +40,7 @@ class StreamingAssistantSession private constructor(
     fun finalizeWith(final: ChatCompletionResponse) {
         assistant.content = final.content
         assistant.reasoningContent = final.reasoningContent
+        assistant.reasoningTrace = final.reasoningTrace
         assistant.toolCalls = final.toolCalls
         assistant.status = if (final.toolCalls.isNullOrEmpty()) {
             MessageStatus.FINISH

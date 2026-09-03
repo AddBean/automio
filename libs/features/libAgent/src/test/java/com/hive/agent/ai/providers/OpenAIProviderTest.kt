@@ -138,6 +138,21 @@ class OpenAIProviderTest {
     }
 
     private class TestOpenAIProvider : OpenAIProvider() {
+        override fun getProviderInfo(): com.hive.plugin.agent.ProviderInfo =
+            com.hive.plugin.agent.ProviderInfo(
+                name = "openai",
+                displayName = "OpenAI",
+                description = "OpenAI",
+                defaultModelId = "gpt-4o-mini",
+                defaultMultiModelId = null,
+                isEnabled = true,
+                tags = emptyList(),
+                apiKeyPrefix = "",
+                apiKeyValidateMsg = "",
+                apiUrl = "https://api.openai.com/v1",
+                sortIndex = 1
+            )
+
         suspend fun buildRequest(
             model: String,
             messages: List<ChatMessage>,

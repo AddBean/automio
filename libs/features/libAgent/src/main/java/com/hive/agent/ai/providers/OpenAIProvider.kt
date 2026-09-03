@@ -4,6 +4,7 @@
 package com.hive.agent.ai.providers
 
 import com.hive.agent.ai.ReasoningRequestMapper
+import com.hive.agent.ai.ReasoningReplayHelper
 import com.hive.agent.ai.ReasoningResponseNormalizer
 import com.hive.agent.config.ConfigAgentModels
 import com.hive.agent.utils.AgentToolCallUtils
@@ -16,6 +17,7 @@ import com.hive.plugin.agent.model.ChatCompletionResponse
 import com.hive.plugin.agent.model.ChatMessage
 import com.hive.plugin.agent.model.MessageRole
 import com.hive.plugin.agent.model.ReasoningOptions
+import com.hive.plugin.agent.model.ReasoningReplayFormat
 import com.hive.utils.extends.string
 import com.hive.utils.file.FileUtils
 import com.hive.utils.utils.GsonHelper
@@ -137,20 +139,30 @@ open class OpenAIProvider : AbstractChatProvider() {
         }
     }
 
-    protected open suspend fun buildOpenAIMessage(message: ChatMessage): List<JsonObject> {
+    protected open suspend fun buildOpenAIMessage(
+        message: ChatMessage,
+        modelId: String
+    ): List<JsonObject> {
         val list = mutableListOf<JsonObject>()
-        val contentMessage = if (message.role == MessageRole.TOOL) {
-            message.copy(content = message.toolCallResult ?: message.content)
+        val providerId = getProviderInfo().name
+        val wireContent = if (message.role == MessageRole.ASSISTANT) {
+            ReasoningReplayHelper.contentForWire(message, providerId, modelId)
+        } else if (message.role == MessageRole.TOOL) {
+            message.toolCallResult ?: message.content
         } else {
-            message
+            message.content
         }
+        val contentMessage = message.copy(content = wireContent)
         list.add(JsonObject().apply {
             addProperty("role", contentMessage.role.name.lowercase())
             add("content", buildMessageContent(contentMessage, false))
             when (contentMessage.role) {
-                MessageRole.ASSISTANT -> contentMessage.toolCalls
-                    ?.takeIf { it.isNotEmpty() }
-                    ?.let { add("tool_calls", buildToolCalls(it)) }
+                MessageRole.ASSISTANT -> {
+                    contentMessage.toolCalls
+                        ?.takeIf { it.isNotEmpty() }
+                        ?.let { add("tool_calls", buildToolCalls(it)) }
+                    applyAssistantReasoningReplay(this, message, providerId, modelId)
+                }
 
                 MessageRole.TOOL -> contentMessage.toolCallId
                     ?.takeIf { it.isNotEmpty() }
@@ -170,20 +182,49 @@ open class OpenAIProvider : AbstractChatProvider() {
     }
 
     /**
+     * Kimi / SiliconFlow-style `reasoning_content`. MiniMax embeds thinking in content instead.
+     */
+    protected open fun applyAssistantReasoningReplay(
+        target: JsonObject,
+        message: ChatMessage,
+        providerId: String,
+        modelId: String
+    ) {
+        if (!ReasoningReplayHelper.shouldReplay(message, providerId, modelId)) return
+        val format = message.reasoningTrace?.replayFormat ?: return
+        when (format) {
+            ReasoningReplayFormat.REASONING_CONTENT -> {
+                ReasoningReplayHelper.reasoningContentForWire(message, providerId, modelId)
+                    ?.let { target.addProperty("reasoning_content", it) }
+            }
+            ReasoningReplayFormat.CONTENT_THINK_TAG -> {
+                // SiliconFlow etc.: send reasoning_content; MiniMax uses content think-tag rebuild.
+                if (providerId.equals("minimax", ignoreCase = true)) return
+                ReasoningReplayHelper.reasoningContentForWire(message, providerId, modelId)
+                    ?.let { target.addProperty("reasoning_content", it) }
+            }
+            else -> Unit
+        }
+    }
+
+    /**
      * 将 ChatMessage 转为 API messages，保证同一批 tool_calls 的 tool 响应连续，
      * 工具附件对应的 user 图片消息延后到整批 tool 之后，避免打断 tool_call_id 配对。
      */
-    protected open suspend fun buildOpenAIMessages(messages: List<ChatMessage>): List<JsonObject> {
+    protected open suspend fun buildOpenAIMessages(
+        messages: List<ChatMessage>,
+        modelId: String
+    ): List<JsonObject> {
         val result = mutableListOf<JsonObject>()
         var index = 0
         while (index < messages.size) {
             val message = messages[index]
             if (message.role == MessageRole.ASSISTANT && !message.toolCalls.isNullOrEmpty()) {
-                result.addAll(buildOpenAIMessage(message))
+                result.addAll(buildOpenAIMessage(message, modelId))
                 index++
                 val deferredImageMessages = mutableListOf<JsonObject>()
                 while (index < messages.size && messages[index].role == MessageRole.TOOL) {
-                    val built = buildOpenAIMessage(messages[index])
+                    val built = buildOpenAIMessage(messages[index], modelId)
                     if (built.isNotEmpty()) {
                         result.add(built.first())
                         if (built.size > 1) {
@@ -195,7 +236,7 @@ open class OpenAIProvider : AbstractChatProvider() {
                 result.addAll(deferredImageMessages)
                 continue
             }
-            result.addAll(buildOpenAIMessage(message))
+            result.addAll(buildOpenAIMessage(message, modelId))
             index++
         }
         return result
@@ -212,7 +253,7 @@ open class OpenAIProvider : AbstractChatProvider() {
     ): String {
         val request = OpenAIChatRequest(
             model = model,
-            messages = buildOpenAIMessages(messages),
+            messages = buildOpenAIMessages(messages, model),
             temperature = temperature,
             max_tokens = maxTokens,
             stream = stream,

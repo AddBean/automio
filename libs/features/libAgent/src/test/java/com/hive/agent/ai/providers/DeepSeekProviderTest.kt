@@ -5,6 +5,7 @@ package com.hive.agent.ai.providers
 
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import com.hive.plugin.agent.ProviderInfo
 import com.hive.plugin.agent.model.ChatMessage
 import com.hive.plugin.agent.model.FunctionCall
 import com.hive.plugin.agent.model.MessageRole
@@ -64,6 +65,20 @@ class DeepSeekProviderTest {
     }
 
     private class TestDeepSeekProvider : DeepSeekProvider() {
+        override fun getProviderInfo(): ProviderInfo = ProviderInfo(
+            name = "deepseek",
+            displayName = "DeepSeek",
+            description = "DeepSeek",
+            defaultModelId = "deepseek-reasoner",
+            defaultMultiModelId = null,
+            isEnabled = true,
+            tags = emptyList(),
+            apiKeyPrefix = "",
+            apiKeyValidateMsg = "",
+            apiUrl = "https://api.deepseek.com",
+            sortIndex = 1
+        )
+
         suspend fun buildRequest(
             model: String,
             messages: List<ChatMessage>,

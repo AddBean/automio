@@ -4,6 +4,7 @@
 package com.hive.agent.ai.providers
 
 import com.hive.agent.ai.ReasoningRequestMapper
+import com.hive.agent.ai.ReasoningReplayHelper
 import com.hive.agent.ai.ReasoningResponseNormalizer
 import com.hive.agent.config.ConfigAgentModels
 import com.hive.agent.utils.AgentToolCallUtils
@@ -197,6 +198,7 @@ open class DeepSeekProvider : AbstractChatProvider() {
         tools: List<Any>?,
         reasoning: ReasoningOptions?
     ): String {
+        val providerId = getProviderInfo().name
         val deepSeekRequest = DeepSeekChatRequest(
             model = model,
             messages = messages.map { message ->
@@ -207,8 +209,13 @@ open class DeepSeekProvider : AbstractChatProvider() {
                         else -> message.content
                     },
                     reasoning_content = if (message.role == MessageRole.ASSISTANT) {
-                        // DeepSeek thinking 模式下，assistant 消息（尤其含 tool_calls 时）必须包含 reasoning_content
-                        message.reasoningContent?.takeIf { it.isNotEmpty() } ?: ""
+                        if (ReasoningReplayHelper.shouldReplay(message, providerId, model)) {
+                            // DeepSeek thinking 模式下，匹配的 assistant（尤其含 tool_calls）需带回 reasoning_content
+                            ReasoningReplayHelper.reasoningContentForWire(message, providerId, model)
+                                ?: ""
+                        } else {
+                            null
+                        }
                     } else null,
                     tool_calls = if (message.role == MessageRole.ASSISTANT) {
                         message.toolCalls

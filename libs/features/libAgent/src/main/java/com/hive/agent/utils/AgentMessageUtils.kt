@@ -83,8 +83,16 @@ object AgentMessageUtils {
                 it.role == MessageRole.ASSISTANT || it.role == MessageRole.TOOL
             }
 
+            // 保留最新的 ASSISTANT/TOOL，且不拆散 tool_calls ↔ tool 结果组
+            val latestAssistantToolMsgs = takeLatestAssistantToolMessages(
+                assistantToolMsgs,
+                MAX_HISTORY_COUNT
+            )
+
             // ========== 摘要处理（仅当记忆开关开启且有待删除消息时） ==========
-            val removedMessages = assistantToolMsgs.dropLast(MAX_HISTORY_COUNT).takeLast(1)
+            val removedMessages = assistantToolMsgs
+                .filter { kept -> latestAssistantToolMsgs.none { it.timestamp == kept.timestamp } }
+                .takeLast(1)
             val summaryText = if (AIAgentConfig.MemoryConfig.isTaskMemoryEnabled() && removedMessages.isNotEmpty()) {
                 try {
                     onMemoryCompressing?.invoke(true)
@@ -107,9 +115,6 @@ object AgentMessageUtils {
                 }
             }
             // ========== 摘要处理结束 ==========
-
-            // 保留最新的ASSISTANT/TOOL消息
-            val latestAssistantToolMsgs = assistantToolMsgs.takeLast(MAX_HISTORY_COUNT)
 
             // 重新构建消息列表，按时间戳排序
             val newMessages = mutableListOf<ChatMessage>()
@@ -247,15 +252,44 @@ object AgentMessageUtils {
         return chatMessages
     }
 
-    /** 简化text调用消息 */
+    /**
+     * 裁剪过旧 assistant 的思考字段：保留最近 [MAX_NOT_SIMPLIFY_COUNT] 条 assistant
+     * （供同轮 tool loop 回放），更早的 reasoningContent / reasoningTrace 置 null。
+     * 绝不伪造 "-" 占位。
+     */
     private fun simplifyTextMessages(chatMessages: MutableList<ChatMessage>): MutableList<ChatMessage> {
-        // 简化工具调用消息 - 使用索引遍历避免并发修改
-        val messages = chatMessages.toMutableList()
-        for (idx in messages.indices) {
-            val msg = messages[idx]
-            msg.reasoningContent = "-"
+        val assistantIndices = chatMessages.indices.filter {
+            chatMessages[it].role == MessageRole.ASSISTANT
         }
-        return messages
+        val keepFrom = (assistantIndices.size - MAX_NOT_SIMPLIFY_COUNT).coerceAtLeast(0)
+        for (pos in assistantIndices.indices) {
+            if (pos >= keepFrom) continue
+            val idx = assistantIndices[pos]
+            val msg = chatMessages[idx]
+            if (msg.reasoningContent != null || msg.reasoningTrace != null) {
+                chatMessages[idx] = msg.copy(
+                    reasoningContent = null,
+                    reasoningTrace = null
+                )
+            }
+        }
+        return chatMessages
+    }
+
+    /**
+     * 从 ASSISTANT/TOOL 序列中取最近 [maxCount] 条，但若窗口起点落在 tool 结果上，
+     * 则向前补齐对应的 assistant.tool_calls，避免拆散配对。
+     */
+    internal fun takeLatestAssistantToolMessages(
+        assistantToolMsgs: List<ChatMessage>,
+        maxCount: Int
+    ): List<ChatMessage> {
+        if (assistantToolMsgs.size <= maxCount) return assistantToolMsgs
+        var start = assistantToolMsgs.size - maxCount
+        while (start > 0 && assistantToolMsgs[start].role == MessageRole.TOOL) {
+            start--
+        }
+        return assistantToolMsgs.drop(start)
     }
 
     /**
