@@ -160,16 +160,10 @@ class AgentAISettingsView @JvmOverloads constructor(
             )
             onSettingsChanged?.invoke()
         }
-        // 标题/说明区域可点；开关本体自行处理，避免双重 toggle
-        findViewById<View>(R.id.reasoningSwitchLabels).setOnClickListener {
-            onReasoningRowClicked()
-        }
+        // 整行可点：可选时切换；禁用时 Toast 说明原因（避免「点了没反应」）
+        // 开关本体在 enabled 时自行消费点击，不会与行点击双重 toggle
         findViewById<View>(R.id.rowReasoningSwitch).setOnClickListener {
-            // 禁用态点到开关空白处时，开关不消费事件，由行承接并提示原因
-            val state = currentReasoningUiState
-            if (state == null || !state.switchEnabled) {
-                showReasoningUnavailableFeedback(state)
-            }
+            onReasoningRowClicked()
         }
 
         btnReasoningEffortLow.setOnClickListener { onEffortClicked(ReasoningEffort.LOW) }
