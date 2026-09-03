@@ -9,6 +9,7 @@ import com.hive.plugin.agent.model.AgentRequest
 import com.hive.plugin.agent.model.AgentResult
 import com.hive.plugin.agent.model.AgentTaskGoal
 import com.hive.plugin.agent.model.ChatCompletionResponse
+import com.hive.plugin.agent.model.ReasoningEffort
 import com.hive.plugin.agent.model.TaskResult
 import com.hive.plugin.agent.model.ToolDefinition
 
@@ -281,8 +282,30 @@ data class ModelCapabilities(
     val supportsFunctionCall: Boolean = false,
     val supportsVision: Boolean = false,
     val contextWindow: Int = 0, // 上下文窗口大小，如128K
-    val modelType: ModelType = ModelType.LLM
+    val modelType: ModelType = ModelType.LLM,
+    /** null 表示旧缓存或 Provider 未声明；通过 [reasoningCapabilitiesOrUnknown] 安全读取。 */
+    val reasoning: ReasoningCapabilities? = null
 ) : java.io.Serializable
+
+/** 模型可用的思考模式能力；默认未知，绝不主动猜测。 */
+data class ReasoningCapabilities(
+    val availability: ReasoningAvailability = ReasoningAvailability.UNKNOWN,
+    val supportedEfforts: Set<ReasoningEffort> = emptySet(),
+    val defaultEffort: ReasoningEffort? = null
+) : java.io.Serializable
+
+enum class ReasoningAvailability {
+    UNKNOWN,
+    UNSUPPORTED,
+    OPTIONAL,
+    REQUIRED
+}
+
+/**
+ * 兼容 Gson 反序列化的旧 [ModelCapabilities]：旧数据的 reasoning 字段可能为 null。
+ */
+fun ModelCapabilities?.reasoningCapabilitiesOrUnknown(): ReasoningCapabilities =
+    this?.reasoning ?: ReasoningCapabilities()
 
 /**
  * 模型类型枚举

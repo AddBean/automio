@@ -7,6 +7,47 @@ import androidx.annotation.Keep
 import com.google.gson.JsonObject
 import com.google.gson.annotations.SerializedName
 
+/** 可由模型接受的思考强度。 */
+@Keep
+enum class ReasoningEffort {
+    LOW, MEDIUM, HIGH
+}
+
+/** 单次请求可发送给 Provider 的思考选项。 */
+@Keep
+data class ReasoningOptions(
+    @SerializedName("enabled") val enabled: Boolean = false,
+    @SerializedName("effort") val effort: ReasoningEffort = ReasoningEffort.MEDIUM
+)
+
+/** 思考过程在后续请求中应如何回放。 */
+@Keep
+enum class ReasoningReplayFormat {
+    NONE,
+    REASONING_CONTENT,
+    REASONING_DETAILS,
+    CONTENT_THINK_TAG
+}
+
+/** Provider 返回的结构化思考片段，保留未知字段以便兼容不同协议。 */
+@Keep
+data class ReasoningDetail(
+    @SerializedName("type") val type: String? = null,
+    @SerializedName("text") val text: String? = null,
+    @SerializedName("id") val id: String? = null,
+    @SerializedName("data") val data: Map<String, String> = emptyMap()
+)
+
+/** 可用于展示和下一轮消息回放的原始思考轨迹。 */
+@Keep
+data class ReasoningTrace(
+    @SerializedName("rawText") val rawText: String? = null,
+    @SerializedName("details") val details: List<ReasoningDetail> = emptyList(),
+    @SerializedName("sourceProviderId") val sourceProviderId: String? = null,
+    @SerializedName("sourceModelId") val sourceModelId: String? = null,
+    @SerializedName("replayFormat") val replayFormat: ReasoningReplayFormat = ReasoningReplayFormat.NONE
+)
+
 /** AI请求数据模型 */
 @Keep
 data class AIRequest(
@@ -17,7 +58,8 @@ data class AIRequest(
     @SerializedName("parameters") val parameters: Map<String, String> = emptyMap(),
     @SerializedName("enableCache") val enableCache: Boolean = true,
     @SerializedName("timeout") val timeout: Long = 30_000L,
-    @SerializedName("tools") val tools: List<ToolDefinition>? = null
+    @SerializedName("tools") val tools: List<ToolDefinition>? = null,
+    @SerializedName("reasoning") val reasoning: ReasoningOptions? = null
 )
 
 /** AI请求类型枚举 */
@@ -49,7 +91,8 @@ data class ChatMessage(
     @SerializedName("toolCallResultSuccess") var toolCallResultSuccess: Boolean = true,
     @SerializedName("status") var status: MessageStatus = MessageStatus.FINISH,
     @SerializedName("timestamp") val timestamp: Long = System.currentTimeMillis(),
-    @SerializedName("attachments") val attachments: MutableList<ChatAttachment> = mutableListOf()
+    @SerializedName("attachments") val attachments: MutableList<ChatAttachment> = mutableListOf(),
+    @SerializedName("reasoningTrace") var reasoningTrace: ReasoningTrace? = null
 )
 
 /** 附件类型 */
@@ -99,7 +142,8 @@ data class ChatCompletionResponse(
     @SerializedName("usage") val usage: Map<String, Int> = emptyMap(),
     @SerializedName("toolCalls") val toolCalls: List<ToolCall>? = null,
     /** API 返回的本次调用费用（如 OpenRouter），用于准确统计 */
-    @SerializedName("cost") val cost: Double? = null
+    @SerializedName("cost") val cost: Double? = null,
+    @SerializedName("reasoningTrace") val reasoningTrace: ReasoningTrace? = null
 )
 
 /** 工具定义（Schema） */

@@ -6,8 +6,26 @@ package com.hive.agent.config
 import com.hive.agent.R
 import com.hive.script.base.params.ScriptParamEnv
 import com.hive.script.utils.ScriptCommandHelper
+import com.hive.plugin.agent.model.ReasoningEffort
+import com.hive.plugin.agent.model.ReasoningOptions
 import com.hive.utils.GlobalApp
 import com.hive.utils.global.MMKVTools
+
+/**
+ * A task-local copy of the user setting. It deliberately has no dependency on MMKV so a
+ * running request cannot be affected by a settings change made after the task starts.
+ */
+data class ReasoningRunPolicy(
+    val enabled: Boolean,
+    val effort: ReasoningEffort = ReasoningEffort.MEDIUM
+) {
+    fun asOptions(): ReasoningOptions = ReasoningOptions(enabled = enabled, effort = effort)
+
+    companion object {
+        fun from(options: ReasoningOptions): ReasoningRunPolicy =
+            ReasoningRunPolicy(enabled = options.enabled, effort = options.effort)
+    }
+}
 
 object AIAgentConfig {
     object BaseConfig {
@@ -91,6 +109,44 @@ object AIAgentConfig {
         fun isVisionPipelineActive(hasConfiguredVisionModel: Boolean): Boolean {
             return isVisionRecognitionEnabled() && hasConfiguredVisionModel
         }
+    }
+
+    /**
+     * 全局思考模式设置。每个任务须先调用 [snapshot] 固化为 [ReasoningRunPolicy]。
+     */
+    object ReasoningConfig {
+
+        private const val MMKV_KEY_REASONING_ENABLED = "agent_reasoning_enabled"
+        private const val MMKV_KEY_REASONING_EFFORT = "agent_reasoning_effort"
+        private const val DEFAULT_REASONING_ENABLED = false
+        private const val DEFAULT_REASONING_EFFORT = "MEDIUM"
+
+        @JvmStatic
+        fun isEnabled(): Boolean = MMKVTools.getInstance().getBoolean(
+            MMKV_KEY_REASONING_ENABLED,
+            DEFAULT_REASONING_ENABLED
+        )
+
+        @JvmStatic
+        fun setEnabled(enabled: Boolean) {
+            MMKVTools.getInstance().putBoolean(MMKV_KEY_REASONING_ENABLED, enabled)
+        }
+
+        @JvmStatic
+        fun effort(): ReasoningEffort = runCatching {
+            ReasoningEffort.valueOf(
+                MMKVTools.getInstance().getString(MMKV_KEY_REASONING_EFFORT, DEFAULT_REASONING_EFFORT)
+                    ?: DEFAULT_REASONING_EFFORT
+            )
+        }.getOrDefault(ReasoningEffort.MEDIUM)
+
+        @JvmStatic
+        fun setEffort(effort: ReasoningEffort) {
+            MMKVTools.getInstance().putString(MMKV_KEY_REASONING_EFFORT, effort.name)
+        }
+
+        @JvmStatic
+        fun snapshot(): ReasoningRunPolicy = ReasoningRunPolicy(isEnabled(), effort())
     }
 
     object PromptDefaults {
