@@ -23,6 +23,7 @@ import com.wang.avi.AVLoadingIndicatorView
 /**
  * AI 助手消息 ItemView。
  * 思考态 loading 由列表尾占位统一展示，气泡本身不再高亮 / 挂 statusIndicator。
+ * Thinking 默认收起，点击标题可展开/收起。
  */
 class ChatMessageItemAssistantView(context: Context) : ListRecyclerItemView(context) {
 
@@ -30,10 +31,15 @@ class ChatMessageItemAssistantView(context: Context) : ListRecyclerItemView(cont
     private lateinit var messageInfoLayout: LinearLayout
     private lateinit var messageImageView: ImageView
     private lateinit var reasoningLayout: LinearLayout
+    private lateinit var reasoningHeader: LinearLayout
+    private lateinit var reasoningBody: LinearLayout
     private lateinit var reasoningTextView: TextView
+    private lateinit var reasoningExpandIcon: ImageView
     private lateinit var statusIndicator: AVLoadingIndicatorView
 
     private var lastRenderedMarkdown: String? = null
+    private var boundMessageRef: ChatMessage? = null
+    private var isReasoningExpanded: Boolean = false
 
     init {
         initView()
@@ -46,8 +52,17 @@ class ChatMessageItemAssistantView(context: Context) : ListRecyclerItemView(cont
         messageInfoLayout = findViewById(R.id.messageInfoLayout)
         messageImageView = findViewById(R.id.messageImageView)
         reasoningLayout = findViewById(R.id.reasoningLayout)
+        reasoningHeader = findViewById(R.id.reasoningHeader)
+        reasoningBody = findViewById(R.id.reasoningBody)
         reasoningTextView = findViewById(R.id.reasoningTextView)
+        reasoningExpandIcon = findViewById(R.id.reasoningExpandIcon)
         statusIndicator = findViewById(R.id.statusIndicator)
+
+        reasoningHeader.setOnClickListener {
+            isReasoningExpanded = !isReasoningExpanded
+            applyReasoningExpandedState()
+        }
+
         setOnLongClickListener {
             (itemData as? ChatMessage)?.let { msg ->
                 val parts = mutableListOf<String>()
@@ -66,6 +81,11 @@ class ChatMessageItemAssistantView(context: Context) : ListRecyclerItemView(cont
     override fun bindData(data: Any?) {
         if (data !is ChatMessage) return
         data.let { message ->
+            if (boundMessageRef !== message) {
+                boundMessageRef = message
+                isReasoningExpanded = false
+            }
+
             val imageAttachment =
                 message.attachments.firstOrNull { it.type == AttachmentType.IMAGE && !it.url.isNullOrEmpty() }
             val raw = message.content?.trim()
@@ -78,6 +98,7 @@ class ChatMessageItemAssistantView(context: Context) : ListRecyclerItemView(cont
             messageImageView.visibleOrGone(hasImage)
             if (hasThinking) {
                 reasoningTextView.text = message.reasoningContent
+                applyReasoningExpandedState()
             }
             if (hasContent) {
                 if (lastRenderedMarkdown != raw) {
@@ -100,5 +121,10 @@ class ChatMessageItemAssistantView(context: Context) : ListRecyclerItemView(cont
             }
             statusIndicator.visibleOrGone(false)
         }
+    }
+
+    private fun applyReasoningExpandedState() {
+        reasoningBody.visibleOrGone(isReasoningExpanded)
+        reasoningExpandIcon.rotation = if (isReasoningExpanded) 180f else 0f
     }
 }

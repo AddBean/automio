@@ -29,31 +29,68 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- 思考过程：无背景，左侧细线区分 -->
+        <!-- 思考过程：标题可点击折叠；展开后左侧细线 + 正文 -->
         <LinearLayout
             android:id="@+id/reasoningLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:visibility="gone"
             tools:visibility="visible">
 
-            <View
-                android:layout_width="2dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/bg_agent_chat_reasoning_bar" />
-
-            <TextView
-                android:id="@+id/reasoningTextView"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/reasoningHeader"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:lineSpacingExtra="3dp"
-                android:textColor="@color/text_white_60"
-                android:textSize="12sp"
-                tools:text="Thinking process..." />
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="2dp">
+
+                <TextView
+                    android:id="@+id/reasoningTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/agent_chat_thinking"
+                    android:textColor="@color/text_white_60"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/reasoningExpandIcon"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="2dp"
+                    android:contentDescription="@string/agent_chat_thinking"
+                    android:src="@drawable/ic_expand_more"
+                    android:tint="@color/text_white_60" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/reasoningBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/bg_agent_chat_reasoning_bar" />
+
+                <TextView
+                    android:id="@+id/reasoningTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:lineSpacingExtra="3dp"
+                    android:textColor="@color/text_white_60"
+                    android:textSize="12sp"
+                    tools:text="Thinking process..." />
+            </LinearLayout>
         </LinearLayout>
 
         <TextView

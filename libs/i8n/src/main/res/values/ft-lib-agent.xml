@@ -8,6 +8,7 @@
     <string name="agent_chat_input_hint">Type message…</string>
     <string name="agent_chat_select_image">Select Image</string>
     <string name="agent_chat_send_message">Send</string>
+    <string name="agent_chat_thinking">Thinking</string>
     <string name="agent_image_selected">Image ready to send</string>
     <string name="agent_welcome_message">Start your first AI task!</string>
     <string name="agent_chat_empty_title">What would you like to do?</string>

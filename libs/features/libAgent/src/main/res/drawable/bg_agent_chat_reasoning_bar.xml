@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <solid android:color="@color/text_white_60" />
-    <corners android:radius="2dp" />
+    <!-- 约 22% 白，比 text_white_60 更淡 -->
+    <solid android:color="#38FFFFFF" />
+    <corners android:radius="1dp" />
 </shape>
