@@ -3,6 +3,8 @@
 
 package com.hive.agent.ai.providers
 
+import com.hive.agent.ai.ReasoningRequestMapper
+import com.hive.agent.ai.ReasoningResponseNormalizer
 import com.hive.agent.config.ConfigAgentModels
 import com.hive.agent.utils.AgentToolCallUtils
 import com.hive.plugin.agent.ProviderInfo
@@ -13,6 +15,7 @@ import com.hive.plugin.agent.model.AttachmentType
 import com.hive.plugin.agent.model.ChatCompletionResponse
 import com.hive.plugin.agent.model.ChatMessage
 import com.hive.plugin.agent.model.MessageRole
+import com.hive.plugin.agent.model.ReasoningOptions
 import com.hive.utils.file.FileUtils
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
@@ -239,7 +242,8 @@ class BailianCodeProvider : AbstractChatProvider() {
         temperature: Float,
         maxTokens: Int,
         stream: Boolean,
-        tools: List<Any>?
+        tools: List<Any>?,
+        reasoning: ReasoningOptions?
     ): String {
         val validatedMessages = validateAndFixMessageSequence(messages)
         val jsonMessages = buildBailianMessages(validatedMessages)
@@ -252,7 +256,11 @@ class BailianCodeProvider : AbstractChatProvider() {
             stream = stream,
             tools = tools?.map { it as BailianToolDefinition }
         )
-        return GsonHelper.getInstance().toJson(request)
+        val json = GsonHelper.getInstance().getGson().toJsonTree(request).asJsonObject
+        if (reasoning != null) {
+            ReasoningRequestMapper.applyForProvider(json, getProviderInfo().name, reasoning)
+        }
+        return GsonHelper.getInstance().toJson(json)
     }
 
     private suspend fun buildBailianMessages(messages: List<ChatMessage>): List<JsonObject> {
@@ -398,14 +406,31 @@ class BailianCodeProvider : AbstractChatProvider() {
         val resp = GsonHelper.getInstance().fromJson(responseText, BailianChatResponse::class.java)
         val firstChoice = resp.choices?.firstOrNull()
         val message = firstChoice?.message
-        return ChatCompletionResponse(
+        val providerId = getProviderInfo().name
+        val usage = resp.usage?.let {
+            mapOf(
+                "prompt_tokens" to it.prompt_tokens,
+                "completion_tokens" to it.completion_tokens,
+                "total_tokens" to it.total_tokens
+            )
+        } ?: emptyMap()
+        val normalized = ReasoningResponseNormalizer.normalize(
             content = message?.content,
             reasoningContent = message?.reasoning_content,
+            usage = usage,
+            providerId = providerId,
+            modelId = resp.model,
+            replayFormat = ReasoningResponseNormalizer.replayFormatFor(providerId)
+        )
+        return ChatCompletionResponse(
+            content = normalized.content,
+            reasoningContent = normalized.reasoningContent,
             model = resp.model ?: "",
-            usage = resp.usage?.let { mapOf("prompt_tokens" to it.prompt_tokens, "completion_tokens" to it.completion_tokens, "total_tokens" to it.total_tokens) } ?: emptyMap(),
+            usage = normalized.usage,
             toolCalls = message?.tool_calls?.mapNotNull { tc ->
                 AgentToolCallUtils.buildToolCall("BailianCodeProvider", tc.id, tc.type, tc.function?.name, tc.function?.arguments)
-            }
+            },
+            reasoningTrace = normalized.reasoningTrace
         )
     }
 
@@ -437,14 +462,26 @@ class BailianCodeProvider : AbstractChatProvider() {
         usage: Map<String, Int>,
         toolCalls: List<Any>?,
         cost: Double?
-    ): ChatCompletionResponse = ChatCompletionResponse(
-        content = accumulatedContent.ifEmpty { null },
-        reasoningContent = accumulatedReasoningContent?.ifEmpty { null },
-        model = model,
-        usage = usage,
-        cost = cost,
-        toolCalls = toolCalls as? List<com.hive.plugin.agent.model.ToolCall>
-    )
+    ): ChatCompletionResponse {
+        val providerId = getProviderInfo().name
+        val normalized = ReasoningResponseNormalizer.normalize(
+            content = accumulatedContent.ifEmpty { null },
+            reasoningContent = accumulatedReasoningContent?.ifEmpty { null },
+            usage = usage,
+            providerId = providerId,
+            modelId = model,
+            replayFormat = ReasoningResponseNormalizer.replayFormatFor(providerId)
+        )
+        return ChatCompletionResponse(
+            content = normalized.content,
+            reasoningContent = normalized.reasoningContent,
+            model = model,
+            usage = normalized.usage,
+            cost = cost,
+            toolCalls = toolCalls as? List<com.hive.plugin.agent.model.ToolCall>,
+            reasoningTrace = normalized.reasoningTrace
+        )
+    }
 
     override fun createToolDefinition(type: String, func: Any): Any =
         BailianToolDefinition(type = type, function = func as BailianFunctionDefinition)

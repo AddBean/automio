@@ -17,6 +17,7 @@ import com.hive.plugin.agent.model.MessageRole
 import com.hive.plugin.agent.model.AIErrorDetail
 import com.hive.plugin.agent.model.NetworkErrorType
 import com.hive.plugin.agent.model.ParseErrorType
+import com.hive.plugin.agent.model.ReasoningOptions
 import com.hive.utils.debug.DLog
 import com.google.gson.JsonObject
 import com.hive.agent.utils.AgentMessageUtils
@@ -43,7 +44,8 @@ abstract class AbstractChatProvider : AbstractBaseProvider() {
         temperature: Float,
         maxTokens: Int,
         stream: Boolean,
-        tools: List<Any>?
+        tools: List<Any>?,
+        reasoning: ReasoningOptions? = null
     ): String
 
     protected abstract fun parseChatResponse(responseText: String): ChatCompletionResponse
@@ -152,7 +154,8 @@ abstract class AbstractChatProvider : AbstractBaseProvider() {
                 request.tools,
                 createDef = { type, func -> createToolDefinition(type, func) },
                 createFunc = { name, desc, params -> createFunctionDefinition(name, desc, params) }
-            )
+            ),
+            reasoning = request.reasoning
         )
 
         val responseText = sendHttpRequest(
@@ -200,7 +203,8 @@ abstract class AbstractChatProvider : AbstractBaseProvider() {
                 request.tools,
                 createDef = { type, func -> createToolDefinition(type, func) },
                 createFunc = { name, desc, params -> createFunctionDefinition(name, desc, params) }
-            )
+            ),
+            reasoning = request.reasoning
         )
 
         var accumulatedContent = ""

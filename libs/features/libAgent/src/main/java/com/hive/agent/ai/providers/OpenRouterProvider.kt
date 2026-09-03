@@ -3,6 +3,9 @@
 
 package com.hive.agent.ai.providers
 
+import com.hive.agent.ai.OpenRouterReasoningMetadataParser
+import com.hive.agent.ai.ReasoningRequestMapper
+import com.hive.agent.ai.ReasoningResponseNormalizer
 import com.hive.agent.config.ConfigAgentModels
 import com.hive.agent.utils.AgentToolCallUtils
 import com.hive.plugin.agent.ProviderInfo
@@ -13,6 +16,7 @@ import com.hive.plugin.agent.model.AttachmentType
 import com.hive.plugin.agent.model.ChatCompletionResponse
 import com.hive.plugin.agent.model.ChatMessage
 import com.hive.plugin.agent.model.MessageRole
+import com.hive.plugin.agent.model.ReasoningOptions
 
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
@@ -66,7 +70,8 @@ class OpenRouterProvider : AbstractChatProvider() {
         val context_length: Int? = null,
         val architecture: OpenRouterArchitecture? = null,
         val top_provider: OpenRouterTopProvider? = null,
-        val pricing: OpenRouterPricing? = null
+        val pricing: OpenRouterPricing? = null,
+        val reasoning: JsonObject? = null
     )
 
     private data class OpenRouterArchitecture(
@@ -401,7 +406,8 @@ class OpenRouterProvider : AbstractChatProvider() {
         temperature: Float,
         maxTokens: Int,
         stream: Boolean,
-        tools: List<Any>?
+        tools: List<Any>?,
+        reasoning: ReasoningOptions?
     ): String {
         val openRouterRequest = OpenRouterChatRequest(
             model = model,
@@ -411,26 +417,50 @@ class OpenRouterProvider : AbstractChatProvider() {
             stream = stream,
             tools = tools?.map { it as OpenRouterToolDefinition }
         )
-        return GsonHelper.getInstance().toJson(openRouterRequest)
+        val json = GsonHelper.getInstance().getGson().toJsonTree(openRouterRequest).asJsonObject
+        if (reasoning != null) {
+            ReasoningRequestMapper.applyForProvider(json, getProviderInfo().name, reasoning)
+        }
+        return GsonHelper.getInstance().toJson(json)
     }
 
 
     override fun parseChatResponse(responseText: String): ChatCompletionResponse {
+        val root = JsonParser().parse(responseText).asJsonObject
         val openRouterResponse = GsonHelper.getInstance().fromJson(responseText, OpenRouterChatResponse::class.java)
         val firstChoice = openRouterResponse.choices?.firstOrNull()
         val message = firstChoice?.message
+        val providerId = getProviderInfo().name
+        val usage = openRouterResponse.usage?.let { usage ->
+            buildMap {
+                put("prompt_tokens", usage.prompt_tokens)
+                put("completion_tokens", usage.completion_tokens)
+                put("total_tokens", usage.total_tokens)
+                usage.reasoning_tokens?.let { put("reasoning_tokens", it) }
+            }
+        } ?: emptyMap()
+        val details = root.getAsJsonArray("choices")
+            ?.firstOrNull()
+            ?.takeIf { it.isJsonObject }
+            ?.asJsonObject
+            ?.getAsJsonObject("message")
+            ?.getAsJsonArray("reasoning_details")
+        val reasoningText = message?.reasoning ?: message?.reasoning_content
+        val normalized = ReasoningResponseNormalizer.normalize(
+            content = message?.content,
+            reasoningContent = reasoningText,
+            reasoningDetailsJson = details,
+            usage = usage,
+            providerId = providerId,
+            modelId = openRouterResponse.model,
+            replayFormat = ReasoningResponseNormalizer.replayFormatFor(providerId)
+        )
 
         return ChatCompletionResponse(
-            content = message?.content,
-            reasoningContent = null, // OpenRouter doesn't support reasoning content
+            content = normalized.content,
+            reasoningContent = normalized.reasoningContent,
             model = openRouterResponse.model,
-            usage = openRouterResponse.usage?.let { usage ->
-                mapOf(
-                    "prompt_tokens" to usage.prompt_tokens,
-                    "completion_tokens" to usage.completion_tokens,
-                    "total_tokens" to usage.total_tokens
-                )
-            } ?: emptyMap(),
+            usage = normalized.usage,
             cost = openRouterResponse.usage?.cost,
             toolCalls = message?.tool_calls?.mapNotNull { openRouterToolCall ->
                 AgentToolCallUtils.buildToolCall(
@@ -440,11 +470,13 @@ class OpenRouterProvider : AbstractChatProvider() {
                     functionName = openRouterToolCall.function.name,
                     arguments = openRouterToolCall.function.arguments
                 )
-            }
+            },
+            reasoningTrace = normalized.reasoningTrace
         )
     }
 
     override fun parseStreamResponse(data: String): StreamResponseData {
+        val root = runCatching { JsonParser().parse(data).asJsonObject }.getOrNull()
         val streamResponse = GsonHelper.getInstance().fromJson(data, OpenRouterStreamResponse::class.java)
         val choice = streamResponse.choices?.firstOrNull() ?: return StreamResponseData(
             null, null, null, null, null, null, null
@@ -452,17 +484,30 @@ class OpenRouterProvider : AbstractChatProvider() {
 
         val delta = choice.delta
         val finishReason = choice.finish_reason
+        val reasoningChunk = delta.reasoning ?: delta.reasoning_content
+            ?: root?.getAsJsonArray("choices")
+                ?.firstOrNull()
+                ?.takeIf { it.isJsonObject }
+                ?.asJsonObject
+                ?.getAsJsonObject("delta")
+                ?.getAsJsonArray("reasoning_details")
+                ?.let { details ->
+                    details.mapNotNull { el ->
+                        el.takeIf { it.isJsonObject }?.asJsonObject?.get("text")?.asString
+                    }.joinToString("").ifEmpty { null }
+                }
 
         return StreamResponseData(
             content = delta.content,
-            reasoningContent = null, // OpenRouter doesn't support reasoning content
+            reasoningContent = reasoningChunk,
             model = streamResponse.model,
             usage = streamResponse.usage?.let { usage ->
-                mapOf(
-                    "prompt_tokens" to usage.prompt_tokens,
-                    "completion_tokens" to usage.completion_tokens,
-                    "total_tokens" to usage.total_tokens
-                )
+                buildMap {
+                    put("prompt_tokens", usage.prompt_tokens)
+                    put("completion_tokens", usage.completion_tokens)
+                    put("total_tokens", usage.total_tokens)
+                    usage.reasoning_tokens?.let { put("reasoning_tokens", it) }
+                }
             },
             toolCalls = delta.tool_calls?.map { toolCall ->
                 ToolCallData(
@@ -490,13 +535,23 @@ class OpenRouterProvider : AbstractChatProvider() {
         toolCalls: List<Any>?,
         cost: Double?
     ): ChatCompletionResponse {
-        return ChatCompletionResponse(
+        val providerId = getProviderInfo().name
+        val normalized = ReasoningResponseNormalizer.normalize(
             content = accumulatedContent.ifEmpty { null },
-            reasoningContent = null, // OpenRouter doesn't support reasoning content
-            model = model,
+            reasoningContent = accumulatedReasoningContent?.takeIf { it.isNotEmpty() },
             usage = usage,
+            providerId = providerId,
+            modelId = model,
+            replayFormat = ReasoningResponseNormalizer.replayFormatFor(providerId)
+        )
+        return ChatCompletionResponse(
+            content = normalized.content,
+            reasoningContent = normalized.reasoningContent,
+            model = model,
+            usage = normalized.usage,
             cost = cost,
-            toolCalls = toolCalls as? List<com.hive.plugin.agent.model.ToolCall>
+            toolCalls = toolCalls as? List<com.hive.plugin.agent.model.ToolCall>,
+            reasoningTrace = normalized.reasoningTrace
         )
     }
 
@@ -569,6 +624,7 @@ class OpenRouterProvider : AbstractChatProvider() {
             return mutableListOf()
         }
         val toolCapableIds = fetchToolCapableModelIds()
+        val reasoningById = fetchReasoningMetadataByModelId()
         val url = getProviderInfo().apiUrl + "/api/v1/models/user"
         val connection = URL(url).openConnection() as HttpURLConnection
 
@@ -596,6 +652,7 @@ class OpenRouterProvider : AbstractChatProvider() {
                         val contextWindow =
                             model.context_length ?: model.top_provider?.context_length ?: 8192
                         val supportsFunctionCall = model.id in toolCapableIds
+                        val reasoningJson = model.reasoning ?: reasoningById[model.id]
 
                         ModelInfo(
                             modelId = model.id,
@@ -606,7 +663,8 @@ class OpenRouterProvider : AbstractChatProvider() {
                                 supportsFunctionCall = supportsFunctionCall,
                                 supportsVision = supportsVision,
                                 contextWindow = contextWindow,
-                                modelType = ModelType.CHAT
+                                modelType = ModelType.CHAT,
+                                reasoning = OpenRouterReasoningMetadataParser.toCapabilities(reasoningJson)
                             )
                         )
                     } catch (e: Exception) {
@@ -631,6 +689,39 @@ class OpenRouterProvider : AbstractChatProvider() {
         }
     }
 
+    /**
+     * `/api/v1/models` 暴露完整 `reasoning` 元数据；与 `/models/user` 列表按 id 合并。
+     */
+    private suspend fun fetchReasoningMetadataByModelId(): Map<String, JsonObject> =
+        withContext(Dispatchers.IO) {
+            if (getApiKey().isEmpty()) return@withContext emptyMap()
+            val url = getProviderInfo().apiUrl + "/api/v1/models"
+            val connection = URL(url).openConnection() as HttpURLConnection
+            try {
+                connection.apply {
+                    requestMethod = "GET"
+                    setRequestProperty("Content-Type", "application/json")
+                    setRequestProperty("Accept", "application/json")
+                    setRequestProperty("Authorization", "Bearer ${getApiKey()}")
+                    setRequestProperty("User-Agent", "Automio/1.0")
+                    connectTimeout = 15000
+                    readTimeout = 15000
+                }
+                if (connection.responseCode != 200) return@withContext emptyMap()
+                val response = connection.inputStream.bufferedReader().use { it.readText() }
+                val openRouterResponse =
+                    GsonHelper.getInstance().fromJson(response, OpenRouterModelsResponse::class.java)
+                openRouterResponse.data.mapNotNull { model ->
+                    model.reasoning?.let { model.id to it }
+                }.toMap()
+            } catch (e: Exception) {
+                DLog.e("OpenRouterProvider", "获取 reasoning 元数据失败: ${e.message}")
+                emptyMap()
+            } finally {
+                connection.disconnect()
+            }
+        }
+
 
 }
 
@@ -647,6 +738,8 @@ private data class OpenRouterChatRequest(
 private data class OpenRouterMessage(
     val role: String? = null,
     val content: String? = null,
+    val reasoning: String? = null,
+    val reasoning_content: String? = null,
     val tool_calls: List<OpenRouterToolCall>? = null,
     val tool_call_id: String? = null,
     val tool_result: String? = null
@@ -694,7 +787,8 @@ private data class OpenRouterUsage(
     val prompt_tokens: Int,
     val completion_tokens: Int,
     val total_tokens: Int,
-    val cost: Double? = null
+    val cost: Double? = null,
+    val reasoning_tokens: Int? = null
 )
 
 // 流式响应数据模型

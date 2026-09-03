@@ -67,6 +67,9 @@ class ReasoningCapabilityResolverTest {
         val unsupported = ReasoningCapabilityResolver.resolve("openai", "gpt-4o", null, disabled)
         val unknown = ReasoningCapabilityResolver.resolve("unknown", "model", null, disabled)
         val optional = ReasoningCapabilityResolver.resolve("deepseek", "deepseek-chat", null, disabled)
+        val optionalOn = ReasoningCapabilityResolver.resolve(
+            "deepseek", "deepseek-chat", null, ReasoningRunPolicy(true, ReasoningEffort.LOW)
+        )
         val required = ReasoningCapabilityResolver.resolve("deepseek", "deepseek-reasoner", null, disabled)
 
         assertEquals(ReasoningAvailability.UNSUPPORTED, unsupported.capabilities.availability)
@@ -75,9 +78,34 @@ class ReasoningCapabilityResolverTest {
         assertEquals(ReasoningAvailability.REQUIRED, required.capabilities.availability)
         assertNull(unsupported.effectiveOptions)
         assertNull(unknown.effectiveOptions)
-        assertNull(optional.effectiveOptions)
+        assertFalse(optional.effectiveOptions!!.enabled)
+        assertEquals(ReasoningEffort.HIGH, optional.effectiveOptions!!.effort)
+        assertTrue(optionalOn.effectiveOptions!!.enabled)
+        assertEquals(ReasoningEffort.LOW, optionalOn.effectiveOptions!!.effort)
         assertTrue(required.effectiveOptions!!.enabled)
         assertFalse(disabled.enabled)
+    }
+
+    @Test
+    fun `minimax and stepfun use NONE dialect with correct replay formats`() {
+        val minimax = ReasoningCapabilityResolver.resolve(
+            "minimax", "MiniMax-M2.5", null, ReasoningRunPolicy(true)
+        )
+        assertEquals(ReasoningWireDialect.NONE, minimax.wireDialect)
+        assertEquals(
+            com.hive.plugin.agent.model.ReasoningReplayFormat.CONTENT_THINK_TAG,
+            minimax.replayFormat
+        )
+
+        val stepfun = ReasoningCapabilityResolver.resolve(
+            "stepfun", "step-3.7-flash", null, ReasoningRunPolicy(false)
+        )
+        assertEquals(ReasoningWireDialect.NONE, stepfun.wireDialect)
+        assertEquals(
+            com.hive.plugin.agent.model.ReasoningReplayFormat.REASONING_CONTENT,
+            stepfun.replayFormat
+        )
+        assertTrue(stepfun.effectiveOptions!!.enabled)
     }
 
     @Test

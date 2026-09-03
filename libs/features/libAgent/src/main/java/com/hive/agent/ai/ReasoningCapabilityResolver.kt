@@ -96,12 +96,13 @@ object ReasoningModelCatalog {
                 "kimi-k2.5", "kimi-k2.6" -> optional()
                 else -> unknown()
             }
-            "bailian" -> bailianCapability(model)
+            "bailian", "bailian_code" -> bailianCapability(model)
             "siliconflow" -> siliconFlowCapability(model)
             "minimax" -> if (model.matches(Regex("minimax-m2(?:\\.[0-9]+)*"))) required() else unknown()
             "stepfun" -> if (model in stepFunReasoningModels) required() else unknown()
             // MiMo, Ark, custom OpenAI endpoints and routing providers remain metadata-only.
-            "mimo", "ark", "ark_agent_plan", "ark_coding_plan", "openrouter", "custom_openai", "bailian_code" -> unknown()
+            "mimo", "ark", "ark_agent_plan", "ark_coding_plan", "openrouter",
+            "custom_openai", "openai_custom" -> unknown()
             else -> unknown()
         }
     }
@@ -109,13 +110,33 @@ object ReasoningModelCatalog {
     fun wireDialectFor(providerId: String): ReasoningWireDialect = when (
         providerId.trim().lowercase(Locale.ROOT)
     ) {
-        "openai", "minimax", "stepfun" -> ReasoningWireDialect.OPENAI
+        "openai" -> ReasoningWireDialect.OPENAI
         "openrouter" -> ReasoningWireDialect.OPENROUTER
         "deepseek" -> ReasoningWireDialect.DEEPSEEK
-        "bailian" -> ReasoningWireDialect.BAILIAN
+        "bailian", "bailian_code" -> ReasoningWireDialect.BAILIAN
         "kimi" -> ReasoningWireDialect.KIMI
         "siliconflow" -> ReasoningWireDialect.SILICONFLOW
+        // MiniMax / StepFun auto-reason; do not send control params.
         else -> ReasoningWireDialect.NONE
+    }
+
+    fun replayFormatFor(providerId: String): ReasoningReplayFormat {
+        val provider = providerId.trim().lowercase(Locale.ROOT)
+        return when (provider) {
+            "minimax" -> ReasoningReplayFormat.CONTENT_THINK_TAG
+            "stepfun" -> ReasoningReplayFormat.REASONING_CONTENT
+            else -> wireDialectFor(provider).defaultReplayFormat()
+        }
+    }
+
+    private fun ReasoningWireDialect.defaultReplayFormat(): ReasoningReplayFormat = when (this) {
+        ReasoningWireDialect.OPENROUTER -> ReasoningReplayFormat.REASONING_DETAILS
+        ReasoningWireDialect.SILICONFLOW -> ReasoningReplayFormat.CONTENT_THINK_TAG
+        ReasoningWireDialect.OPENAI,
+        ReasoningWireDialect.DEEPSEEK,
+        ReasoningWireDialect.BAILIAN,
+        ReasoningWireDialect.KIMI -> ReasoningReplayFormat.REASONING_CONTENT
+        ReasoningWireDialect.NONE -> ReasoningReplayFormat.NONE
     }
 
     private fun openAiCapability(model: String): ReasoningCapabilities = when {
@@ -169,18 +190,21 @@ object ReasoningCapabilityResolver {
             ?: ReasoningModelCatalog.capabilityFor(providerId, modelId)
         val dialect = dynamicMetadata?.wireDialect
             ?: ReasoningModelCatalog.wireDialectFor(providerId)
-        val replayFormat = dynamicMetadata?.replayFormat ?: dialect.replayFormat()
+        val replayFormat = dynamicMetadata?.replayFormat
+            ?: ReasoningModelCatalog.replayFormatFor(providerId)
 
-        val shouldEnable = when (capability.availability) {
-            ReasoningAvailability.OPTIONAL -> requestedPolicy.enabled
-            ReasoningAvailability.REQUIRED -> true
+        val resolvedEffort = resolveEffort(requestedPolicy.effort, capability)
+        val effectiveOptions = when (capability.availability) {
+            ReasoningAvailability.OPTIONAL -> ReasoningOptions(
+                enabled = requestedPolicy.enabled,
+                effort = resolvedEffort
+            )
+            ReasoningAvailability.REQUIRED -> ReasoningOptions(
+                enabled = true,
+                effort = resolvedEffort
+            )
             ReasoningAvailability.UNKNOWN,
-            ReasoningAvailability.UNSUPPORTED -> false
-        }
-        val effectiveOptions = if (shouldEnable) {
-            ReasoningOptions(enabled = true, effort = resolveEffort(requestedPolicy.effort, capability))
-        } else {
-            null
+            ReasoningAvailability.UNSUPPORTED -> null
         }
 
         return ResolvedReasoning(
@@ -201,15 +225,5 @@ object ReasoningCapabilityResolver {
         return listOf(ReasoningEffort.MEDIUM, ReasoningEffort.LOW, ReasoningEffort.HIGH)
             .firstOrNull { it in supported }
             ?: ReasoningEffort.MEDIUM
-    }
-
-    private fun ReasoningWireDialect.replayFormat(): ReasoningReplayFormat = when (this) {
-        ReasoningWireDialect.OPENROUTER -> ReasoningReplayFormat.REASONING_DETAILS
-        ReasoningWireDialect.SILICONFLOW -> ReasoningReplayFormat.CONTENT_THINK_TAG
-        ReasoningWireDialect.OPENAI,
-        ReasoningWireDialect.DEEPSEEK,
-        ReasoningWireDialect.BAILIAN,
-        ReasoningWireDialect.KIMI -> ReasoningReplayFormat.REASONING_CONTENT
-        ReasoningWireDialect.NONE -> ReasoningReplayFormat.NONE
     }
 }

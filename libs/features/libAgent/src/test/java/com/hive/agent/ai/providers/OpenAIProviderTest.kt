@@ -145,6 +145,6 @@ class OpenAIProviderTest {
             maxTokens: Int,
             stream: Boolean,
             tools: List<Any>?
-        ): String = buildChatRequest(model, messages, temperature, maxTokens, stream, tools)
+        ): String = buildChatRequest(model, messages, temperature, maxTokens, stream, tools, null)
     }
 }

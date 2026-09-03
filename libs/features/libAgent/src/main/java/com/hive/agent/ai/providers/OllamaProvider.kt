@@ -157,7 +157,8 @@ class OllamaProvider : AbstractChatProvider() {
         temperature: Float,
         maxTokens: Int,
         stream: Boolean,
-        tools: List<Any>?
+        tools: List<Any>?,
+        reasoning: com.hive.plugin.agent.model.ReasoningOptions?
     ): String {
         val ollamaRequest = OllamaChatRequest(
             model = model,

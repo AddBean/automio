@@ -3,6 +3,8 @@
 
 package com.hive.agent.ai.providers
 
+import com.hive.agent.ai.ReasoningRequestMapper
+import com.hive.agent.ai.ReasoningResponseNormalizer
 import com.hive.agent.config.ConfigAgentModels
 import com.hive.agent.utils.AgentToolCallUtils
 import com.hive.plugin.agent.ModelCapabilities
@@ -13,6 +15,7 @@ import com.hive.plugin.agent.model.AttachmentType
 import com.hive.plugin.agent.model.ChatCompletionResponse
 import com.hive.plugin.agent.model.ChatMessage
 import com.hive.plugin.agent.model.MessageRole
+import com.hive.plugin.agent.model.ReasoningOptions
 import com.hive.utils.extends.string
 import com.hive.utils.file.FileUtils
 import com.hive.utils.utils.GsonHelper
@@ -204,7 +207,8 @@ open class OpenAIProvider : AbstractChatProvider() {
         temperature: Float,
         maxTokens: Int,
         stream: Boolean,
-        tools: List<Any>?
+        tools: List<Any>?,
+        reasoning: ReasoningOptions?
     ): String {
         val request = OpenAIChatRequest(
             model = model,
@@ -214,7 +218,11 @@ open class OpenAIProvider : AbstractChatProvider() {
             stream = stream,
             tools = tools?.map { it as OpenAIToolDefinition }
         )
-        return GsonHelper.getInstance().toJson(request)
+        val json = GsonHelper.getInstance().getGson().toJsonTree(request).asJsonObject
+        if (reasoning != null) {
+            ReasoningRequestMapper.applyForProvider(json, getProviderInfo().name, reasoning)
+        }
+        return GsonHelper.getInstance().toJson(json)
     }
 
     override fun parseChatResponse(responseText: String): ChatCompletionResponse {
@@ -222,17 +230,30 @@ open class OpenAIProvider : AbstractChatProvider() {
             GsonHelper.getInstance().fromJson(responseText, OpenAIChatResponse::class.java)
         val firstChoice = response.choices?.firstOrNull()
         val message = firstChoice?.message
-        return ChatCompletionResponse(
+        val providerId = getProviderInfo().name
+        val usage = response.usage?.let { usage ->
+            buildMap {
+                put("prompt_tokens", usage.prompt_tokens)
+                put("completion_tokens", usage.completion_tokens)
+                put("total_tokens", usage.total_tokens)
+                usage.reasoning_tokens?.let { put("reasoning_tokens", it) }
+            }
+        } ?: emptyMap()
+        val reasoningField = message?.reasoning_content
+            ?: message?.reasoning
+        val normalized = ReasoningResponseNormalizer.normalize(
             content = message?.content,
-            reasoningContent = message?.reasoning_content?.takeIf { it.isNotEmpty() },
+            reasoningContent = reasoningField?.takeIf { it.isNotEmpty() },
+            usage = usage,
+            providerId = providerId,
+            modelId = response.model,
+            replayFormat = ReasoningResponseNormalizer.replayFormatFor(providerId)
+        )
+        return ChatCompletionResponse(
+            content = normalized.content,
+            reasoningContent = normalized.reasoningContent,
             model = response.model,
-            usage = response.usage?.let { usage ->
-                mapOf(
-                    "prompt_tokens" to usage.prompt_tokens,
-                    "completion_tokens" to usage.completion_tokens,
-                    "total_tokens" to usage.total_tokens
-                )
-            } ?: emptyMap(),
+            usage = normalized.usage,
             toolCalls = message?.tool_calls?.mapNotNull { toolCall ->
                 AgentToolCallUtils.buildToolCall(
                     logTag = "OpenAIProvider",
@@ -241,7 +262,8 @@ open class OpenAIProvider : AbstractChatProvider() {
                     functionName = toolCall.function.name,
                     arguments = toolCall.function.arguments
                 )
-            }
+            },
+            reasoningTrace = normalized.reasoningTrace
         )
     }
 
@@ -254,14 +276,15 @@ open class OpenAIProvider : AbstractChatProvider() {
         val delta = choice.delta
         return StreamResponseData(
             content = delta.content,
-            reasoningContent = delta.reasoning_content,
+            reasoningContent = delta.reasoning_content ?: delta.reasoning,
             model = response.model,
             usage = response.usage?.let { usage ->
-                mapOf(
-                    "prompt_tokens" to usage.prompt_tokens,
-                    "completion_tokens" to usage.completion_tokens,
-                    "total_tokens" to usage.total_tokens
-                )
+                buildMap {
+                    put("prompt_tokens", usage.prompt_tokens)
+                    put("completion_tokens", usage.completion_tokens)
+                    put("total_tokens", usage.total_tokens)
+                    usage.reasoning_tokens?.let { put("reasoning_tokens", it) }
+                }
             },
             toolCalls = delta.tool_calls?.map { toolCall ->
                 ToolCallData(
@@ -289,13 +312,23 @@ open class OpenAIProvider : AbstractChatProvider() {
         toolCalls: List<Any>?,
         cost: Double?
     ): ChatCompletionResponse {
-        return ChatCompletionResponse(
+        val providerId = getProviderInfo().name
+        val normalized = ReasoningResponseNormalizer.normalize(
             content = accumulatedContent.ifEmpty { null },
             reasoningContent = accumulatedReasoningContent?.takeIf { it.isNotEmpty() },
-            model = model,
             usage = usage,
+            providerId = providerId,
+            modelId = model,
+            replayFormat = ReasoningResponseNormalizer.replayFormatFor(providerId)
+        )
+        return ChatCompletionResponse(
+            content = normalized.content,
+            reasoningContent = normalized.reasoningContent,
+            model = model,
+            usage = normalized.usage,
             toolCalls = toolCalls as? List<com.hive.plugin.agent.model.ToolCall>,
-            cost = cost
+            cost = cost,
+            reasoningTrace = normalized.reasoningTrace
         )
     }
 
@@ -386,6 +419,7 @@ private data class OpenAIMessage(
     val role: String? = null,
     val content: String? = null,
     val reasoning_content: String? = null,
+    val reasoning: String? = null,
     val tool_calls: List<OpenAIToolCall>? = null,
     val tool_call_id: String? = null,
     val tool_result: String? = null
@@ -432,7 +466,8 @@ private data class OpenAIChoice(
 private data class OpenAIUsage(
     val prompt_tokens: Int = 0,
     val completion_tokens: Int = 0,
-    val total_tokens: Int = 0
+    val total_tokens: Int = 0,
+    val reasoning_tokens: Int? = null
 )
 
 private data class OpenAIStreamResponse(

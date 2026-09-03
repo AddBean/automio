@@ -3,6 +3,8 @@
 
 package com.hive.agent.ai.providers
 
+import com.hive.agent.ai.ReasoningRequestMapper
+import com.hive.agent.ai.ReasoningResponseNormalizer
 import com.hive.agent.config.ConfigAgentModels
 import com.hive.agent.utils.AgentToolCallUtils
 import com.hive.plugin.agent.ProviderInfo
@@ -11,6 +13,7 @@ import com.hive.plugin.agent.ModelInfo
 import com.hive.plugin.agent.ModelType
 import com.hive.plugin.agent.model.ChatCompletionResponse
 import com.hive.plugin.agent.model.MessageRole
+import com.hive.plugin.agent.model.ReasoningOptions
 
 import com.hive.utils.debug.DLog
 import com.hive.utils.extends.string
@@ -190,7 +193,8 @@ open class DeepSeekProvider : AbstractChatProvider() {
         temperature: Float,
         maxTokens: Int,
         stream: Boolean,
-        tools: List<Any>?
+        tools: List<Any>?,
+        reasoning: ReasoningOptions?
     ): String {
         val deepSeekRequest = DeepSeekChatRequest(
             model = model,
@@ -229,25 +233,39 @@ open class DeepSeekProvider : AbstractChatProvider() {
             stream = stream,
             tools = tools?.map { it as DeepSeekToolDefinition }
         )
-        return GsonHelper.getInstance().toJson(deepSeekRequest)
+        val json = GsonHelper.getInstance().getGson().toJsonTree(deepSeekRequest).asJsonObject
+        if (reasoning != null) {
+            ReasoningRequestMapper.applyForProvider(json, getProviderInfo().name, reasoning)
+        }
+        return GsonHelper.getInstance().toJson(json)
     }
 
     override fun parseChatResponse(responseText: String): ChatCompletionResponse {
         val deepSeekResponse = GsonHelper.getInstance().fromJson(responseText, DeepSeekChatResponse::class.java)
         val firstChoice = deepSeekResponse.choices?.firstOrNull()
         val message = firstChoice?.message
-
-        return ChatCompletionResponse(
+        val providerId = getProviderInfo().name
+        val usage = deepSeekResponse.usage?.let { usage ->
+            mapOf(
+                "prompt_tokens" to usage.prompt_tokens,
+                "completion_tokens" to usage.completion_tokens,
+                "total_tokens" to usage.total_tokens
+            )
+        } ?: emptyMap()
+        val normalized = ReasoningResponseNormalizer.normalize(
             content = message?.content,
             reasoningContent = message?.reasoning_content,
+            usage = usage,
+            providerId = providerId,
+            modelId = deepSeekResponse.model,
+            replayFormat = ReasoningResponseNormalizer.replayFormatFor(providerId)
+        )
+
+        return ChatCompletionResponse(
+            content = normalized.content,
+            reasoningContent = normalized.reasoningContent,
             model = deepSeekResponse.model,
-            usage = deepSeekResponse.usage?.let { usage ->
-                mapOf(
-                    "prompt_tokens" to usage.prompt_tokens,
-                    "completion_tokens" to usage.completion_tokens,
-                    "total_tokens" to usage.total_tokens
-                )
-            } ?: emptyMap(),
+            usage = normalized.usage,
             toolCalls = message?.tool_calls?.mapNotNull { deepSeekToolCall ->
                 AgentToolCallUtils.buildToolCall(
                     logTag = "DeepSeekProvider",
@@ -256,7 +274,8 @@ open class DeepSeekProvider : AbstractChatProvider() {
                     functionName = deepSeekToolCall.function.name,
                     arguments = deepSeekToolCall.function.arguments
                 )
-            }
+            },
+            reasoningTrace = normalized.reasoningTrace
         )
     }
 
@@ -306,13 +325,23 @@ open class DeepSeekProvider : AbstractChatProvider() {
         toolCalls: List<Any>?,
         cost: Double?
     ): ChatCompletionResponse {
-        return ChatCompletionResponse(
+        val providerId = getProviderInfo().name
+        val normalized = ReasoningResponseNormalizer.normalize(
             content = accumulatedContent.ifEmpty { null },
             reasoningContent = accumulatedReasoningContent?.ifEmpty { null },
-            model = model,
             usage = usage,
+            providerId = providerId,
+            modelId = model,
+            replayFormat = ReasoningResponseNormalizer.replayFormatFor(providerId)
+        )
+        return ChatCompletionResponse(
+            content = normalized.content,
+            reasoningContent = normalized.reasoningContent,
+            model = model,
+            usage = normalized.usage,
             cost = cost,
-            toolCalls = toolCalls as? List<com.hive.plugin.agent.model.ToolCall>
+            toolCalls = toolCalls as? List<com.hive.plugin.agent.model.ToolCall>,
+            reasoningTrace = normalized.reasoningTrace
         )
     }
 
